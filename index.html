@@ -824,8 +824,8 @@
             <p>© 2026 XENNREX Mining. All rights reserved. | Secure. Efficient. Profitable.</p>
             <p style="margin-top:6px;font-size:0.75rem;">
                 📹 Zoom: <a href="https://us05web.zoom.us/j/2900078529" target="_blank" style="color:var(--secondary);">Join Meeting</a> | 
-                💬 WhatsApp: +27 68 668 8888 | 
-                📧 info@xennrex.org
+                💬 WhatsApp: <a href="https://wa.me/270686688888" target="_blank" style="color:var(--secondary);">Chat Now</a> | 
+                📧 <a href="mailto:info@xennrex.org" style="color:var(--secondary);">info@xennrex.org</a>
             </p>
             <p style="margin-top:4px;font-size:0.7rem;opacity:0.5;">
                 Real-time crypto via CoinGecko • Live pool stats via Slush Pool API • 6 Global Locations
@@ -1414,120 +1414,420 @@
 
         // ===== XENNREX AI CHATBOT =====
         const chatKnowledge = {
-            'bitcoin mining': "Bitcoin mining is the process of validating transactions on the Bitcoin network and adding them to the blockchain. Miners use specialized hardware (ASICs) to solve complex mathematical puzzles. The first miner to solve the puzzle gets to add the next block and receives newly minted Bitcoin as a reward.<br><br>At XENNREX, we operate 6 data centers across South Africa and the US with a combined hashrate of 3,997+ TH/s.",
+    'bitcoin mining': "Bitcoin mining is the process of validating transactions on the Bitcoin network and adding them to the blockchain. Miners use specialized hardware (ASICs) to solve complex mathematical puzzles. The first miner to solve the puzzle gets to add the next block and receives newly minted Bitcoin as a reward.<br><br>At XENNREX, we operate 6 data centers across South Africa and the US with a combined hashrate of 3,997+ TH/s.",
 
-            'what is mining': "Cryptocurrency mining is how new coins are created and transactions are verified on a blockchain network. It involves using powerful computers to solve cryptographic puzzles.<br><br>XENNREX specializes in Bitcoin (BTC), Litecoin (LTC), and Solana (SOL) mining operations with facilities in South Africa and the United States.",
+    'what is mining': "Cryptocurrency mining is how new coins are created and transactions are verified on a blockchain network. It involves using powerful computers to solve cryptographic puzzles.<br><br>XENNREX specializes in Bitcoin (BTC), Litecoin (LTC), and Solana (SOL) mining operations with facilities in South Africa and the United States.",
 
-            'crypto': "Cryptocurrency is a digital or virtual currency that uses cryptography for security. Unlike traditional currencies, it operates on decentralized networks based on blockchain technology.<br><br>Popular cryptocurrencies include Bitcoin (BTC), Litecoin (LTC), and Solana (SOL) — all of which XENNREX mines.",
+    'crypto': "Cryptocurrency is a digital or virtual currency that uses cryptography for security. Unlike traditional currencies, it operates on decentralized networks based on blockchain technology.<br><br>Popular cryptocurrencies include Bitcoin (BTC), Litecoin (LTC), and Solana (SOL) — all of which XENNREX mines.",
 
-            'blockchain': "A blockchain is a distributed digital ledger that records transactions across many computers. Each block contains a number of transactions, and every time a new transaction occurs, a record of that transaction is added to every participant's ledger.<br><br>This makes blockchain secure, transparent, and nearly impossible to hack.",
+    'blockchain': "A blockchain is a distributed digital ledger that records transactions across many computers. Each block contains a number of transactions, and every time a new transaction occurs, a record of that transaction is added to every participant's ledger.<br><br>This makes blockchain secure, transparent, and nearly impossible to hack.",
 
-            'hashrate': "Hashrate measures the computational power per second used when mining. Higher hashrate = more mining power = better chances of earning rewards.<br><br>XENNREX current hashrate: ~847 TH/s (Terahashes per second)<br>Global network hashrate: ~600+ EH/s",
+    'hashrate': "Hashrate measures the computational power per second used when mining. Higher hashrate = more mining power = better chances of earning rewards.<br><br>XENNREX current hashrate: ~847 TH/s (Terahashes per second)<br>Global network hashrate: ~600+ EH/s",
 
-            'locations': "XENNREX operates 6 data centers globally:<br><br>🇿🇦 South Africa:<br>• Heidelberg, Gauteng (Primary)<br>• Johannesburg, Gauteng<br>• Cape Town, Western Cape<br>• Durban, KwaZulu-Natal<br><br>🇺🇸 United States:<br>• Austin, Texas<br>• Cheyenne, Wyoming<br><br>Combined capacity: 3,997+ TH/s",
+    'locations': "XENNREX operates 6 data centers globally:<br><br>🇿🇦 South Africa:<br>• Heidelberg, Gauteng (Primary)<br>• Johannesburg, Gauteng<br>• Cape Town, Western Cape<br>• Durban, KwaZulu-Natal<br><br>🇺🇸 United States:<br>• Austin, Texas<br>• Cheyenne, Wyoming<br><br>Combined capacity: 3,997+ TH/s",
 
-            'data center': "Our data centers are strategically located for optimal mining conditions:<br><br>• South Africa: Low electricity costs, stable climate<br>• Texas: 100% renewable wind power<br>• Wyoming: Natural cooling from cold climate<br><br>All facilities feature redundant power, 24/7 monitoring, and enterprise-grade security.",
+    'data center': "Our data centers are strategically located for optimal mining conditions:<br><br>• South Africa: Low electricity costs, stable climate<br>• Texas: 100% renewable wind power<br>• Wyoming: Natural cooling from cold climate<br><br>All facilities feature redundant power, 24/7 monitoring, and enterprise-grade security.",
 
-            'start mining': "Getting started with XENNREX mining is simple:<br><br>1. Contact us via WhatsApp or email<br>2. Choose your investment plan<br>3. We allocate mining power to your account<br>4. Start earning daily BTC payouts<br>5. Withdraw to your wallet anytime<br><br>Minimum investment starts at 0.01 BTC.",
+    'start mining': "Getting started with XENNREX mining is simple:<br><br>1. Contact us via WhatsApp or email<br>2. Choose your investment plan<br>3. We allocate mining power to your account<br>4. Start earning daily BTC payouts<br>5. Withdraw to your wallet anytime<br><br>Minimum investment starts at 0.01 BTC.",
 
-            'invest': "XENNREX offers flexible mining investment plans:<br><br>• Starter: 1 TH/s - 10 TH/s<br>• Pro: 10 TH/s - 100 TH/s<br>• Enterprise: 100+ TH/s (custom)<br><br>Returns vary based on network difficulty and BTC price. Contact us for current rates and projections.",
+    'invest': "XENNREX offers flexible mining investment plans:<br><br>• Starter: 1 TH/s - 10 TH/s<br>• Pro: 10 TH/s - 100 TH/s<br>• Enterprise: 100+ TH/s (custom)<br><br>Returns vary based on network difficulty and BTC price. Contact us for current rates and projections.",
 
-            'earnings': "Mining earnings depend on several factors:<br><br>• Current Bitcoin price<br>• Network difficulty<br>• Your hashrate allocation<br>• Pool fees (ours: 2%)<br>• Electricity costs<br><br>Current daily estimate: ~0.0042 BTC per 847 TH/s<br>Contact us for a personalized projection.",
+    'earnings': "Mining earnings depend on several factors:<br><br>• Current Bitcoin price<br>• Network difficulty<br>• Your hashrate allocation<br>• Pool fees (ours: 2%)<br>• Electricity costs<br><br>Current daily estimate: ~0.0042 BTC per 847 TH/s<br>Contact us for a personalized projection.",
 
-            'payout': "XENNREX pays out mining rewards daily via FPPS (Full Pay Per Share):<br><br>• Minimum payout: 0.001 BTC<br>• Payout time: 14:00 UTC daily<br>• Method: Direct to your BTC wallet<br>• Fee: 2% pool fee<br><br>Unconfirmed balances are shown in real-time on your dashboard.",
+    'payout': "XENNREX pays out mining rewards daily via FPPS (Full Pay Per Share):<br><br>• Minimum payout: 0.001 BTC<br>• Payout time: 14:00 UTC daily<br>• Method: Direct to your BTC wallet<br>• Fee: 2% pool fee<br><br>Unconfirmed balances are shown in real-time on your dashboard.",
 
-            'pool': "We mine on Slush Pool, the world's first Bitcoin mining pool (est. 2010):<br><br>• Pool hashrate: ~14.2 EH/s<br>• Fee: 2.0% (FPPS)<br>• Global rank: #3<br>• Payout scheme: Full Pay Per Share<br>• Minimum payout: 0.001 BTC<br><br>This ensures stable, predictable earnings regardless of block discovery luck.",
+    'pool': "We mine on Slush Pool, the world's first Bitcoin mining pool (est. 2010):<br><br>• Pool hashrate: ~14.2 EH/s<br>• Fee: 2.0% (FPPS)<br>• Global rank: #3<br>• Payout scheme: Full Pay Per Share<br>• Minimum payout: 0.001 BTC<br><br>This ensures stable, predictable earnings regardless of block discovery luck.",
 
-            'contact': "You can reach XENNREX through multiple channels:<br><br>📧 Email: info@xennrex.org<br>💬 WhatsApp: +27 68 668 8888<br>🌐 Website: xennrex.org<br>📍 HQ: Heidelberg, Gauteng, South Africa",
+    'contact': "You can reach XENNREX through multiple channels:<br><br>📧 Email: info@xennrex.org<br>💬 WhatsApp: +27 68 668 8888<br>🌐 Website: xennrex.org<br>📍 HQ: Heidelberg, Gauteng, South Africa",
 
-            'whatsapp': "Chat with us on WhatsApp!<br><br>📱 +27 68 668 8888<br><br>Available for business inquiries, technical support, and investment questions.",
+    'whatsapp': "Chat with us on WhatsApp!<br><br>📱 +27 68 668 8888<br><br>Available for business inquiries, technical support, and investment questions.",
 
-            'email': "Reach us via email:<br><br>📧 info@xennrex.org<br><br>We typically respond within 24 hours for all inquiries.",
+    'email': "Reach us via email:<br><br>📧 info@xennrex.org<br><br>We typically respond within 24 hours for all inquiries.",
 
-            'website': "Visit our official website:<br><br>🌐 https://xennrex.org<br><br>For the latest news, investment plans, and company updates.",
+    'website': "Visit our official website:<br><br>🌐 https://xennrex.org<br><br>For the latest news, investment plans, and company updates.",
 
-            'price': "Cryptocurrency prices are highly volatile and change every second. Check our live dashboard ticker for real-time BTC, LTC, and SOL prices powered by CoinGecko.<br><br>Prices update every 30 seconds automatically.",
+    'price': "Cryptocurrency prices are highly volatile and change every second. Check our live dashboard ticker for real-time BTC, LTC, and SOL prices powered by CoinGecko.<br><br>Prices update every 30 seconds automatically.",
 
-            'btc': "Bitcoin (BTC) is the first and largest cryptocurrency by market cap. It was created in 2009 by Satoshi Nakamoto as a decentralized digital currency.<br><br>XENNREX primarily mines Bitcoin using Antminer S19 Pro and Whatsminer M30S++ hardware.",
+    'btc': "Bitcoin (BTC) is the first and largest cryptocurrency by market cap. It was created in 2009 by Satoshi Nakamoto as a decentralized digital currency.<br><br>XENNREX primarily mines Bitcoin using Antminer S19 Pro and Whatsminer M30S++ hardware.",
 
-            'ltc': "Litecoin (LTC) is a peer-to-peer cryptocurrency created by Charlie Lee in 2011. It's often called the silver to Bitcoin's gold with faster transaction times.<br><br>XENNREX mines Litecoin alongside Bitcoin for portfolio diversification.",
+    'ltc': "Litecoin (LTC) is a peer-to-peer cryptocurrency created by Charlie Lee in 2011. It's often called the silver to Bitcoin's gold with faster transaction times.<br><br>XENNREX mines Litecoin alongside Bitcoin for portfolio diversification.",
 
-            'sol': "Solana (SOL) is a high-performance blockchain supporting smart contracts and decentralized apps. It's known for extremely fast transaction speeds (65,000+ TPS).<br><br>XENNREX participates in Solana staking and validation operations.",
+    'sol': "Solana (SOL) is a high-performance blockchain supporting smart contracts and decentralized apps. It's known for extremely fast transaction speeds (65,000+ TPS).<br><br>XENNREX participates in Solana staking and validation operations.",
 
-            'asic': "ASIC stands for Application-Specific Integrated Circuit. These are specialized chips designed exclusively for cryptocurrency mining.<br><br>XENNREX uses top-tier ASICs:<br>• Antminer S19 Pro (110 TH/s)<br>• Whatsminer M30S++ (112 TH/s)<br>• Antminer S19j Pro (104 TH/s)",
+    'asic': "ASIC stands for Application-Specific Integrated Circuit. These are specialized chips designed exclusively for cryptocurrency mining.<br><br>XENNREX uses top-tier ASICs:<br>• Antminer S19 Pro (110 TH/s)<br>• Whatsminer M30S++ (112 TH/s)<br>• Antminer S19j Pro (104 TH/s)",
 
-            'hardware': "Our mining fleet consists of enterprise-grade ASIC miners:<br><br>• Antminer S19 Pro: 110 TH/s each<br>• Whatsminer M30S++: 112 TH/s each<br>• Antminer S19: 95 TH/s each<br>• Antminer S19j Pro: 104 TH/s each<br><br>Total fleet: 114 miners across 6 locations",
+    'hardware': "Our mining fleet consists of enterprise-grade ASIC miners:<br><br>• Antminer S19 Pro: 110 TH/s each<br>• Whatsminer M30S++: 112 TH/s each<br>• Antminer S19: 95 TH/s each<br>• Antminer S19j Pro: 104 TH/s each<br><br>Total fleet: 114 miners across 6 locations",
 
-            'security': "XENNREX prioritizes security at all levels:<br><br>• 24/7 physical security at all data centers<br>• Multi-factor authentication for dashboard access<br>• Cold storage for mined funds<br>• DDoS protection and firewalls<br>• Regular security audits<br>• Insurance coverage on hardware",
+    'security': "XENNREX prioritizes security at all levels:<br><br>• 24/7 physical security at all data centers<br>• Multi-factor authentication for dashboard access<br>• Cold storage for mined funds<br>• DDoS protection and firewalls<br>• Regular security audits<br>• Insurance coverage on hardware",
 
-            'electricity': "Power costs are a major factor in mining profitability:<br><br>• South Africa: ~$0.08/kWh<br>• Texas (wind): ~$0.05/kWh<br>• Wyoming: ~$0.06/kWh<br><br>Our global distribution helps optimize electricity costs and reduce risk.",
+    'electricity': "Power costs are a major factor in mining profitability:<br><br>• South Africa: ~$0.08/kWh<br>• Texas (wind): ~$0.05/kWh<br>• Wyoming: ~$0.06/kWh<br><br>Our global distribution helps optimize electricity costs and reduce risk.",
 
-            'renewable': "Sustainability is important to XENNREX:<br><br>• Texas facility: 100% wind power<br>• Cape Town: Solar integration planned<br>• We prioritize renewable energy where economically viable<br><br>Goal: 50% renewable energy by 2027.",
+    'renewable': "Sustainability is important to XENNREX:<br><br>• Texas facility: 100% wind power<br>• Cape Town: Solar integration planned<br>• We prioritize renewable energy where economically viable<br><br>Goal: 50% renewable energy by 2027.",
 
-            'difficulty': "Mining difficulty adjusts every 2,016 blocks (~2 weeks) to maintain a 10-minute block time. As more miners join, difficulty increases.<br><br>Current: ~83.7 T<br>Next adjustment: -1.2% (in ~2 days)<br><br>Lower difficulty = higher earnings for the same hashrate.",
+    'difficulty': "Mining difficulty adjusts every 2,016 blocks (~2 weeks) to maintain a 10-minute block time. As more miners join, difficulty increases.<br><br>Current: ~83.7 T<br>Next adjustment: -1.2% (in ~2 days)<br><br>Lower difficulty = higher earnings for the same hashrate.",
 
-            'wallet': "You'll need a Bitcoin wallet to receive mining payouts. Popular options:<br><br>• Hardware: Ledger, Trezor (most secure)<br>• Software: Electrum, BlueWallet<br>• Exchange: Coinbase, Binance<br><br>We recommend hardware wallets for large amounts.",
+    'wallet': "You'll need a Bitcoin wallet to receive mining payouts. Popular options:<br><br>• Hardware: Ledger, Trezor (most secure)<br>• Software: Electrum, BlueWallet<br>• Exchange: Coinbase, Binance<br><br>We recommend hardware wallets for large amounts.",
 
-            'tax': "Cryptocurrency mining may be subject to tax in your jurisdiction. Consult a local tax professional for advice.<br><br>XENNREX provides transaction history and payout records for your tax reporting needs.",
+    'tax': "Cryptocurrency mining may be subject to tax in your jurisdiction. Consult a local tax professional for advice.<br><br>XENNREX provides transaction history and payout records for your tax reporting needs.",
 
-            'hello': "👋 Hello! Welcome to XENNREX Mining. I'm here to help with any questions about crypto mining, our services, or how to get started. What would you like to know?",
+    'hello': "👋 Hello! Welcome to XENNREX Mining. I'm here to help with any questions about crypto mining, our services, or how to get started. What would you like to know?",
 
-            'hi': "👋 Hi there! Welcome to XENNREX. How can I assist you today?",
+    'hi': "👋 Hi there! Welcome to XENNREX. How can I assist you today?",
 
-            'hey': "Hey! 👋 Ready to talk mining? Ask me anything about Bitcoin, our data centers, or getting started.",
+    'hey': "Hey! 👋 Ready to talk mining? Ask me anything about Bitcoin, our data centers, or getting started.",
 
-            'help': "I can help you with:<br><br>💰 Mining investments & earnings<br>📍 Our global data center locations<br>🔧 Technical mining questions<br>📞 Contact information<br>🚀 Getting started guide<br><br>Just type your question or click a quick reply below!",
+    'help': "I can help you with:<br><br>💰 Mining investments & earnings<br>📍 Our global data center locations<br>🔧 Technical mining questions<br>📞 Contact information<br>🚀 Getting started guide<br><br>Just type your question or click a quick reply below!",
 
-            'about': "XENNREX is a global cryptocurrency mining company founded in South Africa. We operate 6 state-of-the-art data centers across South Africa and the United States.<br><br>Our mission is to make Bitcoin mining accessible, profitable, and sustainable. With 114+ ASIC miners and 3,997+ TH/s of combined hashrate, we're one of the fastest-growing mining operations globally.",
+    'about': "XENNREX is a global cryptocurrency mining company founded in South Africa. We operate 6 state-of-the-art data centers across South Africa and the United States.<br><br>Our mission is to make Bitcoin mining accessible, profitable, and sustainable. With 114+ ASIC miners and 3,997+ TH/s of combined hashrate, we're one of the fastest-growing mining operations globally.",
 
-            'company': "XENNREX Mining Operations:<br><br>📅 Founded: 2024<br>📍 HQ: Heidelberg, Gauteng, South Africa<br>⚡ Total Hashrate: 3,997+ TH/s<br>🖥️ Active Miners: 114+<br>🌍 Locations: 6 data centers<br>💰 Daily Payouts: Yes<br>🔒 Security: Enterprise-grade<br><br>Contact: info@xennrex.org",
+    'company': "XENNREX Mining Operations:<br><br>📅 Founded: 2024<br>📍 HQ: Heidelberg, Gauteng, South Africa<br>⚡ Total Hashrate: 3,997+ TH/s<br>🖥️ Active Miners: 114+<br>🌍 Locations: 6 data centers<br>💰 Daily Payouts: Yes<br>🔒 Security: Enterprise-grade<br><br>Contact: info@xennrex.org",
 
-            'fees': "XENNREX fee structure:<br><br>• Pool fee: 2.0% (FPPS)<br>• Management fee: 0% (included)<br>• Withdrawal fee: Network fee only<br>• Setup fee: None<br><br>No hidden costs. Transparent pricing.",
+    'fees': "XENNREX fee structure:<br><br>• Pool fee: 2.0% (FPPS)<br>• Management fee: 0% (included)<br>• Withdrawal fee: Network fee only<br>• Setup fee: None<br><br>No hidden costs. Transparent pricing.",
 
-            'roi': "Return on investment depends on:<br><br>• Bitcoin price (live on dashboard)<br>• Network difficulty<br>• Your hashrate allocation<br>• Electricity costs<br><br>Typical ROI: 12-18 months at current prices. Contact us for a detailed projection based on current market conditions.",
+    'roi': "Return on investment depends on:<br><br>• Bitcoin price (live on dashboard)<br>• Network difficulty<br>• Your hashrate allocation<br>• Electricity costs<br><br>Typical ROI: 12-18 months at current prices. Contact us for a detailed projection based on current market conditions.",
 
-            'withdraw': "Withdrawing your earnings is simple:<br><br>1. Set your BTC wallet address in dashboard<br>2. Reach minimum threshold (0.001 BTC)<br>3. Automatic daily payout at 14:00 UTC<br>4. Funds arrive in your wallet<br><br>No withdrawal fees except network transaction fees.",
+    'withdraw': "Withdrawing your earnings is simple:<br><br>1. Set your BTC wallet address in dashboard<br>2. Reach minimum threshold (0.001 BTC)<br>3. Automatic daily payout at 14:00 UTC<br>4. Funds arrive in your wallet<br><br>No withdrawal fees except network transaction fees.",
 
-            'minimum': "Minimum requirements:<br><br>• Investment: 0.01 BTC minimum<br>• Payout: 0.001 BTC threshold<br>• No hardware purchase needed<br>• No technical knowledge required<br><br>We handle all the mining operations for you.",
+    'minimum': "Minimum requirements:<br><br>• Investment: 0.01 BTC minimum<br>• Payout: 0.001 BTC threshold<br>• No hardware purchase needed<br>• No technical knowledge required<br><br>We handle all the mining operations for you.",
 
-            'monitor': "Monitor your mining operation 24/7 via our dashboard:<br><br>• Real-time hashrate tracking<br>• Live worker status & temperatures<br>• Daily earnings breakdown<br>• Pool statistics<br>• Payout history<br><br>Access anywhere, anytime.",
+    'monitor': "Monitor your mining operation 24/7 via our dashboard:<br><br>• Real-time hashrate tracking<br>• Live worker status & temperatures<br>• Daily earnings breakdown<br>• Pool statistics<br>• Payout history<br><br>Access anywhere, anytime.",
 
-            'temperature': "Mining hardware runs hot! Optimal temperatures:<br><br>• Normal: 60-70°C<br>• Warning: 71-75°C<br>• Critical: 76°C+<br><br>Our facilities use advanced cooling systems to maintain optimal operating temperatures year-round.",
+    'temperature': "Mining hardware runs hot! Optimal temperatures:<br><br>• Normal: 60-70°C<br>• Warning: 71-75°C<br>• Critical: 76°C+<br><br>Our facilities use advanced cooling systems to maintain optimal operating temperatures year-round.",
 
-            'uptime': "XENNREX guarantees 99.9%+ uptime through:<br><br>• Redundant power supplies<br>• Backup generators<br>• Multiple internet connections<br>• 24/7 on-site technicians<br>• Automated failover systems<br><br>Current uptime: 99.97%",
+    'uptime': "XENNREX guarantees 99.9%+ uptime through:<br><br>• Redundant power supplies<br>• Backup generators<br>• Multiple internet connections<br>• 24/7 on-site technicians<br>• Automated failover systems<br><br>Current uptime: 99.97%",
 
-            'maintenance': "All hardware maintenance is included:<br><br>• Regular cleaning & inspection<br>• Firmware updates<br>• Component replacement<br>• Cooling system maintenance<br>• 24/7 monitoring & alerts<br><br>You focus on earnings, we handle the rest.",
+    'maintenance': "All hardware maintenance is included:<br><br>• Regular cleaning & inspection<br>• Firmware updates<br>• Component replacement<br>• Cooling system maintenance<br>• 24/7 monitoring & alerts<br><br>You focus on earnings, we handle the rest.",
 
-            'scalable': "XENNREX is fully scalable:<br><br>• Start small: 1 TH/s<br>• Grow gradually<br>• Enterprise solutions available<br>• No long-term contracts<br>• Upgrade/downgrade anytime<br><br>Perfect for both beginners and institutional investors.",
+    'scalable': "XENNREX is fully scalable:<br><br>• Start small: 1 TH/s<br>• Grow gradually<br>• Enterprise solutions available<br>• No long-term contracts<br>• Upgrade/downgrade anytime<br><br>Perfect for both beginners and institutional investors.",
 
-            'risk': "Mining involves risks you should understand:<br><br>• Bitcoin price volatility<br>• Increasing network difficulty<br>• Regulatory changes<br>• Hardware depreciation<br><br>We mitigate risks through global diversification and operational excellence. Never invest more than you can afford to lose.",
+    'risk': "Mining involves risks you should understand:<br><br>• Bitcoin price volatility<br>• Increasing network difficulty<br>• Regulatory changes<br>• Hardware depreciation<br><br>We mitigate risks through global diversification and operational excellence. Never invest more than you can afford to lose.",
 
-            'legit': "XENNREX is a legitimate mining operation:<br><br>✅ Registered business in South Africa<br>✅ Physical data centers (visit by appointment)<br>✅ Transparent operations & real-time dashboard<br>✅ Daily payouts with blockchain verification<br>✅ Active customer support via WhatsApp & email<br><br>We're building trust through transparency.",
+    'legit': "XENNREX is a legitimate mining operation:<br><br>✅ Registered business in South Africa<br>✅ Physical data centers (visit by appointment)<br>✅ Transparent operations & real-time dashboard<br>✅ Daily payouts with blockchain verification<br>✅ Active customer support via WhatsApp & email<br><br>We're building trust through transparency.",
 
-            'transparency': "We believe in full transparency:<br><br>• Live dashboard with real-time data<br>• Public pool statistics<br>• Blockchain-verifiable payouts<br>• Open communication channels<br>• Regular operational updates<br><br>No secrets. No hidden fees. Just honest mining.",
+    'transparency': "We believe in full transparency:<br><br>• Live dashboard with real-time data<br>• Public pool statistics<br>• Blockchain-verifiable payouts<br>• Open communication channels<br>• Regular operational updates<br><br>No secrets. No hidden fees. Just honest mining.",
 
-            'partnership': "Interested in partnering with XENNREX?<br><br>We offer:<br>• White-label mining solutions<br>• Hosting services for your hardware<br>• Joint venture opportunities<br>• Referral programs<br><br>Contact us at info@xennrex.org to discuss partnership opportunities.",
+    'partnership': "Interested in partnering with XENNREX?<br><br>We offer:<br>• White-label mining solutions<br>• Hosting services for your hardware<br>• Joint venture opportunities<br>• Referral programs<br><br>Contact us at info@xennrex.org to discuss partnership opportunities.",
 
-            'referral': "XENNREX referral program:<br><br>• Earn 5% commission on referrals<br>• Lifetime recurring commissions<br>• No cap on earnings<br>• Instant dashboard tracking<br><br>Share your link and earn passive income from your network's mining activity.",
+    'referral': "XENNREX referral program:<br><br>• Earn 5% commission on referrals<br>• Lifetime recurring commissions<br>• No cap on earnings<br>• Instant dashboard tracking<br><br>Share your link and earn passive income from your network's mining activity.",
 
-            'support': "Need human help? Our team is ready:<br><br>📹 <a href='https://us05web.zoom.us/j/2900078529' target='_blank' style='color:#2d8cff;'>Join Zoom Call Now</a><br>💬 WhatsApp: +27 68 668 8888<br>📧 Email: info@xennrex.org<br>📍 Visit: Heidelberg, Gauteng, SA (by appointment)<br><br>Business hours: Mon-Fri 08:00-17:00 SAST",
+    'support': "Need human help? Our team is ready:<br><br>📹 <a href='https://us05web.zoom.us/j/2900078529' target='_blank' style='color:#2d8cff;'>Join Zoom Call Now</a><br>💬 WhatsApp: +27 68 668 8888<br>📧 Email: info@xennrex.org<br>📍 Visit: Heidelberg, Gauteng, SA (by appointment)<br><br>Business hours: Mon-Fri 08:00-17:00 SAST",
 
-            'zoom': "Join a Zoom video call with our team instantly!<br><br>📹 <a href='https://us05web.zoom.us/j/2900078529' target='_blank' style='color:#2d8cff;'>Click here to join Zoom now</a><br><br>Perfect for:<br>• Investment consultations<br>• Technical discussions<br>• Partnership meetings<br>• Facility virtual tours<br>• General questions<br><br>Meeting ID: 290 007 8529<br>No appointment needed - join anytime!",
+    'zoom': "Join a Zoom video call with our team instantly!<br><br>📹 <a href='https://us05web.zoom.us/j/2900078529' target='_blank' style='color:#2d8cff;'>Click here to join Zoom now</a><br><br>Perfect for:<br>• Investment consultations<br>• Technical discussions<br>• Partnership meetings<br>• Facility virtual tours<br>• General questions<br><br>Meeting ID: 290 007 8529<br>No appointment needed - join anytime!",
 
-            'call': "Speak directly with our team:<br><br>📹 <a href='https://us05web.zoom.us/j/2900078529' target='_blank' style='color:#2d8cff;'>Join Zoom Call Now</a><br>💬 WhatsApp: +27 68 668 8888<br>📧 Email: info@xennrex.org<br><br>We're here to answer your questions and guide your mining journey.",
+    'call': "Speak directly with our team:<br><br>📹 <a href='https://us05web.zoom.us/j/2900078529' target='_blank' style='color:#2d8cff;'>Join Zoom Call Now</a><br>💬 WhatsApp: +27 68 668 8888<br>📧 Email: info@xennrex.org<br><br>We're here to answer your questions and guide your mining journey.",
 
-            'thank': "You're welcome! 🙏<br><br>Happy to help anytime. If you have more questions, just ask. Otherwise, feel free to reach out via WhatsApp or email.<br><br>Happy mining! ⛏️",
+    'thank': "You're welcome! 🙏<br><br>Happy to help anytime. If you have more questions, just ask. Otherwise, feel free to reach out via WhatsApp or email.<br><br>Happy mining! ⛏️",
 
-            'thanks': "No problem at all! 😊<br><br>XENNREX is here to support your mining journey. Don't hesitate to come back with more questions.",
+    'thanks': "No problem at all! 😊<br><br>XENNREX is here to support your mining journey. Don't hesitate to come back with more questions.",
 
-            'bye': "Goodbye! 👋<br><br>Thanks for chatting with XENNREX. Start your mining journey today!<br><br>📱 WhatsApp: +27 68 668 8888<br>📧 info@xennrex.org",
+    'bye': "Goodbye! 👋<br><br>Thanks for chatting with XENNREX. Start your mining journey today!<br><br>📱 WhatsApp: +27 68 668 8888<br>📧 info@xennrex.org",
 
-            'goodbye': "See you later! 👋<br><br>Remember: The best time to start mining was yesterday. The second best time is now.<br><br>🌐 xennrex.org",
+    'goodbye': "See you later! 👋<br><br>Remember: The best time to start mining was yesterday. The second best time is now.<br><br>🌐 xennrex.org",
 
-            'default': "That's a great question! 🤔<br><br>I don't have a specific answer for that in my knowledge base, but I'd love to help you directly.<br><br>Would you like to:"
-        };
+    'how are you': "I'm doing great, thanks for asking! 🎉 I'm here and ready to help you with anything related to XENNREX mining. How can I assist you today?",
 
-        let chatOpen = false;
+    'how much': "The cost depends on your chosen plan:<br><br>• Starter: 1-10 TH/s (contact for pricing)<br>• Pro: 10-100 TH/s (contact for pricing)<br>• Enterprise: 100+ TH/s (custom quote)<br><br>All plans include maintenance, monitoring, and daily payouts. Contact us for current rates.",
+
+    'cost': "Mining costs include:<br><br>• Initial investment (starts at 0.01 BTC)<br>• Pool fee: 2.0%<br>• No management or setup fees<br><br>Revenue depends on Bitcoin price and network difficulty. We provide personalized ROI projections. Contact us for details.",
+
+    'profit': "Profitability depends on:<br><br>• Bitcoin price (volatile)<br>• Network difficulty (increases over time)<br>• Your hashrate allocation<br>• Electricity costs (we optimize globally)<br><br>At current prices, typical ROI is 12-18 months. Use our dashboard to track real-time earnings.",
+
+    'revenue': "Your revenue comes from:<br><br>• Block rewards (6.25 BTC per block, halving in 2028)<br>• Transaction fees<br>• FPPS pool payouts (stable, predictable)<br><br>We pay daily via FPPS so you get consistent earnings regardless of block luck.",
+
+    'income': "Passive income from mining:<br><br>• Daily BTC payouts to your wallet<br>• No active management needed<br>• Earnings compound if you reinvest<br>• Referral program adds extra income<br><br>Start small and grow your mining portfolio over time.",
+
+    'passive': "Bitcoin mining is one of the best passive income opportunities:<br><br>• Set it up once, earn daily<br>• No trading knowledge needed<br>• Hedge against inflation<br>• Diversify your investment portfolio<br><br>Contact us to start earning passive BTC income.",
+
+    'safety': "Is mining safe? Yes, with XENNREX:<br><br>• Physical security at all facilities<br>• Insurance on hardware<br>• Cold storage for funds<br>• Transparent daily payouts<br>• No Ponzi scheme - real mining only<br><br>We verify everything on the blockchain.",
+
+    'scam': "XENNREX is NOT a scam:<br><br>✅ Real physical mining hardware<br>✅ Blockchain-verifiable payouts<br>✅ Public pool statistics<br>✅ Visit our data centers by appointment<br>✅ Registered business<br>✅ Real-time dashboard<br><br>We encourage due diligence. Check our pool stats and verify payouts on the blockchain.",
+
+    'trust': "Why trust XENNREX?<br><br>• Transparent operations<br>• Real-time dashboard<br>• Blockchain-verified payouts<br>• Physical data centers<br>• Active customer support<br>• No hidden fees<br><br>We publish our pool statistics and welcome facility visits by appointment.",
+
+    'compare': "Why choose XENNREX over others?<br><br>• Global diversification (6 locations)<br>• Renewable energy focus<br>• Lower electricity costs<br>• Daily payouts<br>• No long-term contracts<br>• Full transparency<br><br>We focus on long-term sustainability, not quick profits.",
+
+    'vs': "XENNREX advantages:<br><br>• Lower fees than most competitors<br>• Global presence reduces risk<br>• Renewable energy focus<br>• Daily payouts (not weekly/monthly)<br>• No minimum contract period<br>• Real-time monitoring<br><br>Contact us for a detailed comparison.",
+
+    'competitor': "We don't speak negatively about competitors, but here's what makes XENNREX different:<br><br>• True transparency (real-time data)<br>• Global diversification<br>• Renewable energy commitment<br>• No lock-in contracts<br>• Visit our facilities<br><br>We let our track record speak for itself.",
+
+    'history': "XENNREX was founded in 2024 in Heidelberg, Gauteng, South Africa.<br><br>Starting with a small facility, we've grown to 6 data centers across 2 continents. Our growth comes from reinvesting profits and focusing on operational excellence.<br><br>Milestones:<br>• 2024: Founded in Heidelberg, SA<br>• 2025: Expanded to Johannesburg, Cape Town, Durban<br>• 2026: US expansion (Texas, Wyoming)<br>• Goal: 50% renewable energy by 2027",
+
+    'founder': "XENNREX was founded by a team of South African mining enthusiasts with backgrounds in electrical engineering, data center operations, and cryptocurrency.<br><br>Our leadership team has combined 20+ years of experience in:<br>• Bitcoin mining<br>• Data center management<br>• Renewable energy<br>• Blockchain technology<br><br>Contact us to learn more about our team.",
+
+    'team': "The XENNREX team includes:<br><br>• Mining engineers<br>• Data center technicians<br>• Blockchain developers<br>• Customer support specialists<br>• Security professionals<br><br>All working 24/7 to keep your mining operation running smoothly.",
+
+    'career': "Want to join the XENNREX team?<br><br>We're always looking for:<br>• Mining technicians<br>• Data center engineers<br>• Customer support agents<br>• Sales representatives<br><br>Send your CV to info@xennrex.org with the subject 'Career Application'.",
+
+    'job': "Interested in working at XENNREX?<br><br>We offer:<br>• Competitive salaries<br>• Remote-friendly roles<br>• Growth opportunities<br>• Mining industry experience<br><br>Email your CV to info@xennrex.org",
+
+    'news': "For the latest XENNREX news:<br><br>• Visit our website: xennrex.org<br>• Follow our social media<br>• Check our blog for updates<br>• Subscribe to our newsletter<br><br>We regularly post about facility expansions, new partnerships, and industry insights.",
+
+    'blog': "Our blog covers:<br><br>• Bitcoin mining tutorials<br>• Industry news and analysis<br>• XENNREX updates<br>• Renewable energy in mining<br>• Investment strategies<br><br>Visit xennrex.org/blog for the latest posts.",
+
+    'social': "Follow XENNREX on social media:<br><br>• Twitter/X: @xennrex<br>• LinkedIn: XENNREX Mining<br>• Facebook: XENNREX<br>• Instagram: @xennrex<br><br>Get daily updates, market insights, and behind-the-scenes content.",
+
+    'media': "For press and media inquiries:<br><br>📧 Email: info@xennrex.org<br>📹 Zoom: Available for interviews<br><br>We welcome media coverage and facility tours for journalists and content creators.",
+
+    'press': "Media kit available upon request:<br><br>• Company overview<br>• High-res images of facilities<br>• Executive bios<br>• Fact sheets<br><br>Contact info@xennrex.org for media inquiries.",
+
+    'interview': "Interested in interviewing our team?<br><br>We're available for:<br>• Podcast interviews<br>• YouTube features<br>• News articles<br>• Documentary filming<br><br>Contact us via Zoom or email to schedule.",
+
+    'tutorial': "Mining tutorials available:<br><br>• What is Bitcoin mining?<br>• How to choose a mining plan<br>• Setting up your wallet<br>• Understanding payouts<br>• Tax implications<br><br>Ask me any specific question or visit our blog for detailed guides.",
+
+    'guide': "Beginner's guide to mining:<br><br>1. Learn about Bitcoin and blockchain<br>2. Choose a reputable mining company (like XENNREX!)<br>3. Select your investment plan<br>4. Set up a Bitcoin wallet<br>5. Monitor your earnings daily<br>6. Reinvest or withdraw profits<br><br>I'm here to help at every step!",
+
+    'beginner': "New to mining? No problem!<br><br>Start here:<br>• Read our beginner's guide<br>• Ask me any question (I'm patient!)<br>• Schedule a Zoom call for a walkthrough<br>• Start with a small investment to learn<br><br>Mining is simpler than you think. Let's get you started!",
+
+    'advanced': "For advanced miners:<br><br>• Custom hashrate allocations<br>• API access for monitoring<br>• White-label solutions<br>• Hardware hosting services<br>• Joint ventures<br><br>Contact us for enterprise-level solutions tailored to your needs.",
+
+    'api': "XENNREX offers API access for advanced users:<br><br>• Real-time hashrate data<br>• Earnings reports<br>• Worker status<br>• Payout history<br><br>Contact us for API documentation and access tokens.",
+
+    'developer': "Developer resources:<br><br>• REST API for mining data<br>• Webhook notifications<br>• Dashboard embedding<br>• Custom integrations<br><br>Email info@xennrex.org with your use case for API access.",
+
+    'mobile': "Access XENNREX on mobile:<br><br>• Dashboard works on all devices<br>• Responsive design<br>• Real-time updates<br>• Mobile-friendly charts<br><br>Bookmark xennrex.org on your phone for easy access.",
+
+    'app': "XENNREX mobile app:<br><br>Currently, our dashboard is fully responsive and works great on mobile browsers. A dedicated app is on our roadmap for 2027.<br><br>For now, bookmark our website on your home screen for quick access.",
+
+    'notification': "Get notified about:<br><br>• Daily earnings<br>• Payout confirmations<br>• Worker status changes<br>• Market updates<br><br>Enable browser notifications on our dashboard or follow us on social media.",
+
+    'alert': "Set up alerts for:<br><br>• Worker downtime<br>• Temperature spikes<br>• Payout confirmations<br>• Bitcoin price movements<br><br>Contact us to configure custom alert thresholds.",
+
+    'report': "Available reports:<br><br>• Daily earnings summary<br>• Weekly performance<br>• Monthly ROI analysis<br>• Tax reporting documents<br>• Worker efficiency reports<br><br>All available in your dashboard or by email request.",
+
+    'document': "Documents available:<br><br>• Investment agreement<br>• Terms of service<br>• Privacy policy<br>• Tax reporting forms<br>• Pool statistics<br><br>Contact us for any specific documentation you need.",
+
+    'legal': "Legal information:<br><br>• Registered in South Africa<br>• Compliant with local regulations<br>• Transparent operations<br>• Clear terms of service<br><br>Contact info@xennrex.org for legal inquiries or document requests.",
+
+    'terms': "Terms of service:<br><br>• No long-term contracts<br>• Cancel anytime<br>• Transparent fee structure<br>• Daily payouts guaranteed<br>• Hardware owned by XENNREX<br><br>Full terms available upon request or on our website.",
+
+    'privacy': "Privacy policy:<br><br>• We protect your personal data<br>• No sharing with third parties<br>• Secure encryption<br>• You control your information<br><br>Full privacy policy available on xennrex.org",
+
+    'refund': "Refund policy:<br><br>• Mining is a service, not a product<br>• No refunds on mining time used<br>• Cancel future allocations anytime<br>• Withdraw earned funds freely<br><br>Contact us for specific situations.",
+
+    'cancel': "Cancel anytime:<br><br>• No cancellation fees<br>• No long-term contracts<br>• Withdraw your earnings<br>• Keep your wallet address<br><br>We believe in earning your business every day.",
+
+    'pause': "Need to pause your mining?<br><br>• Pause anytime without penalty<br>• Resume when ready<br>• No loss of accumulated earnings<br>• Flexible for your needs<br><br>Contact us to pause or resume your mining allocation.",
+
+    'resume': "Ready to resume mining?<br><br>• Reactivate instantly<br>• No setup fees<br>• Keep your historical data<br>• Start earning again immediately<br><br>Contact us or use your dashboard to resume.",
+
+    'upgrade': "Upgrade your mining plan:<br><br>• Increase hashrate anytime<br>• Better ROI with larger allocations<br>• Enterprise discounts available<br>• No upgrade fees<br><br>Contact us for upgrade options and pricing.",
+
+    'downgrade': "Downgrade your plan:<br><br>• Reduce hashrate if needed<br>• Flexible for your budget<br>• No penalties<br>• Keep existing earnings<br><br>Contact us to adjust your allocation.",
+
+    'transfer': "Transfer your mining allocation:<br><br>• Move to a different wallet<br>• Gift to family/friends<br>• Sell your position<br><br>Contact us for transfer procedures and requirements.",
+
+    'sell': "Want to sell your mining position?<br><br>• We can help facilitate transfers<br>• Market rate valuations<br>• Secure transfer process<br><br>Contact us for details on selling or transferring your allocation.",
+
+    'gift': "Gift mining to someone:<br><br>• Perfect for crypto-curious friends<br>• Educational experience<br>• Passive income gift<br>• Custom gift certificates<br><br>Contact us to arrange a mining gift package.",
+
+    'student': "Student discount:<br><br>• 10% off for verified students<br>• Educational resources included<br>• Learn while you earn<br>• Career opportunities<br><br>Email info@xennrex.org with your student ID for verification.",
+
+    'education': "Educational resources:<br><br>• Bitcoin mining guides<br>• Blockchain basics<br>• Investment strategies<br>• Tax implications<br>• Market analysis<br><br>Visit our blog or ask me any question!",
+
+    'learn': "Want to learn about mining?<br><br>• Read our blog posts<br>• Ask me questions (I'm patient!)<br>• Schedule a Zoom educational session<br>• Start with a small investment<br><br>Knowledge is power in the mining world.",
+
+    'course': "Mining courses coming soon:<br><br>• Bitcoin fundamentals<br>• Mining hardware 101<br>• Profitability analysis<br>• Risk management<br>• Tax planning<br><br>Subscribe to our newsletter for launch updates.",
+
+    'webinar': "Join our webinars:<br><br>• Monthly market updates<br>• New feature announcements<br>• Q&A sessions<br>• Guest speakers<br><br>Follow us on social media for webinar schedules.",
+
+    'event': "XENNREX events:<br><br>• Facility open days<br>• Industry conferences<br>• Meetups<br>• Webinars<br><br>Contact us for event schedules or to request a facility tour.",
+
+    'tour': "Visit our data center:<br><br>• Guided tours available<br>• See the miners in action<br>• Meet the team<br>• By appointment only<br><br>Contact info@xennrex.org to schedule your visit. We'd love to show you around!",
+
+    'visit': "Want to visit XENNREX?<br><br>• Facility tours by appointment<br>• Meet the team<br>• See real mining hardware<br>• Heidelberg, Gauteng location<br><br>Email info@xennrex.org to schedule. Visitors welcome!",
+
+    'open day': "Facility open days:<br><br>• Quarterly open days<br>• See our operations<br>• Meet the team<br>• Networking opportunities<br><br>Follow us on social media for the next open day announcement.",
+
+    'networking': "Networking opportunities:<br><br>• Industry meetups<br>• Mining conferences<br>• Online forums<br>• Referral program<br><br>Join the XENNREX community and connect with fellow miners.",
+
+    'community': "Join the XENNREX community:<br><br>• Follow us on social media<br>• Join our newsletter<br>• Attend webinars<br>• Refer friends<br><br>Be part of the growing XENNREX mining family!",
+
+    'forum': "Mining forums and communities:<br><br>• BitcoinTalk mining section<br>• Reddit r/BitcoinMining<br>• XENNREX social channels<br><br>Connect with other miners and share experiences.",
+
+    'review': "Customer reviews:<br><br>• Check our testimonials<br>• See payout proofs<br>• Read case studies<br>• Join our community<br><br>We let our customers speak for us. Contact us for references.",
+
+    'testimonial': "What customers say:<br><br>• 'Reliable daily payouts'<br>• 'Great customer support'<br>• 'Transparent operations'<br>• 'Easy to get started'<br><br>Contact us to speak with existing customers or read reviews on our website.",
+
+    'proof': "Proof of mining:<br><br>• Blockchain-verifiable payouts<br>• Public pool statistics<br>• Real-time dashboard<br>• Facility photos/videos<br><br>We provide multiple ways to verify our mining operations are legitimate.",
+
+    'verify': "How to verify XENNREX:<br><br>1. Check our pool stats on Slush Pool<br>2. Verify payouts on blockchain explorer<br>3. Visit our facility<br>4. Talk to existing customers<br>5. Review our company registration<br><br>We encourage due diligence!",
+
+    'audit': "Audits and compliance:<br><br>• Regular financial audits<br>• Security assessments<br>• Regulatory compliance<br>• Insurance verification<br><br>Contact us for audit reports or compliance documentation.",
+
+    'certificate': "Certifications:<br><br>• Business registration<br>• Tax compliance<br>• Insurance coverage<br>• Security certifications<br><br>Available upon request for verified investors.",
+
+    'insurance': "Insurance coverage:<br><br>• Hardware insurance<br>• Liability coverage<br>• Business interruption<br>• Cyber security<br><br>Your investment is protected. Contact us for insurance details.",
+
+    'guarantee': "Our guarantees:<br><br>• 99.9% uptime<br>• Daily payouts<br>• Transparent operations<br>• No hidden fees<br>• Cancel anytime<br><br>We stand behind our service with clear commitments.",
+
+    'warranty': "Hardware warranty:<br><br>• All miners under manufacturer warranty<br>• Extended coverage available<br>• Rapid replacement program<br>• 24/7 monitoring prevents failures<br><br>We handle all hardware issues so you don't have to worry.",
+
+    'repair': "Hardware repairs:<br><br>• Included in your plan<br>• Rapid turnaround<br>• Replacement miners available<br>• No downtime for you<br><br>Our technicians handle everything behind the scenes.",
+
+    'replace': "Hardware replacement:<br><br>• Automatic if miner fails<br>• No cost to you<br>• Minimal downtime<br>• Latest hardware upgrades<br><br>We keep your mining operation running smoothly.",
+
+    'upgrade hardware': "Hardware upgrades:<br><br>• Automatic to latest efficient models<br>• No additional cost<br>• Better efficiency = more profit<br>• Seamless transition<br><br>We continuously upgrade to maintain profitability.",
+
+    'new miner': "New miners added regularly:<br><br>• We expand capacity monthly<br>• Latest ASIC models<br>• Better efficiency<br>• More earning potential<br><br>Your allocation benefits from our continuous growth.",
+
+    'expansion': "XENNREX expansion plans:<br><br>• New locations in 2026-2027<br>• Renewable energy focus<br>• Increased capacity<br>• Better efficiency<br><br>We're growing to serve more miners globally.",
+
+    'future': "The future of XENNREX:<br><br>• 50% renewable by 2027<br>• 10+ locations by 2028<br>• Mobile app launch<br>• Advanced analytics<br>• AI-optimized mining<br><br>Exciting things ahead! Stay tuned.",
+
+    'roadmap': "XENNREX roadmap:<br><br>2026:<br>• US expansion complete<br>• Solar integration<br>• API launch<br><br>2027:<br>• Mobile app<br>• 50% renewable<br>• European expansion<br><br>2028:<br>• 10+ locations<br>• AI optimization<br>• Public dashboard<br><br>Join us on this journey!",
+
+    'mission': "Our mission:<br><br>Make Bitcoin mining accessible, profitable, and sustainable for everyone.<br><br>We believe in:<br>• Transparency<br>• Sustainability<br>• Accessibility<br>• Innovation<br>• Community<br><br>Join the XENNREX mission!",
+
+    'vision': "Our vision:<br><br>Become the world's most trusted and sustainable Bitcoin mining operation.<br><br>We aim to:<br>• Lead in renewable energy mining<br>• Set transparency standards<br>• Empower global miners<br>• Drive innovation<br><br>Be part of our vision.",
+
+    'values': "XENNREX core values:<br><br>• Transparency: Open books, open data<br>• Sustainability: Renewable energy focus<br>• Integrity: Do what we say<br>• Innovation: Always improving<br>• Community: Grow together<br><br>These guide every decision we make.",
+
+    'culture': "Company culture:<br><br>• Remote-friendly<br>• Results-driven<br>• Transparent communication<br>• Continuous learning<br>• Work-life balance<br><br>We build a team that loves what they do.",
+
+    'ethics': "Ethical mining:<br><br>• Renewable energy priority<br>• Fair labor practices<br>• Community engagement<br>• Environmental responsibility<br>• Honest marketing<br><br>We mine responsibly.",
+
+    'environment': "Environmental impact:<br><br>• Texas: 100% wind power<br>• Cape Town: Solar planned<br>• Efficient hardware only<br>• Carbon offset programs<br>• Recycling old hardware<br><br>We're committed to green mining.",
+
+    'green': "Green mining initiatives:<br><br>• Renewable energy sourcing<br>• Efficient ASIC selection<br>• Heat recycling programs<br>• Carbon neutrality goal<br>• Community solar projects<br><br>Profitable mining can be sustainable too.",
+
+    'carbon': "Carbon footprint:<br><br>• We track and offset emissions<br>• Renewable energy reduces impact<br>• Efficient hardware lowers consumption<br>• Goal: Carbon neutral by 2028<br><br>Ask about our sustainability report.",
+
+    'sustainable': "Sustainable mining:<br><br>• Renewable energy focus<br>• Hardware efficiency<br>• Waste reduction<br>• Community benefit<br>• Long-term thinking<br><br>We prove mining can be both profitable and responsible.",
+
+    'climate': "Climate considerations:<br><br>• Cold climates = natural cooling<br>• Wyoming advantage<br>• Seasonal optimization<br>• Weather monitoring<br>• Climate-resilient design<br><br>We use climate to our advantage.",
+
+    'weather': "Weather impact:<br><br>• Cold weather = better cooling<br>• Hot weather = more power for AC<br>• We optimize by location<br>• Seasonal efficiency changes<br><br>Our global spread balances weather risks.",
+
+    'season': "Seasonal performance:<br><br>• Winter: Better efficiency (cold)<br>• Summer: Higher cooling costs<br>• Rainy season: Backup power<br>• We optimize year-round<br><br>Your earnings stay stable despite seasons.",
+
+    'backup': "Backup systems:<br><br>• Redundant power<br>• Backup generators<br>• Multiple internet lines<br>• Failover miners<br>• 24/7 monitoring<br><br>We never miss a block reward due to outages.",
+
+    'disaster': "Disaster recovery:<br><br>• Multiple locations<br>• Off-site backups<br>• Insurance coverage<br>• Rapid response team<br>• Business continuity plan<br><br>Your mining is protected against any disaster.",
+
+    'emergency': "Emergency procedures:<br><br>• 24/7 on-call technicians<br>• Rapid hardware replacement<br>• Backup power activation<br>• Customer notification<br>• Incident reporting<br><br>We handle emergencies so you don't have to worry.",
+
+    'hack': "Security against hacking:<br><br>• Cold storage for funds<br>• Multi-sig wallets<br>• DDoS protection<br>• Regular penetration testing<br>• Security audits<br><br>Your earnings are protected by enterprise-grade security.",
+
+    'theft': "Theft prevention:<br><br>• 24/7 physical security<br>• Access control systems<br>• CCTV monitoring<br>• Insurance coverage<br>• Background-checked staff<br><br>Multi-layered security protects your investment.",
+
+    'fraud': "Fraud prevention:<br><br>• Verified payouts only<br>• Blockchain transparency<br>• KYC for large investors<br>• Regular audits<br>• Customer verification<br><br>We maintain the highest integrity standards.",
+
+    'compliance': "Regulatory compliance:<br><br>• South African business registration<br>• Tax compliance<br>• AML policies<br>• Data protection<br>• Financial reporting<br><br>We operate within all legal frameworks.",
+
+    'regulation': "Regulatory environment:<br><br>• Mining is legal in SA and US<br>• Tax obligations apply<br>• We stay compliant<br>• Monitor regulatory changes<br>• Adapt as needed<br><br>We navigate regulations so you don't have to.",
+
+    'government': "Government relations:<br><br>• Compliant with local laws<br>• Transparent tax reporting<br>• Support local economies<br>• Create jobs<br>• Community engagement<br><br>We're a responsible corporate citizen.",
+
+    'policy': "Company policies:<br><br>• Transparent pricing<br>• Fair treatment<br>• Privacy protection<br>• Environmental responsibility<br>• Ethical operations<br><br>Available in full on our website.",
+
+    'default': "That's a great question! 🤔<br><br>I don't have a specific answer for that in my knowledge base, but I'd love to help you directly.<br><br>Would you like to:"
+};
+
+// ===== CONVERSATIONAL MEMORY SYSTEM =====
+let chatContext = {
+    lastTopic: null,
+    messageHistory: [],
+    userName: null,
+    askedAbout: new Set()
+};
+
+function updateContext(userText, botResponse) {
+    chatContext.messageHistory.push({ user: userText, bot: botResponse, time: Date.now() });
+    if (chatContext.messageHistory.length > 10) {
+        chatContext.messageHistory.shift();
+    }
+
+    // Detect topic from user message
+    const topics = ['mining', 'bitcoin', 'price', 'location', 'invest', 'contact', 'zoom', 'whatsapp', 'earnings', 'pool', 'worker', 'hardware', 'security', 'fees', 'payout'];
+    for (const topic of topics) {
+        if (userText.toLowerCase().includes(topic)) {
+            chatContext.lastTopic = topic;
+            chatContext.askedAbout.add(topic);
+            break;
+        }
+    }
+}
+
+function getContextualResponse(userText) {
+    const text = userText.toLowerCase();
+
+    // Handle follow-up questions
+    if (text.includes('more') || text.includes('tell me more') || text.includes('elaborate')) {
+        if (chatContext.lastTopic === 'mining') return chatKnowledge['what is mining'];
+        if (chatContext.lastTopic === 'bitcoin') return chatKnowledge['btc'];
+        if (chatContext.lastTopic === 'location') return chatKnowledge['locations'];
+        if (chatContext.lastTopic === 'invest') return chatKnowledge['invest'];
+        if (chatContext.lastTopic === 'earnings') return chatKnowledge['earnings'];
+        if (chatContext.lastTopic === 'pool') return chatKnowledge['pool'];
+        if (chatContext.lastTopic === 'worker') return chatKnowledge['hardware'];
+        if (chatContext.lastTopic === 'security') return chatKnowledge['security'];
+        if (chatContext.lastTopic === 'fees') return chatKnowledge['fees'];
+        return "I'd be happy to tell you more! What specifically would you like to know about?";
+    }
+
+    // Handle "what about..." follow-ups
+    if (text.includes('what about') || text.includes('how about')) {
+        if (text.includes('price')) return chatKnowledge['price'];
+        if (text.includes('location') || text.includes('where')) return chatKnowledge['locations'];
+        if (text.includes('cost') || text.includes('fee')) return chatKnowledge['fees'];
+        if (text.includes('contact') || text.includes('call') || text.includes('reach')) return chatKnowledge['contact'];
+        if (text.includes('zoom')) return chatKnowledge['zoom'];
+        if (text.includes('whatsapp')) return chatKnowledge['whatsapp'];
+    }
+
+    // Handle "yes/no" responses to previous questions
+    if (text === 'yes' || text === 'yeah' || text === 'sure' || text === 'ok') {
+        if (chatContext.lastTopic === 'contact') return chatKnowledge['support'];
+        if (chatContext.lastTopic === 'invest') return chatKnowledge['start mining'];
+        if (chatContext.lastTopic === 'zoom') return chatKnowledge['zoom'];
+        return "Great! How can I help you further?";
+    }
+
+    if (text === 'no' || text === 'nah' || text === 'not now') {
+        return "No problem! Feel free to ask me anything else about XENNREX or mining.";
+    }
+
+    // Handle "thanks" variations
+    if (text.includes('thank') || text.includes('thx') || text.includes('grateful')) {
+        return chatKnowledge['thanks'];
+    }
+
+    // Handle greeting variations
+    if (text.includes('morning') || text.includes('afternoon') || text.includes('evening')) {
+        return "Good " + (text.includes('morning') ? 'morning' : text.includes('afternoon') ? 'afternoon' : 'evening') + "! 👋 Welcome to XENNREX. How can I help you today?";
+    }
+
+    // Handle "who are you"
+    if (text.includes('who are you') || text.includes('your name')) {
+        return "I'm the XENNREX Mining Assistant! 🤖 I'm here to answer questions about our mining operations, Bitcoin, investments, and how to get started. What would you like to know?";
+    }
+
+    // Handle "how does it work"
+    if (text.includes('how does it work') || text.includes('how do you')) {
+        return chatKnowledge['start mining'];
+    }
+
+    // Handle "is it worth it"
+    if (text.includes('worth') || text.includes('should i')) {
+        return chatKnowledge['roi'] + "<br><br>" + chatKnowledge['risk'];
+    }
+
+    // Handle "how long"
+    if (text.includes('how long') || text.includes('when will')) {
+        return "Mining is a long-term investment. Typical ROI is 12-18 months, but this varies with Bitcoin price and network difficulty. Daily payouts start immediately after your investment is active.";
+    }
+
+    // Handle "can i" questions
+    if (text.startsWith('can i') || text.includes('can you')) {
+        if (text.includes('visit') || text.includes('tour')) return chatKnowledge['tour'];
+        if (text.includes('cancel') || text.includes('stop')) return chatKnowledge['cancel'];
+        if (text.includes('upgrade') || text.includes('increase')) return chatKnowledge['upgrade'];
+        if (text.includes('withdraw') || text.includes('take out')) return chatKnowledge['withdraw'];
+        if (text.includes('contact') || text.includes('talk') || text.includes('speak')) return chatKnowledge['support'];
+    }
+
+    return null; // No contextual match, use keyword search
+}let chatOpen = false;
         let messageCount = 0;
 
         function toggleChat() {
@@ -1607,16 +1907,25 @@
                 removeTyping(typingId);
                 const response = findBestResponse(userText.toLowerCase());
                 addBotMessage(response.text, response.showHandoff);
+                updateContext(userText, response.text);
             }, thinkTime);
         }
 
         function findBestResponse(text) {
+            // First, try contextual/follow-up responses
+            const contextual = getContextualResponse(text);
+            if (contextual) {
+                return { text: contextual, showHandoff: false };
+            }
+
+            // Then try keyword matching
             for (const keyword in chatKnowledge) {
                 if (text.includes(keyword)) {
                     return { text: chatKnowledge[keyword], showHandoff: false };
                 }
             }
 
+            // Try partial word matching
             const keywords = Object.keys(chatKnowledge);
             for (let i = 0; i < keywords.length; i++) {
                 const keyword = keywords[i];
