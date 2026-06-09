@@ -518,9 +518,13 @@
         .mempool-section { margin-bottom: 25px; }
         .mempool-grid {
             display: grid;
-            grid-template-columns: 1.2fr 1fr 1fr 1.3fr;
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
         }
+        .mempool-card.mempool-fees { grid-column: 1; grid-row: 1; }
+        .mempool-card.mempool-stats { grid-column: 2; grid-row: 1; }
+        .mempool-card.mempool-difficulty { grid-column: 1; grid-row: 2; }
+        .mempool-card.mempool-blocks { grid-column: 2; grid-row: 2; }
         .mempool-card {
             background: var(--card);
             border: 1px solid var(--border);
@@ -749,8 +753,8 @@
         .blocks-list {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            max-height: 320px;
+            gap: 6px;
+            max-height: 340px;
             overflow-y: auto;
             scrollbar-width: thin;
             scrollbar-color: var(--btc) transparent;
@@ -758,9 +762,10 @@
         .blocks-list::-webkit-scrollbar { width: 4px; }
         .blocks-list::-webkit-scrollbar-thumb { background: var(--btc); border-radius: 2px; }
         .block-item {
-            display: flex;
+            display: grid;
+            grid-template-columns: 70px 1fr 60px 70px;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             padding: 10px 12px;
             background: rgba(255,255,255,0.03);
             border-radius: 10px;
@@ -787,14 +792,13 @@
         }
         .block-height {
             font-family: 'Courier New', monospace;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: var(--btc);
-            min-width: 55px;
         }
-        .block-info { flex: 1; min-width: 0; }
+        .block-info { min-width: 0; overflow: hidden; }
         .block-miner {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 600;
             color: #e0e6ed;
             white-space: nowrap;
@@ -802,21 +806,19 @@
             text-overflow: ellipsis;
         }
         .block-time {
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             opacity: 0.5;
         }
         .block-txs {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: var(--secondary);
             font-family: 'Courier New', monospace;
-            min-width: 55px;
             text-align: right;
         }
         .block-fees {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: var(--primary);
             font-family: 'Courier New', monospace;
-            min-width: 65px;
             text-align: right;
         }
         .block-item.loading {
@@ -832,7 +834,12 @@
         }
         @media (max-width: 768px) {
             .mempool-grid { grid-template-columns: 1fr; }
+            .mempool-card.mempool-fees,
+            .mempool-card.mempool-stats,
+            .mempool-card.mempool-difficulty,
+            .mempool-card.mempool-blocks { grid-column: auto; grid-row: auto; }
             .mempool-stat-row { gap: 8px; }
+            .block-item { grid-template-columns: 60px 1fr 55px 65px; }
         }
 </style>
 </head>
