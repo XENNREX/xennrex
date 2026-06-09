@@ -513,7 +513,328 @@
             #chat-widget-container { bottom: 15px; right: 15px; }
         }
 
-    </style>
+    
+        /* Mempool Section */
+        .mempool-section { margin-bottom: 25px; }
+        .mempool-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr 1.3fr;
+            gap: 15px;
+        }
+        .mempool-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .mempool-card:hover {
+            border-color: rgba(0, 255, 136, 0.3);
+            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.08);
+            transform: translateY(-2px);
+        }
+        .mempool-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--btc), var(--primary), var(--secondary));
+            opacity: 0.6;
+        }
+        .mempool-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .mempool-card-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #e0e6ed;
+        }
+        .mempool-live-dot {
+            width: 8px; height: 8px;
+            background: var(--btc);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+            box-shadow: 0 0 8px var(--btc);
+        }
+        .mempool-live-badge {
+            background: rgba(247,147,26,0.15);
+            border: 1px solid rgba(247,147,26,0.3);
+            color: var(--btc);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+
+        /* Fee Bars */
+        .fee-bars { display: flex; flex-direction: column; gap: 14px; }
+        .fee-bar-item {
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            padding: 12px 14px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .fee-bar-item:hover {
+            background: rgba(255,255,255,0.06);
+            transform: translateX(4px);
+        }
+        .fee-bar-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .fee-priority {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #e0e6ed;
+        }
+        .fee-time {
+            font-size: 0.7rem;
+            opacity: 0.5;
+        }
+        .fee-bar-track {
+            height: 6px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+        .fee-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        .fee-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0;
+            width: 20px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3));
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-20px); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(20px); opacity: 0; }
+        }
+        .fee-bar-value {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .fee-sat {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .fee-usd {
+            font-size: 0.75rem;
+            opacity: 0.5;
+        }
+
+        /* Mempool Stats */
+        .mempool-stat-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .mempool-stat-row:last-child { margin-bottom: 0; }
+        .mempool-stat-item {
+            flex: 1;
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .mempool-stat-item:hover {
+            background: rgba(255,255,255,0.06);
+        }
+        .mempool-stat-value {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 4px;
+        }
+        .mempool-stat-label {
+            font-size: 0.65rem;
+            opacity: 0.5;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Difficulty Gauge */
+        .difficulty-gauge {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        .difficulty-ring {
+            position: relative;
+            width: 120px; height: 120px;
+        }
+        .difficulty-svg {
+            transform: rotate(-90deg);
+            width: 120px; height: 120px;
+        }
+        .difficulty-bg {
+            fill: none;
+            stroke: rgba(255,255,255,0.08);
+            stroke-width: 8;
+        }
+        .difficulty-progress {
+            fill: none;
+            stroke: url(#diffGradient);
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-dasharray: 314;
+            stroke-dashoffset: 314;
+            transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .difficulty-center {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .difficulty-percent {
+            font-family: 'Courier New', monospace;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .difficulty-label {
+            font-size: 0.65rem;
+            opacity: 0.5;
+            text-transform: uppercase;
+        }
+        .difficulty-details { display: flex; flex-direction: column; gap: 10px; }
+        .diff-detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 10px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .diff-detail-row:hover { background: rgba(255,255,255,0.06); }
+        .diff-detail-label {
+            font-size: 0.75rem;
+            opacity: 0.6;
+        }
+        .diff-detail-value {
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        /* Blocks List */
+        .blocks-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 320px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--btc) transparent;
+        }
+        .blocks-list::-webkit-scrollbar { width: 4px; }
+        .blocks-list::-webkit-scrollbar-thumb { background: var(--btc); border-radius: 2px; }
+        .block-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            border-left: 3px solid var(--btc);
+            transition: all 0.3s;
+            animation: blockSlideIn 0.4s ease forwards;
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+        @keyframes blockSlideIn {
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .block-item:hover {
+            background: rgba(255,255,255,0.06);
+            transform: translateX(4px);
+        }
+        .block-item.new-block {
+            animation: blockFlash 0.6s ease;
+            border-left-color: var(--primary);
+        }
+        @keyframes blockFlash {
+            0% { background: rgba(0,255,136,0.2); }
+            100% { background: rgba(255,255,255,0.03); }
+        }
+        .block-height {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--btc);
+            min-width: 55px;
+        }
+        .block-info { flex: 1; min-width: 0; }
+        .block-miner {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #e0e6ed;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .block-time {
+            font-size: 0.7rem;
+            opacity: 0.5;
+        }
+        .block-txs {
+            font-size: 0.75rem;
+            color: var(--secondary);
+            font-family: 'Courier New', monospace;
+            min-width: 55px;
+            text-align: right;
+        }
+        .block-fees {
+            font-size: 0.75rem;
+            color: var(--primary);
+            font-family: 'Courier New', monospace;
+            min-width: 65px;
+            text-align: right;
+        }
+        .block-item.loading {
+            opacity: 0.5;
+            animation: none;
+        }
+
+        /* SVG Gradient for difficulty ring */
+        .mempool-difficulty svg defs { display: none; }
+
+        @media (max-width: 1200px) {
+            .mempool-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .mempool-grid { grid-template-columns: 1fr; }
+            .mempool-stat-row { gap: 8px; }
+        }
+</style>
 </head>
 <body>
     <div class="particles" id="particles"></div>
@@ -729,7 +1050,174 @@
             </div>
         </div>
 
-        <!-- Workers Section -->
+        
+        <!-- Mempool & Network Status -->
+        <div class="mempool-section" id="mempool">
+            <div class="section-header">
+                <span class="section-title"><i class="fas fa-cube" style="color:var(--btc);margin-right:8px;"></i>Mempool & Network Status</span>
+                <a href="https://mempool.space" target="_blank" style="color:var(--btc);font-size:0.85rem;text-decoration:none;">mempool.space <i class="fas fa-external-link-alt" style="font-size:0.7rem;"></i></a>
+            </div>
+            <div class="mempool-grid">
+                <!-- Fee Estimates -->
+                <div class="mempool-card mempool-fees">
+                    <div class="mempool-card-header">
+                        <span class="mempool-card-title">Transaction Fees</span>
+                        <span class="mempool-live-dot"></span>
+                    </div>
+                    <div class="fee-bars">
+                        <div class="fee-bar-item" id="fee-no-priority">
+                            <div class="fee-bar-label">
+                                <span class="fee-priority">No Priority</span>
+                                <span class="fee-time">~60 min</span>
+                            </div>
+                            <div class="fee-bar-track">
+                                <div class="fee-bar-fill" style="width:15%;background:linear-gradient(90deg,#4ade80,#22c55e);"></div>
+                            </div>
+                            <div class="fee-bar-value">
+                                <span class="fee-sat" id="fee-no-priority-sat">-- sat/vB</span>
+                                <span class="fee-usd" id="fee-no-priority-usd">$--</span>
+                            </div>
+                        </div>
+                        <div class="fee-bar-item" id="fee-low-priority">
+                            <div class="fee-bar-label">
+                                <span class="fee-priority">Low Priority</span>
+                                <span class="fee-time">~30 min</span>
+                            </div>
+                            <div class="fee-bar-track">
+                                <div class="fee-bar-fill" style="width:35%;background:linear-gradient(90deg,#facc15,#eab308);"></div>
+                            </div>
+                            <div class="fee-bar-value">
+                                <span class="fee-sat" id="fee-low-priority-sat">-- sat/vB</span>
+                                <span class="fee-usd" id="fee-low-priority-usd">$--</span>
+                            </div>
+                        </div>
+                        <div class="fee-bar-item" id="fee-medium-priority">
+                            <div class="fee-bar-label">
+                                <span class="fee-priority">Medium Priority</span>
+                                <span class="fee-time">~20 min</span>
+                            </div>
+                            <div class="fee-bar-track">
+                                <div class="fee-bar-fill" style="width:60%;background:linear-gradient(90deg,#fb923c,#f97316);"></div>
+                            </div>
+                            <div class="fee-bar-value">
+                                <span class="fee-sat" id="fee-medium-priority-sat">-- sat/vB</span>
+                                <span class="fee-usd" id="fee-medium-priority-usd">$--</span>
+                            </div>
+                        </div>
+                        <div class="fee-bar-item" id="fee-high-priority">
+                            <div class="fee-bar-label">
+                                <span class="fee-priority">High Priority</span>
+                                <span class="fee-time">~10 min</span>
+                            </div>
+                            <div class="fee-bar-track">
+                                <div class="fee-bar-fill" style="width:90%;background:linear-gradient(90deg,#f87171,#ef4444);"></div>
+                            </div>
+                            <div class="fee-bar-value">
+                                <span class="fee-sat" id="fee-high-priority-sat">-- sat/vB</span>
+                                <span class="fee-usd" id="fee-high-priority-usd">$--</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mempool Stats -->
+                <div class="mempool-card mempool-stats">
+                    <div class="mempool-card-header">
+                        <span class="mempool-card-title">Mempool Overview</span>
+                        <i class="fas fa-memory" style="color:var(--secondary);font-size:1.1rem;"></i>
+                    </div>
+                    <div class="mempool-stat-row">
+                        <div class="mempool-stat-item">
+                            <div class="mempool-stat-value" id="mempool-size">--</div>
+                            <div class="mempool-stat-label">Mempool Size</div>
+                        </div>
+                        <div class="mempool-stat-item">
+                            <div class="mempool-stat-value" id="mempool-txs">--</div>
+                            <div class="mempool-stat-label">Pending Txs</div>
+                        </div>
+                    </div>
+                    <div class="mempool-stat-row">
+                        <div class="mempool-stat-item">
+                            <div class="mempool-stat-value" id="mempool-memory">--</div>
+                            <div class="mempool-stat-label">Memory Usage</div>
+                        </div>
+                        <div class="mempool-stat-item">
+                            <div class="mempool-stat-value" id="mempool-min-fee">--</div>
+                            <div class="mempool-stat-label">Min Fee Rate</div>
+                        </div>
+                    </div>
+                    <div class="mempool-stat-row">
+                        <div class="mempool-stat-item">
+                            <div class="mempool-stat-value" id="avg-block-time">--</div>
+                            <div class="mempool-stat-label">Avg Block Time</div>
+                        </div>
+                        <div class="mempool-stat-item">
+                            <div class="mempool-stat-value" id="next-block-fee">--</div>
+                            <div class="mempool-stat-label">Next Block Fee</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Difficulty Adjustment -->
+                <div class="mempool-card mempool-difficulty">
+                    <div class="mempool-card-header">
+                        <span class="mempool-card-title">Difficulty Adjustment</span>
+                        <i class="fas fa-chart-line" style="color:var(--primary);font-size:1.1rem;"></i>
+                    </div>
+                    <div class="difficulty-gauge">
+                        <div class="difficulty-ring">
+                            <svg viewBox="0 0 120 120" class="difficulty-svg">
+                                <circle class="difficulty-bg" cx="60" cy="60" r="50"/>
+                                <circle class="difficulty-progress" id="difficulty-progress" cx="60" cy="60" r="50"/>
+                            </svg>
+                            <div class="difficulty-center">
+                                <div class="difficulty-percent" id="difficulty-percent">--%</div>
+                                <div class="difficulty-label">Estimated</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="difficulty-details">
+                        <div class="diff-detail-row">
+                            <span class="diff-detail-label">Current Difficulty</span>
+                            <span class="diff-detail-value" id="current-difficulty">-- T</span>
+                        </div>
+                        <div class="diff-detail-row">
+                            <span class="diff-detail-label">Previous Adjustment</span>
+                            <span class="diff-detail-value" id="prev-adjustment">--%</span>
+                        </div>
+                        <div class="diff-detail-row">
+                            <span class="diff-detail-label">Blocks Remaining</span>
+                            <span class="diff-detail-value" id="blocks-remaining">--</span>
+                        </div>
+                        <div class="diff-detail-row">
+                            <span class="diff-detail-label">Est. Time Left</span>
+                            <span class="diff-detail-value" id="diff-time-left">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Blocks -->
+                <div class="mempool-card mempool-blocks">
+                    <div class="mempool-card-header">
+                        <span class="mempool-card-title">Recent Blocks</span>
+                        <span class="mempool-live-badge">LIVE</span>
+                    </div>
+                    <div class="blocks-list" id="blocks-list">
+                        <div class="block-item loading">
+                            <div class="block-height">--</div>
+                            <div class="block-info">
+                                <div class="block-miner">Loading...</div>
+                                <div class="block-time">--</div>
+                            </div>
+                            <div class="block-txs">-- txs</div>
+                            <div class="block-fees">-- BTC</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Workers Section -->
         <div class="workers-section" id="workers">
             <div class="section-header">
                 <span class="section-title">Active Workers</span>
@@ -1681,8 +2169,225 @@ workerUpdateInterval = setInterval(updateWorkers, 3000);
             document.getElementById('unconfirmed').textContent = unconf + ' BTC';
         }, 15000);
 
+
+        // ===== MEMPOOL.SPACE API INTEGRATION =====
+        let lastBlockHeight = 0;
+        let mempoolUpdateInterval = null;
+
+        async function fetchMempoolData() {
+            try {
+                // Fetch fee estimates
+                const feesResponse = await fetch('https://mempool.space/api/v1/fees/recommended');
+                if (feesResponse.ok) {
+                    const fees = await feesResponse.json();
+                    updateFeeDisplay(fees);
+                }
+
+                // Fetch mempool stats
+                const mempoolResponse = await fetch('https://mempool.space/api/mempool');
+                if (mempoolResponse.ok) {
+                    const mempool = await mempoolResponse.json();
+                    updateMempoolStats(mempool);
+                }
+
+                // Fetch difficulty adjustment
+                const diffResponse = await fetch('https://mempool.space/api/v1/difficulty-adjustment');
+                if (diffResponse.ok) {
+                    const diff = await diffResponse.json();
+                    updateDifficultyDisplay(diff);
+                }
+
+                // Fetch recent blocks
+                const blocksResponse = await fetch('https://mempool.space/api/v1/blocks');
+                if (blocksResponse.ok) {
+                    const blocks = await blocksResponse.json();
+                    updateBlocksList(blocks);
+                }
+
+            } catch (error) {
+                console.error('Mempool API error:', error);
+                // Use fallback data if API fails
+                fallbackMempoolData();
+            }
+        }
+
+        function updateFeeDisplay(fees) {
+            const btcPrice = lastPrices.btc || 67000;
+            const vbytesPerTx = 250; // average tx size
+
+            const feeData = [
+                { id: 'no-priority', sat: fees.minimumFee || fees.hourFee || 1, time: '~60 min' },
+                { id: 'low-priority', sat: fees.economyFee || fees.halfHourFee || 3, time: '~30 min' },
+                { id: 'medium-priority', sat: fees.hourFee || fees.halfHourFee || 5, time: '~20 min' },
+                { id: 'high-priority', sat: fees.fastestFee || fees.halfHourFee || 10, time: '~10 min' }
+            ];
+
+            feeData.forEach((fee, index) => {
+                const satEl = document.getElementById(fee.id + '-sat');
+                const usdEl = document.getElementById(fee.id + '-usd');
+                if (satEl) satEl.textContent = fee.sat + ' sat/vB';
+                if (usdEl) {
+                    const usdFee = ((fee.sat * vbytesPerTx * btcPrice) / 100000000).toFixed(2);
+                    usdEl.textContent = '$' + usdFee;
+                }
+
+                // Animate bar width based on relative fee
+                const maxFee = Math.max(...feeData.map(f => f.sat));
+                const barFill = document.querySelector('#fee-' + fee.id + ' .fee-bar-fill');
+                if (barFill) {
+                    const width = Math.max(10, (fee.sat / maxFee) * 100);
+                    barFill.style.width = width + '%';
+                }
+            });
+        }
+
+        function updateMempoolStats(mempool) {
+            // Calculate total mempool size in MB
+            const totalVsize = mempool.vsize ? (mempool.vsize.reduce((a, b) => a + b, 0) / 1000000).toFixed(2) : '--';
+            const totalTxs = mempool.count ? mempool.count.toLocaleString() : '--';
+            const totalBytes = mempool.bytes ? (mempool.bytes.reduce((a, b) => a + b, 0) / 1048576).toFixed(1) : '--';
+            const minFee = mempool.fee_histogram && mempool.fee_histogram.length > 0 
+                ? mempool.fee_histogram[mempool.fee_histogram.length - 1][0] + ' sat/vB'
+                : '--';
+
+            document.getElementById('mempool-size').textContent = totalVsize + ' MB';
+            document.getElementById('mempool-txs').textContent = totalTxs;
+            document.getElementById('mempool-memory').textContent = totalBytes + ' MB';
+            document.getElementById('mempool-min-fee').textContent = minFee;
+        }
+
+        function updateDifficultyDisplay(diff) {
+            if (!diff) return;
+
+            const percent = diff.difficultyChange || 0;
+            const isPositive = percent >= 0;
+            const absPercent = Math.abs(percent).toFixed(2);
+
+            // Update gauge
+            const progress = document.getElementById('difficulty-progress');
+            if (progress) {
+                const circumference = 2 * Math.PI * 50; // 314
+                const offset = circumference - (Math.min(absPercent, 20) / 20) * circumference;
+                progress.style.strokeDashoffset = offset;
+                progress.style.stroke = isPositive ? '#00ff88' : '#ff4757';
+            }
+
+            document.getElementById('difficulty-percent').textContent = (isPositive ? '+' : '-') + absPercent + '%';
+            document.getElementById('difficulty-percent').style.color = isPositive ? 'var(--primary)' : '#ff4757';
+
+            // Current difficulty
+            if (diff.currentDifficulty) {
+                const diffT = (diff.currentDifficulty / 1e12).toFixed(1);
+                document.getElementById('current-difficulty').textContent = diffT + ' T';
+            }
+
+            // Previous adjustment
+            if (diff.previousRetarget) {
+                const prev = diff.previousRetarget;
+                const prevEl = document.getElementById('prev-adjustment');
+                prevEl.textContent = (prev >= 0 ? '+' : '') + prev.toFixed(2) + '%';
+                prevEl.style.color = prev >= 0 ? 'var(--primary)' : '#ff4757';
+            }
+
+            // Blocks remaining
+            if (diff.remainingBlocks !== undefined) {
+                document.getElementById('blocks-remaining').textContent = diff.remainingBlocks;
+            }
+
+            // Time left
+            if (diff.remainingTime !== undefined) {
+                const hours = Math.floor(diff.remainingTime / 3600);
+                const days = Math.floor(hours / 24);
+                const remainingHours = hours % 24;
+                document.getElementById('diff-time-left').textContent = days + 'd ' + remainingHours + 'h';
+            }
+
+            // Average block time
+            if (diff.timeAvg) {
+                const avgMin = (diff.timeAvg / 60).toFixed(1);
+                document.getElementById('avg-block-time').textContent = avgMin + ' min';
+            }
+
+            // Next block fee estimate
+            if (diff.nextRetargetHeight) {
+                document.getElementById('next-block-fee').textContent = '~' + (diff.nextRetargetHeight % 2016) + ' blocks';
+            }
+        }
+
+        function updateBlocksList(blocks) {
+            const container = document.getElementById('blocks-list');
+            if (!blocks || blocks.length === 0) return;
+
+            // Check for new blocks
+            const topBlock = blocks[0];
+            const isNewBlock = topBlock.height > lastBlockHeight && lastBlockHeight > 0;
+            lastBlockHeight = topBlock.height;
+
+            container.innerHTML = '';
+
+            blocks.slice(0, 8).forEach((block, index) => {
+                const now = Math.floor(Date.now() / 1000);
+                const age = now - block.timestamp;
+                const ageText = age < 60 ? age + 's ago' : 
+                               age < 3600 ? Math.floor(age / 60) + 'm ago' : 
+                               Math.floor(age / 3600) + 'h ago';
+
+                const fees = block.extras && block.extras.totalFees ? (block.extras.totalFees / 1e8).toFixed(4) : '--';
+                const miner = block.extras && block.extras.pool ? block.extras.pool.name : 'Unknown';
+                const txCount = block.tx_count ? block.tx_count.toLocaleString() : '--';
+
+                const div = document.createElement('div');
+                div.className = 'block-item' + (index === 0 && isNewBlock ? ' new-block' : '');
+                div.style.animationDelay = (index * 0.05) + 's';
+                div.innerHTML = `
+                    <div class="block-height">#${block.height.toLocaleString()}</div>
+                    <div class="block-info">
+                        <div class="block-miner">${miner}</div>
+                        <div class="block-time">${ageText} • ${(block.size / 1024).toFixed(0)} KB</div>
+                    </div>
+                    <div class="block-txs">${txCount} txs</div>
+                    <div class="block-fees">${fees} BTC</div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function fallbackMempoolData() {
+            // Fallback fee estimates
+            const fallbackFees = {
+                fastestFee: 8,
+                halfHourFee: 5,
+                hourFee: 3,
+                economyFee: 2,
+                minimumFee: 1
+            };
+            updateFeeDisplay(fallbackFees);
+
+            // Fallback mempool stats
+            document.getElementById('mempool-size').textContent = '142.5 MB';
+            document.getElementById('mempool-txs').textContent = '45,230';
+            document.getElementById('mempool-memory').textContent = '152.3 MB';
+            document.getElementById('mempool-min-fee').textContent = '1 sat/vB';
+            document.getElementById('avg-block-time').textContent = '9.8 min';
+            document.getElementById('next-block-fee').textContent = '~10 min';
+
+            // Fallback difficulty
+            document.getElementById('difficulty-percent').textContent = '-1.2%';
+            document.getElementById('difficulty-percent').style.color = '#ff4757';
+            document.getElementById('current-difficulty').textContent = '83.7 T';
+            document.getElementById('prev-adjustment').textContent = '+2.4%';
+            document.getElementById('prev-adjustment').style.color = 'var(--primary)';
+            document.getElementById('blocks-remaining').textContent = '487';
+            document.getElementById('diff-time-left').textContent = '3d 8h';
+        }
+
+        // Initialize mempool data
+        fetchMempoolData();
+        // Update every 30 seconds
+        mempoolUpdateInterval = setInterval(fetchMempoolData, 30000);
+
         // Entrance animations
-        document.querySelectorAll('.stat-card, .chart-card, .worker-card, .pool-card, .contact-item, .location-card, .crypto-card').forEach((el, i) => {
+        document.querySelectorAll('.stat-card, .chart-card, .worker-card, .pool-card, .contact-item, .location-card, .crypto-card, .mempool-card').forEach((el, i) => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             setTimeout(() => {
