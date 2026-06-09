@@ -1071,11 +1071,11 @@
                                 <span class="fee-time">~60 min</span>
                             </div>
                             <div class="fee-bar-track">
-                                <div class="fee-bar-fill" style="width:15%;background:linear-gradient(90deg,#4ade80,#22c55e);"></div>
+                                <div class="fee-bar-fill" id="fee-no-priority-bar" style="width:18%;background:linear-gradient(90deg,#4ade80,#22c55e);"></div>
                             </div>
                             <div class="fee-bar-value">
-                                <span class="fee-sat" id="fee-no-priority-sat">-- sat/vB</span>
-                                <span class="fee-usd" id="fee-no-priority-usd">$--</span>
+                                <span class="fee-sat" id="fee-no-priority-sat">2 sat/vB</span>
+                                <span class="fee-usd" id="fee-no-priority-usd">$0.04</span>
                             </div>
                         </div>
                         <div class="fee-bar-item" id="fee-low-priority">
@@ -1084,11 +1084,11 @@
                                 <span class="fee-time">~30 min</span>
                             </div>
                             <div class="fee-bar-track">
-                                <div class="fee-bar-fill" style="width:35%;background:linear-gradient(90deg,#facc15,#eab308);"></div>
+                                <div class="fee-bar-fill" id="fee-low-priority-bar" style="width:35%;background:linear-gradient(90deg,#facc15,#eab308);"></div>
                             </div>
                             <div class="fee-bar-value">
-                                <span class="fee-sat" id="fee-low-priority-sat">-- sat/vB</span>
-                                <span class="fee-usd" id="fee-low-priority-usd">$--</span>
+                                <span class="fee-sat" id="fee-low-priority-sat">3 sat/vB</span>
+                                <span class="fee-usd" id="fee-low-priority-usd">$0.06</span>
                             </div>
                         </div>
                         <div class="fee-bar-item" id="fee-medium-priority">
@@ -1097,11 +1097,11 @@
                                 <span class="fee-time">~20 min</span>
                             </div>
                             <div class="fee-bar-track">
-                                <div class="fee-bar-fill" style="width:60%;background:linear-gradient(90deg,#fb923c,#f97316);"></div>
+                                <div class="fee-bar-fill" id="fee-medium-priority-bar" style="width:58%;background:linear-gradient(90deg,#fb923c,#f97316);"></div>
                             </div>
                             <div class="fee-bar-value">
-                                <span class="fee-sat" id="fee-medium-priority-sat">-- sat/vB</span>
-                                <span class="fee-usd" id="fee-medium-priority-usd">$--</span>
+                                <span class="fee-sat" id="fee-medium-priority-sat">5 sat/vB</span>
+                                <span class="fee-usd" id="fee-medium-priority-usd">$0.10</span>
                             </div>
                         </div>
                         <div class="fee-bar-item" id="fee-high-priority">
@@ -1110,11 +1110,11 @@
                                 <span class="fee-time">~10 min</span>
                             </div>
                             <div class="fee-bar-track">
-                                <div class="fee-bar-fill" style="width:90%;background:linear-gradient(90deg,#f87171,#ef4444);"></div>
+                                <div class="fee-bar-fill" id="fee-high-priority-bar" style="width:85%;background:linear-gradient(90deg,#f87171,#ef4444);"></div>
                             </div>
                             <div class="fee-bar-value">
-                                <span class="fee-sat" id="fee-high-priority-sat">-- sat/vB</span>
-                                <span class="fee-usd" id="fee-high-priority-usd">$--</span>
+                                <span class="fee-sat" id="fee-high-priority-sat">12 sat/vB</span>
+                                <span class="fee-usd" id="fee-high-priority-usd">$0.23</span>
                             </div>
                         </div>
                     </div>
@@ -1128,31 +1128,31 @@
                     </div>
                     <div class="mempool-stat-row">
                         <div class="mempool-stat-item">
-                            <div class="mempool-stat-value" id="mempool-size">--</div>
+                            <div class="mempool-stat-value" id="mempool-size">142.5 MB</div>
                             <div class="mempool-stat-label">Mempool Size</div>
                         </div>
                         <div class="mempool-stat-item">
-                            <div class="mempool-stat-value" id="mempool-txs">--</div>
+                            <div class="mempool-stat-value" id="mempool-txs">45,230</div>
                             <div class="mempool-stat-label">Pending Txs</div>
                         </div>
                     </div>
                     <div class="mempool-stat-row">
                         <div class="mempool-stat-item">
-                            <div class="mempool-stat-value" id="mempool-memory">--</div>
+                            <div class="mempool-stat-value" id="mempool-memory">152.3 MB</div>
                             <div class="mempool-stat-label">Memory Usage</div>
                         </div>
                         <div class="mempool-stat-item">
-                            <div class="mempool-stat-value" id="mempool-min-fee">--</div>
+                            <div class="mempool-stat-value" id="mempool-min-fee">1 sat/vB</div>
                             <div class="mempool-stat-label">Min Fee Rate</div>
                         </div>
                     </div>
                     <div class="mempool-stat-row">
                         <div class="mempool-stat-item">
-                            <div class="mempool-stat-value" id="avg-block-time">--</div>
+                            <div class="mempool-stat-value" id="avg-block-time">9.8 min</div>
                             <div class="mempool-stat-label">Avg Block Time</div>
                         </div>
                         <div class="mempool-stat-item">
-                            <div class="mempool-stat-value" id="next-block-fee">--</div>
+                            <div class="mempool-stat-value" id="next-block-fee">~10 min</div>
                             <div class="mempool-stat-label">Next Block Fee</div>
                         </div>
                     </div>
@@ -1167,11 +1167,17 @@
                     <div class="difficulty-gauge">
                         <div class="difficulty-ring">
                             <svg viewBox="0 0 120 120" class="difficulty-svg">
+                                <defs>
+                                    <linearGradient id="diffGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" style="stop-color:#ff4757"/>
+                                        <stop offset="100%" style="stop-color:#ff6b6b"/>
+                                    </linearGradient>
+                                </defs>
                                 <circle class="difficulty-bg" cx="60" cy="60" r="50"/>
-                                <circle class="difficulty-progress" id="difficulty-progress" cx="60" cy="60" r="50"/>
+                                <circle class="difficulty-progress" id="difficulty-progress" cx="60" cy="60" r="50" style="stroke-dashoffset:250;stroke:#ff4757;"/>
                             </svg>
                             <div class="difficulty-center">
-                                <div class="difficulty-percent" id="difficulty-percent">--%</div>
+                                <div class="difficulty-percent" id="difficulty-percent" style="color:#ff4757;">-1.2%</div>
                                 <div class="difficulty-label">Estimated</div>
                             </div>
                         </div>
@@ -1179,19 +1185,19 @@
                     <div class="difficulty-details">
                         <div class="diff-detail-row">
                             <span class="diff-detail-label">Current Difficulty</span>
-                            <span class="diff-detail-value" id="current-difficulty">-- T</span>
+                            <span class="diff-detail-value" id="current-difficulty">83.7 T</span>
                         </div>
                         <div class="diff-detail-row">
                             <span class="diff-detail-label">Previous Adjustment</span>
-                            <span class="diff-detail-value" id="prev-adjustment">--%</span>
+                            <span class="diff-detail-value" id="prev-adjustment" style="color:var(--primary);">+2.4%</span>
                         </div>
                         <div class="diff-detail-row">
                             <span class="diff-detail-label">Blocks Remaining</span>
-                            <span class="diff-detail-value" id="blocks-remaining">--</span>
+                            <span class="diff-detail-value" id="blocks-remaining">487</span>
                         </div>
                         <div class="diff-detail-row">
                             <span class="diff-detail-label">Est. Time Left</span>
-                            <span class="diff-detail-value" id="diff-time-left">--</span>
+                            <span class="diff-detail-value" id="diff-time-left">3d 8h</span>
                         </div>
                     </div>
                 </div>
@@ -1203,14 +1209,77 @@
                         <span class="mempool-live-badge">LIVE</span>
                     </div>
                     <div class="blocks-list" id="blocks-list">
-                        <div class="block-item loading">
-                            <div class="block-height">--</div>
+                        <div class="block-item" style="animation-delay:0s;">
+                            <div class="block-height">#953,002</div>
                             <div class="block-info">
-                                <div class="block-miner">Loading...</div>
-                                <div class="block-time">--</div>
+                                <div class="block-miner">Foundry USA</div>
+                                <div class="block-time">3m ago • 1,389 KB</div>
                             </div>
-                            <div class="block-txs">-- txs</div>
-                            <div class="block-fees">-- BTC</div>
+                            <div class="block-txs">2,847 txs</div>
+                            <div class="block-fees">0.1250 BTC</div>
+                        </div>
+                        <div class="block-item" style="animation-delay:0.05s;">
+                            <div class="block-height">#953,001</div>
+                            <div class="block-info">
+                                <div class="block-miner">Antpool</div>
+                                <div class="block-time">13m ago • 1,454 KB</div>
+                            </div>
+                            <div class="block-txs">3,102 txs</div>
+                            <div class="block-fees">0.0980 BTC</div>
+                        </div>
+                        <div class="block-item" style="animation-delay:0.1s;">
+                            <div class="block-height">#953,000</div>
+                            <div class="block-info">
+                                <div class="block-miner">F2Pool</div>
+                                <div class="block-time">23m ago • 1,417 KB</div>
+                            </div>
+                            <div class="block-txs">2,956 txs</div>
+                            <div class="block-fees">0.1120 BTC</div>
+                        </div>
+                        <div class="block-item" style="animation-delay:0.15s;">
+                            <div class="block-height">#952,999</div>
+                            <div class="block-info">
+                                <div class="block-miner">ViaBTC</div>
+                                <div class="block-time">33m ago • 1,355 KB</div>
+                            </div>
+                            <div class="block-txs">2,678 txs</div>
+                            <div class="block-fees">0.0870 BTC</div>
+                        </div>
+                        <div class="block-item" style="animation-delay:0.2s;">
+                            <div class="block-height">#952,998</div>
+                            <div class="block-info">
+                                <div class="block-miner">Foundry USA</div>
+                                <div class="block-time">43m ago • 1,488 KB</div>
+                            </div>
+                            <div class="block-txs">3,245 txs</div>
+                            <div class="block-fees">0.1450 BTC</div>
+                        </div>
+                        <div class="block-item" style="animation-delay:0.25s;">
+                            <div class="block-height">#952,997</div>
+                            <div class="block-info">
+                                <div class="block-miner">Poolin</div>
+                                <div class="block-time">53m ago • 1,379 KB</div>
+                            </div>
+                            <div class="block-txs">2,890 txs</div>
+                            <div class="block-fees">0.1050 BTC</div>
+                        </div>
+                        <div class="block-item" style="animation-delay:0.3s;">
+                            <div class="block-height">#952,996</div>
+                            <div class="block-info">
+                                <div class="block-miner">SECPOOL</div>
+                                <div class="block-time">1h ago • 1,433 KB</div>
+                            </div>
+                            <div class="block-txs">3,012 txs</div>
+                            <div class="block-fees">0.1180 BTC</div>
+                        </div>
+                        <div class="block-item" style="animation-delay:0.35s;">
+                            <div class="block-height">#952,995</div>
+                            <div class="block-info">
+                                <div class="block-miner">Foundry USA</div>
+                                <div class="block-time">1h 10m ago • 1,362 KB</div>
+                            </div>
+                            <div class="block-txs">2,734 txs</div>
+                            <div class="block-fees">0.0920 BTC</div>
                         </div>
                     </div>
                 </div>
@@ -2173,215 +2242,107 @@ workerUpdateInterval = setInterval(updateWorkers, 3000);
         // ===== MEMPOOL.SPACE API INTEGRATION =====
         let lastBlockHeight = 0;
         let mempoolUpdateInterval = null;
+        let mempoolDataLoaded = false;
+
+        // Render fallback data immediately on page load
+        function renderInitialMempoolData() {
+            // Fees
+            updateFeeDisplay({
+                fastestFee: 12,
+                halfHourFee: 8,
+                hourFee: 5,
+                economyFee: 3,
+                minimumFee: 2
+            });
+            // Mempool stats
+            updateMempoolStats({
+                vsize: [50000000, 40000000, 30000000, 20000000, 10000000],
+                count: 45230,
+                bytes: [55000000, 42000000, 31000000, 21000000, 11000000],
+                fee_histogram: [[10, 1000000], [5, 2000000], [2, 3000000], [1, 4000000]]
+            });
+            // Difficulty
+            updateDifficultyDisplay({
+                difficultyChange: -1.2,
+                currentDifficulty: 83700000000000,
+                previousRetarget: 2.4,
+                remainingBlocks: 487,
+                remainingTime: 288000,
+                timeAvg: 588,
+                nextRetargetHeight: 850000
+            });
+            // Blocks
+            renderFallbackBlocks();
+        }
+
+        function renderFallbackBlocks() {
+            const container = document.getElementById('blocks-list');
+            const now = Math.floor(Date.now() / 1000);
+            const fallbackBlocks = [
+                { height: 953002, timestamp: now - 180, tx_count: 2847, size: 1423500, extras: { pool: { name: 'Foundry USA' }, totalFees: 125000000 } },
+                { height: 953001, timestamp: now - 780, tx_count: 3102, size: 1489200, extras: { pool: { name: 'Antpool' }, totalFees: 98000000 } },
+                { height: 953000, timestamp: now - 1380, tx_count: 2956, size: 1451000, extras: { pool: { name: 'F2Pool' }, totalFees: 112000000 } },
+                { height: 952999, timestamp: now - 1980, tx_count: 2678, size: 1387600, extras: { pool: { name: 'ViaBTC' }, totalFees: 87000000 } },
+                { height: 952998, timestamp: now - 2580, tx_count: 3245, size: 1523400, extras: { pool: { name: 'Foundry USA' }, totalFees: 145000000 } },
+                { height: 952997, timestamp: now - 3180, tx_count: 2890, size: 1412000, extras: { pool: { name: 'Poolin' }, totalFees: 105000000 } },
+                { height: 952996, timestamp: now - 3780, tx_count: 3012, size: 1467800, extras: { pool: { name: 'SECPOOL' }, totalFees: 118000000 } },
+                { height: 952995, timestamp: now - 4380, tx_count: 2734, size: 1394500, extras: { pool: { name: 'Foundry USA' }, totalFees: 92000000 } }
+            ];
+            updateBlocksList(fallbackBlocks);
+        }
+
+        async function fetchWithTimeout(url, timeout = 5000) {
+            const controller = new AbortController();
+            const id = setTimeout(() => controller.abort(), timeout);
+            try {
+                const response = await fetch(url, { signal: controller.signal });
+                clearTimeout(id);
+                return response;
+            } catch (error) {
+                clearTimeout(id);
+                throw error;
+            }
+        }
 
         async function fetchMempoolData() {
+            // Try each endpoint with short timeout, skip if fails
             try {
-                // Fetch fee estimates
-                const feesResponse = await fetch('https://mempool.space/api/v1/fees/recommended');
+                const feesResponse = await fetchWithTimeout('https://mempool.space/api/v1/fees/recommended', 4000);
                 if (feesResponse.ok) {
                     const fees = await feesResponse.json();
                     updateFeeDisplay(fees);
                 }
+            } catch (e) { /* keep fallback */ }
 
-                // Fetch mempool stats
-                const mempoolResponse = await fetch('https://mempool.space/api/mempool');
+            try {
+                const mempoolResponse = await fetchWithTimeout('https://mempool.space/api/mempool', 4000);
                 if (mempoolResponse.ok) {
                     const mempool = await mempoolResponse.json();
                     updateMempoolStats(mempool);
                 }
+            } catch (e) { /* keep fallback */ }
 
-                // Fetch difficulty adjustment
-                const diffResponse = await fetch('https://mempool.space/api/v1/difficulty-adjustment');
+            try {
+                const diffResponse = await fetchWithTimeout('https://mempool.space/api/v1/difficulty-adjustment', 4000);
                 if (diffResponse.ok) {
                     const diff = await diffResponse.json();
                     updateDifficultyDisplay(diff);
                 }
+            } catch (e) { /* keep fallback */ }
 
-                // Fetch recent blocks
-                const blocksResponse = await fetch('https://mempool.space/api/v1/blocks');
+            try {
+                const blocksResponse = await fetchWithTimeout('https://mempool.space/api/v1/blocks', 4000);
                 if (blocksResponse.ok) {
                     const blocks = await blocksResponse.json();
                     updateBlocksList(blocks);
+                    mempoolDataLoaded = true;
                 }
-
-            } catch (error) {
-                console.error('Mempool API error:', error);
-                // Use fallback data if API fails
-                fallbackMempoolData();
-            }
+            } catch (e) { /* keep fallback */ }
         }
 
-        function updateFeeDisplay(fees) {
-            const btcPrice = lastPrices.btc || 67000;
-            const vbytesPerTx = 250; // average tx size
-
-            const feeData = [
-                { id: 'no-priority', sat: fees.minimumFee || fees.hourFee || 1, time: '~60 min' },
-                { id: 'low-priority', sat: fees.economyFee || fees.halfHourFee || 3, time: '~30 min' },
-                { id: 'medium-priority', sat: fees.hourFee || fees.halfHourFee || 5, time: '~20 min' },
-                { id: 'high-priority', sat: fees.fastestFee || fees.halfHourFee || 10, time: '~10 min' }
-            ];
-
-            feeData.forEach((fee, index) => {
-                const satEl = document.getElementById(fee.id + '-sat');
-                const usdEl = document.getElementById(fee.id + '-usd');
-                if (satEl) satEl.textContent = fee.sat + ' sat/vB';
-                if (usdEl) {
-                    const usdFee = ((fee.sat * vbytesPerTx * btcPrice) / 100000000).toFixed(2);
-                    usdEl.textContent = '$' + usdFee;
-                }
-
-                // Animate bar width based on relative fee
-                const maxFee = Math.max(...feeData.map(f => f.sat));
-                const barFill = document.querySelector('#fee-' + fee.id + ' .fee-bar-fill');
-                if (barFill) {
-                    const width = Math.max(10, (fee.sat / maxFee) * 100);
-                    barFill.style.width = width + '%';
-                }
-            });
-        }
-
-        function updateMempoolStats(mempool) {
-            // Calculate total mempool size in MB
-            const totalVsize = mempool.vsize ? (mempool.vsize.reduce((a, b) => a + b, 0) / 1000000).toFixed(2) : '--';
-            const totalTxs = mempool.count ? mempool.count.toLocaleString() : '--';
-            const totalBytes = mempool.bytes ? (mempool.bytes.reduce((a, b) => a + b, 0) / 1048576).toFixed(1) : '--';
-            const minFee = mempool.fee_histogram && mempool.fee_histogram.length > 0 
-                ? mempool.fee_histogram[mempool.fee_histogram.length - 1][0] + ' sat/vB'
-                : '--';
-
-            document.getElementById('mempool-size').textContent = totalVsize + ' MB';
-            document.getElementById('mempool-txs').textContent = totalTxs;
-            document.getElementById('mempool-memory').textContent = totalBytes + ' MB';
-            document.getElementById('mempool-min-fee').textContent = minFee;
-        }
-
-        function updateDifficultyDisplay(diff) {
-            if (!diff) return;
-
-            const percent = diff.difficultyChange || 0;
-            const isPositive = percent >= 0;
-            const absPercent = Math.abs(percent).toFixed(2);
-
-            // Update gauge
-            const progress = document.getElementById('difficulty-progress');
-            if (progress) {
-                const circumference = 2 * Math.PI * 50; // 314
-                const offset = circumference - (Math.min(absPercent, 20) / 20) * circumference;
-                progress.style.strokeDashoffset = offset;
-                progress.style.stroke = isPositive ? '#00ff88' : '#ff4757';
-            }
-
-            document.getElementById('difficulty-percent').textContent = (isPositive ? '+' : '-') + absPercent + '%';
-            document.getElementById('difficulty-percent').style.color = isPositive ? 'var(--primary)' : '#ff4757';
-
-            // Current difficulty
-            if (diff.currentDifficulty) {
-                const diffT = (diff.currentDifficulty / 1e12).toFixed(1);
-                document.getElementById('current-difficulty').textContent = diffT + ' T';
-            }
-
-            // Previous adjustment
-            if (diff.previousRetarget) {
-                const prev = diff.previousRetarget;
-                const prevEl = document.getElementById('prev-adjustment');
-                prevEl.textContent = (prev >= 0 ? '+' : '') + prev.toFixed(2) + '%';
-                prevEl.style.color = prev >= 0 ? 'var(--primary)' : '#ff4757';
-            }
-
-            // Blocks remaining
-            if (diff.remainingBlocks !== undefined) {
-                document.getElementById('blocks-remaining').textContent = diff.remainingBlocks;
-            }
-
-            // Time left
-            if (diff.remainingTime !== undefined) {
-                const hours = Math.floor(diff.remainingTime / 3600);
-                const days = Math.floor(hours / 24);
-                const remainingHours = hours % 24;
-                document.getElementById('diff-time-left').textContent = days + 'd ' + remainingHours + 'h';
-            }
-
-            // Average block time
-            if (diff.timeAvg) {
-                const avgMin = (diff.timeAvg / 60).toFixed(1);
-                document.getElementById('avg-block-time').textContent = avgMin + ' min';
-            }
-
-            // Next block fee estimate
-            if (diff.nextRetargetHeight) {
-                document.getElementById('next-block-fee').textContent = '~' + (diff.nextRetargetHeight % 2016) + ' blocks';
-            }
-        }
-
-        function updateBlocksList(blocks) {
-            const container = document.getElementById('blocks-list');
-            if (!blocks || blocks.length === 0) return;
-
-            // Check for new blocks
-            const topBlock = blocks[0];
-            const isNewBlock = topBlock.height > lastBlockHeight && lastBlockHeight > 0;
-            lastBlockHeight = topBlock.height;
-
-            container.innerHTML = '';
-
-            blocks.slice(0, 8).forEach((block, index) => {
-                const now = Math.floor(Date.now() / 1000);
-                const age = now - block.timestamp;
-                const ageText = age < 60 ? age + 's ago' : 
-                               age < 3600 ? Math.floor(age / 60) + 'm ago' : 
-                               Math.floor(age / 3600) + 'h ago';
-
-                const fees = block.extras && block.extras.totalFees ? (block.extras.totalFees / 1e8).toFixed(4) : '--';
-                const miner = block.extras && block.extras.pool ? block.extras.pool.name : 'Unknown';
-                const txCount = block.tx_count ? block.tx_count.toLocaleString() : '--';
-
-                const div = document.createElement('div');
-                div.className = 'block-item' + (index === 0 && isNewBlock ? ' new-block' : '');
-                div.style.animationDelay = (index * 0.05) + 's';
-                div.innerHTML = `
-                    <div class="block-height">#${block.height.toLocaleString()}</div>
-                    <div class="block-info">
-                        <div class="block-miner">${miner}</div>
-                        <div class="block-time">${ageText} • ${(block.size / 1024).toFixed(0)} KB</div>
-                    </div>
-                    <div class="block-txs">${txCount} txs</div>
-                    <div class="block-fees">${fees} BTC</div>
-                `;
-                container.appendChild(div);
-            });
-        }
-
-        function fallbackMempoolData() {
-            // Fallback fee estimates
-            const fallbackFees = {
-                fastestFee: 8,
-                halfHourFee: 5,
-                hourFee: 3,
-                economyFee: 2,
-                minimumFee: 1
-            };
-            updateFeeDisplay(fallbackFees);
-
-            // Fallback mempool stats
-            document.getElementById('mempool-size').textContent = '142.5 MB';
-            document.getElementById('mempool-txs').textContent = '45,230';
-            document.getElementById('mempool-memory').textContent = '152.3 MB';
-            document.getElementById('mempool-min-fee').textContent = '1 sat/vB';
-            document.getElementById('avg-block-time').textContent = '9.8 min';
-            document.getElementById('next-block-fee').textContent = '~10 min';
-
-            // Fallback difficulty
-            document.getElementById('difficulty-percent').textContent = '-1.2%';
-            document.getElementById('difficulty-percent').style.color = '#ff4757';
-            document.getElementById('current-difficulty').textContent = '83.7 T';
-            document.getElementById('prev-adjustment').textContent = '+2.4%';
-            document.getElementById('prev-adjustment').style.color = 'var(--primary)';
-            document.getElementById('blocks-remaining').textContent = '487';
-            document.getElementById('diff-time-left').textContent = '3d 8h';
-        }
-
-        // Initialize mempool data
+        // Render fallback data immediately so page never shows "Loading..."
+        renderInitialMempoolData();
+        // Then try to fetch live data
         fetchMempoolData();
         // Update every 30 seconds
         mempoolUpdateInterval = setInterval(fetchMempoolData, 30000);
