@@ -1,6 +1,8 @@
 <!-- 
-    XENNREX Mining Dashboard
-    ========================
+    XENNREX Mining Dashboard v2.0
+    ===============================
+
+    UPDATED: June 2026
 
     CONFIGURED:
     ✅ Zoom: https://us05web.zoom.us/j/2900078529
@@ -9,6 +11,14 @@
     ✅ Crypto API: CoinGecko (live prices)
     ✅ Weather: Open-Meteo (free, no key needed)
     ✅ Timezone: Auto-detected from browser
+    ✅ Mempool.space API (live Bitcoin network data)
+    ✅ Slush Pool API integration ready
+
+    SECURITY NOTES:
+    - All external API calls use HTTPS
+    - No sensitive data stored in localStorage
+    - Content Security Policy compatible
+    - No eval() in our code (Chart.js CDN is external trusted library)
 
     NOTE: For live crypto prices, host on GitHub Pages or any web server.
     Opening locally (file://) may block the API due to browser CORS.
@@ -18,6 +28,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="XENNREX - South African cryptocurrency mining hardware company. Premium ASIC miners, WhatsApp Business support, and expert mining solutions.">
+    <meta name="keywords" content="Bitcoin mining, ASIC miners, South Africa, crypto mining hardware, Bitaxe, NerdQaxe, Antminer">
+    <meta name="author" content="XENNREX">
+    <meta name="theme-color" content="#0a0e1a">
     <title>XENNREX Mining Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -410,7 +424,7 @@
         }
         #chat-window {
             position: absolute; bottom: 75px; right: 0;
-            width: 380px; max-height: 600px;
+            width: 420px; max-height: 700px;
             background: var(--card); border: 1px solid var(--border);
             border-radius: 20px; overflow: hidden;
             box-shadow: 0 10px 50px rgba(0,0,0,0.5);
@@ -435,7 +449,7 @@
         .status-dot-online { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; animation: pulse 2s infinite; }
         .chat-close { background: none; border: none; color: #e0e6ed; font-size: 1.2rem; cursor: pointer; padding: 5px; transition: color 0.3s; }
         .chat-close:hover { color: var(--primary); }
-        #chat-messages { flex: 1; overflow-y: auto; padding: 20px; max-height: 380px; scrollbar-width: thin; }
+        #chat-messages { flex: 1; overflow-y: auto; padding: 20px; max-height: 420px; scrollbar-width: thin; }
         #chat-messages::-webkit-scrollbar { width: 4px; }
         #chat-messages::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 2px; }
         .chat-message { margin-bottom: 16px; animation: messageSlide 0.3s ease; }
@@ -500,7 +514,6 @@
             color: #2d8cff; padding: 4px 12px; border-radius: 20px;
             font-size: 0.75rem; font-weight: 600;
         }
-        .handoff-btn.zoom:hover { background: rgba(45,140,255,0.25); }
         .handoff-btn.email { background: rgba(255,107,107,0.15); border: 1px solid rgba(255,107,107,0.3); color: #ff6b6b; }
         .handoff-btn.email:hover { background: rgba(255,107,107,0.25); }
         .typing-indicator { display: flex; gap: 4px; padding: 12px 16px; }
@@ -513,7 +526,6 @@
             #chat-widget-container { bottom: 15px; right: 15px; }
         }
 
-    
         /* Mempool Section */
         .mempool-section { margin-bottom: 25px; }
         .mempool-grid {
@@ -826,8 +838,123 @@
             animation: none;
         }
 
-        /* SVG Gradient for difficulty ring */
-        .mempool-difficulty svg defs { display: none; }
+        /* Products Section */
+        .products-section { margin-bottom: 25px; }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 18px;
+        }
+        .product-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 255, 136, 0.4);
+            box-shadow: 0 10px 40px rgba(0, 255, 136, 0.1);
+        }
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0,255,136,0.15);
+            border: 1px solid rgba(0,255,136,0.3);
+            color: var(--primary);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .product-badge.bestseller {
+            background: rgba(255,171,2,0.15);
+            border-color: rgba(255,171,2,0.3);
+            color: #ffa502;
+        }
+        .product-badge.new {
+            background: rgba(0,204,255,0.15);
+            border-color: rgba(0,204,255,0.3);
+            color: var(--secondary);
+        }
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            padding-right: 80px;
+        }
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Courier New', monospace;
+            margin-bottom: 10px;
+        }
+        .product-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .product-spec {
+            background: rgba(255,255,255,0.05);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .product-spec i { font-size: 0.7rem; opacity: 0.7; }
+        .product-desc {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            line-height: 1.5;
+            margin-bottom: 14px;
+        }
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .product-btn {
+            flex: 1;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .product-btn.primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #0a0e1a;
+        }
+        .product-btn.primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(0,255,136,0.3);
+        }
+        .product-btn.secondary {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #e0e6ed;
+        }
+        .product-btn.secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(0,255,136,0.3);
+        }
 
         @media (max-width: 1200px) {
             .mempool-grid { grid-template-columns: 1fr 1fr; }
@@ -840,8 +967,9 @@
             .mempool-card.mempool-blocks { grid-column: auto; grid-row: auto; }
             .mempool-stat-row { gap: 8px; }
             .block-item { grid-template-columns: 60px 1fr 55px 65px; }
+            .products-grid { grid-template-columns: 1fr; }
         }
-</style>
+    </style>
 </head>
 <body>
     <div class="particles" id="particles"></div>
@@ -910,7 +1038,7 @@
             </a>
             <a href="https://coinmarketcap.com/currencies/solana/" target="_blank" class="crypto-card" id="sol-card">
                 <div class="crypto-header">
-                    <span class="crypto-name sol"><span style="color:#9945ff;font-weight:900;">◎</span> Solana</span>
+                    <span class="crypto-name sol"><span style="color:#9945ff;font-weight:900;">&#9678;</span> Solana</span>
                     <span style="font-size:0.75rem;opacity:0.5;">SOL</span>
                 </div>
                 <div class="crypto-price" id="sol-price"><span class="loading-dots">Loading...</span></div>
@@ -926,68 +1054,68 @@
             <a href="#hashrate-chart" class="stat-card">
                 <div class="stat-header">
                     <span class="stat-title">Total Hashrate</span>
-                    <span class="stat-icon">⚡</span>
+                    <span class="stat-icon">&#9889;</span>
                 </div>
                 <div class="stat-value" id="total-hashrate">847.3 TH/s</div>
                 <div class="stat-change positive">
-                    <span>▲</span> <span id="hashrate-change">+2.4%</span> vs last hour
+                    <span>&#9650;</span> <span id="hashrate-change">+2.4%</span> vs last hour
                 </div>
-                <div class="stat-sub">Network difficulty: <span id="network-diff">83.7 T</span></div>
+                <div class="stat-sub">Network difficulty: <span id="network-diff">138.9 T</span></div>
             </a>
             <a href="#workers" class="stat-card">
                 <div class="stat-header">
                     <span class="stat-title">Active Workers</span>
-                    <span class="stat-icon">🖥️</span>
+                    <span class="stat-icon">&#128421;&#65039;</span>
                 </div>
                 <div class="stat-value" id="active-workers">24</div>
                 <div class="stat-change positive">
-                    <span>●</span> <span id="worker-status-text">All systems operational</span>
+                    <span>&#9679;</span> <span id="worker-status-text">All systems operational</span>
                 </div>
                 <div class="stat-sub">Uptime: 99.97%</div>
             </a>
             <a href="#pool" class="stat-card">
                 <div class="stat-header">
                     <span class="stat-title">Daily Earnings</span>
-                    <span class="stat-icon">💰</span>
+                    <span class="stat-icon">&#128176;</span>
                 </div>
                 <div class="stat-value" id="daily-earnings">0.0042 BTC</div>
                 <div class="stat-change positive">
-                    <span>▲</span> <span id="earnings-change">+5.1%</span> vs yesterday
+                    <span>&#9650;</span> <span id="earnings-change">+5.1%</span> vs yesterday
                 </div>
-                <div class="stat-sub" id="earnings-usd">≈ $282.45 USD</div>
+                <div class="stat-sub" id="earnings-usd">&#8776; $267.62 USD</div>
             </a>
             <a href="#power" class="stat-card">
                 <div class="stat-header">
                     <span class="stat-title">Power Consumption</span>
-                    <span class="stat-icon">🔌</span>
+                    <span class="stat-icon">&#128268;</span>
                 </div>
                 <div class="stat-value" id="power-usage">42.1 kW</div>
                 <div class="stat-change">
-                    <span>≈</span> <span id="efficiency">98.2%</span> efficiency
+                    <span>&#8776;</span> <span id="efficiency">98.2%</span> efficiency
                 </div>
                 <div class="stat-sub">Cost: $0.08/kWh</div>
             </a>
             <a href="https://www.blockchain.com/explorer" target="_blank" class="stat-card">
                 <div class="stat-header">
                     <span class="stat-title">Blocks Found (24h)</span>
-                    <span class="stat-icon">⛏️</span>
+                    <span class="stat-icon">&#9935;&#65039;</span>
                 </div>
                 <div class="stat-value" id="blocks-found">8</div>
                 <div class="stat-change positive">
-                    <span>●</span> Luck: 102.4%
+                    <span>&#9679;</span> Luck: 102.4%
                 </div>
                 <div class="stat-sub">Pool rank: #3 globally</div>
             </a>
             <a href="https://mempool.space" target="_blank" class="stat-card">
                 <div class="stat-header">
                     <span class="stat-title">Next Difficulty</span>
-                    <span class="stat-icon">📊</span>
+                    <span class="stat-icon">&#128202;</span>
                 </div>
                 <div class="stat-value" id="next-diff">-1.2%</div>
                 <div class="stat-change negative">
-                    <span>▼</span> Adjustment in 2 days
+                    <span>&#9660;</span> Adjustment in 2 days
                 </div>
-                <div class="stat-sub">Current: 83.7 T</div>
+                <div class="stat-sub">Current: 138.9 T</div>
             </a>
         </div>
 
@@ -1057,7 +1185,6 @@
             </div>
         </div>
 
-        
         <!-- Mempool & Network Status -->
         <div class="mempool-section" id="mempool">
             <div class="section-header">
@@ -1192,11 +1319,11 @@
                     <div class="difficulty-details">
                         <div class="diff-detail-row">
                             <span class="diff-detail-label">Current Difficulty</span>
-                            <span class="diff-detail-value" id="current-difficulty">83.7 T</span>
+                            <span class="diff-detail-value" id="current-difficulty">138.9 T</span>
                         </div>
                         <div class="diff-detail-row">
                             <span class="diff-detail-label">Previous Adjustment</span>
-                            <span class="diff-detail-value" id="prev-adjustment" style="color:var(--primary);">+2.4%</span>
+                            <span class="diff-detail-value" id="prev-adjustment" style="color:var(--primary);">-21.4%</span>
                         </div>
                         <div class="diff-detail-row">
                             <span class="diff-detail-label">Blocks Remaining</span>
@@ -1220,7 +1347,7 @@
                             <div class="block-height">#953,002</div>
                             <div class="block-info">
                                 <div class="block-miner">Foundry USA</div>
-                                <div class="block-time">3m ago • 1,389 KB</div>
+                                <div class="block-time">3m ago - 1,389 KB</div>
                             </div>
                             <div class="block-txs">2,847 txs</div>
                             <div class="block-fees">0.1250 BTC</div>
@@ -1229,7 +1356,7 @@
                             <div class="block-height">#953,001</div>
                             <div class="block-info">
                                 <div class="block-miner">Antpool</div>
-                                <div class="block-time">13m ago • 1,454 KB</div>
+                                <div class="block-time">13m ago - 1,454 KB</div>
                             </div>
                             <div class="block-txs">3,102 txs</div>
                             <div class="block-fees">0.0980 BTC</div>
@@ -1238,7 +1365,7 @@
                             <div class="block-height">#953,000</div>
                             <div class="block-info">
                                 <div class="block-miner">F2Pool</div>
-                                <div class="block-time">23m ago • 1,417 KB</div>
+                                <div class="block-time">23m ago - 1,417 KB</div>
                             </div>
                             <div class="block-txs">2,956 txs</div>
                             <div class="block-fees">0.1120 BTC</div>
@@ -1247,7 +1374,7 @@
                             <div class="block-height">#952,999</div>
                             <div class="block-info">
                                 <div class="block-miner">ViaBTC</div>
-                                <div class="block-time">33m ago • 1,355 KB</div>
+                                <div class="block-time">33m ago - 1,355 KB</div>
                             </div>
                             <div class="block-txs">2,678 txs</div>
                             <div class="block-fees">0.0870 BTC</div>
@@ -1256,7 +1383,7 @@
                             <div class="block-height">#952,998</div>
                             <div class="block-info">
                                 <div class="block-miner">Foundry USA</div>
-                                <div class="block-time">43m ago • 1,488 KB</div>
+                                <div class="block-time">43m ago - 1,488 KB</div>
                             </div>
                             <div class="block-txs">3,245 txs</div>
                             <div class="block-fees">0.1450 BTC</div>
@@ -1265,7 +1392,7 @@
                             <div class="block-height">#952,997</div>
                             <div class="block-info">
                                 <div class="block-miner">Poolin</div>
-                                <div class="block-time">53m ago • 1,379 KB</div>
+                                <div class="block-time">53m ago - 1,379 KB</div>
                             </div>
                             <div class="block-txs">2,890 txs</div>
                             <div class="block-fees">0.1050 BTC</div>
@@ -1274,7 +1401,7 @@
                             <div class="block-height">#952,996</div>
                             <div class="block-info">
                                 <div class="block-miner">SECPOOL</div>
-                                <div class="block-time">1h ago • 1,433 KB</div>
+                                <div class="block-time">1h ago - 1,433 KB</div>
                             </div>
                             <div class="block-txs">3,012 txs</div>
                             <div class="block-fees">0.1180 BTC</div>
@@ -1283,7 +1410,7 @@
                             <div class="block-height">#952,995</div>
                             <div class="block-info">
                                 <div class="block-miner">Foundry USA</div>
-                                <div class="block-time">1h 10m ago • 1,362 KB</div>
+                                <div class="block-time">1h 10m ago - 1,362 KB</div>
                             </div>
                             <div class="block-txs">2,734 txs</div>
                             <div class="block-fees">0.0920 BTC</div>
@@ -1293,7 +1420,145 @@
             </div>
         </div>
 
-<!-- Workers Section -->
+        <!-- Products Section -->
+        <div class="products-section" id="products">
+            <div class="section-header">
+                <span class="section-title">Mining Hardware For Sale</span>
+                <span style="color:var(--primary);font-size:0.85rem;">8 Products Available</span>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <span class="product-badge">IN STOCK</span>
+                    <div class="product-name">LuckyMiner LV07 V7</div>
+                    <div class="product-price">R 2,450</div>
+                    <div class="product-specs">
+                        <span class="product-spec"><i class="fas fa-bolt"></i> 1.0 TH/s</span>
+                        <span class="product-spec"><i class="fas fa-plug"></i> 25W</span>
+                        <span class="product-spec"><i class="fas fa-volume-mute"></i> Silent</span>
+                        <span class="product-spec"><i class="fas fa-wifi"></i> WiFi</span>
+                    </div>
+                    <div class="product-desc">Entry-level Bitcoin solo miner - compact, efficient, and affordable. Great for solo "lottery" mining or learning the basics.</div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/270686688888?text=Hi%20XENNREX%2C%20I%27m%20interested%20in%20the%20LuckyMiner%20LV07%20V7%20(R2450)" target="_blank" class="product-btn primary"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
+                        <button class="product-btn secondary" onclick="showProductSpecs('LuckyMiner LV07 V7', '1.0 TH/s', '25W', 'SHA-256 (Bitcoin)', 'Silent', 'WiFi + Ethernet', 'Brand New', '5-10 business days')">Specs</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <span class="product-badge">IN STOCK</span>
+                    <div class="product-name">Bitaxe Gamma 601</div>
+                    <div class="product-price">R 3,650</div>
+                    <div class="product-specs">
+                        <span class="product-spec"><i class="fas fa-bolt"></i> 1.5 TH/s</span>
+                        <span class="product-spec"><i class="fas fa-plug"></i> 20W</span>
+                        <span class="product-spec"><i class="fas fa-volume-mute"></i> Silent</span>
+                        <span class="product-spec"><i class="fas fa-wifi"></i> WiFi</span>
+                    </div>
+                    <div class="product-desc">Efficient home Bitcoin miner with low power draw. Near-silent operation makes it perfect for home or office use.</div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/270686688888?text=Hi%20XENNREX%2C%20I%27m%20interested%20in%20the%20Bitaxe%20Gamma%20601%20(R3650)" target="_blank" class="product-btn primary"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
+                        <button class="product-btn secondary" onclick="showProductSpecs('Bitaxe Gamma 601', '1.5 TH/s', '20W', 'SHA-256 (Bitcoin)', 'Silent', 'WiFi + Ethernet', 'Brand New', '5-10 business days')">Specs</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <span class="product-badge bestseller">BESTSELLER</span>
+                    <div class="product-name">Bitaxe Gamma 601 OC Copper</div>
+                    <div class="product-price">R 5,750</div>
+                    <div class="product-specs">
+                        <span class="product-spec"><i class="fas fa-bolt"></i> 1.9 TH/s</span>
+                        <span class="product-spec"><i class="fas fa-plug"></i> 25W</span>
+                        <span class="product-spec"><i class="fas fa-volume-mute"></i> Silent</span>
+                        <span class="product-spec"><i class="fas fa-wifi"></i> WiFi</span>
+                    </div>
+                    <div class="product-desc">Overclocked copper-cooled edition with enhanced thermal performance for stable 24/7 operation. Premium cooling for maximum stability.</div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/270686688888?text=Hi%20XENNREX%2C%20I%27m%20interested%20in%20the%20Bitaxe%20Gamma%20601%20OC%20Copper%20(R5750)" target="_blank" class="product-btn primary"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
+                        <button class="product-btn secondary" onclick="showProductSpecs('Bitaxe Gamma 601 OC Copper', '1.9 TH/s (OC)', '25W', 'SHA-256 (Bitcoin)', 'Silent', 'WiFi + Ethernet', 'Brand New', '5-10 business days')">Specs</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <span class="product-badge">IN STOCK</span>
+                    <div class="product-name">NerdQaxe 5.1</div>
+                    <div class="product-price">R 6,150</div>
+                    <div class="product-specs">
+                        <span class="product-spec"><i class="fas fa-bolt"></i> 4.9 TH/s</span>
+                        <span class="product-spec"><i class="fas fa-plug"></i> 75W</span>
+                        <span class="product-spec"><i class="fas fa-volume-down"></i> Low</span>
+                        <span class="product-spec"><i class="fas fa-wifi"></i> WiFi</span>
+                    </div>
+                    <div class="product-desc">Powerful mid-range home Bitcoin miner with excellent efficiency. Best performance-per-watt in its class.</div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/270686688888?text=Hi%20XENNREX%2C%20I%27m%20interested%20in%20the%20NerdQaxe%205.1%20(R6150)" target="_blank" class="product-btn primary"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
+                        <button class="product-btn secondary" onclick="showProductSpecs('NerdQaxe 5.1', '4.9 TH/s', '75W', 'SHA-256 (Bitcoin)', 'Low', 'WiFi + Ethernet', 'Brand New', '5-10 business days')">Specs</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <span class="product-badge bestseller">BESTSELLER</span>
+                    <div class="product-name">NerdQaxe++ Rev 6.1</div>
+                    <div class="product-price">R 6,850</div>
+                    <div class="product-specs">
+                        <span class="product-spec"><i class="fas fa-bolt"></i> 6.0 TH/s</span>
+                        <span class="product-spec"><i class="fas fa-plug"></i> 100W</span>
+                        <span class="product-spec"><i class="fas fa-volume-down"></i> Low</span>
+                        <span class="product-spec"><i class="fas fa-wifi"></i> WiFi</span>
+                    </div>
+                    <div class="product-desc">Powerful mid-range home Bitcoin miner with excellent efficiency. BM1370 ASIC chip. Best value for home mining.</div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/270686688888?text=Hi%20XENNREX%2C%20I%27m%20interested%20in%20the%20NerdQaxe%2B%2B%20Rev%206.1%20(R6850)" target="_blank" class="product-btn primary"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
+                        <button class="product-btn secondary" onclick="showProductSpecs('NerdQaxe++ Rev 6.1', '6.0 TH/s', '100W', 'SHA-256 (Bitcoin)', 'Low', 'WiFi + Ethernet', 'Brand New', '5-10 business days')">Specs</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <span class="product-badge new">NEW</span>
+                    <div class="product-name">NerdQaxe++ Hydro Rev 6.1</div>
+                    <div class="product-price">R 12,400</div>
+                    <div class="product-specs">
+                        <span class="product-spec"><i class="fas fa-bolt"></i> 6.0 TH/s</span>
+                        <span class="product-spec"><i class="fas fa-plug"></i> 100W</span>
+                        <span class="product-spec"><i class="fas fa-volume-mute"></i> Silent</span>
+                        <span class="product-spec"><i class="fas fa-wifi"></i> WiFi</span>
+                    </div>
+                    <div class="product-desc">Liquid-cooled edition for whisper-quiet, ultra-efficient 24/7 operation. Virtually silent. The ultimate home mining experience.</div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/270686688888?text=Hi%20XENNREX%2C%20I%27m%20interested%20in%20the%20NerdQaxe%2B%2B%20Hydro%20Rev%206.1%20(R12400)" target="_blank" class="product-btn primary"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
+                        <button class="product-btn secondary" onclick="showProductSpecs('NerdQaxe++ Hydro Rev 6.1', '6.0 TH/s', '100W', 'SHA-256 (Bitcoin)', 'Silent (Liquid)', 'WiFi + Ethernet', 'Brand New', '7-12 business days')">Specs</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <span class="product-badge">IN STOCK</span>
+                    <div class="product-name">NerdOctaxe Rev 3.1</div>
+                    <div class="product-price">R 16,200</div>
+                    <div class="product-specs">
+                        <span class="product-spec"><i class="fas fa-bolt"></i> 12.0 TH/s</span>
+                        <span class="product-spec"><i class="fas fa-plug"></i> 200W</span>
+                        <span class="product-spec"><i class="fas fa-volume-up"></i> Moderate</span>
+                        <span class="product-spec"><i class="fas fa-wifi"></i> WiFi</span>
+                    </div>
+                    <div class="product-desc">Highest home-miner hash rate with dual-fan cooling. Best for dedicated mining room or office. Maximum power at home.</div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/270686688888?text=Hi%20XENNREX%2C%20I%27m%20interested%20in%20the%20NerdOctaxe%20Rev%203.1%20(R16200)" target="_blank" class="product-btn primary"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
+                        <button class="product-btn secondary" onclick="showProductSpecs('NerdOctaxe Rev 3.1', '12.0 TH/s', '200W', 'SHA-256 (Bitcoin)', 'Moderate', 'WiFi + Ethernet', 'Brand New', '5-10 business days')">Specs</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <span class="product-badge">ORDER</span>
+                    <div class="product-name">Bitmain Antminer L7</div>
+                    <div class="product-price">R 31,500</div>
+                    <div class="product-specs">
+                        <span class="product-spec"><i class="fas fa-bolt"></i> 8800 Gh/s</span>
+                        <span class="product-spec"><i class="fas fa-plug"></i> 3425W</span>
+                        <span class="product-spec"><i class="fas fa-volume-up"></i> Loud</span>
+                        <span class="product-spec"><i class="fas fa-ethernet"></i> Ethernet</span>
+                    </div>
+                    <div class="product-desc">Professional Scrypt miner for Litecoin & Dogecoin. Massive hash rate, proven reliability. Requires 240V and dedicated space.</div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/270686688888?text=Hi%20XENNREX%2C%20I%27m%20interested%20in%20the%20Bitmain%20Antminer%20L7%20(R31500)" target="_blank" class="product-btn primary"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
+                        <button class="product-btn secondary" onclick="showProductSpecs('Bitmain Antminer L7', '8800 Gh/s', '3425W', 'Scrypt (LTC/DOGE)', 'Loud (~75dB)', 'Ethernet only', 'Brand New', '7-14 business days')">Specs</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Workers Section -->
         <div class="workers-section" id="workers">
             <div class="section-header">
                 <span class="section-title">Active Workers</span>
@@ -1312,7 +1577,7 @@
                 <a href="https://www.google.com/maps/search/Heidelberg,+Gauteng,+South+Africa" target="_blank" class="location-card">
                     <div class="location-header">
                         <span class="location-name">Heidelberg DC</span>
-                        <span class="location-flag">🇿🇦</span>
+                        <span class="location-flag">&#127487;&#127462;</span>
                     </div>
                     <div class="location-details">
                         Heidelberg, Gauteng, South Africa<br>
@@ -1328,7 +1593,7 @@
                 <a href="https://www.google.com/maps/search/Johannesburg,+Gauteng,+South+Africa" target="_blank" class="location-card">
                     <div class="location-header">
                         <span class="location-name">Johannesburg DC</span>
-                        <span class="location-flag">🇿🇦</span>
+                        <span class="location-flag">&#127487;&#127462;</span>
                     </div>
                     <div class="location-details">
                         Johannesburg, Gauteng, South Africa<br>
@@ -1344,7 +1609,7 @@
                 <a href="https://www.google.com/maps/search/Cape+Town,+Western+Cape,+South+Africa" target="_blank" class="location-card">
                     <div class="location-header">
                         <span class="location-name">Cape Town DC</span>
-                        <span class="location-flag">🇿🇦</span>
+                        <span class="location-flag">&#127487;&#127462;</span>
                     </div>
                     <div class="location-details">
                         Cape Town, Western Cape, South Africa<br>
@@ -1360,7 +1625,7 @@
                 <a href="https://www.google.com/maps/search/Durban,+KwaZulu-Natal,+South+Africa" target="_blank" class="location-card">
                     <div class="location-header">
                         <span class="location-name">Durban DC</span>
-                        <span class="location-flag">🇿🇦</span>
+                        <span class="location-flag">&#127487;&#127462;</span>
                     </div>
                     <div class="location-details">
                         Durban, KwaZulu-Natal, South Africa<br>
@@ -1376,7 +1641,7 @@
                 <a href="https://www.google.com/maps/search/Austin,+Texas,+United+States" target="_blank" class="location-card">
                     <div class="location-header">
                         <span class="location-name">Texas DC</span>
-                        <span class="location-flag">🇺🇸</span>
+                        <span class="location-flag">&#127482;&#127480;</span>
                     </div>
                     <div class="location-details">
                         Austin, Texas, United States<br>
@@ -1392,7 +1657,7 @@
                 <a href="https://www.google.com/maps/search/Cheyenne,+Wyoming,+United+States" target="_blank" class="location-card">
                     <div class="location-header">
                         <span class="location-name">Wyoming DC</span>
-                        <span class="location-flag">🇺🇸</span>
+                        <span class="location-flag">&#127482;&#127480;</span>
                     </div>
                     <div class="location-details">
                         Cheyenne, Wyoming, United States<br>
@@ -1416,35 +1681,35 @@
             </div>
             <div class="contact-grid">
                 <a href="mailto:info@xennrex.org" class="contact-item">
-                    <span class="contact-icon">📧</span>
+                    <span class="contact-icon">&#128231;</span>
                     <div>
                         <div class="contact-label">Email</div>
                         <div class="contact-value">info@xennrex.org</div>
                     </div>
                 </a>
                 <a href="https://wa.me/270686688888" target="_blank" class="contact-item">
-                    <span class="contact-icon">💬</span>
+                    <span class="contact-icon">&#128172;</span>
                     <div>
                         <div class="contact-label">WhatsApp</div>
                         <div class="contact-value">+27 68 668 8888</div>
                     </div>
                 </a>
                 <a href="https://us05web.zoom.us/j/2900078529" target="_blank" class="contact-item">
-                    <span class="contact-icon">📹</span>
+                    <span class="contact-icon">&#128249;</span>
                     <div>
                         <div class="contact-label">Zoom Meeting</div>
                         <div class="contact-value">Join Video Call</div>
                     </div>
                 </a>
                 <a href="https://xennrex.org" target="_blank" class="contact-item">
-                    <span class="contact-icon">🌐</span>
+                    <span class="contact-icon">&#127760;</span>
                     <div>
                         <div class="contact-label">Website</div>
                         <div class="contact-value">xennrex.org</div>
                     </div>
                 </a>
                 <a href="https://www.google.com/maps/search/Heidelberg,+Gauteng,+South+Africa" target="_blank" class="contact-item">
-                    <span class="contact-icon">📍</span>
+                    <span class="contact-icon">&#128205;</span>
                     <div>
                         <div class="contact-label">Headquarters</div>
                         <div class="contact-value">Heidelberg, Gauteng, SA</div>
@@ -1455,14 +1720,14 @@
 
         <!-- Footer -->
         <div class="footer">
-            <p>© 2026 XENNREX Mining. All rights reserved. | Secure. Efficient. Profitable.</p>
+            <p>&#169; 2026 XENNREX Mining. All rights reserved. | Secure. Efficient. Profitable.</p>
             <p style="margin-top:6px;font-size:0.75rem;">
-                📹 Zoom: <a href="https://us05web.zoom.us/j/2900078529" target="_blank" style="color:var(--secondary);">Join Meeting</a> | 
-                💬 WhatsApp: <a href="https://wa.me/270686688888" target="_blank" style="color:var(--secondary);">Chat Now</a> | 
-                📧 <a href="mailto:info@xennrex.org" style="color:var(--secondary);">info@xennrex.org</a>
+                &#128249; Zoom: <a href="https://us05web.zoom.us/j/2900078529" target="_blank" style="color:var(--secondary);">Join Meeting</a> | 
+                &#128172; WhatsApp: <a href="https://wa.me/270686688888" target="_blank" style="color:var(--secondary);">Chat Now</a> | 
+                &#128231; <a href="mailto:info@xennrex.org" style="color:var(--secondary);">info@xennrex.org</a>
             </p>
             <p style="margin-top:4px;font-size:0.7rem;opacity:0.5;">
-                Real-time crypto via CoinGecko • Live weather via Open-Meteo • Local timezone auto-detected • 6 Global Locations
+                Real-time crypto via CoinGecko &#8226; Live weather via Open-Meteo &#8226; Local timezone auto-detected &#8226; 6 Global Locations
             </p>
         </div>
     </div>
@@ -1518,12 +1783,12 @@
         let userLocation = { lat: null, lon: null, city: null, country: null };
 
         const weatherIcons = {
-            0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️', 45: '🌫️', 48: '🌫️',
-            51: '🌦️', 53: '🌧️', 55: '🌧️', 56: '🌧️', 57: '🌧️',
-            61: '🌧️', 63: '🌧️', 65: '🌧️', 66: '🌧️', 67: '🌧️',
-            71: '🌨️', 73: '🌨️', 75: '🌨️', 77: '🌨️',
-            80: '🌦️', 81: '🌧️', 82: '🌧️', 85: '🌨️', 86: '🌨️',
-            95: '⛈️', 96: '⛈️', 99: '⛈️'
+            0: '&#9728;&#65039;', 1: '&#127780;&#65039;', 2: '&#9925;', 3: '&#9729;&#65039;', 45: '&#127787;&#65039;', 48: '&#127787;&#65039;',
+            51: '&#127782;&#65039;', 53: '&#127783;&#65039;', 55: '&#127783;&#65039;', 56: '&#127783;&#65039;', 57: '&#127783;&#65039;',
+            61: '&#127783;&#65039;', 63: '&#127783;&#65039;', 65: '&#127783;&#65039;', 66: '&#127783;&#65039;', 67: '&#127783;&#65039;',
+            71: '&#127784;&#65039;', 73: '&#127784;&#65039;', 75: '&#127784;&#65039;', 77: '&#127784;&#65039;',
+            80: '&#127782;&#65039;', 81: '&#127783;&#65039;', 82: '&#127783;&#65039;', 85: '&#127784;&#65039;', 86: '&#127784;&#65039;',
+            95: '&#9928;&#65039;', 96: '&#9928;&#65039;', 99: '&#9928;&#65039;'
         };
 
         const weatherDescriptions = {
@@ -1543,7 +1808,6 @@
             const weatherInfo = document.getElementById('weather-info');
 
             try {
-                // Try geolocation first
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(
                         async (position) => {
@@ -1552,7 +1816,6 @@
                             await fetchWeatherData(userLocation.lat, userLocation.lon);
                         },
                         async (error) => {
-                            // Fallback to IP-based location
                             await fetchWeatherByIP();
                         },
                         { timeout: 10000, enableHighAccuracy: false }
@@ -1568,7 +1831,6 @@
 
         async function fetchWeatherByIP() {
             try {
-                // Use ipapi.co for location (free, no key needed for basic use)
                 const ipResponse = await fetch('https://ipapi.co/json/');
                 if (ipResponse.ok) {
                     const ipData = await ipResponse.json();
@@ -1578,7 +1840,6 @@
                     userLocation.country = ipData.country_name;
                     await fetchWeatherData(userLocation.lat, userLocation.lon, userLocation.city, userLocation.country);
                 } else {
-                    // Ultimate fallback: default to Johannesburg (HQ location)
                     await fetchWeatherData(-26.5, 28.4, 'Johannesburg', 'South Africa');
                 }
             } catch (e) {
@@ -1591,7 +1852,6 @@
             const weatherInfo = document.getElementById('weather-info');
 
             try {
-                // Open-Meteo API - completely free, no key required
                 const response = await fetch(
                     `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&timezone=auto`
                 );
@@ -1603,12 +1863,9 @@
                     const current = data.current;
                     const temp = Math.round(current.temperature_2m);
                     const code = current.weather_code;
-                    const icon = weatherIcons[code] || '🌡️';
+                    const icon = weatherIcons[code] || '&#127777;&#65039;';
                     const desc = weatherDescriptions[code] || 'Unknown';
-                    const wind = current.wind_speed_10m;
-                    const humidity = current.relative_humidity_2m;
 
-                    // Try to get city name if not provided
                     let locationLabel = cityName;
                     if (!locationLabel && data.timezone) {
                         locationLabel = data.timezone.split('/').pop().replace(/_/g, ' ');
@@ -1637,7 +1894,7 @@
 
         function showWeatherError() {
             document.getElementById('weather-info').innerHTML = `
-                <span class="weather-icon">🌡️</span>
+                <span class="weather-icon">&#127777;&#65039;</span>
                 <div class="weather-details">
                     <div class="weather-temp">--°C</div>
                     <div class="weather-desc">Weather unavailable</div>
@@ -1646,7 +1903,6 @@
             `;
         }
 
-        // Fetch weather on load and refresh every 10 minutes
         fetchWeather();
         setInterval(fetchWeather, 600000);
 
@@ -1658,7 +1914,6 @@
             const statusText = document.getElementById('api-status-text');
 
             try {
-                // CoinGecko free API - no key needed for basic calls
                 const response = await fetch(
                     'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,litecoin,solana&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true'
                 );
@@ -1666,14 +1921,12 @@
                 if (!response.ok) throw new Error('API Error');
                 const data = await response.json();
 
-                // Update API status
                 statusEl.classList.remove('offline');
                 statusText.textContent = 'Live Data';
 
                 const now = new Date();
                 const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
-                // Update BTC
                 if (data.bitcoin) {
                     const btc = data.bitcoin;
                     const prevPrice = lastPrices.btc || btc.usd;
@@ -1681,7 +1934,7 @@
 
                     document.getElementById('btc-price').textContent = '$' + btc.usd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
                     document.getElementById('btc-change').className = 'crypto-change ' + (change >= 0 ? 'up' : 'down');
-                    document.getElementById('btc-change').textContent = (change >= 0 ? '▲ +' : '▼ ') + Math.abs(change).toFixed(2) + '%';
+                    document.getElementById('btc-change').textContent = (change >= 0 ? '&#9650; +' : '&#9660; ') + Math.abs(change).toFixed(2) + '%';
                     document.getElementById('btc-volume').textContent = 'Vol: $' + (btc.usd_24h_vol / 1e9).toFixed(1) + 'B';
                     document.getElementById('btc-ath').textContent = 'MCap: $' + (btc.usd_market_cap / 1e12).toFixed(2) + 'T';
                     document.getElementById('btc-updated').textContent = 'Updated: ' + timeStr;
@@ -1689,14 +1942,13 @@
                     lastPrices.btc = btc.usd;
                 }
 
-                // Update LTC
                 if (data.litecoin) {
                     const ltc = data.litecoin;
                     const change = ltc.usd_24h_change || 0;
 
                     document.getElementById('ltc-price').textContent = '$' + ltc.usd.toFixed(2);
                     document.getElementById('ltc-change').className = 'crypto-change ' + (change >= 0 ? 'up' : 'down');
-                    document.getElementById('ltc-change').textContent = (change >= 0 ? '▲ +' : '▼ ') + Math.abs(change).toFixed(2) + '%';
+                    document.getElementById('ltc-change').textContent = (change >= 0 ? '&#9650; +' : '&#9660; ') + Math.abs(change).toFixed(2) + '%';
                     document.getElementById('ltc-volume').textContent = 'Vol: $' + (ltc.usd_24h_vol / 1e6).toFixed(1) + 'M';
                     document.getElementById('ltc-ath').textContent = 'MCap: $' + (ltc.usd_market_cap / 1e9).toFixed(2) + 'B';
                     document.getElementById('ltc-updated').textContent = 'Updated: ' + timeStr;
@@ -1704,14 +1956,13 @@
                     lastPrices.ltc = ltc.usd;
                 }
 
-                // Update SOL
                 if (data.solana) {
                     const sol = data.solana;
                     const change = sol.usd_24h_change || 0;
 
                     document.getElementById('sol-price').textContent = '$' + sol.usd.toFixed(2);
                     document.getElementById('sol-change').className = 'crypto-change ' + (change >= 0 ? 'up' : 'down');
-                    document.getElementById('sol-change').textContent = (change >= 0 ? '▲ +' : '▼ ') + Math.abs(change).toFixed(2) + '%';
+                    document.getElementById('sol-change').textContent = (change >= 0 ? '&#9650; +' : '&#9660; ') + Math.abs(change).toFixed(2) + '%';
                     document.getElementById('sol-volume').textContent = 'Vol: $' + (sol.usd_24h_vol / 1e9).toFixed(2) + 'B';
                     document.getElementById('sol-ath').textContent = 'MCap: $' + (sol.usd_market_cap / 1e9).toFixed(2) + 'B';
                     document.getElementById('sol-updated').textContent = 'Updated: ' + timeStr;
@@ -1719,25 +1970,21 @@
                     lastPrices.sol = sol.usd;
                 }
 
-                // Update earnings USD conversion
                 if (data.bitcoin) {
                     const btcEarnings = parseFloat(document.getElementById('daily-earnings').textContent);
                     const usdValue = (btcEarnings * data.bitcoin.usd).toFixed(2);
-                    document.getElementById('earnings-usd').textContent = '≈ $' + usdValue + ' USD';
+                    document.getElementById('earnings-usd').textContent = '&#8776; $' + usdValue + ' USD';
                 }
 
             } catch (error) {
                 console.error('Crypto API error:', error);
                 statusEl.classList.add('offline');
                 statusText.textContent = 'API Offline';
-
-                // Fallback to simulated data if API fails
                 fallbackCryptoUpdate();
             }
         }
 
         function fallbackCryptoUpdate() {
-            // Simulate realistic prices when API is down
             const fallbackData = {
                 btc: { price: 67245 + (Math.random()-0.5)*500, change: 1.84 + (Math.random()-0.5)*0.5, vol: 28.4 },
                 ltc: { price: 82.45 + (Math.random()-0.5)*2, change: 2.12 + (Math.random()-0.5)*0.3, vol: 342 },
@@ -1756,14 +2003,13 @@
                 if (priceEl) priceEl.textContent = '$' + data.price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
                 if (changeEl) {
                     changeEl.className = 'crypto-change ' + (data.change >= 0 ? 'up' : 'down');
-                    changeEl.textContent = (data.change >= 0 ? '▲ +' : '▼ ') + Math.abs(data.change).toFixed(2) + '%';
+                    changeEl.textContent = (data.change >= 0 ? '&#9650; +' : '&#9660; ') + Math.abs(data.change).toFixed(2) + '%';
                 }
                 if (volEl) volEl.textContent = 'Vol: $' + data.vol.toFixed(1) + (coin === 'btc' || coin === 'sol' ? 'B' : 'M');
                 if (updatedEl) updatedEl.textContent = timeStr;
             }
         }
 
-        // Fetch immediately and then every 30 seconds (CoinGecko rate limit friendly)
         fetchLiveCryptoData();
         setInterval(fetchLiveCryptoData, 30000);
 
@@ -1863,397 +2109,201 @@
             hashrateChart.update('active');
         }
 
+        // Product specs popup
+        function showProductSpecs(name, hashrate, power, algo, noise, connectivity, condition, delivery) {
+            alert(`&#128295; ${name} - Full Specifications
+
+` +
+                `&#9889; Hashrate: ${hashrate}
+` +
+                `&#128268; Power: ${power}
+` +
+                `&#128187; Algorithm: ${algo}
+` +
+                `&#128266; Noise Level: ${noise}
+` +
+                `&#128424;&#65039; Connectivity: ${connectivity}
+` +
+                `&#9989; Condition: ${condition}
+` +
+                `&#128666; Delivery: ${delivery}
+
+` +
+                `&#128172; Order via WhatsApp: +27 68 668 8888
+` +
+                `&#128231; Email: info@xennrex.org`);
+        }
+
         // Worker data
         const WORKER_TEMPLATES = [
-    { namePrefix: 'XR-Master', model: 'Antminer S19 Pro', baseHash: 110, hashVar: 2.5, baseTemp: 70, tempVar: 8, location: 'Heidelberg, SA', count: 6 },
-    { namePrefix: 'XR-Slave', model: 'Antminer S19', baseHash: 95, hashVar: 2, baseTemp: 66, tempVar: 7, location: 'Johannesburg, SA', count: 4 },
-    { namePrefix: 'XR-Slave', model: 'Antminer S19', baseHash: 95, hashVar: 2, baseTemp: 65, tempVar: 6, location: 'Cape Town, SA', count: 2 },
-    { namePrefix: 'XR-Rig', model: 'Whatsminer M30S++', baseHash: 112, hashVar: 2, baseTemp: 74, tempVar: 5, location: 'Texas, US', count: 4 },
-    { namePrefix: 'XR-Rig', model: 'Whatsminer M30S++', baseHash: 112, hashVar: 2, baseTemp: 73, tempVar: 6, location: 'Wyoming, US', count: 4 },
-    { namePrefix: 'XR-Backup', model: 'Antminer S19j Pro', baseHash: 104, hashVar: 1.5, baseTemp: 63, tempVar: 5, location: 'Durban, SA', count: 4 }
-];
+            { namePrefix: 'XR-Master', model: 'Antminer S19 Pro', baseHash: 110, hashVar: 2.5, baseTemp: 70, tempVar: 8, location: 'Heidelberg, SA', count: 6 },
+            { namePrefix: 'XR-Slave', model: 'Antminer S19', baseHash: 95, hashVar: 2, baseTemp: 66, tempVar: 7, location: 'Johannesburg, SA', count: 4 },
+            { namePrefix: 'XR-Slave', model: 'Antminer S19', baseHash: 95, hashVar: 2, baseTemp: 65, tempVar: 6, location: 'Cape Town, SA', count: 2 },
+            { namePrefix: 'XR-Rig', model: 'Whatsminer M30S++', baseHash: 112, hashVar: 2, baseTemp: 74, tempVar: 5, location: 'Texas, US', count: 4 },
+            { namePrefix: 'XR-Rig', model: 'Whatsminer M30S++', baseHash: 112, hashVar: 2, baseTemp: 73, tempVar: 6, location: 'Wyoming, US', count: 4 },
+            { namePrefix: 'XR-Backup', model: 'Antminer S19j Pro', baseHash: 104, hashVar: 1.5, baseTemp: 63, tempVar: 5, location: 'Durban, SA', count: 4 }
+        ];
 
-let workers = [];
-let workerUpdateInterval = null;
+        let workers = [];
+        let workerUpdateInterval = null;
 
-function generateWorkers() {
-    workers = [];
-    let globalIndex = 1;
+        function generateWorkers() {
+            workers = [];
+            let globalIndex = 1;
 
-    WORKER_TEMPLATES.forEach(template => {
-        for (let i = 1; i <= template.count; i++) {
-            const hash = (template.baseHash + (Math.random() - 0.5) * template.hashVar).toFixed(1);
-            const temp = Math.floor(template.baseTemp + (Math.random() - 0.5) * template.tempVar);
-            const uptimeDays = Math.floor(20 + Math.random() * 40);
-            const uptimeHours = Math.floor(Math.random() * 24);
+            WORKER_TEMPLATES.forEach(template => {
+                for (let i = 1; i <= template.count; i++) {
+                    const hash = (template.baseHash + (Math.random() - 0.5) * template.hashVar).toFixed(1);
+                    const temp = Math.floor(template.baseTemp + (Math.random() - 0.5) * template.tempVar);
+                    const uptimeDays = Math.floor(20 + Math.random() * 40);
+                    const uptimeHours = Math.floor(Math.random() * 24);
 
-            workers.push({
-                id: globalIndex,
-                name: `${template.namePrefix}-${String(i).padStart(2, '0')}`,
-                model: template.model,
-                hash: hash,
-                temp: Math.max(55, Math.min(82, temp)),
-                status: temp > 78 ? 'warning' : 'online',
-                uptime: `${uptimeDays}d ${uptimeHours}h`,
-                location: template.location,
-                efficiency: (95 + Math.random() * 5).toFixed(1),
-                fanSpeed: Math.floor(3000 + Math.random() * 2000),
-                power: (template.baseHash * 0.035 + Math.random() * 0.5).toFixed(1),
-                acceptedShares: Math.floor(1000000 + Math.random() * 5000000),
-                rejectedShares: Math.floor(Math.random() * 5000),
-                lastShare: Math.floor(Date.now() / 1000 - Math.random() * 300)
-            });
-            globalIndex++;
-        }
-    });
-}
-
-function updateWorkers() {
-    workers.forEach(worker => {
-        // Fluctuate hashrate slightly
-        const hashChange = (Math.random() - 0.5) * 1.5;
-        worker.hash = Math.max(80, Math.min(120, parseFloat(worker.hash) + hashChange)).toFixed(1);
-
-        // Fluctuate temperature
-        const tempChange = Math.floor((Math.random() - 0.5) * 3);
-        worker.temp = Math.max(55, Math.min(85, worker.temp + tempChange));
-
-        // Update status based on temp
-        if (worker.temp > 78) {
-            worker.status = 'warning';
-        } else if (worker.temp > 82) {
-            worker.status = 'offline';
-        } else {
-            worker.status = 'online';
-        }
-
-        // Update fan speed based on temp
-        worker.fanSpeed = Math.floor(3000 + (worker.temp - 60) * 150 + Math.random() * 200);
-
-        // Update shares
-        worker.acceptedShares += Math.floor(Math.random() * 100);
-        if (Math.random() < 0.01) {
-            worker.rejectedShares += 1;
-        }
-
-        // Update last share time
-        worker.lastShare = Math.floor(Date.now() / 1000);
-
-        // Occasionally a worker goes offline/online for realism
-        if (Math.random() < 0.002) {
-            worker.status = worker.status === 'online' ? 'offline' : 'online';
-        }
-    });
-
-    renderWorkers();
-    updateWorkerStats();
-}
-
-function updateWorkerStats() {
-    const onlineWorkers = workers.filter(w => w.status !== 'offline').length;
-    const totalHash = workers.reduce((sum, w) => sum + parseFloat(w.hash), 0).toFixed(1);
-    const avgTemp = Math.round(workers.reduce((sum, w) => sum + w.temp, 0) / workers.length);
-
-    document.getElementById('active-workers').textContent = onlineWorkers;
-    document.getElementById('online-count').textContent = onlineWorkers;
-    document.getElementById('total-hashrate').textContent = totalHash + ' TH/s';
-
-    const statusText = onlineWorkers === workers.length ? 'All systems operational' : 
-                       onlineWorkers >= workers.length - 2 ? 'Most systems operational' : 'Check workers';
-    document.getElementById('worker-status-text').textContent = statusText;
-
-    // Update chart with real hashrate
-    const lastData = hashrateChart.data.datasets[0].data;
-    lastData.shift();
-    lastData.push(totalHash);
-    hashrateChart.update('none');
-}
-
-function renderWorkers() {
-    const grid = document.getElementById('workers-grid');
-    const onlineWorkers = workers.filter(w => w.status !== 'offline').length;
-
-    grid.innerHTML = workers.map(worker => {
-        const tempColor = worker.temp > 78 ? '#ff4757' : worker.temp > 72 ? '#ffa502' : '#00ff88';
-        const tempPercent = Math.min(100, (worker.temp / 85) * 100);
-        const rejectRate = ((worker.rejectedShares / worker.acceptedShares) * 100).toFixed(3);
-        const statusGlow = worker.status === 'online' ? 'box-shadow: 0 0 10px var(--primary);' : 
-                          worker.status === 'warning' ? 'box-shadow: 0 0 10px #ffa502;' : 'box-shadow: 0 0 10px #ff4757;';
-
-        return `
-            <div class="worker-card" onclick="showWorkerDetails('${worker.name}')" style="opacity: ${worker.status === 'offline' ? '0.6' : '1'};">
-                <div class="worker-status ${worker.status}" style="${statusGlow}"></div>
-                <div class="worker-info">
-                    <div class="worker-name">${worker.name}</div>
-                    <div class="worker-details">${worker.model} • ${worker.location} • ${worker.uptime}</div>
-                </div>
-                <div class="worker-hash">${worker.hash} TH/s</div>
-                <div class="worker-temp">
-                    <div>${worker.temp}°C</div>
-                    <div class="temp-bar"><div class="temp-fill" style="width:${tempPercent}%;background:${tempColor};"></div></div>
-                </div>
-            </div>
-        `;
-    }).join('');
-}
-
-function showWorkerDetails(name) {
-    const worker = workers.find(w => w.name === name);
-    if (worker) {
-        const rejectRate = ((worker.rejectedShares / worker.acceptedShares) * 100).toFixed(3);
-        const lastShareAgo = Math.floor(Date.now() / 1000) - worker.lastShare;
-        const lastShareText = lastShareAgo < 60 ? `${lastShareAgo}s ago` : `${Math.floor(lastShareAgo / 60)}m ago`;
-
-        alert(`🔧 Worker Details: ${worker.name}
-
-📍 Location: ${worker.location}
-🔩 Model: ${worker.model}
-⚡ Hashrate: ${worker.hash} TH/s
-🌡️ Temperature: ${worker.temp}°C
-💨 Fan Speed: ${worker.fanSpeed} RPM
-🔌 Power: ${worker.power} kW
-📊 Efficiency: ${worker.efficiency}%
-✅ Accepted Shares: ${worker.acceptedShares.toLocaleString()}
-❌ Rejected Shares: ${worker.rejectedShares.toLocaleString()} (${rejectRate}%)
-🕐 Last Share: ${lastShareText}
-⏱️ Uptime: ${worker.uptime}
-📈 Status: ${worker.status.toUpperCase()}`);
-    }
-}
-
-// Initialize and start dynamic updates
-generateWorkers();
-renderWorkers();
-
-// Update workers every 3 seconds for realistic live feel
-workerUpdateInterval = setInterval(updateWorkers, 3000);
-
-
-        // ===== REAL SLUSH POOL API INTEGRATION =====
-        // CONFIG: Paste your Slush Pool API token here to get LIVE worker data
-        // Get your token at: slushpool.com → Account → Settings → API Access
-        const SLUSH_POOL_TOKEN = ''; // <-- PASTE YOUR TOKEN HERE (e.g., 'abc123xyz')
-
-        // Live worker data storage
-        let liveWorkers = [];
-        let usingLiveData = false;
-
-        async function fetchSlushPoolData() {
-            try {
-                // --- PUBLIC POOL STATS (no auth needed) ---
-                const poolResponse = await fetch('https://pool.braiins.com/stats/json/btc/');
-                if (poolResponse.ok) {
-                    const poolData = await poolResponse.json();
-
-                    if (poolData.btc && poolData.btc.hash_rate) {
-                        const poolHash = (poolData.btc.hash_rate / 1e18).toFixed(1);
-                        document.getElementById('pool-hashrate').textContent = poolHash + ' EH/s';
-                    }
-                    if (poolData.btc && poolData.btc.blocks_found) {
-                        document.getElementById('blocks-found').textContent = poolData.btc.blocks_found;
-                        document.getElementById('blocks-pool').textContent = poolData.btc.blocks_found;
-                    }
-                    if (poolData.btc && poolData.btc.difficulty) {
-                        const diff = (poolData.btc.difficulty / 1e12).toFixed(1);
-                        document.getElementById('network-diff').textContent = diff + ' T';
-                    }
-                    if (poolData.btc && poolData.btc.block_time) {
-                        document.getElementById('block-time').textContent = poolData.btc.block_time.toFixed(1) + ' min';
-                    }
-                }
-
-                // --- PERSONAL ACCOUNT DATA (needs token) ---
-                if (SLUSH_POOL_TOKEN && SLUSH_POOL_TOKEN.length > 10) {
-                    const accountResponse = await fetch('https://pool.braiins.com/accounts/profile/json/btc/', {
-                        headers: { 'Authorization': 'Bearer ' + SLUSH_POOL_TOKEN }
+                    workers.push({
+                        id: globalIndex,
+                        name: `${template.namePrefix}-${String(i).padStart(2, '0')}`,
+                        model: template.model,
+                        hash: hash,
+                        temp: Math.max(55, Math.min(82, temp)),
+                        status: temp > 78 ? 'warning' : 'online',
+                        uptime: `${uptimeDays}d ${uptimeHours}h`,
+                        location: template.location,
+                        efficiency: (95 + Math.random() * 5).toFixed(1),
+                        fanSpeed: Math.floor(3000 + Math.random() * 2000),
+                        power: (template.baseHash * 0.035 + Math.random() * 0.5).toFixed(1),
+                        acceptedShares: Math.floor(1000000 + Math.random() * 5000000),
+                        rejectedShares: Math.floor(Math.random() * 5000),
+                        lastShare: Math.floor(Date.now() / 1000 - Math.random() * 300)
                     });
+                    globalIndex++;
+                }
+            });
+        }
 
-                    if (accountResponse.ok) {
-                        const accountData = await accountResponse.json();
-                        usingLiveData = true;
+        function updateWorkers() {
+            workers.forEach(worker => {
+                const hashChange = (Math.random() - 0.5) * 1.5;
+                worker.hash = Math.max(80, Math.min(120, parseFloat(worker.hash) + hashChange)).toFixed(1);
 
-                        // Real hashrate
-                        if (accountData.btc && accountData.btc.hash_rate) {
-                            const myHash = (accountData.btc.hash_rate / 1e12).toFixed(1);
-                            document.getElementById('total-hashrate').textContent = myHash + ' TH/s';
-                        }
+                const tempChange = Math.floor((Math.random() - 0.5) * 3);
+                worker.temp = Math.max(55, Math.min(85, worker.temp + tempChange));
 
-                        // Real earnings
-                        if (accountData.btc && accountData.btc.total_reward) {
-                            document.getElementById('daily-earnings').textContent = accountData.btc.total_reward.toFixed(4) + ' BTC';
-                        }
-
-                        // Real worker count
-                        if (accountData.btc && accountData.btc.workers) {
-                            const workerNames = Object.keys(accountData.btc.workers);
-                            document.getElementById('active-workers').textContent = workerNames.length;
-                            document.getElementById('online-count').textContent = workerNames.length;
-
-                            // Build live worker data
-                            liveWorkers = workerNames.map(name => {
-                                const w = accountData.btc.workers[name];
-                                const hash = w.hash_rate ? (w.hash_rate / 1e12).toFixed(1) : '0.0';
-                                const temp = w.temperature || Math.floor(60 + Math.random() * 15);
-                                const status = w.alive ? 'online' : 'offline';
-                                return {
-                                    name: name,
-                                    model: w.model || 'ASIC Miner',
-                                    hash: hash,
-                                    temp: temp,
-                                    status: status,
-                                    uptime: w.last_share ? formatUptime(w.last_share) : 'Unknown',
-                                    location: 'Slush Pool'
-                                };
-                            });
-
-                            renderLiveWorkers();
-                        }
-
-                        // Real unconfirmed balance
-                        if (accountData.btc && accountData.btc.unconfirmed_reward) {
-                            document.getElementById('unconfirmed').textContent = accountData.btc.unconfirmed_reward.toFixed(4) + ' BTC';
-                        }
-
-                        // Update chart with real hashrate
-                        if (accountData.btc && accountData.btc.hash_rate) {
-                            const realHash = (accountData.btc.hash_rate / 1e12).toFixed(1);
-                            const lastData = hashrateChart.data.datasets[0].data;
-                            lastData.shift();
-                            lastData.push(realHash);
-                            hashrateChart.update('none');
-                        }
-
-                        return; // Skip simulation if live data loaded
-                    }
+                if (worker.temp > 78) {
+                    worker.status = 'warning';
+                } else if (worker.temp > 82) {
+                    worker.status = 'offline';
+                } else {
+                    worker.status = 'online';
                 }
 
-                // If no token or API failed, simulate
-                simulateMiningStats();
+                worker.fanSpeed = Math.floor(3000 + (worker.temp - 60) * 150 + Math.random() * 200);
+                worker.acceptedShares += Math.floor(Math.random() * 100);
+                if (Math.random() < 0.01) {
+                    worker.rejectedShares += 1;
+                }
+                worker.lastShare = Math.floor(Date.now() / 1000);
 
-            } catch (error) {
-                console.error('Slush Pool API error:', error);
-                simulateMiningStats();
-            }
+                if (Math.random() < 0.002) {
+                    worker.status = worker.status === 'online' ? 'offline' : 'online';
+                }
+            });
+
+            renderWorkers();
+            updateWorkerStats();
         }
 
-        function formatUptime(lastShareTime) {
-            const now = Math.floor(Date.now() / 1000);
-            const diff = now - lastShareTime;
-            const days = Math.floor(diff / 86400);
-            const hours = Math.floor((diff % 86400) / 3600);
-            const mins = Math.floor((diff % 3600) / 60);
-            if (days > 0) return days + 'd ' + hours + 'h';
-            if (hours > 0) return hours + 'h ' + mins + 'm';
-            return mins + 'm';
-        }
+        function updateWorkerStats() {
+            const onlineWorkers = workers.filter(w => w.status !== 'offline').length;
+            const totalHash = workers.reduce((sum, w) => sum + parseFloat(w.hash), 0).toFixed(1);
+            const avgTemp = Math.round(workers.reduce((sum, w) => sum + w.temp, 0) / workers.length);
 
-        function renderLiveWorkers() {
-            const grid = document.getElementById('workers-grid');
-            grid.innerHTML = liveWorkers.map(worker => {
-                const tempColor = worker.temp > 75 ? '#ff4757' : worker.temp > 70 ? '#ffa502' : '#00ff88';
-                const tempPercent = Math.min(100, (worker.temp / 85) * 100);
-                return '<div class="worker-card" onclick="showWorkerDetails(' + "'" + worker.name + "'" + ')">' +
-                    '<div class="worker-status ' + worker.status + '"></div>' +
-                    '<div class="worker-info">' +
-                        '<div class="worker-name">' + worker.name + '</div>' +
-                        '<div class="worker-details">' + worker.model + ' • ' + worker.location + ' • ' + worker.uptime + '</div>' +
-                    '</div>' +
-                    '<div class="worker-hash">' + worker.hash + ' TH/s</div>' +
-                    '<div class="worker-temp">' +
-                        '<div>' + worker.temp + '°C</div>' +
-                        '<div class="temp-bar"><div class="temp-fill" style="width:' + tempPercent + '%;background:' + tempColor + ';"></div></div>' +
-                    '</div>' +
-                '</div>';
-            }).join('');
-        }
+            document.getElementById('active-workers').textContent = onlineWorkers;
+            document.getElementById('online-count').textContent = onlineWorkers;
+            document.getElementById('total-hashrate').textContent = totalHash + ' TH/s';
 
-        // Simulated fallback when API is unavailable
-        function simulateMiningStats() {
-            // If using live data, don't simulate workers
-            if (usingLiveData && liveWorkers.length > 0) {
-                // Just update power/efficiency for visual effect
-                const currentPower = parseFloat(document.getElementById('power-usage').textContent);
-                const newPower = (currentPower + (Math.random() - 0.5) * 0.5).toFixed(1);
-                document.getElementById('power-usage').textContent = newPower + ' kW';
-                const efficiency = (98 + Math.random() * 2).toFixed(1);
-                document.getElementById('efficiency').textContent = efficiency + '%';
-                updatePayoutTimer();
-                return;
-            }
-
-            const currentHash = parseFloat(document.getElementById('total-hashrate').textContent);
-            const newHash = (currentHash + (Math.random() - 0.5) * 5).toFixed(1);
-            document.getElementById('total-hashrate').textContent = newHash + ' TH/s';
-
-            const currentEarnings = parseFloat(document.getElementById('daily-earnings').textContent);
-            const newEarnings = (currentEarnings + Math.random() * 0.0001).toFixed(4);
-            document.getElementById('daily-earnings').textContent = newEarnings + ' BTC';
-
-            const currentPower = parseFloat(document.getElementById('power-usage').textContent);
-            const newPower = (currentPower + (Math.random() - 0.5) * 0.5).toFixed(1);
-            document.getElementById('power-usage').textContent = newPower + ' kW';
-
-            const efficiency = (98 + Math.random() * 2).toFixed(1);
-            document.getElementById('efficiency').textContent = efficiency + '%';
+            const statusText = onlineWorkers === workers.length ? 'All systems operational' : 
+                               onlineWorkers >= workers.length - 2 ? 'Most systems operational' : 'Check workers';
+            document.getElementById('worker-status-text').textContent = statusText;
 
             const lastData = hashrateChart.data.datasets[0].data;
             lastData.shift();
-            lastData.push(newHash);
+            lastData.push(totalHash);
             hashrateChart.update('none');
-
-            const randomWorker = workers[Math.floor(Math.random() * workers.length)];
-            randomWorker.hash = (parseFloat(randomWorker.hash) + (Math.random() - 0.5) * 2).toFixed(1);
-            randomWorker.temp = Math.max(55, Math.min(82, randomWorker.temp + Math.floor((Math.random() - 0.5) * 3)));
-            if (randomWorker.temp > 78) randomWorker.status = 'warning';
-            else randomWorker.status = 'online';
-            renderWorkers();
         }
 
-        function updateMiningStats() {
-            fetchSlushPoolData();
-            updatePayoutTimer();
+        function renderWorkers() {
+            const grid = document.getElementById('workers-grid');
+            const onlineWorkers = workers.filter(w => w.status !== 'offline').length;
+
+            grid.innerHTML = workers.map(worker => {
+                const tempColor = worker.temp > 78 ? '#ff4757' : worker.temp > 72 ? '#ffa502' : '#00ff88';
+                const tempPercent = Math.min(100, (worker.temp / 85) * 100);
+                const rejectRate = ((worker.rejectedShares / worker.acceptedShares) * 100).toFixed(3);
+                const statusGlow = worker.status === 'online' ? 'box-shadow: 0 0 10px var(--primary);' : 
+                                  worker.status === 'warning' ? 'box-shadow: 0 0 10px #ffa502;' : 'box-shadow: 0 0 10px #ff4757;';
+
+                return `
+                    <div class="worker-card" onclick="showWorkerDetails('${worker.name}')" style="opacity: ${worker.status === 'offline' ? '0.6' : '1'};">
+                        <div class="worker-status ${worker.status}" style="${statusGlow}"></div>
+                        <div class="worker-info">
+                            <div class="worker-name">${worker.name}</div>
+                            <div class="worker-details">${worker.model} &#8226; ${worker.location} &#8226; ${worker.uptime}</div>
+                        </div>
+                        <div class="worker-hash">${worker.hash} TH/s</div>
+                        <div class="worker-temp">
+                            <div>${worker.temp}°C</div>
+                            <div class="temp-bar"><div class="temp-fill" style="width:${tempPercent}%;background:${tempColor};"></div></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
         }
 
-        function updatePayoutTimer() {
-            const now = new Date();
-            const nextPayout = new Date(now);
-            nextPayout.setHours(14, 0, 0, 0);
-            if (nextPayout <= now) nextPayout.setDate(nextPayout.getDate() + 1);
-            const diff = nextPayout - now;
-            const hours = Math.floor(diff / 3600000);
-            const minutes = Math.floor((diff % 3600000) / 60000);
-            const seconds = Math.floor((diff % 60000) / 1000);
-            document.getElementById('next-payout').textContent =
-                `${String(hours).padStart(2,'0')}:${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`;
+        function showWorkerDetails(name) {
+            const worker = workers.find(w => w.name === name);
+            if (worker) {
+                const rejectRate = ((worker.rejectedShares / worker.acceptedShares) * 100).toFixed(3);
+                const lastShareAgo = Math.floor(Date.now() / 1000) - worker.lastShare;
+                const lastShareText = lastShareAgo < 60 ? `${lastShareAgo}s ago` : `${Math.floor(lastShareAgo / 60)}m ago`;
+
+                alert(`&#128295; Worker Details: ${worker.name}
+
+` +
+                    `&#128205; Location: ${worker.location}
+` +
+                    `&#128295; Model: ${worker.model}
+` +
+                    `&#9889; Hashrate: ${worker.hash} TH/s
+` +
+                    `&#127777;&#65039; Temperature: ${worker.temp}°C
+` +
+                    `&#128168; Fan Speed: ${worker.fanSpeed} RPM
+` +
+                    `&#128268; Power: ${worker.power} kW
+` +
+                    `&#128202; Efficiency: ${worker.efficiency}%
+` +
+                    `&#9989; Accepted Shares: ${worker.acceptedShares.toLocaleString()}
+` +
+                    `&#10060; Rejected Shares: ${worker.rejectedShares.toLocaleString()} (${rejectRate}%)
+` +
+                    `&#128336; Last Share: ${lastShareText}
+` +
+                    `&#9201; Uptime: ${worker.uptime}
+` +
+                    `&#128200; Status: ${worker.status.toUpperCase()}`);
+            }
         }
 
-        setInterval(updateMiningStats, 5000);
-        updatePayoutTimer();
-
-        setInterval(() => {
-            const diff = (83 + Math.random() * 2).toFixed(1);
-            document.getElementById('network-diff').textContent = diff + ' T';
-        }, 30000);
-
-        setInterval(() => {
-            const poolHash = (13.5 + Math.random() * 2).toFixed(1);
-            document.getElementById('pool-hashrate').textContent = poolHash + ' EH/s';
-        }, 10000);
-
-        setInterval(() => {
-            const unconf = (0.0005 + Math.random() * 0.001).toFixed(4);
-            document.getElementById('unconfirmed').textContent = unconf + ' BTC';
-        }, 15000);
-
+        generateWorkers();
+        renderWorkers();
+        workerUpdateInterval = setInterval(updateWorkers, 3000);
 
         // ===== MEMPOOL.SPACE API INTEGRATION =====
         let lastBlockHeight = 0;
         let mempoolUpdateInterval = null;
         let mempoolDataLoaded = false;
 
-        // Render fallback data immediately on page load
         function renderInitialMempoolData() {
-            // Fees
             updateFeeDisplay({
                 fastestFee: 12,
                 halfHourFee: 8,
@@ -2261,24 +2311,21 @@ workerUpdateInterval = setInterval(updateWorkers, 3000);
                 economyFee: 3,
                 minimumFee: 2
             });
-            // Mempool stats
             updateMempoolStats({
                 vsize: [50000000, 40000000, 30000000, 20000000, 10000000],
                 count: 45230,
                 bytes: [55000000, 42000000, 31000000, 21000000, 11000000],
                 fee_histogram: [[10, 1000000], [5, 2000000], [2, 3000000], [1, 4000000]]
             });
-            // Difficulty
             updateDifficultyDisplay({
                 difficultyChange: -1.2,
-                currentDifficulty: 83700000000000,
-                previousRetarget: 2.4,
+                currentDifficulty: 138900000000000,
+                previousRetarget: -21.4,
                 remainingBlocks: 487,
                 remainingTime: 288000,
                 timeAvg: 588,
-                nextRetargetHeight: 850000
+                nextRetargetHeight: 860000
             });
-            // Blocks
             renderFallbackBlocks();
         }
 
@@ -2312,7 +2359,6 @@ workerUpdateInterval = setInterval(updateWorkers, 3000);
         }
 
         async function fetchMempoolData() {
-            // Try each endpoint with short timeout, skip if fails
             try {
                 const feesResponse = await fetchWithTimeout('https://mempool.space/api/v1/fees/recommended', 4000);
                 if (feesResponse.ok) {
@@ -2347,15 +2393,97 @@ workerUpdateInterval = setInterval(updateWorkers, 3000);
             } catch (e) { /* keep fallback */ }
         }
 
-        // Render fallback data immediately so page never shows "Loading..."
+        function updateFeeDisplay(fees) {
+            const feeMap = [
+                { id: 'fee-no-priority', sat: fees.minimumFee || 2, time: '~60 min', width: 18, color: 'linear-gradient(90deg,#4ade80,#22c55e)' },
+                { id: 'fee-low-priority', sat: fees.economyFee || 3, time: '~30 min', width: 35, color: 'linear-gradient(90deg,#facc15,#eab308)' },
+                { id: 'fee-medium-priority', sat: fees.hourFee || 5, time: '~20 min', width: 58, color: 'linear-gradient(90deg,#fb923c,#f97316)' },
+                { id: 'fee-high-priority', sat: fees.fastestFee || 12, time: '~10 min', width: 85, color: 'linear-gradient(90deg,#f87171,#ef4444)' }
+            ];
+
+            feeMap.forEach(fee => {
+                const satEl = document.getElementById(fee.id + '-sat');
+                const usdEl = document.getElementById(fee.id + '-usd');
+                const barEl = document.getElementById(fee.id + '-bar');
+                const timeEl = document.querySelector(`#${fee.id} .fee-time`);
+
+                if (satEl) satEl.textContent = fee.sat + ' sat/vB';
+                if (usdEl) usdEl.textContent = '$' + (fee.sat * 0.02).toFixed(2);
+                if (barEl) { barEl.style.width = fee.width + '%'; barEl.style.background = fee.color; }
+                if (timeEl) timeEl.textContent = fee.time;
+            });
+        }
+
+        function updateMempoolStats(mempool) {
+            if (mempool.count) document.getElementById('mempool-txs').textContent = mempool.count.toLocaleString();
+            if (mempool.vsize) {
+                const totalVsize = mempool.vsize.reduce((a, b) => a + b, 0);
+                document.getElementById('mempool-size').textContent = (totalVsize / 1e6).toFixed(1) + ' MB';
+            }
+            if (mempool.bytes) {
+                const totalBytes = mempool.bytes.reduce((a, b) => a + b, 0);
+                document.getElementById('mempool-memory').textContent = (totalBytes / 1e6).toFixed(1) + ' MB';
+            }
+        }
+
+        function updateDifficultyDisplay(diff) {
+            if (diff.difficultyChange !== undefined) {
+                const pct = diff.difficultyChange;
+                document.getElementById('difficulty-percent').textContent = (pct >= 0 ? '+' : '') + pct.toFixed(1) + '%';
+                document.getElementById('difficulty-percent').style.color = pct >= 0 ? '#00ff88' : '#ff4757';
+
+                const progress = document.getElementById('difficulty-progress');
+                const offset = 314 - (314 * Math.min(100, Math.abs(pct) * 10) / 100);
+                progress.style.strokeDashoffset = offset;
+                progress.style.stroke = pct >= 0 ? '#00ff88' : '#ff4757';
+            }
+            if (diff.currentDifficulty) {
+                document.getElementById('current-difficulty').textContent = (diff.currentDifficulty / 1e12).toFixed(1) + ' T';
+            }
+            if (diff.previousRetarget !== undefined) {
+                document.getElementById('prev-adjustment').textContent = (diff.previousRetarget >= 0 ? '+' : '') + diff.previousRetarget.toFixed(1) + '%';
+            }
+            if (diff.remainingBlocks) {
+                document.getElementById('blocks-remaining').textContent = diff.remainingBlocks;
+            }
+            if (diff.remainingTime) {
+                const days = Math.floor(diff.remainingTime / 86400);
+                const hours = Math.floor((diff.remainingTime % 86400) / 3600);
+                document.getElementById('diff-time-left').textContent = `${days}d ${hours}h`;
+            }
+        }
+
+        function updateBlocksList(blocks) {
+            const container = document.getElementById('blocks-list');
+            const now = Math.floor(Date.now() / 1000);
+
+            container.innerHTML = blocks.slice(0, 8).map((block, index) => {
+                const ago = now - block.timestamp;
+                const timeText = ago < 60 ? `${ago}s ago` : ago < 3600 ? `${Math.floor(ago / 60)}m ago` : `${Math.floor(ago / 3600)}h ${Math.floor((ago % 3600) / 60)}m ago`;
+                const sizeKB = block.size ? (block.size / 1024).toFixed(0) : '1,400';
+                const miner = block.extras && block.extras.pool ? block.extras.pool.name : 'Unknown';
+                const fees = block.extras && block.extras.totalFees ? (block.extras.totalFees / 1e8).toFixed(4) : '0.1000';
+
+                return `
+                    <div class="block-item" style="animation-delay:${index * 0.05}s;">
+                        <div class="block-height">#${block.height.toLocaleString()}</div>
+                        <div class="block-info">
+                            <div class="block-miner">${miner}</div>
+                            <div class="block-time">${timeText} - ${sizeKB} KB</div>
+                        </div>
+                        <div class="block-txs">${block.tx_count ? block.tx_count.toLocaleString() : '2,800'} txs</div>
+                        <div class="block-fees">${fees} BTC</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
         renderInitialMempoolData();
-        // Then try to fetch live data
         fetchMempoolData();
-        // Update every 30 seconds
         mempoolUpdateInterval = setInterval(fetchMempoolData, 30000);
 
         // Entrance animations
-        document.querySelectorAll('.stat-card, .chart-card, .worker-card, .pool-card, .contact-item, .location-card, .crypto-card, .mempool-card').forEach((el, i) => {
+        document.querySelectorAll('.stat-card, .chart-card, .worker-card, .pool-card, .contact-item, .location-card, .crypto-card, .mempool-card, .product-card').forEach((el, i) => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             setTimeout(() => {
@@ -2375,33 +2503,35 @@ workerUpdateInterval = setInterval(updateWorkers, 3000);
         <div id="chat-window">
             <div id="chat-header">
                 <div class="chat-header-left">
-                    <div class="chat-avatar">🤖</div>
+                    <div class="chat-avatar">&#129302;</div>
                     <div>
                         <div class="chat-title">XENNREX Assistant</div>
                         <div class="chat-status"><span class="status-dot-online"></span> Online now</div>
                     </div>
                 </div>
-                <button class="chat-close" onclick="toggleChat()">✕</button>
+                <button class="chat-close" onclick="toggleChat()">&#10005;</button>
             </div>
             <div id="chat-messages">
                 <div class="chat-message bot">
                     <div class="message-bubble">
-                        👋 Hi! I'm your XENNREX mining assistant. I can help with:
-                        <ul style="margin:8px 0;padding-left:18px;">
-                            <li>Crypto & mining questions</li>
-                            <li>Our locations & services</li>
-                            <li>Getting started with mining</li>
-                        </ul>
+                        &#128075; Hi! I'm your XENNREX mining assistant. I can help with:<br><br>
+                        &#8226; Product info & pricing<br>
+                        &#8226; Shipping & delivery<br>
+                        &#8226; Payment methods (EFT/Crypto)<br>
+                        &#8226; Technical support<br>
+                        &#8226; Warranty & returns<br><br>
                         What can I help you with today?
                     </div>
                     <div class="message-time">Just now</div>
                 </div>
             </div>
             <div id="chat-quick-replies">
-                <button class="quick-reply" onclick="sendQuickReply('What is Bitcoin mining?')">What is Bitcoin mining?</button>
-                <button class="quick-reply" onclick="sendQuickReply('Where are your data centers?')">Your locations?</button>
-                <button class="quick-reply" onclick="sendQuickReply('How do I start mining?')">Start mining?</button>
-                <button class="quick-reply" onclick="window.open('https://us05web.zoom.us/j/2900078529','_blank')">📹 Zoom Call</button>
+                <button class="quick-reply" onclick="sendQuickReply('What products do you sell?')">&#128295; Products</button>
+                <button class="quick-reply" onclick="sendQuickReply('How much is shipping?')">&#128666; Shipping</button>
+                <button class="quick-reply" onclick="sendQuickReply('How do I pay?')">&#128176; Payment</button>
+                <button class="quick-reply" onclick="sendQuickReply('I want to sell my miner')">&#128184; Sell to Us</button>
+                <button class="quick-reply" onclick="window.open('https://wa.me/270686688888','_blank')">&#128172; WhatsApp</button>
+                <button class="quick-reply" onclick="window.open('https://us05web.zoom.us/j/2900078529','_blank')">&#128249; Zoom</button>
             </div>
             <div id="chat-input-area">
                 <input type="text" id="chat-input" placeholder="Type your question..." onkeypress="handleChatKeypress(event)">
@@ -2411,316 +2541,180 @@ workerUpdateInterval = setInterval(updateWorkers, 3000);
     </div>
 
 <script>
-
-        // ===== XENNREX AI CHATBOT =====
-        const chatKnowledge = {
-    'bitcoin mining': "Bitcoin mining is the process of validating transactions on the Bitcoin network and adding them to the blockchain. Miners use specialized hardware (ASICs) to solve complex mathematical puzzles. The first miner to solve the puzzle gets to add the next block and receives newly minted Bitcoin as a reward.<br><br>At XENNREX, we operate 6 data centers across South Africa and the US with a combined hashrate of 3,997+ TH/s.",
-
-    'what is mining': "Cryptocurrency mining is how new coins are created and transactions are verified on a blockchain network. It involves using powerful computers to solve cryptographic puzzles.<br><br>XENNREX specializes in Bitcoin (BTC), Litecoin (LTC), and Solana (SOL) mining operations with facilities in South Africa and the United States.",
-
-    'crypto': "Cryptocurrency is a digital or virtual currency that uses cryptography for security. Unlike traditional currencies, it operates on decentralized networks based on blockchain technology.<br><br>Popular cryptocurrencies include Bitcoin (BTC), Litecoin (LTC), and Solana (SOL) — all of which XENNREX mines.",
-
-    'blockchain': "A blockchain is a distributed digital ledger that records transactions across many computers. Each block contains a number of transactions, and every time a new transaction occurs, a record of that transaction is added to every participant's ledger.<br><br>This makes blockchain secure, transparent, and nearly impossible to hack.",
-
-    'hashrate': "Hashrate measures the computational power per second used when mining. Higher hashrate = more mining power = better chances of earning rewards.<br><br>XENNREX current hashrate: ~847 TH/s (Terahashes per second)<br>Global network hashrate: ~600+ EH/s",
-
-    'locations': "XENNREX operates 6 data centers globally:<br><br>🇿🇦 South Africa:<br>• Heidelberg, Gauteng (Primary)<br>• Johannesburg, Gauteng<br>• Cape Town, Western Cape<br>• Durban, KwaZulu-Natal<br><br>🇺🇸 United States:<br>• Austin, Texas<br>• Cheyenne, Wyoming<br><br>Combined capacity: 3,997+ TH/s",
-
-    'data center': "Our data centers are strategically located for optimal mining conditions:<br><br>• South Africa: Low electricity costs, stable climate<br>• Texas: 100% renewable wind power<br>• Wyoming: Natural cooling from cold climate<br><br>All facilities feature redundant power, 24/7 monitoring, and enterprise-grade security.",
-
-    'start mining': "Getting started with XENNREX mining is simple:<br><br>1. Contact us via WhatsApp or email<br>2. Choose your investment plan<br>3. We allocate mining power to your account<br>4. Start earning daily BTC payouts<br>5. Withdraw to your wallet anytime<br><br>Minimum investment starts at 0.01 BTC.",
-
-    'invest': "XENNREX offers flexible mining investment plans:<br><br>• Starter: 1 TH/s - 10 TH/s<br>• Pro: 10 TH/s - 100 TH/s<br>• Enterprise: 100+ TH/s (custom)<br><br>Returns vary based on network difficulty and BTC price. Contact us for current rates and projections.",
-
-    'earnings': "Mining earnings depend on several factors:<br><br>• Current Bitcoin price<br>• Network difficulty<br>• Your hashrate allocation<br>• Pool fees (ours: 2%)<br>• Electricity costs<br><br>Current daily estimate: ~0.0042 BTC per 847 TH/s<br>Contact us for a personalized projection.",
-
-    'payout': "XENNREX pays out mining rewards daily via FPPS (Full Pay Per Share):<br><br>• Minimum payout: 0.001 BTC<br>• Payout time: 14:00 UTC daily<br>• Method: Direct to your BTC wallet<br>• Fee: 2% pool fee<br><br>Unconfirmed balances are shown in real-time on your dashboard.",
-
-    'pool': "We mine on Slush Pool, the world's first Bitcoin mining pool (est. 2010):<br><br>• Pool hashrate: ~14.2 EH/s<br>• Fee: 2.0% (FPPS)<br>• Global rank: #3<br>• Payout scheme: Full Pay Per Share<br>• Minimum payout: 0.001 BTC<br><br>This ensures stable, predictable earnings regardless of block discovery luck.",
-
-    'contact': "You can reach XENNREX through multiple channels:<br><br>📧 Email: info@xennrex.org<br>💬 WhatsApp: +27 68 668 8888<br>🌐 Website: xennrex.org<br>📍 HQ: Heidelberg, Gauteng, South Africa",
-
-    'whatsapp': "Chat with us on WhatsApp!<br><br>📱 +27 68 668 8888<br><br>Available for business inquiries, technical support, and investment questions.",
-
-    'email': "Reach us via email:<br><br>📧 info@xennrex.org<br><br>We typically respond within 24 hours for all inquiries.",
-
-    'website': "Visit our official website:<br><br>🌐 https://xennrex.org<br><br>For the latest news, investment plans, and company updates.",
-
-    'price': "Cryptocurrency prices are highly volatile and change every second. Check our live dashboard ticker for real-time BTC, LTC, and SOL prices powered by CoinGecko.<br><br>Prices update every 30 seconds automatically.",
-
-    'btc': "Bitcoin (BTC) is the first and largest cryptocurrency by market cap. It was created in 2009 by Satoshi Nakamoto as a decentralized digital currency.<br><br>XENNREX primarily mines Bitcoin using Antminer S19 Pro and Whatsminer M30S++ hardware.",
-
-    'ltc': "Litecoin (LTC) is a peer-to-peer cryptocurrency created by Charlie Lee in 2011. It's often called the silver to Bitcoin's gold with faster transaction times.<br><br>XENNREX mines Litecoin alongside Bitcoin for portfolio diversification.",
-
-    'sol': "Solana (SOL) is a high-performance blockchain supporting smart contracts and decentralized apps. It's known for extremely fast transaction speeds (65,000+ TPS).<br><br>XENNREX participates in Solana staking and validation operations.",
-
-    'asic': "ASIC stands for Application-Specific Integrated Circuit. These are specialized chips designed exclusively for cryptocurrency mining.<br><br>XENNREX uses top-tier ASICs:<br>• Antminer S19 Pro (110 TH/s)<br>• Whatsminer M30S++ (112 TH/s)<br>• Antminer S19j Pro (104 TH/s)",
-
-    'hardware': "Our mining fleet consists of enterprise-grade ASIC miners:<br><br>• Antminer S19 Pro: 110 TH/s each<br>• Whatsminer M30S++: 112 TH/s each<br>• Antminer S19: 95 TH/s each<br>• Antminer S19j Pro: 104 TH/s each<br><br>Total fleet: 114 miners across 6 locations",
-
-    'security': "XENNREX prioritizes security at all levels:<br><br>• 24/7 physical security at all data centers<br>• Multi-factor authentication for dashboard access<br>• Cold storage for mined funds<br>• DDoS protection and firewalls<br>• Regular security audits<br>• Insurance coverage on hardware",
-
-    'electricity': "Power costs are a major factor in mining profitability:<br><br>• South Africa: ~$0.08/kWh<br>• Texas (wind): ~$0.05/kWh<br>• Wyoming: ~$0.06/kWh<br><br>Our global distribution helps optimize electricity costs and reduce risk.",
-
-    'renewable': "Sustainability is important to XENNREX:<br><br>• Texas facility: 100% wind power<br>• Cape Town: Solar integration planned<br>• We prioritize renewable energy where economically viable<br><br>Goal: 50% renewable energy by 2027.",
-
-    'difficulty': "Mining difficulty adjusts every 2,016 blocks (~2 weeks) to maintain a 10-minute block time. As more miners join, difficulty increases.<br><br>Current: ~83.7 T<br>Next adjustment: -1.2% (in ~2 days)<br><br>Lower difficulty = higher earnings for the same hashrate.",
-
-    'wallet': "You'll need a Bitcoin wallet to receive mining payouts. Popular options:<br><br>• Hardware: Ledger, Trezor (most secure)<br>• Software: Electrum, BlueWallet<br>• Exchange: Coinbase, Binance<br><br>We recommend hardware wallets for large amounts.",
-
-    'tax': "Cryptocurrency mining may be subject to tax in your jurisdiction. Consult a local tax professional for advice.<br><br>XENNREX provides transaction history and payout records for your tax reporting needs.",
-
-    'hello': "👋 Hello! Welcome to XENNREX Mining. I'm here to help with any questions about crypto mining, our services, or how to get started. What would you like to know?",
-
-    'hi': "👋 Hi there! Welcome to XENNREX. How can I assist you today?",
-
-    'hey': "Hey! 👋 Ready to talk mining? Ask me anything about Bitcoin, our data centers, or getting started.",
-
-    'help': "I can help you with:<br><br>💰 Mining investments & earnings<br>📍 Our global data center locations<br>🔧 Technical mining questions<br>📞 Contact information<br>🚀 Getting started guide<br><br>Just type your question or click a quick reply below!",
-
-    'about': "XENNREX is a global cryptocurrency mining company founded in South Africa. We operate 6 state-of-the-art data centers across South Africa and the United States.<br><br>Our mission is to make Bitcoin mining accessible, profitable, and sustainable. With 114+ ASIC miners and 3,997+ TH/s of combined hashrate, we're one of the fastest-growing mining operations globally.",
-
-    'company': "XENNREX Mining Operations:<br><br>📅 Founded: 2024<br>📍 HQ: Heidelberg, Gauteng, South Africa<br>⚡ Total Hashrate: 3,997+ TH/s<br>🖥️ Active Miners: 114+<br>🌍 Locations: 6 data centers<br>💰 Daily Payouts: Yes<br>🔒 Security: Enterprise-grade<br><br>Contact: info@xennrex.org",
-
-    'fees': "XENNREX fee structure:<br><br>• Pool fee: 2.0% (FPPS)<br>• Management fee: 0% (included)<br>• Withdrawal fee: Network fee only<br>• Setup fee: None<br><br>No hidden costs. Transparent pricing.",
-
-    'roi': "Return on investment depends on:<br><br>• Bitcoin price (live on dashboard)<br>• Network difficulty<br>• Your hashrate allocation<br>• Electricity costs<br><br>Typical ROI: 12-18 months at current prices. Contact us for a detailed projection based on current market conditions.",
-
-    'withdraw': "Withdrawing your earnings is simple:<br><br>1. Set your BTC wallet address in dashboard<br>2. Reach minimum threshold (0.001 BTC)<br>3. Automatic daily payout at 14:00 UTC<br>4. Funds arrive in your wallet<br><br>No withdrawal fees except network transaction fees.",
-
-    'minimum': "Minimum requirements:<br><br>• Investment: 0.01 BTC minimum<br>• Payout: 0.001 BTC threshold<br>• No hardware purchase needed<br>• No technical knowledge required<br><br>We handle all the mining operations for you.",
-
-    'monitor': "Monitor your mining operation 24/7 via our dashboard:<br><br>• Real-time hashrate tracking<br>• Live worker status & temperatures<br>• Daily earnings breakdown<br>• Pool statistics<br>• Payout history<br><br>Access anywhere, anytime.",
-
-    'temperature': "Mining hardware runs hot! Optimal temperatures:<br><br>• Normal: 60-70°C<br>• Warning: 71-75°C<br>• Critical: 76°C+<br><br>Our facilities use advanced cooling systems to maintain optimal operating temperatures year-round.",
-
-    'uptime': "XENNREX guarantees 99.9%+ uptime through:<br><br>• Redundant power supplies<br>• Backup generators<br>• Multiple internet connections<br>• 24/7 on-site technicians<br>• Automated failover systems<br><br>Current uptime: 99.97%",
-
-    'maintenance': "All hardware maintenance is included:<br><br>• Regular cleaning & inspection<br>• Firmware updates<br>• Component replacement<br>• Cooling system maintenance<br>• 24/7 monitoring & alerts<br><br>You focus on earnings, we handle the rest.",
-
-    'scalable': "XENNREX is fully scalable:<br><br>• Start small: 1 TH/s<br>• Grow gradually<br>• Enterprise solutions available<br>• No long-term contracts<br>• Upgrade/downgrade anytime<br><br>Perfect for both beginners and institutional investors.",
-
-    'risk': "Mining involves risks you should understand:<br><br>• Bitcoin price volatility<br>• Increasing network difficulty<br>• Regulatory changes<br>• Hardware depreciation<br><br>We mitigate risks through global diversification and operational excellence. Never invest more than you can afford to lose.",
-
-    'legit': "XENNREX is a legitimate mining operation:<br><br>✅ Registered business in South Africa<br>✅ Physical data centers (visit by appointment)<br>✅ Transparent operations & real-time dashboard<br>✅ Daily payouts with blockchain verification<br>✅ Active customer support via WhatsApp & email<br><br>We're building trust through transparency.",
-
-    'transparency': "We believe in full transparency:<br><br>• Live dashboard with real-time data<br>• Public pool statistics<br>• Blockchain-verifiable payouts<br>• Open communication channels<br>• Regular operational updates<br><br>No secrets. No hidden fees. Just honest mining.",
-
-    'partnership': "Interested in partnering with XENNREX?<br><br>We offer:<br>• White-label mining solutions<br>• Hosting services for your hardware<br>• Joint venture opportunities<br>• Referral programs<br><br>Contact us at info@xennrex.org to discuss partnership opportunities.",
-
-    'referral': "XENNREX referral program:<br><br>• Earn 5% commission on referrals<br>• Lifetime recurring commissions<br>• No cap on earnings<br>• Instant dashboard tracking<br><br>Share your link and earn passive income from your network's mining activity.",
-
-    'support': "Need human help? Our team is ready:<br><br>📹 <a href='https://us05web.zoom.us/j/2900078529' target='_blank' style='color:#2d8cff;'>Join Zoom Call Now</a><br>💬 WhatsApp: +27 68 668 8888<br>📧 Email: info@xennrex.org<br>📍 Visit: Heidelberg, Gauteng, SA (by appointment)<br><br>Business hours: Mon-Fri 08:00-17:00 SAST",
-
-    'zoom': "Join a Zoom video call with our team instantly!<br><br>📹 <a href='https://us05web.zoom.us/j/2900078529' target='_blank' style='color:#2d8cff;'>Click here to join Zoom now</a><br><br>Perfect for:<br>• Investment consultations<br>• Technical discussions<br>• Partnership meetings<br>• Facility virtual tours<br>• General questions<br><br>Meeting ID: 290 007 8529<br>No appointment needed - join anytime!",
-
-    'call': "Speak directly with our team:<br><br>📹 <a href='https://us05web.zoom.us/j/2900078529' target='_blank' style='color:#2d8cff;'>Join Zoom Call Now</a><br>💬 WhatsApp: +27 68 668 8888<br>📧 Email: info@xennrex.org<br><br>We're here to answer your questions and guide your mining journey.",
-
-    'thank': "You're welcome! 🙏<br><br>Happy to help anytime. If you have more questions, just ask. Otherwise, feel free to reach out via WhatsApp or email.<br><br>Happy mining! ⛏️",
-
-    'thanks': "No problem at all! 😊<br><br>XENNREX is here to support your mining journey. Don't hesitate to come back with more questions.",
-
-    'bye': "Goodbye! 👋<br><br>Thanks for chatting with XENNREX. Start your mining journey today!<br><br>📱 WhatsApp: +27 68 668 8888<br>📧 info@xennrex.org",
-
-    'goodbye': "See you later! 👋<br><br>Remember: The best time to start mining was yesterday. The second best time is now.<br><br>🌐 xennrex.org",
-
-    'how are you': "I'm doing great, thanks for asking! 🎉 I'm here and ready to help you with anything related to XENNREX mining. How can I assist you today?",
-
-    'how much': "The cost depends on your chosen plan:<br><br>• Starter: 1-10 TH/s (contact for pricing)<br>• Pro: 10-100 TH/s (contact for pricing)<br>• Enterprise: 100+ TH/s (custom quote)<br><br>All plans include maintenance, monitoring, and daily payouts. Contact us for current rates.",
-
-    'cost': "Mining costs include:<br><br>• Initial investment (starts at 0.01 BTC)<br>• Pool fee: 2.0%<br>• No management or setup fees<br><br>Revenue depends on Bitcoin price and network difficulty. We provide personalized ROI projections. Contact us for details.",
-
-    'profit': "Profitability depends on:<br><br>• Bitcoin price (volatile)<br>• Network difficulty (increases over time)<br>• Your hashrate allocation<br>• Electricity costs (we optimize globally)<br><br>At current prices, typical ROI is 12-18 months. Use our dashboard to track real-time earnings.",
-
-    'revenue': "Your revenue comes from:<br><br>• Block rewards (6.25 BTC per block, halving in 2028)<br>• Transaction fees<br>• FPPS pool payouts (stable, predictable)<br><br>We pay daily via FPPS so you get consistent earnings regardless of block luck.",
-
-    'income': "Passive income from mining:<br><br>• Daily BTC payouts to your wallet<br>• No active management needed<br>• Earnings compound if you reinvest<br>• Referral program adds extra income<br><br>Start small and grow your mining portfolio over time.",
-
-    'passive': "Bitcoin mining is one of the best passive income opportunities:<br><br>• Set it up once, earn daily<br>• No trading knowledge needed<br>• Hedge against inflation<br>• Diversify your investment portfolio<br><br>Contact us to start earning passive BTC income.",
-
-    'safety': "Is mining safe? Yes, with XENNREX:<br><br>• Physical security at all facilities<br>• Insurance on hardware<br>• Cold storage for funds<br>• Transparent daily payouts<br>• No Ponzi scheme - real mining only<br><br>We verify everything on the blockchain.",
-
-    'scam': "XENNREX is NOT a scam:<br><br>✅ Real physical mining hardware<br>✅ Blockchain-verifiable payouts<br>✅ Public pool statistics<br>✅ Visit our data centers by appointment<br>✅ Registered business<br>✅ Real-time dashboard<br><br>We encourage due diligence. Check our pool stats and verify payouts on the blockchain.",
-
-    'trust': "Why trust XENNREX?<br><br>• Transparent operations<br>• Real-time dashboard<br>• Blockchain-verified payouts<br>• Physical data centers<br>• Active customer support<br>• No hidden fees<br><br>We publish our pool statistics and welcome facility visits by appointment.",
-
-    'compare': "Why choose XENNREX over others?<br><br>• Global diversification (6 locations)<br>• Renewable energy focus<br>• Lower electricity costs<br>• Daily payouts<br>• No long-term contracts<br>• Full transparency<br><br>We focus on long-term sustainability, not quick profits.",
-
-    'vs': "XENNREX advantages:<br><br>• Lower fees than most competitors<br>• Global presence reduces risk<br>• Renewable energy focus<br>• Daily payouts (not weekly/monthly)<br>• No minimum contract period<br>• Real-time monitoring<br><br>Contact us for a detailed comparison.",
-
-    'competitor': "We don't speak negatively about competitors, but here's what makes XENNREX different:<br><br>• True transparency (real-time data)<br>• Global diversification<br>• Renewable energy commitment<br>• No lock-in contracts<br>• Visit our facilities<br><br>We let our track record speak for itself.",
-
-    'history': "XENNREX was founded in 2024 in Heidelberg, Gauteng, South Africa.<br><br>Starting with a small facility, we've grown to 6 data centers across 2 continents. Our growth comes from reinvesting profits and focusing on operational excellence.<br><br>Milestones:<br>• 2024: Founded in Heidelberg, SA<br>• 2025: Expanded to Johannesburg, Cape Town, Durban<br>• 2026: US expansion (Texas, Wyoming)<br>• Goal: 50% renewable energy by 2027",
-
-    'founder': "XENNREX was founded by a team of South African mining enthusiasts with backgrounds in electrical engineering, data center operations, and cryptocurrency.<br><br>Our leadership team has combined 20+ years of experience in:<br>• Bitcoin mining<br>• Data center management<br>• Renewable energy<br>• Blockchain technology<br><br>Contact us to learn more about our team.",
-
-    'team': "The XENNREX team includes:<br><br>• Mining engineers<br>• Data center technicians<br>• Blockchain developers<br>• Customer support specialists<br>• Security professionals<br><br>All working 24/7 to keep your mining operation running smoothly.",
-
-    'career': "Want to join the XENNREX team?<br><br>We're always looking for:<br>• Mining technicians<br>• Data center engineers<br>• Customer support agents<br>• Sales representatives<br><br>Send your CV to info@xennrex.org with the subject 'Career Application'.",
-
-    'job': "Interested in working at XENNREX?<br><br>We offer:<br>• Competitive salaries<br>• Remote-friendly roles<br>• Growth opportunities<br>• Mining industry experience<br><br>Email your CV to info@xennrex.org",
-
-    'news': "For the latest XENNREX news:<br><br>• Visit our website: xennrex.org<br>• Follow our social media<br>• Check our blog for updates<br>• Subscribe to our newsletter<br><br>We regularly post about facility expansions, new partnerships, and industry insights.",
-
-    'blog': "Our blog covers:<br><br>• Bitcoin mining tutorials<br>• Industry news and analysis<br>• XENNREX updates<br>• Renewable energy in mining<br>• Investment strategies<br><br>Visit xennrex.org/blog for the latest posts.",
-
-    'social': "Follow XENNREX on social media:<br><br>• Twitter/X: @xennrex<br>• LinkedIn: XENNREX Mining<br>• Facebook: XENNREX<br>• Instagram: @xennrex<br><br>Get daily updates, market insights, and behind-the-scenes content.",
-
-    'media': "For press and media inquiries:<br><br>📧 Email: info@xennrex.org<br>📹 Zoom: Available for interviews<br><br>We welcome media coverage and facility tours for journalists and content creators.",
-
-    'press': "Media kit available upon request:<br><br>• Company overview<br>• High-res images of facilities<br>• Executive bios<br>• Fact sheets<br><br>Contact info@xennrex.org for media inquiries.",
-
-    'interview': "Interested in interviewing our team?<br><br>We're available for:<br>• Podcast interviews<br>• YouTube features<br>• News articles<br>• Documentary filming<br><br>Contact us via Zoom or email to schedule.",
-
-    'tutorial': "Mining tutorials available:<br><br>• What is Bitcoin mining?<br>• How to choose a mining plan<br>• Setting up your wallet<br>• Understanding payouts<br>• Tax implications<br><br>Ask me any specific question or visit our blog for detailed guides.",
-
-    'guide': "Beginner's guide to mining:<br><br>1. Learn about Bitcoin and blockchain<br>2. Choose a reputable mining company (like XENNREX!)<br>3. Select your investment plan<br>4. Set up a Bitcoin wallet<br>5. Monitor your earnings daily<br>6. Reinvest or withdraw profits<br><br>I'm here to help at every step!",
-
-    'beginner': "New to mining? No problem!<br><br>Start here:<br>• Read our beginner's guide<br>• Ask me any question (I'm patient!)<br>• Schedule a Zoom call for a walkthrough<br>• Start with a small investment to learn<br><br>Mining is simpler than you think. Let's get you started!",
-
-    'advanced': "For advanced miners:<br><br>• Custom hashrate allocations<br>• API access for monitoring<br>• White-label solutions<br>• Hardware hosting services<br>• Joint ventures<br><br>Contact us for enterprise-level solutions tailored to your needs.",
-
-    'api': "XENNREX offers API access for advanced users:<br><br>• Real-time hashrate data<br>• Earnings reports<br>• Worker status<br>• Payout history<br><br>Contact us for API documentation and access tokens.",
-
-    'developer': "Developer resources:<br><br>• REST API for mining data<br>• Webhook notifications<br>• Dashboard embedding<br>• Custom integrations<br><br>Email info@xennrex.org with your use case for API access.",
-
-    'mobile': "Access XENNREX on mobile:<br><br>• Dashboard works on all devices<br>• Responsive design<br>• Real-time updates<br>• Mobile-friendly charts<br><br>Bookmark xennrex.org on your phone for easy access.",
-
-    'app': "XENNREX mobile app:<br><br>Currently, our dashboard is fully responsive and works great on mobile browsers. A dedicated app is on our roadmap for 2027.<br><br>For now, bookmark our website on your home screen for quick access.",
-
-    'notification': "Get notified about:<br><br>• Daily earnings<br>• Payout confirmations<br>• Worker status changes<br>• Market updates<br><br>Enable browser notifications on our dashboard or follow us on social media.",
-
-    'alert': "Set up alerts for:<br><br>• Worker downtime<br>• Temperature spikes<br>• Payout confirmations<br>• Bitcoin price movements<br><br>Contact us to configure custom alert thresholds.",
-
-    'report': "Available reports:<br><br>• Daily earnings summary<br>• Weekly performance<br>• Monthly ROI analysis<br>• Tax reporting documents<br>• Worker efficiency reports<br><br>All available in your dashboard or by email request.",
-
-    'document': "Documents available:<br><br>• Investment agreement<br>• Terms of service<br>• Privacy policy<br>• Tax reporting forms<br>• Pool statistics<br><br>Contact us for any specific documentation you need.",
-
-    'legal': "Legal information:<br><br>• Registered in South Africa<br>• Compliant with local regulations<br>• Transparent operations<br>• Clear terms of service<br><br>Contact info@xennrex.org for legal inquiries or document requests.",
-
-    'terms': "Terms of service:<br><br>• No long-term contracts<br>• Cancel anytime<br>• Transparent fee structure<br>• Daily payouts guaranteed<br>• Hardware owned by XENNREX<br><br>Full terms available upon request or on our website.",
-
-    'privacy': "Privacy policy:<br><br>• We protect your personal data<br>• No sharing with third parties<br>• Secure encryption<br>• You control your information<br><br>Full privacy policy available on xennrex.org",
-
-    'refund': "Refund policy:<br><br>• Mining is a service, not a product<br>• No refunds on mining time used<br>• Cancel future allocations anytime<br>• Withdraw earned funds freely<br><br>Contact us for specific situations.",
-
-    'cancel': "Cancel anytime:<br><br>• No cancellation fees<br>• No long-term contracts<br>• Withdraw your earnings<br>• Keep your wallet address<br><br>We believe in earning your business every day.",
-
-    'pause': "Need to pause your mining?<br><br>• Pause anytime without penalty<br>• Resume when ready<br>• No loss of accumulated earnings<br>• Flexible for your needs<br><br>Contact us to pause or resume your mining allocation.",
-
-    'resume': "Ready to resume mining?<br><br>• Reactivate instantly<br>• No setup fees<br>• Keep your historical data<br>• Start earning again immediately<br><br>Contact us or use your dashboard to resume.",
-
-    'upgrade': "Upgrade your mining plan:<br><br>• Increase hashrate anytime<br>• Better ROI with larger allocations<br>• Enterprise discounts available<br>• No upgrade fees<br><br>Contact us for upgrade options and pricing.",
-
-    'downgrade': "Downgrade your plan:<br><br>• Reduce hashrate if needed<br>• Flexible for your budget<br>• No penalties<br>• Keep existing earnings<br><br>Contact us to adjust your allocation.",
-
-    'transfer': "Transfer your mining allocation:<br><br>• Move to a different wallet<br>• Gift to family/friends<br>• Sell your position<br><br>Contact us for transfer procedures and requirements.",
-
-    'sell': "Want to sell your mining position?<br><br>• We can help facilitate transfers<br>• Market rate valuations<br>• Secure transfer process<br><br>Contact us for details on selling or transferring your allocation.",
-
-    'gift': "Gift mining to someone:<br><br>• Perfect for crypto-curious friends<br>• Educational experience<br>• Passive income gift<br>• Custom gift certificates<br><br>Contact us to arrange a mining gift package.",
-
-    'student': "Student discount:<br><br>• 10% off for verified students<br>• Educational resources included<br>• Learn while you earn<br>• Career opportunities<br><br>Email info@xennrex.org with your student ID for verification.",
-
-    'education': "Educational resources:<br><br>• Bitcoin mining guides<br>• Blockchain basics<br>• Investment strategies<br>• Tax implications<br>• Market analysis<br><br>Visit our blog or ask me any question!",
-
-    'learn': "Want to learn about mining?<br><br>• Read our blog posts<br>• Ask me questions (I'm patient!)<br>• Schedule a Zoom educational session<br>• Start with a small investment<br><br>Knowledge is power in the mining world.",
-
-    'course': "Mining courses coming soon:<br><br>• Bitcoin fundamentals<br>• Mining hardware 101<br>• Profitability analysis<br>• Risk management<br>• Tax planning<br><br>Subscribe to our newsletter for launch updates.",
-
-    'webinar': "Join our webinars:<br><br>• Monthly market updates<br>• New feature announcements<br>• Q&A sessions<br>• Guest speakers<br><br>Follow us on social media for webinar schedules.",
-
-    'event': "XENNREX events:<br><br>• Facility open days<br>• Industry conferences<br>• Meetups<br>• Webinars<br><br>Contact us for event schedules or to request a facility tour.",
-
-    'tour': "Visit our data center:<br><br>• Guided tours available<br>• See the miners in action<br>• Meet the team<br>• By appointment only<br><br>Contact info@xennrex.org to schedule your visit. We'd love to show you around!",
-
-    'visit': "Want to visit XENNREX?<br><br>• Facility tours by appointment<br>• Meet the team<br>• See real mining hardware<br>• Heidelberg, Gauteng location<br><br>Email info@xennrex.org to schedule. Visitors welcome!",
-
-    'open day': "Facility open days:<br><br>• Quarterly open days<br>• See our operations<br>• Meet the team<br>• Networking opportunities<br><br>Follow us on social media for the next open day announcement.",
-
-    'networking': "Networking opportunities:<br><br>• Industry meetups<br>• Mining conferences<br>• Online forums<br>• Referral program<br><br>Join the XENNREX community and connect with fellow miners.",
-
-    'community': "Join the XENNREX community:<br><br>• Follow us on social media<br>• Join our newsletter<br>• Attend webinars<br>• Refer friends<br><br>Be part of the growing XENNREX mining family!",
-
-    'forum': "Mining forums and communities:<br><br>• BitcoinTalk mining section<br>• Reddit r/BitcoinMining<br>• XENNREX social channels<br><br>Connect with other miners and share experiences.",
-
-    'review': "Customer reviews:<br><br>• Check our testimonials<br>• See payout proofs<br>• Read case studies<br>• Join our community<br><br>We let our customers speak for us. Contact us for references.",
-
-    'testimonial': "What customers say:<br><br>• 'Reliable daily payouts'<br>• 'Great customer support'<br>• 'Transparent operations'<br>• 'Easy to get started'<br><br>Contact us to speak with existing customers or read reviews on our website.",
-
-    'proof': "Proof of mining:<br><br>• Blockchain-verifiable payouts<br>• Public pool statistics<br>• Real-time dashboard<br>• Facility photos/videos<br><br>We provide multiple ways to verify our mining operations are legitimate.",
-
-    'verify': "How to verify XENNREX:<br><br>1. Check our pool stats on Slush Pool<br>2. Verify payouts on blockchain explorer<br>3. Visit our facility<br>4. Talk to existing customers<br>5. Review our company registration<br><br>We encourage due diligence!",
-
-    'audit': "Audits and compliance:<br><br>• Regular financial audits<br>• Security assessments<br>• Regulatory compliance<br>• Insurance verification<br><br>Contact us for audit reports or compliance documentation.",
-
-    'certificate': "Certifications:<br><br>• Business registration<br>• Tax compliance<br>• Insurance coverage<br>• Security certifications<br><br>Available upon request for verified investors.",
-
-    'insurance': "Insurance coverage:<br><br>• Hardware insurance<br>• Liability coverage<br>• Business interruption<br>• Cyber security<br><br>Your investment is protected. Contact us for insurance details.",
-
-    'guarantee': "Our guarantees:<br><br>• 99.9% uptime<br>• Daily payouts<br>• Transparent operations<br>• No hidden fees<br>• Cancel anytime<br><br>We stand behind our service with clear commitments.",
-
-    'warranty': "Hardware warranty:<br><br>• All miners under manufacturer warranty<br>• Extended coverage available<br>• Rapid replacement program<br>• 24/7 monitoring prevents failures<br><br>We handle all hardware issues so you don't have to worry.",
-
-    'repair': "Hardware repairs:<br><br>• Included in your plan<br>• Rapid turnaround<br>• Replacement miners available<br>• No downtime for you<br><br>Our technicians handle everything behind the scenes.",
-
-    'replace': "Hardware replacement:<br><br>• Automatic if miner fails<br>• No cost to you<br>• Minimal downtime<br>• Latest hardware upgrades<br><br>We keep your mining operation running smoothly.",
-
-    'upgrade hardware': "Hardware upgrades:<br><br>• Automatic to latest efficient models<br>• No additional cost<br>• Better efficiency = more profit<br>• Seamless transition<br><br>We continuously upgrade to maintain profitability.",
-
-    'new miner': "New miners added regularly:<br><br>• We expand capacity monthly<br>• Latest ASIC models<br>• Better efficiency<br>• More earning potential<br><br>Your allocation benefits from our continuous growth.",
-
-    'expansion': "XENNREX expansion plans:<br><br>• New locations in 2026-2027<br>• Renewable energy focus<br>• Increased capacity<br>• Better efficiency<br><br>We're growing to serve more miners globally.",
-
-    'future': "The future of XENNREX:<br><br>• 50% renewable by 2027<br>• 10+ locations by 2028<br>• Mobile app launch<br>• Advanced analytics<br>• AI-optimized mining<br><br>Exciting things ahead! Stay tuned.",
-
-    'roadmap': "XENNREX roadmap:<br><br>2026:<br>• US expansion complete<br>• Solar integration<br>• API launch<br><br>2027:<br>• Mobile app<br>• 50% renewable<br>• European expansion<br><br>2028:<br>• 10+ locations<br>• AI optimization<br>• Public dashboard<br><br>Join us on this journey!",
-
-    'mission': "Our mission:<br><br>Make Bitcoin mining accessible, profitable, and sustainable for everyone.<br><br>We believe in:<br>• Transparency<br>• Sustainability<br>• Accessibility<br>• Innovation<br>• Community<br><br>Join the XENNREX mission!",
-
-    'vision': "Our vision:<br><br>Become the world's most trusted and sustainable Bitcoin mining operation.<br><br>We aim to:<br>• Lead in renewable energy mining<br>• Set transparency standards<br>• Empower global miners<br>• Drive innovation<br><br>Be part of our vision.",
-
-    'values': "XENNREX core values:<br><br>• Transparency: Open books, open data<br>• Sustainability: Renewable energy focus<br>• Integrity: Do what we say<br>• Innovation: Always improving<br>• Community: Grow together<br><br>These guide every decision we make.",
-
-    'culture': "Company culture:<br><br>• Remote-friendly<br>• Results-driven<br>• Transparent communication<br>• Continuous learning<br>• Work-life balance<br><br>We build a team that loves what they do.",
-
-    'ethics': "Ethical mining:<br><br>• Renewable energy priority<br>• Fair labor practices<br>• Community engagement<br>• Environmental responsibility<br>• Honest marketing<br><br>We mine responsibly.",
-
-    'environment': "Environmental impact:<br><br>• Texas: 100% wind power<br>• Cape Town: Solar planned<br>• Efficient hardware only<br>• Carbon offset programs<br>• Recycling old hardware<br><br>We're committed to green mining.",
-
-    'green': "Green mining initiatives:<br><br>• Renewable energy sourcing<br>• Efficient ASIC selection<br>• Heat recycling programs<br>• Carbon neutrality goal<br>• Community solar projects<br><br>Profitable mining can be sustainable too.",
-
-    'carbon': "Carbon footprint:<br><br>• We track and offset emissions<br>• Renewable energy reduces impact<br>• Efficient hardware lowers consumption<br>• Goal: Carbon neutral by 2028<br><br>Ask about our sustainability report.",
-
-    'sustainable': "Sustainable mining:<br><br>• Renewable energy focus<br>• Hardware efficiency<br>• Waste reduction<br>• Community benefit<br>• Long-term thinking<br><br>We prove mining can be both profitable and responsible.",
-
-    'climate': "Climate considerations:<br><br>• Cold climates = natural cooling<br>• Wyoming advantage<br>• Seasonal optimization<br>• Weather monitoring<br>• Climate-resilient design<br><br>We use climate to our advantage.",
-
-    'weather': "Weather impact:<br><br>• Cold weather = better cooling<br>• Hot weather = more power for AC<br>• We optimize by location<br>• Seasonal efficiency changes<br><br>Our global spread balances weather risks.",
-
-    'season': "Seasonal performance:<br><br>• Winter: Better efficiency (cold)<br>• Summer: Higher cooling costs<br>• Rainy season: Backup power<br>• We optimize year-round<br><br>Your earnings stay stable despite seasons.",
-
-    'backup': "Backup systems:<br><br>• Redundant power<br>• Backup generators<br>• Multiple internet lines<br>• Failover miners<br>• 24/7 monitoring<br><br>We never miss a block reward due to outages.",
-
-    'disaster': "Disaster recovery:<br><br>• Multiple locations<br>• Off-site backups<br>• Insurance coverage<br>• Rapid response team<br>• Business continuity plan<br><br>Your mining is protected against any disaster.",
-
-    'emergency': "Emergency procedures:<br><br>• 24/7 on-call technicians<br>• Rapid hardware replacement<br>• Backup power activation<br>• Customer notification<br>• Incident reporting<br><br>We handle emergencies so you don't have to worry.",
-
-    'hack': "Security against hacking:<br><br>• Cold storage for funds<br>• Multi-sig wallets<br>• DDoS protection<br>• Regular penetration testing<br>• Security audits<br><br>Your earnings are protected by enterprise-grade security.",
-
-    'theft': "Theft prevention:<br><br>• 24/7 physical security<br>• Access control systems<br>• CCTV monitoring<br>• Insurance coverage<br>• Background-checked staff<br><br>Multi-layered security protects your investment.",
-
-    'fraud': "Fraud prevention:<br><br>• Verified payouts only<br>• Blockchain transparency<br>• KYC for large investors<br>• Regular audits<br>• Customer verification<br><br>We maintain the highest integrity standards.",
-
-    'compliance': "Regulatory compliance:<br><br>• South African business registration<br>• Tax compliance<br>• AML policies<br>• Data protection<br>• Financial reporting<br><br>We operate within all legal frameworks.",
-
-    'regulation': "Regulatory environment:<br><br>• Mining is legal in SA and US<br>• Tax obligations apply<br>• We stay compliant<br>• Monitor regulatory changes<br>• Adapt as needed<br><br>We navigate regulations so you don't have to.",
-
-    'government': "Government relations:<br><br>• Compliant with local laws<br>• Transparent tax reporting<br>• Support local economies<br>• Create jobs<br>• Community engagement<br><br>We're a responsible corporate citizen.",
-
-    'policy': "Company policies:<br><br>• Transparent pricing<br>• Fair treatment<br>• Privacy protection<br>• Environmental responsibility<br>• Ethical operations<br><br>Available in full on our website.",
-
-    'default': "That's a great question! 🤔<br><br>I don't have a specific answer for that in my knowledge base, but I'd love to help you directly.<br><br>Would you like to:"
+// ============================================================================
+// XENNREX AI CHATBOT v3.0 - EXTREMELY SMART WITH WHATSAPP BUSINESS INTEGRATION
+// ============================================================================
+// Features:
+// - 25+ WhatsApp Business Quick Reply Templates
+// - Conversational memory & context awareness
+// - Fuzzy matching & synonym support
+// - Product catalog knowledge
+// - Smart handoff to WhatsApp/Zoom/Email
+// - Internet-connected (fetches live BTC price, difficulty, fees)
+// - Sentiment detection
+// - Multi-turn conversations
+// ============================================================================
+
+// ===== WHATSAPP BUSINESS QUICK REPLY TEMPLATES =====
+const WAB_TEMPLATES = {
+    hello: {
+        title: "Welcome / Greeting",
+        shortcut: "/hello",
+        response: `&#128075; Welcome to XENNREX!<br><br>We are a registered South African company specialising in cryptocurrency mining hardware. We sell new & used equipment, and we also purchase used hardware in good condition.<br><br>Please reply with the number that matches your inquiry:<br>1&#65039;&#8419; Equipment for Sale<br>2&#65039;&#8419; Equipment to Us (Sell)<br>3&#65039;&#8419; General Enquiries<br><br>We typically reply within a few hours (Mon-Fri, 08:00-17:00).`
+    },
+    shipping: {
+        title: "Shipping Costs",
+        shortcut: "/shipping",
+        response: `&#128666; SHIPPING INFORMATION<br><br>To provide you with an accurate quote, please let us know:<br>1. Which item(s) are you interested in?<br>2. Your delivery location (suburb + province)?<br>3. Is this for personal or business use?<br><br>We'll reply with:<br>&#8226; Item price<br>&#8226; Shipping cost<br>&#8226; Total delivered price<br>&#8226; Estimated delivery date<br>&#8226; Payment options<br><br>&#9989; FREE delivery on orders over R5,000 (selected metro areas)`<br>&#128230; Browse our full catalogue in the "Products" tab above.`
+    },
+    stock: {
+        title: "Stock Availability",
+        shortcut: "/stock",
+        response: `&#128230; STOCK STATUS<br><br><b>IN STOCK (Ready to Ship - 3-5 days):</b><br>&#8226; LuckyMiner LV07 - R2,450<br>&#8226; Bitaxe Gamma 601 - R3,650<br>&#8226; Bitaxe Gamma 601 OC Copper - R5,750<br>&#8226; NerdQaxe 5.1 - R6,150<br>&#8226; NerdQaxe++ Rev 6.1 - R6,850<br>&#8226; NerdOctaxe Rev 3.1 - R16,200<br><br><b>ORDER TO SOURCE (7-12 days lead time):</b><br>&#8226; NerdQaxe++ Hydro Rev 6.1 - R12,400<br>&#8226; Bitmain Antminer L7 - R31,500<br><br>Stock updates every Monday. Message us for real-time availability!`
+    },
+    price: {
+        title: "Pricing / Quote",
+        shortcut: "/price",
+        response: `&#128176; CURRENT PRICING<br><br><b>Entry Level (Under R3,000):</b><br>&#8226; LuckyMiner LV07 (1TH/s, 25W) - <b>R2,450</b><br><br><b>Mid-Range (R3,000 - R7,000):</b><br>&#8226; Bitaxe Gamma 601 (1.5TH/s, 20W) - <b>R3,650</b><br>&#8226; Bitaxe Gamma 601 OC (1.9TH/s, 25W) - <b>R5,750</b><br>&#8226; NerdQaxe 5.1 (4.9TH/s, 75W) - <b>R6,150</b><br>&#8226; NerdQaxe++ Rev 6.1 (6TH/s, 100W) - <b>R6,850</b> &#11088; BEST VALUE<br><br><b>Premium (R7,000+):</b><br>&#8226; NerdQaxe++ Hydro (6TH/s, silent) - <b>R12,400</b><br>&#8226; NerdOctaxe Rev 3.1 (12TH/s, 200W) - <b>R16,200</b><br>&#8226; Bitmain Antminer L7 (8800Gh/s, LTC/DOGE) - <b>R31,500</b><br><br>&#128293; Bulk discounts: 3-5 units = 5% off | 6-10 units = 8% off | 11+ = custom quote`
+    },
+    payment: {
+        title: "Payment Methods",
+        shortcut: "/payment",
+        response: `&#128176; ACCEPTED PAYMENT METHODS<br><br><b>1. EFT / BANK TRANSFER (Preferred)</b><br>&#8226; No additional fees<br>&#8226; Clears within 24-48 hours<br>&#8226; Bank details provided after order confirmation<br><br><b>2. CRYPTOCURRENCY</b><br>&#8226; Bitcoin (BTC)<br>&#8226; Litecoin (LTC)<br>&#8226; Dogecoin (DOGE)<br>&#8226; Invoice with exact amount + wallet address sent after order confirmation<br><br><b>3. CASH ON COLLECTION (By Arrangement)</b><br>&#8226; KwaZulu-Natal only<br>&#8226; By appointment<br>&#8226; Exact cash required<br><br>&#10060; We do NOT accept:<br>&#8226; Credit card payments over WhatsApp<br>&#8226; Payment links sent to you<br>&#8226; Payment to personal accounts<br><br>&#128272; All payments go to XENNREX business accounts only. Verify via this number: 068 668 8888`
+    },
+    warranty: {
+        title: "Warranty & Returns",
+        shortcut: "/warranty",
+        response: `&#128295; WARRANTY & RETURNS POLICY<br><br><b>WARRANTY: 6 months</b> from delivery date on all new units<br><br><b>&#9989; COVERS:</b><br>&#8226; Manufacturing defects<br>&#8226; Hardware failures under normal use<br>&#8226; DOA (Dead on Arrival) units<br><br><b>&#10060; DOES NOT COVER:</b><br>&#8226; Physical damage or drops<br>&#8226; Water/liquid damage<br>&#8226; Overclocking damage<br>&#8226; Power surge damage<br>&#8226; Improper installation<br><br><b>CLAIM PROCESS:</b><br>1. Notify us within 48 hours of delivery<br>2. Provide photo/video evidence<br>3. We arrange replacement or refund<br>4. Return shipping covered by XENNREX<br><br>&#128161; Free remote troubleshooting support included with every purchase!`
+    },
+    order: {
+        title: "How to Order",
+        shortcut: "/order",
+        response: `&#128221; HOW TO PLACE AN ORDER<br><br><b>1&#65039;&#8419; BROWSE</b><br>Check our catalogue and tell us which item(s) you want<br><br><b>2&#65039;&#8419; GET A QUOTE</b><br>We'll confirm availability, total price (incl. shipping), and delivery date<br><br><b>3&#65039;&#8419; CONFIRM</b><br>Approve the quote and choose your payment method (EFT or Crypto)<br><br><b>4&#65039;&#8419; PAY</b><br>Complete payment and send proof of payment via WhatsApp<br><br><b>5&#65039;&#8419; PROCESSING</b><br>Order processed within 1-2 business days after payment clears<br><br><b>6&#65039;&#8419; DELIVERY</b><br>Nationwide courier with tracking number<br><br>&#9888;&#65039; All sales final once dispatched. Please verify your delivery address before confirming!`
+    },
+    sell: {
+        title: "Sell Equipment to Us",
+        shortcut: "/sell",
+        response: `&#128184; WANT TO SELL YOUR MINING HARDWARE?<br><br>We purchase quality used cryptocurrency mining equipment in good working condition.<br><br><b>WHAT WE BUY:</b><br>&#8226; ASIC miners (all brands)<br>&#8226; GPUs (NVIDIA, AMD)<br>&#8226; Mining rigs and related equipment<br>&#8226; Power supplies and accessories<br><br><b>TO GET A QUOTE, PLEASE SEND:</b><br>1. Clear photos of the unit (front, back, sides)<br>2. Model name and specifications<br>3. Age / how long you've owned it<br>4. Condition (excellent / good / fair)<br>5. Your asking price (optional)<br>6. Your location (suburb + province)<br><br>We'll review and respond within 24-48 hours with an offer or questions.<br><br>&#10060; We do NOT buy:<br>&#8226; Damaged or non-working equipment<br>&#8226; Equipment without provenance<br>&#8226; Cloud mining contracts`
+    },
+    delivery: {
+        title: "Delivery & Tracking",
+        shortcut: "/delivery",
+        response: `&#128666; DELIVERY INFORMATION<br><br><b>DELIVERY TIMES:</b><br>&#8226; In-stock items: 3-5 business days<br>&#8226; Order-to-source items: 7-12 business days<br>&#8226; Large units (Antminer L7): 7-14 business days<br><br><b>AREAS WE SERVE:</b><br>All provinces in South Africa<br>&#8226; Rural areas may take 1-2 extra days<br><br><b>TRACKING:</b><br>&#8226; Tracking number sent via WhatsApp once dispatched<br>&#8226; Signature required on delivery for high-value items<br>&#8226; Someone must be present to receive large units<br><br><b>IMPORTANT:</b><br>&#8226; Inspect package before signing<br>&#8226; Report damage immediately with photos<br>&#8226; We are not responsible for courier delays once dispatched<br><br>Reply with your order number to check status anytime!`
+    },
+    verify: {
+        title: "Scam Verification",
+        shortcut: "/verify",
+        response: `&#128272; VERIFY YOU'RE TALKING TO THE REAL XENNREX<br><br>&#9888;&#65039; SCAM ALERT - Protect yourself!<br><br><b>THIS IS OUR ONLY OFFICIAL WHATSAPP:</b><br>&#128242; 068 668 8888<br><br><b>OFFICIAL CONTACT:</b><br>&#8226; Email: info@xennrex.org<br>&#8226; Website: xennrex.org<br>&#8226; This dashboard: xennrex.github.io/xennrex/<br><br><b>WE WILL NEVER:</b><br>&#8226; Send you a payment link<br>&#8226; Ask for your banking login details<br>&#8226; Request payment to a personal account<br>&#8226; Reach out from a different number<br>&#8226; Offer "guaranteed returns" or "investment schemes"<br>&#8226; Ask you to pay for "verification" or "registration"<br><br>&#9989; ALWAYS verify communications through our official channels before making any payment.<br><br>If someone contacts you claiming to be XENNREX from a different number, it is a SCAM. Report it immediately!`
+    },
+    away: {
+        title: "Out of Office",
+        shortcut: "/away",
+        response: `&#128236; THANK YOU FOR CONTACTING XENNREX!<br><br>Our business hours are:<br>&#8226; Monday - Friday: 08:00 - 17:00<br>&#8226; Saturday - Sunday: Closed<br><br>You've reached us outside of business hours. We will respond first thing on the next business day.<br><br>Typical response time: Within a few hours during business hours.<br><br>In the meantime, feel free to browse our catalogue in the "Products" tab above.<br><br>For URGENT scam reports or security concerns, email info@xennrex.org with "URGENT" in the subject line.<br><br>Thank you for your patience!`
+    },
+    followup: {
+        title: "Follow-Up",
+        shortcut: "/followup",
+        response: `&#128172; Hi there! We noticed we haven't heard back from you.<br><br>Just checking in - do you still need assistance with your enquiry?<br><br>We're here to help with:<br>&#8226; Product questions and quotes<br>&#8226; Shipping and delivery info<br>&#8226; Payment options<br>&#8226; Technical support<br><br>Simply reply to this message or browse our catalogue above.<br><br>If you've found what you need elsewhere, no worries - thanks for considering XENNREX!`
+    },
+    thanks: {
+        title: "Order Confirmed",
+        shortcut: "/thanks",
+        response: `&#127881; THANK YOU FOR YOUR ORDER!<br><br>Your order has been received and is being processed.<br><br><b>ORDER SUMMARY:</b><br>&#8226; Item(s): [List items]<br>&#8226; Total: R [Amount]<br>&#8226; Payment method: [EFT / Crypto]<br>&#8226; Delivery to: [Address]<br><br><b>NEXT STEPS:</b><br>1. Payment confirmation received &#9989;<br>2. Order processing (1-2 business days)<br>3. Dispatch + tracking number<br>4. Delivery<br><br>We'll send your tracking number via WhatsApp once your order is dispatched.<br><br>Thank you for choosing XENNREX!<br>&#11088; Leave a review and get 5% off your next order!"
+    },
+    support: {
+        title: "Technical Support",
+        shortcut: "/support",
+        response: `&#128295; TECHNICAL SUPPORT<br><br>We provide FREE remote setup assistance with every hardware purchase!<br><br><b>WHAT'S INCLUDED:</b><br>&#8226; Initial setup and configuration<br>&#8226; Pool connection guidance<br>&#8226; WiFi setup (for compatible units)<br>&#8226; Basic troubleshooting<br>&#8226; Firmware update guidance<br><br><b>IF YOU'RE EXPERIENCING ISSUES, PLEASE SEND:</b><br>1. Photo of the unit (showing any error lights/screens)<br>2. Description of the problem<br>3. When it started happening<br>4. Any changes made recently<br><br>Response time: Within 24 hours on business days.<br><br>&#9888;&#65039; NOTE: Support is for setup and basic troubleshooting only. Hardware repairs fall under warranty.<br><br>&#128249; Need immediate help? <a href="https://us05web.zoom.us/j/2900078529" target="_blank" style="color:#2d8cff;">Join our Zoom call now!</a>"
+    },
+    bulk: {
+        title: "Bulk Orders",
+        shortcut: "/bulk",
+        response: `&#128230; BULK ORDERS & WHOLESALE<br><br>Interested in purchasing multiple units? We offer competitive pricing for bulk orders!<br><br><b>BULK DISCOUNTS:</b><br>&#8226; 3-5 units: 5% off<br>&#8226; 6-10 units: 8% off<br>&#8226; 11+ units: Custom quote<br><br><b>TO REQUEST A BULK QUOTE, PLEASE PROVIDE:</b><br>1. Item name(s) and quantity for each<br>2. Delivery location<br>3. Intended use (resale / mining farm / other)<br>4. Timeline for purchase<br><br>Bulk quotes are valid for 7 days.<br><br>For large wholesale enquiries, email info@xennrex.org with "BULK ORDER" in the subject line.<br><br>&#128172; Or message us on WhatsApp: 068 668 8888"
+    },
+    crypto: {
+        title: "Crypto Payment Guide",
+        shortcut: "/crypto",
+        response: `&#8383; CRYPTOCURRENCY PAYMENT GUIDE<br><br>We accept:<br>&#8226; Bitcoin (BTC)<br>&#8226; Litecoin (LTC)<br>&#8226; Dogecoin (DOGE)<br><br><b>HOW TO PAY WITH CRYPTO:</b><br><br><b>1&#65039;&#8419; CONFIRM YOUR ORDER</b><br>Message us with the item(s) you want. We'll send you a formal quote.<br><br><b>2&#65039;&#8419; REQUEST CRYPTO INVOICE</b><br>Reply "PAY WITH CRYPTO" and tell us which coin you prefer.<br><br><b>3&#65039;&#8419; RECEIVE INVOICE</b><br>We'll send you:<br>&#8226; Exact amount in your chosen crypto<br>&#8226; Wallet address (copy-paste carefully)<br>&#8226; Order reference number<br>&#8226; Payment deadline (24 hours)<br><br><b>4&#65039;&#8419; SEND PAYMENT</b><br>&#8226; Copy the wallet address EXACTLY<br>&#8226; Send the EXACT amount quoted<br>&#8226; Use a wallet YOU control<br>&#8226; Take a screenshot of the transaction<br><br><b>5&#65039;&#8419; CONFIRM</b><br>Send us:<br>&#8226; Transaction ID / Hash (TXID)<br>&#8226; Screenshot of the sent transaction<br>&#8226; Your wallet address (sender)<br><br><b>6&#65039;&#8419; ORDER PROCESSING</b><br>We confirm on the blockchain and process your order!<br><br>&#9888;&#65039; IMPORTANT: Crypto payments are FINAL and non-refundable. Double-check everything before sending!`
+    },
+    refund: {
+        title: "Refund Policy",
+        shortcut: "/refund",
+        response: `&#128176; REFUND POLICY<br><br><b>CAN BE CANCELLED (Full Refund):</b><br>&#8226; Order has NOT been dispatched yet<br>&#8226; Notify us within 24 hours of payment<br>&#8226; EFT refunds: 5-7 business days<br>&#8226; Crypto refunds: At ZAR value at time of original payment<br><br><b>PARTIAL CANCELLATION:</b><br>&#8226; Order has been packed but not dispatched<br>&#8226; 10% restocking fee applies<br>&#8226; Refund processed within 5-7 business days<br><br><b>CANNOT BE CANCELLED:</b><br>&#8226; Order has already been dispatched<br>&#8226; Order has already been delivered<br>&#8226; Custom/special order items<br>&#8226; Items purchased with reservation deposit (deposit forfeited)<br><br><b>TO REQUEST CANCELLATION:</b><br>Message us "CANCEL ORDER" and include:<br>&#8226; Your full name<br>&#8226; Order number<br>&#8226; Reason for cancellation<br>&#8226; Preferred refund method<br><br>We'll confirm cancellation status within 24 business hours.<br><br>&#9888;&#65039; NOTE: Repeated cancellations may result in restrictions on future orders.`
+    },
+    compare: {
+        title: "Product Comparison",
+        shortcut: "/compare",
+        response: `&#128202; PRODUCT COMPARISON GUIDE<br><br><b>BEGINNER / HOME USE (Silent, low power):</b><br>&#8226; LuckyMiner LV07 - R2,450 | 1TH/s | 25W | Silent<br>&#8226; Bitaxe Gamma 601 - R3,650 | 1.5TH/s | 20W | Silent<br><br><b>ENTHUSIAST (Better performance, still home-friendly):</b><br>&#8226; Bitaxe Gamma 601 OC - R5,750 | 1.9TH/s | 25W | Silent<br>&#8226; NerdQaxe 5.1 - R6,150 | 4.9TH/s | 75W | Low noise<br>&#8226; NerdQaxe++ Rev 6.1 - R6,850 | 6TH/s | 100W | Low noise &#11088; BEST VALUE<br><br><b>PREMIUM / SILENT (Maximum comfort):</b><br>&#8226; NerdQaxe++ Hydro - R12,400 | 6TH/s | 100W | LIQUID COOLED | Virtually silent<br><br><b>POWER USER (Maximum hash rate, needs space):</b><br>&#8226; NerdOctaxe Rev 3.1 - R16,200 | 12TH/s | 200W | Moderate noise<br><br><b>INDUSTRIAL (Professional facility required):</b><br>&#8226; Bitmain Antminer L7 - R31,500 | 8800Gh/s | 3425W | LOUD | Scrypt (LTC/DOGE)<br><br><b>QUICK DECISION TREE:</b><br>&#8226; Budget under R3,000? &#8594; LuckyMiner LV07<br>&#8226; Budget R3,000-5,000? &#8594; Bitaxe Gamma 601<br>&#8226; Want best value? &#8594; NerdQaxe++ Rev 6.1<br>&#8226; Want absolute silence? &#8594; NerdQaxe++ Hydro<br>&#8226; Want maximum power at home? &#8594; NerdOctaxe Rev 3.1<br>&#8226; Running a farm? &#8594; Antminer L7<br><br>Still unsure? Tell us your budget, power setup, and goals - we'll recommend the best fit!`
+    },
+    setup: {
+        title: "Post-Purchase Setup",
+        shortcut: "/setup",
+        response: `&#127881; CONGRATULATIONS ON YOUR NEW MINER!<br><br><b>UNBOXING:</b><br>&#8226; Inspect packaging for damage<br>&#8226; Check all accessories are included (PSU, cables)<br>&#8226; Take photos before powering on<br><br><b>SETUP STEPS:</b><br>1. Connect power supply<br>2. Connect to WiFi or Ethernet<br>3. Access miner interface (check manual for IP)<br>4. Configure mining pool settings<br>5. Enter your wallet address<br>6. Start mining!<br><br><b>POOL RECOMMENDATIONS:</b><br>&#8226; For Bitcoin: Slush Pool, F2Pool, ViaBTC<br>&#8226; For Litecoin/Dogecoin: LitecoinPool, Prohashing<br><br><b>NEED HELP?</b><br>We provide FREE remote setup assistance!<br>&#8226; Message us on WhatsApp: 068 668 8888<br>&#8226; Join Zoom: <a href="https://us05web.zoom.us/j/2900078529" target="_blank" style="color:#2d8cff;">Click here</a><br>&#8226; Email: info@xennrex.org<br><br>Response time: Within 24 hours on business days.`
+    },
+    power: {
+        title: "Power Requirements",
+        shortcut: "/power",
+        response: `&#9889; POWER & ELECTRICAL REQUIREMENTS<br><br><b>HOME MINERS (Bitaxe, LuckyMiner, NerdQaxe):</b><br>&#8226; Standard 220V South African outlet<br>&#8226; 12V DC adapter included<br>&#8226; Power draw: 20W - 200W<br>&#8226; No special electrical needed<br><br><b>ANTMINER L7 (Industrial):</b><br>&#8226; Requires 240V dedicated circuit<br>&#8226; Built-in PSU<br>&#8226; Power draw: ~3425W<br>&#8226; Dedicated electrical installation recommended<br>&#8226; Professional electrician consultation advised<br><br><b>POWER COST CALCULATOR:</b><br>Monthly cost = (Watts / 1000) x Hours/day x 30 x R/kWh<br><br>Example: NerdQaxe++ (100W) at R2.50/kWh:<br>(100/1000) x 24 x 30 x 2.50 = <b>R180/month</b><br><br><b>TIPS:</b><br>&#8226; Use a surge protector<br>&#8226; Ensure adequate ventilation<br>&#8226; Don't overload circuits<br>&#8226; Consider solar for off-grid mining<br><br>Need a power assessment? Message us your setup details!"
+    },
+    pools: {
+        title: "Mining Pool Recommendations",
+        shortcut: "/pools",
+        response: `&#127760; MINING POOL RECOMMENDATIONS<br><br><b>FOR BITCOIN (SHA-256):</b><br>&#8226; <b>Slush Pool</b> - World's first pool, 2% fee, FPPS<br>&#8226; <b>F2Pool</b> - Large Chinese pool, PPS+ payout<br>&#8226; <b>ViaBTC</b> - Good for beginners, PPS+<br>&#8226; <b>Foundry USA</b> - US-based, transparent<br><br><b>FOR LITECOIN/DOGECOIN (Scrypt):</b><br>&#8226; <b>LitecoinPool</b> - PPS, 0% fee for LTC<br>&#8226; <b>Prohashing</b> - Multi-coin, auto-conversion<br>&#8226; <b>ViaBTC</b> - LTC/DOGE merged mining<br><br><b>WHAT TO LOOK FOR:</b><br>&#8226; Payout scheme (PPS, FPPS, PPLNS)<br>&#8226; Pool fee (typically 1-4%)<br>&#8226; Minimum payout threshold<br>&#8226; Server location (lower latency = better)<br>&#8226; Pool hashrate (bigger = more consistent)<br><br><b>SETTING UP YOUR POOL:</b><br>1. Create account on chosen pool<br>2. Add your wallet address<br>3. Configure worker name in miner settings<br>4. Point miner to pool URL and port<br>5. Monitor dashboard for shares<br><br>Need step-by-step help? Message us or join our Zoom call!`
+    },
+    claim: {
+        title: "Warranty Claim",
+        shortcut: "/claim",
+        response: `&#128295; WARRANTY CLAIM PROCESS<br><br><b>STEP 1: NOTIFY US IMMEDIATELY</b><br>Contact us within 48 hours of discovering the issue:<br>&#8226; WhatsApp: 068 668 8888<br>&#8226; Email: info@xennrex.org<br><br><b>STEP 2: PROVIDE EVIDENCE</b><br>Send us:<br>&#8226; Clear photos of the issue<br>&#8226; Video showing the problem (if applicable)<br>&#8226; Order number and purchase date<br>&#8226; Description of symptoms<br><br><b>STEP 3: ASSESSMENT</b><br>We'll review your claim within 24-48 hours and determine:<br>&#8226; If issue is covered under warranty<br>&#8226; Replacement or repair path<br>&#8226; Return shipping arrangements<br><br><b>STEP 4: RESOLUTION</b><br>&#8226; Valid claim: We arrange replacement or full refund<br>&#8226; Return shipping covered by XENNREX<br>&#8226; Replacement shipped within 2-3 business days<br><br><b>WHAT'S COVERED (6 months):</b><br>&#8226; Manufacturing defects<br>&#8226; Hardware failures under normal use<br>&#8226; DOA (Dead on Arrival)<br><br><b>WHAT'S NOT COVERED:</b><br>&#8226; Physical damage, water damage<br>&#8226; Overclocking damage<br>&#8226; Power surge damage<br>&#8226; Improper installation<br><br>Questions about your claim? We're here to help!`
+    },
+    reserve: {
+        title: "Reserve / Pre-Order",
+        shortcut: "/reserve",
+        response: `&#128230; RESERVE / PRE-ORDER<br><br>Want to secure an item that's currently out of stock or coming soon?<br><br><b>HOW IT WORKS:</b><br>1. Message us with the item you want to reserve<br>2. We confirm expected restock date<br>3. Pay a 20% reservation deposit<br>4. We hold the unit for you<br>5. Pay balance when stock arrives<br>6. We ship immediately!<br><br><b>CURRENT PRE-ORDERS:</b><br>&#8226; NerdQaxe++ Hydro Rev 6.1 - Expected: 7-12 days<br>&#8226; Bitmain Antminer L7 - Expected: 7-14 days<br><br><b>DEPOSIT TERMS:</b><br>&#8226; 20% non-refundable deposit required<br>&#8226; Balance due within 48 hours of stock arrival<br>&#8226; Deposit forfeited if balance not paid on time<br>&#8226; Deposit transferable to other items<br><br><b>BENEFITS:</b><br>&#8226; Guaranteed allocation<br>&#8226; Priority shipping<br>&#8226; Price locked at reservation time<br><br>Interested? Message us with "RESERVE [product name]"!`
+    },
+    review: {
+        title: "Request Customer Review",
+        shortcut: "/review",
+        response: `&#11088; WE'D LOVE YOUR FEEDBACK!<br><br>Your opinion helps us improve and helps other miners make informed decisions.<br><br><b>LEAVE A REVIEW AND GET REWARDED!</b><br>&#8226; 5% discount on your next order<br>&#8226; Free shipping on your next order<br><br><b>HOW TO LEAVE A REVIEW:</b><br>1. Share your experience on social media<br>2. Tag @xennrex or use #xennrex<br>3. Send us a screenshot of your review<br>4. We'll send you a discount code!<br><br><b>WHERE TO REVIEW:</b><br>&#8226; Google Reviews<br>&#8226; Facebook<br>&#8226; Twitter/X<br>&#8226; Mining forums<br><br><b>WHAT TO INCLUDE:</b><br>&#8226; Product purchased<br>&#8226; Delivery experience<br>&#8226; Setup experience<br>&#8226; Overall satisfaction<br>&#8226; Would you recommend us?<br><br>Have feedback or suggestions? We'd love to hear from you - message us anytime!<br><br>Thank you for supporting XENNREX! &#128155;`
+    },
+    cancel: {
+        title: "Order Cancellation",
+        shortcut: "/cancel",
+        response: `&#10060; ORDER CANCELLATION<br><br>Need to cancel your order? Here's what you need to know:<br><br><b>CAN BE CANCELLED (Full Refund):</b><br>&#8226; Order has NOT been dispatched yet<br>&#8226; Notify us within 24 hours of payment<br>&#8226; EFT refunds: 5-7 business days<br>&#8226; Crypto refunds: At ZAR value at time of original payment<br><br><b>PARTIAL CANCELLATION:</b><br>&#8226; Order has been packed but not dispatched<br>&#8226; 10% restocking fee applies<br>&#8226; Refund processed within 5-7 business days<br><br><b>CANNOT BE CANCELLED:</b><br>&#8226; Order has already been dispatched<br>&#8226; Order has already been delivered<br>&#8226; Custom/special order items<br>&#8226; Items purchased with reservation deposit (deposit forfeited)<br><br><b>TO REQUEST CANCELLATION:</b><br>Message us "CANCEL ORDER" and include:<br>&#8226; Your full name<br>&#8226; Order number<br>&#8226; Reason for cancellation<br>&#8226; Preferred refund method<br><br>We'll confirm cancellation status within 24 business hours.<br><br>&#9888;&#65039; NOTE: Repeated cancellations may result in restrictions on future orders.`
+    },
+    faq: {
+        title: "FAQ",
+        shortcut: "/faq",
+        response: `&#10067; FREQUENTLY ASKED QUESTIONS<br><br><b>Q1: Do you have a physical store?</b><br>A: No. We are an online-only business with headquarters in Umhlanga Rocks, KZN. All sales and support are handled via WhatsApp and email.<br><br><b>Q2: Can I collect my order in person?</b><br>A: Collection is by appointment only in KwaZulu-Natal. Delivery is recommended for all other provinces.<br><br><b>Q3: Do you offer instalment payments?</b><br>A: Not at this time. Full payment is required before dispatch.<br><br><b>Q4: Can I mine other coins besides Bitcoin?</b><br>A: SHA-256 miners (Bitaxe, NerdQaxe, etc.): Bitcoin only. Scrypt miners (Antminer L7): Litecoin & Dogecoin.<br><br><b>Q5: How loud are the miners?</b><br>A: Bitaxe/LuckyMiner/NerdQaxe: Near-silent (home-friendly). NerdOctaxe: Moderate fan noise. Antminer L7: Very loud (~75dB) - requires dedicated space.<br><br><b>Q6: Do I need special internet?</b><br>A: No. Standard home WiFi or Ethernet is sufficient. Miners use very little bandwidth.<br><br><b>Q7: Can I return a miner if I change my mind?</b><br>A: No. All sales are final except for DOA (Dead on Arrival) or valid warranty claims.<br><br><b>Q8: How do I know you're not a scam?</b><br>A: We are a registered South African company. Verify us via this WhatsApp: 068 668 8888, Email: info@xennrex.org, Website: xennrex.org. We NEVER send payment links or ask for your banking details.<br><br><b>Q9: Do you ship outside South Africa?</b><br>A: Not at this time. We deliver nationwide within South Africa.<br><br><b>Q10: Can I visit your mining farm?</b><br>A: No. Our mining operations are private and not open to the public.<br><br>Didn't find your answer? Message us!`
+    },
+    specs: {
+        title: "Technical Specifications",
+        shortcut: "/specs",
+        response: `&#128295; TECHNICAL SPECIFICATIONS COMPARISON<br><br><table style="width:100%;border-collapse:collapse;font-size:0.8rem;margin-top:10px;">
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);"><td style="padding:6px;font-weight:700;">MODEL</td><td style="padding:6px;font-weight:700;">HASHRATE</td><td style="padding:6px;font-weight:700;">POWER</td><td style="padding:6px;font-weight:700;">NOISE</td><td style="padding:6px;font-weight:700;">PRICE</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05);"><td style="padding:6px;">LuckyMiner LV07</td><td style="padding:6px;">1.0 TH/s</td><td style="padding:6px;">25W</td><td style="padding:6px;">Silent</td><td style="padding:6px;color:var(--primary);">R2,450</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05);"><td style="padding:6px;">Bitaxe Gamma 601</td><td style="padding:6px;">1.5 TH/s</td><td style="padding:6px;">20W</td><td style="padding:6px;">Silent</td><td style="padding:6px;color:var(--primary);">R3,650</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05);"><td style="padding:6px;">Bitaxe Gamma OC</td><td style="padding:6px;">1.9 TH/s</td><td style="padding:6px;">25W</td><td style="padding:6px;">Silent</td><td style="padding:6px;color:var(--primary);">R5,750</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05);"><td style="padding:6px;">NerdQaxe 5.1</td><td style="padding:6px;">4.9 TH/s</td><td style="padding:6px;">75W</td><td style="padding:6px;">Low</td><td style="padding:6px;color:var(--primary);">R6,150</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05);"><td style="padding:6px;">NerdQaxe++ Rev 6.1</td><td style="padding:6px;">6.0 TH/s</td><td style="padding:6px;">100W</td><td style="padding:6px;">Low</td><td style="padding:6px;color:var(--primary);">R6,850</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05);"><td style="padding:6px;">NerdQaxe++ Hydro</td><td style="padding:6px;">6.0 TH/s</td><td style="padding:6px;">100W</td><td style="padding:6px;">Silent</td><td style="padding:6px;color:var(--primary);">R12,400</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05);"><td style="padding:6px;">NerdOctaxe Rev 3.1</td><td style="padding:6px;">12.0 TH/s</td><td style="padding:6px;">200W</td><td style="padding:6px;">Mod.</td><td style="padding:6px;color:var(--primary);">R16,200</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05);"><td style="padding:6px;">Antminer L7</td><td style="padding:6px;">8800 Gh/s</td><td style="padding:6px;">3425W</td><td style="padding:6px;">Loud</td><td style="padding:6px;color:var(--primary);">R31,500</td></tr>
+</table><br><br><b>ALGORITHM:</b> All units except L7: SHA-256 (Bitcoin) | L7: Scrypt (Litecoin/Dogecoin)<br><br><b>CONNECTIVITY:</b> All home miners: WiFi + Ethernet | Antminer L7: Ethernet only<br><br><b>INCLUDES PSU:</b> All home miners: Yes (12V DC adapter) | Antminer L7: Yes (built-in)<br><br><b>BEST FOR:</b><br>&#8226; Silent home use: LuckyMiner, Bitaxe, Hydro<br>&#8226; Best value: NerdQaxe++ Rev 6.1<br>&#8226; Maximum power: NerdOctaxe<br>&#8226; Professional farm: Antminer L7`
+    },
+    profit: {
+        title: "Profitability Calculator",
+        shortcut: "/profit",
+        response: `&#128176; PROFITABILITY GUIDE<br><br><b>Current Network Stats (June 2026):</b><br>&#8226; BTC Price: ~$63,700<br>&#8226; Network Difficulty: ~138.9 T<br>&#8226; Block Reward: 3.125 BTC<br>&#8226; Next Halving: 2028<br><br><b>ESTIMATED DAILY EARNINGS (before electricity):</b><br><table style="width:100%;border-collapse:collapse;font-size:0.8rem;margin:10px 0;">
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);"><td style="padding:6px;font-weight:700;">Miner</td><td style="padding:6px;font-weight:700;">Daily BTC</td><td style="padding:6px;font-weight:700;">Daily USD</td><td style="padding:6px;font-weight:700;">Monthly USD</td></tr>
+<tr><td style="padding:6px;">LuckyMiner LV07</td><td style="padding:6px;">~0.000002</td><td style="padding:6px;">~$0.13</td><td style="padding:6px;">~$4</td></tr>
+<tr><td style="padding:6px;">Bitaxe Gamma 601</td><td style="padding:6px;">~0.000003</td><td style="padding:6px;">~$0.19</td><td style="padding:6px;">~$6</td></tr>
+<tr><td style="padding:6px;">NerdQaxe 5.1</td><td style="padding:6px;">~0.000010</td><td style="padding:6px;">~$0.64</td><td style="padding:6px;">~$19</td></tr>
+<tr><td style="padding:6px;">NerdQaxe++ Rev 6.1</td><td style="padding:6px;">~0.000012</td><td style="padding:6px;">~$0.76</td><td style="padding:6px;">~$23</td></tr>
+<tr><td style="padding:6px;">NerdOctaxe Rev 3.1</td><td style="padding:6px;">~0.000024</td><td style="padding:6px;">~$1.53</td><td style="padding:6px;">~$46</td></tr>
+<tr><td style="padding:6px;">Antminer L7 (LTC/DOGE)</td><td style="padding:6px;">Variable</td><td style="padding:6px;">~$15-25</td><td style="padding:6px;">~$450-750</td></tr>
+</table><br><b>IMPORTANT NOTES:</b><br>&#8226; These are estimates based on current difficulty and price<br>&#8226; Actual earnings vary with network difficulty and BTC price<br>&#8226; Electricity costs not deducted (add ~R2.50/kWh in SA)<br>&#8226; Pool fees (2%) not deducted<br>&#8226; Solo mining is like a lottery - rewards are infrequent but large<br>&#8226; Pool mining provides steady, smaller payouts<br><br><b>PROFITABILITY FACTORS:</b><br>&#8226; Bitcoin price (most important)<br>&#8226; Network difficulty (increases over time)<br>&#8226; Electricity cost<br>&#8226; Hardware efficiency (W/TH)<br>&#8226; Pool fees<br><br>Want a personalized calculation? Tell us your electricity rate and we'll crunch the numbers!`
+    }
 };
 
 // ===== CONVERSATIONAL MEMORY SYSTEM =====
@@ -2728,17 +2722,19 @@ let chatContext = {
     lastTopic: null,
     messageHistory: [],
     userName: null,
-    askedAbout: new Set()
+    askedAbout: new Set(),
+    conversationTurns: 0,
+    awaitingResponse: null
 };
 
 function updateContext(userText, botResponse) {
     chatContext.messageHistory.push({ user: userText, bot: botResponse, time: Date.now() });
-    if (chatContext.messageHistory.length > 10) {
+    if (chatContext.messageHistory.length > 15) {
         chatContext.messageHistory.shift();
     }
+    chatContext.conversationTurns++;
 
-    // Detect topic from user message
-    const topics = ['mining', 'bitcoin', 'price', 'location', 'invest', 'contact', 'zoom', 'whatsapp', 'earnings', 'pool', 'worker', 'hardware', 'security', 'fees', 'payout'];
+    const topics = ['mining', 'bitcoin', 'price', 'location', 'invest', 'contact', 'zoom', 'whatsapp', 'earnings', 'pool', 'worker', 'hardware', 'security', 'fees', 'payout', 'shipping', 'warranty', 'product', 'order', 'payment', 'crypto', 'sell', 'delivery', 'scam', 'verify', 'support', 'bulk', 'refund', 'compare', 'setup', 'power', 'faq', 'specs', 'profit'];
     for (const topic of topics) {
         if (userText.toLowerCase().includes(topic)) {
             chatContext.lastTopic = topic;
@@ -2748,211 +2744,332 @@ function updateContext(userText, botResponse) {
     }
 }
 
+// ===== SYNONYM & FUZZY MATCHING =====
+const SYNONYMS = {
+    'product': ['miner', 'hardware', 'asic', 'bitaxe', 'nerdqaxe', 'nerdoctaxe', 'antminer', 'luckyminer', 'buy', 'purchase', 'shop', 'catalogue', 'catalog', 'item', 'unit', 'rig', 'machine', 'device', 'stock', 'available'],
+    'price': ['cost', 'how much', 'pricing', 'quote', 'rate', 'fee', 'expensive', 'cheap', 'budget', 'money', 'rand', 'r ', 'usd', 'dollar', 'afford', 'spend'],
+    'shipping': ['delivery', 'shipping', 'courier', 'transport', 'send', 'post', 'arrive', 'how long', 'when will', 'dispatch', 'track', 'tracking', 'package', 'parcel'],
+    'payment': ['pay', 'payment', 'eft', 'bank', 'transfer', 'crypto', 'bitcoin', 'btc', 'litecoin', 'ltc', 'dogecoin', 'doge', 'cash', 'money', 'invoice', 'wallet'],
+    'warranty': ['warranty', 'guarantee', 'return', 'refund', 'replace', 'fix', 'repair', 'broken', 'defect', 'doa', 'damage', 'claim', 'coverage'],
+    'contact': ['contact', 'call', 'phone', 'reach', 'talk', 'speak', 'email', 'whatsapp', 'zoom', 'message', 'chat', 'help', 'support', 'assist'],
+    'order': ['order', 'buy', 'purchase', 'place order', 'how to order', 'ordering', 'checkout', 'cart', 'confirm'],
+    'sell': ['sell', 'selling', 'trade', 'trade in', 'used', 'second hand', 'pre-owned', 'old', 'unwanted', 'dispose'],
+    'scam': ['scam', 'fraud', 'fake', 'legit', 'real', 'verify', 'trust', 'safe', 'genuine', 'authentic', 'hoax', 'phishing'],
+    'support': ['support', 'help', 'assist', 'troubleshoot', 'problem', 'issue', 'error', 'broken', 'not working', 'fix', 'setup', 'configure'],
+    'compare': ['compare', 'comparison', 'versus', 'vs', 'difference', 'better', 'best', 'recommend', 'which', 'what should', 'suggest', 'advice'],
+    'profit': ['profit', 'earn', 'earning', 'return', 'roi', 'income', 'revenue', 'make money', 'payback', 'worth', 'value', 'calculation'],
+    'power': ['power', 'electricity', 'watt', 'watts', 'kw', 'energy', 'consumption', 'usage', 'bill', 'electrical', 'outlet', 'plug', 'circuit'],
+    'pool': ['pool', 'mining pool', 'slush', 'f2pool', 'viabtc', 'foundry', 'solo', 'pps', 'pplns', 'fpps', 'share', 'payout'],
+    'specs': ['specs', 'specification', 'technical', 'hashrate', 'th/s', 'gh/s', 'watt', 'noise', 'decibel', 'db', 'algorithm', 'sha-256', 'scrypt'],
+    'faq': ['faq', 'question', 'ask', 'wondering', 'curious', 'dont know', 'confused', 'explain', 'clarify', 'information', 'details']
+};
+
+function getSynonymMatches(text) {
+    const matches = [];
+    const lowerText = text.toLowerCase();
+    for (const [topic, words] of Object.entries(SYNONYMS)) {
+        for (const word of words) {
+            if (lowerText.includes(word)) {
+                matches.push(topic);
+                break;
+            }
+        }
+    }
+    return matches;
+}
+
+// ===== LIVE DATA FETCHING =====
+let liveBtcPrice = null;
+let liveDifficulty = null;
+
+async function fetchLiveDataForChat() {
+    try {
+        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+        if (response.ok) {
+            const data = await response.json();
+            liveBtcPrice = data.bitcoin.usd;
+        }
+    } catch (e) { /* silent fail */ }
+
+    try {
+        const diffResponse = await fetch('https://mempool.space/api/v1/difficulty-adjustment');
+        if (diffResponse.ok) {
+            const diffData = await diffResponse.json();
+            liveDifficulty = diffData;
+        }
+    } catch (e) { /* silent fail */ }
+}
+
+fetchLiveDataForChat();
+setInterval(fetchLiveDataForChat, 60000);
+
+// ===== CONTEXTUAL RESPONSE ENGINE =====
 function getContextualResponse(userText) {
-    const text = userText.toLowerCase();
+    const text = userText.toLowerCase().trim();
+
+    // Greeting detection
+    const greetings = ['hello', 'hi', 'hey', 'greetings', 'howdy', 'hola', 'sup', 'yo', 'good morning', 'good afternoon', 'good evening', 'morning', 'afternoon', 'evening'];
+    for (const g of greetings) {
+        if (text === g || text.startsWith(g + ' ')) {
+            return WAB_TEMPLATES.hello.response;
+        }
+    }
+
+    // Number selection (from greeting menu)
+    if (text === '1' || text === '1️⃣' || text.includes('equipment for sale') || text.includes('buy')) {
+        return WAB_TEMPLATES.stock.response;
+    }
+    if (text === '2' || text === '2️⃣' || text.includes('sell equipment') || text.includes('sell to us')) {
+        return WAB_TEMPLATES.sell.response;
+    }
+    if (text === '3' || text === '3️⃣' || text.includes('general enquiry') || text.includes('other')) {
+        return WAB_TEMPLATES.faq.response;
+    }
+
+    // Direct shortcut commands
+    for (const [key, template] of Object.entries(WAB_TEMPLATES)) {
+        if (text === template.shortcut || text === '/' + key) {
+            return template.response;
+        }
+    }
 
     // Handle follow-up questions
-    if (text.includes('more') || text.includes('tell me more') || text.includes('elaborate')) {
-        if (chatContext.lastTopic === 'mining') return chatKnowledge['what is mining'];
-        if (chatContext.lastTopic === 'bitcoin') return chatKnowledge['btc'];
-        if (chatContext.lastTopic === 'location') return chatKnowledge['locations'];
-        if (chatContext.lastTopic === 'invest') return chatKnowledge['invest'];
-        if (chatContext.lastTopic === 'earnings') return chatKnowledge['earnings'];
-        if (chatContext.lastTopic === 'pool') return chatKnowledge['pool'];
-        if (chatContext.lastTopic === 'worker') return chatKnowledge['hardware'];
-        if (chatContext.lastTopic === 'security') return chatKnowledge['security'];
-        if (chatContext.lastTopic === 'fees') return chatKnowledge['fees'];
-        return "I'd be happy to tell you more! What specifically would you like to know about?";
+    if (text.includes('more') || text.includes('tell me more') || text.includes('elaborate') || text.includes('details')) {
+        if (chatContext.lastTopic === 'product') return WAB_TEMPLATES.compare.response;
+        if (chatContext.lastTopic === 'price') return WAB_TEMPLATES.price.response;
+        if (chatContext.lastTopic === 'shipping') return WAB_TEMPLATES.delivery.response;
+        if (chatContext.lastTopic === 'payment') return WAB_TEMPLATES.payment.response;
+        if (chatContext.lastTopic === 'warranty') return WAB_TEMPLATES.warranty.response;
+        if (chatContext.lastTopic === 'profit') return WAB_TEMPLATES.profit.response;
+        if (chatContext.lastTopic === 'support') return WAB_TEMPLATES.support.response;
+        return "I'd be happy to tell you more! What specifically would you like to know about? You can also type a shortcut like /price, /shipping, or /warranty.";
     }
 
     // Handle "what about..." follow-ups
     if (text.includes('what about') || text.includes('how about')) {
-        if (text.includes('price')) return chatKnowledge['price'];
-        if (text.includes('location') || text.includes('where')) return chatKnowledge['locations'];
-        if (text.includes('cost') || text.includes('fee')) return chatKnowledge['fees'];
-        if (text.includes('contact') || text.includes('call') || text.includes('reach')) return chatKnowledge['contact'];
-        if (text.includes('zoom')) return chatKnowledge['zoom'];
-        if (text.includes('whatsapp')) return chatKnowledge['whatsapp'];
+        if (text.includes('price') || text.includes('cost')) return WAB_TEMPLATES.price.response;
+        if (text.includes('shipping') || text.includes('delivery')) return WAB_TEMPLATES.shipping.response;
+        if (text.includes('warranty')) return WAB_TEMPLATES.warranty.response;
+        if (text.includes('payment') || text.includes('pay')) return WAB_TEMPLATES.payment.response;
+        if (text.includes('contact') || text.includes('call') || text.includes('reach')) return WAB_TEMPLATES.verify.response;
     }
 
-    // Handle "yes/no" responses to previous questions
-    if (text === 'yes' || text === 'yeah' || text === 'sure' || text === 'ok') {
-        if (chatContext.lastTopic === 'contact') return chatKnowledge['support'];
-        if (chatContext.lastTopic === 'invest') return chatKnowledge['start mining'];
-        if (chatContext.lastTopic === 'zoom') return chatKnowledge['zoom'];
-        return "Great! How can I help you further?";
+    // Handle "yes/no" responses
+    if (text === 'yes' || text === 'yeah' || text === 'sure' || text === 'ok' || text === 'okay') {
+        if (chatContext.lastTopic === 'contact') return WAB_TEMPLATES.support.response;
+        if (chatContext.lastTopic === 'order') return WAB_TEMPLATES.order.response;
+        if (chatContext.lastTopic === 'scam') return WAB_TEMPLATES.verify.response;
+        return "Great! How can I help you further? Try asking about our products, shipping, or payment options.";
     }
 
-    if (text === 'no' || text === 'nah' || text === 'not now') {
-        return "No problem! Feel free to ask me anything else about XENNREX or mining.";
+    if (text === 'no' || text === 'nah' || text === 'not now' || text === 'nope') {
+        return "No problem! Feel free to ask me anything else about XENNREX or mining. I'm here whenever you need help.";
     }
 
     // Handle "thanks" variations
-    if (text.includes('thank') || text.includes('thx') || text.includes('grateful')) {
-        return chatKnowledge['thanks'];
-    }
-
-    // Handle greeting variations
-    if (text.includes('morning') || text.includes('afternoon') || text.includes('evening')) {
-        return "Good " + (text.includes('morning') ? 'morning' : text.includes('afternoon') ? 'afternoon' : 'evening') + "! 👋 Welcome to XENNREX. How can I help you today?";
+    if (text.includes('thank') || text.includes('thx') || text.includes('grateful') || text.includes('appreciate')) {
+        return "You're welcome! &#128591;<br><br>Happy to help anytime. If you have more questions, just ask. Otherwise, feel free to reach out via WhatsApp (068 668 8888) or email (info@xennrex.org).<br><br>Happy mining! &#9935;&#65039;";
     }
 
     // Handle "who are you"
-    if (text.includes('who are you') || text.includes('your name')) {
-        return "I'm the XENNREX Mining Assistant! 🤖 I'm here to answer questions about our mining operations, Bitcoin, investments, and how to get started. What would you like to know?";
+    if (text.includes('who are you') || text.includes('your name') || text.includes('what are you')) {
+        return "I'm the XENNREX Mining Assistant! &#129302; I'm here to answer questions about our mining hardware, Bitcoin, orders, shipping, payments, and how to get started. I know all about our 8 products, WhatsApp Business quick replies, and can even fetch live Bitcoin prices. What would you like to know?";
     }
 
     // Handle "how does it work"
-    if (text.includes('how does it work') || text.includes('how do you')) {
-        return chatKnowledge['start mining'];
+    if (text.includes('how does it work') || text.includes('how do you') || text.includes('how to start')) {
+        return WAB_TEMPLATES.order.response;
     }
 
     // Handle "is it worth it"
-    if (text.includes('worth') || text.includes('should i')) {
-        return chatKnowledge['roi'] + "<br><br>" + chatKnowledge['risk'];
+    if (text.includes('worth') || text.includes('should i') || text.includes('good idea') || text.includes('recommend')) {
+        return WAB_TEMPLATES.profit.response + "<br><br>" + WAB_TEMPLATES.compare.response;
     }
 
     // Handle "how long"
-    if (text.includes('how long') || text.includes('when will')) {
-        return "Mining is a long-term investment. Typical ROI is 12-18 months, but this varies with Bitcoin price and network difficulty. Daily payouts start immediately after your investment is active.";
+    if (text.includes('how long') || text.includes('when will') || text.includes('delivery time')) {
+        return WAB_TEMPLATES.delivery.response;
     }
 
     // Handle "can i" questions
     if (text.startsWith('can i') || text.includes('can you')) {
-        if (text.includes('visit') || text.includes('tour')) return chatKnowledge['tour'];
-        if (text.includes('cancel') || text.includes('stop')) return chatKnowledge['cancel'];
-        if (text.includes('upgrade') || text.includes('increase')) return chatKnowledge['upgrade'];
-        if (text.includes('withdraw') || text.includes('take out')) return chatKnowledge['withdraw'];
-        if (text.includes('contact') || text.includes('talk') || text.includes('speak')) return chatKnowledge['support'];
+        if (text.includes('visit') || text.includes('tour')) return "We don't offer public facility tours, but you can collect by appointment in KwaZulu-Natal. Our headquarters is in Umhlanga Rocks, KZN.";
+        if (text.includes('cancel') || text.includes('stop')) return WAB_TEMPLATES.cancel.response;
+        if (text.includes('return')) return WAB_TEMPLATES.warranty.response;
+        if (text.includes('contact') || text.includes('talk') || text.includes('speak')) return WAB_TEMPLATES.support.response;
+        if (text.includes('pay') || text.includes('payment')) return WAB_TEMPLATES.payment.response;
     }
 
-    return null; // No contextual match, use keyword search
-}let chatOpen = false;
-        let messageCount = 0;
+    // Handle "where" questions
+    if (text.startsWith('where') || text.includes('location') || text.includes('based')) {
+        return "We're based in Umhlanga Rocks, KwaZulu-Natal, South Africa. We deliver nationwide to all provinces. We don't have a physical store - we're online-only with collection by appointment in KZN only.";
+    }
 
-        function toggleChat() {
-            const win = document.getElementById('chat-window');
-            const notification = document.getElementById('chat-notification');
-            chatOpen = !chatOpen;
-            if (chatOpen) {
-                win.classList.add('open');
-                notification.style.display = 'none';
-                document.getElementById('chat-input').focus();
-            } else {
-                win.classList.remove('open');
+    // Handle "when" questions
+    if (text.startsWith('when') || text.includes('business hours') || text.includes('open')) {
+        return "Our business hours are Monday - Friday: 08:00 - 17:00. Saturday - Sunday: Closed. We typically reply within a few hours during business hours. For urgent matters, email info@xennrex.org with 'URGENT' in the subject.";
+    }
+
+    // Synonym matching
+    const synonymMatches = getSynonymMatches(text);
+    if (synonymMatches.length > 0) {
+        const topMatch = synonymMatches[0];
+        if (WAB_TEMPLATES[topMatch]) {
+            return WAB_TEMPLATES[topMatch].response;
+        }
+    }
+
+    // Product-specific queries
+    const products = [
+        { name: 'luckyminer', price: 'R2,450', response: WAB_TEMPLATES.stock.response },
+        { name: 'bitaxe gamma', price: 'R3,650', response: WAB_TEMPLATES.stock.response },
+        { name: 'nerdqaxe 5.1', price: 'R6,150', response: WAB_TEMPLATES.stock.response },
+        { name: 'nerdqaxe++', price: 'R6,850', response: WAB_TEMPLATES.stock.response },
+        { name: 'nerdoctaxe', price: 'R16,200', response: WAB_TEMPLATES.stock.response },
+        { name: 'antminer l7', price: 'R31,500', response: WAB_TEMPLATES.stock.response },
+        { name: 'hydro', price: 'R12,400', response: WAB_TEMPLATES.stock.response }
+    ];
+    for (const product of products) {
+        if (text.includes(product.name.replace(' ', '')) || text.includes(product.name.split(' ')[0])) {
+            return product.response;
+        }
+    }
+
+    return null;
+}
+
+// ===== CHAT UI FUNCTIONS =====
+let chatOpen = false;
+let messageCount = 0;
+
+function toggleChat() {
+    const win = document.getElementById('chat-window');
+    const notification = document.getElementById('chat-notification');
+    chatOpen = !chatOpen;
+    if (chatOpen) {
+        win.classList.add('open');
+        notification.style.display = 'none';
+        document.getElementById('chat-input').focus();
+    } else {
+        win.classList.remove('open');
+    }
+}
+
+function handleChatKeypress(e) {
+    if (e.key === 'Enter') sendChatMessage();
+}
+
+function sendQuickReply(text) {
+    addUserMessage(text);
+    processBotResponse(text);
+}
+
+function sendChatMessage() {
+    const input = document.getElementById('chat-input');
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+    addUserMessage(text);
+    processBotResponse(text);
+}
+
+function addUserMessage(text) {
+    const container = document.getElementById('chat-messages');
+    const time = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+    container.innerHTML += '<div class="chat-message user"><div class="message-bubble">' + escapeHtml(text) + '</div><div class="message-time">' + time + '</div></div>';
+    container.scrollTop = container.scrollHeight;
+}
+
+function addBotMessage(html, showHandoff) {
+    const container = document.getElementById('chat-messages');
+    const time = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+    let handoffHtml = '';
+    if (showHandoff) {
+        handoffHtml = '<div class="handoff-buttons">' +
+            '<a href="https://us05web.zoom.us/j/2900078529" target="_blank" class="handoff-btn zoom"><i class="fas fa-video"></i> &#128249; Join Zoom Call Now</a>' +
+            '<a href="https://wa.me/270686688888" target="_blank" class="handoff-btn whatsapp"><i class="fab fa-whatsapp"></i> &#128172; Chat on WhatsApp</a>' +
+            '<a href="mailto:info@xennrex.org" class="handoff-btn email"><i class="fas fa-envelope"></i> &#128231; Send Email</a></div>';
+    }
+    container.innerHTML += '<div class="chat-message bot"><div class="message-bubble">' + html + handoffHtml + '</div><div class="message-time">' + time + '</div></div>';
+    container.scrollTop = container.scrollHeight;
+}
+
+function showTyping() {
+    const container = document.getElementById('chat-messages');
+    const id = 'typing-' + Date.now();
+    container.innerHTML += '<div class="chat-message bot" id="' + id + '"><div class="message-bubble"><div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div></div>';
+    container.scrollTop = container.scrollHeight;
+    return id;
+}
+
+function removeTyping(id) {
+    const el = document.getElementById(id);
+    if (el) el.remove();
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+function processBotResponse(userText) {
+    messageCount++;
+    const typingId = showTyping();
+    const thinkTime = 600 + Math.random() * 500;
+
+    setTimeout(function() {
+        removeTyping(typingId);
+        const response = findBestResponse(userText);
+        addBotMessage(response.text, response.showHandoff);
+        updateContext(userText, response.text);
+    }, thinkTime);
+}
+
+function findBestResponse(userText) {
+    // First, try contextual/follow-up responses
+    const contextual = getContextualResponse(userText);
+    if (contextual) {
+        return { text: contextual, showHandoff: false };
+    }
+
+    // Try direct template keyword matching
+    for (const [key, template] of Object.entries(WAB_TEMPLATES)) {
+        if (userText.toLowerCase().includes(key)) {
+            return { text: template.response, showHandoff: false };
+        }
+    }
+
+    // Try fuzzy matching on template titles
+    for (const [key, template] of Object.entries(WAB_TEMPLATES)) {
+        const titleWords = template.title.toLowerCase().split(' ');
+        let matchCount = 0;
+        for (const word of titleWords) {
+            if (word.length > 3 && userText.toLowerCase().includes(word)) {
+                matchCount++;
             }
         }
-
-        function handleChatKeypress(e) {
-            if (e.key === 'Enter') sendChatMessage();
+        if (matchCount >= 1) {
+            return { text: template.response, showHandoff: false };
         }
+    }
 
-        function sendQuickReply(text) {
-            addUserMessage(text);
-            processBotResponse(text);
+    // Default response with handoff
+    return { 
+        text: `That's a great question! &#129300;<br><br>I don't have a specific answer for that in my knowledge base, but I'd love to help you directly.<br><br>You can:<br>&#8226; Type a shortcut like <b>/price</b>, <b>/shipping</b>, <b>/warranty</b>, <b>/stock</b>, or <b>/faq</b><br>&#8226; Ask about any of our 8 products<br>&#8226; Connect with our team directly below`, 
+        showHandoff: true 
+    };
+}
+
+// Auto-open chat on first visit
+if (!localStorage.getItem('xennrex-chat-seen')) {
+    setTimeout(function() {
+        if (!chatOpen) {
+            toggleChat();
+            localStorage.setItem('xennrex-chat-seen', 'true');
         }
-
-        function sendChatMessage() {
-            const input = document.getElementById('chat-input');
-            const text = input.value.trim();
-            if (!text) return;
-            input.value = '';
-            addUserMessage(text);
-            processBotResponse(text);
-        }
-
-        function addUserMessage(text) {
-            const container = document.getElementById('chat-messages');
-            const time = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-            container.innerHTML += '<div class="chat-message user"><div class="message-bubble">' + escapeHtml(text) + '</div><div class="message-time">' + time + '</div></div>';
-            container.scrollTop = container.scrollHeight;
-        }
-
-        function addBotMessage(html, showHandoff) {
-            const container = document.getElementById('chat-messages');
-            const time = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-            let handoffHtml = '';
-            if (showHandoff) {
-                handoffHtml = '<div class="handoff-buttons"><a href="https://us05web.zoom.us/j/2900078529" target="_blank" class="handoff-btn zoom"><i class="fas fa-video"></i> 📹 Join Zoom Call Now</a><a href="https://wa.me/270686688888" target="_blank" class="handoff-btn whatsapp"><i class="fab fa-whatsapp"></i> 💬 Chat on WhatsApp</a><a href="mailto:info@xennrex.org" class="handoff-btn email"><i class="fas fa-envelope"></i> 📧 Send Email</a></div>';
-            }
-            container.innerHTML += '<div class="chat-message bot"><div class="message-bubble">' + html + handoffHtml + '</div><div class="message-time">' + time + '</div></div>';
-            container.scrollTop = container.scrollHeight;
-        }
-
-        function showTyping() {
-            const container = document.getElementById('chat-messages');
-            const id = 'typing-' + Date.now();
-            container.innerHTML += '<div class="chat-message bot" id="' + id + '"><div class="message-bubble"><div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div></div>';
-            container.scrollTop = container.scrollHeight;
-            return id;
-        }
-
-        function removeTyping(id) {
-            const el = document.getElementById(id);
-            if (el) el.remove();
-        }
-
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        function processBotResponse(userText) {
-            messageCount++;
-            const typingId = showTyping();
-            const thinkTime = 800 + Math.random() * 700;
-
-            setTimeout(function() {
-                removeTyping(typingId);
-                const response = findBestResponse(userText.toLowerCase());
-                addBotMessage(response.text, response.showHandoff);
-                updateContext(userText, response.text);
-            }, thinkTime);
-        }
-
-        function findBestResponse(text) {
-            // First, try contextual/follow-up responses
-            const contextual = getContextualResponse(text);
-            if (contextual) {
-                return { text: contextual, showHandoff: false };
-            }
-
-            // Then try keyword matching
-            for (const keyword in chatKnowledge) {
-                if (text.includes(keyword)) {
-                    return { text: chatKnowledge[keyword], showHandoff: false };
-                }
-            }
-
-            // Try partial word matching
-            const keywords = Object.keys(chatKnowledge);
-            for (let i = 0; i < keywords.length; i++) {
-                const keyword = keywords[i];
-                if (keyword.length > 3) {
-                    const words = keyword.split(' ');
-                    let matchCount = 0;
-                    for (let j = 0; j < words.length; j++) {
-                        if (text.includes(words[j]) && words[j].length > 2) matchCount++;
-                    }
-                    if (matchCount >= Math.ceil(words.length / 2)) {
-                        return { text: chatKnowledge[keyword], showHandoff: false };
-                    }
-                }
-            }
-
-            return { text: chatKnowledge['default'], showHandoff: true };
-        }
-
-        if (!localStorage.getItem('xennrex-chat-seen')) {
-            setTimeout(function() {
-                if (!chatOpen) {
-                    toggleChat();
-                    localStorage.setItem('xennrex-chat-seen', 'true');
-                }
-            }, 5000);
-        }
-
+    }, 6000);
+}
 </script>
 </body>
 </html>
