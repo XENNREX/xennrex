@@ -5,6 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>XENNREX | South Africa's Premier Cryptocurrency Mining Hardware</title>
 <meta name="description" content="Premium ASIC miners, home Bitcoin miners, and GPU rigs. Nationwide delivery, 6-month warranty, free setup support. WhatsApp 068 668 8888.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⚡%3C/text%3E%3C/svg%3E">
+<meta property="og:title" content="XENNREX | South Africa's Premier Cryptocurrency Mining Hardware">
+<meta property="og:description" content="Premium ASIC miners, home Bitcoin miners, and GPU rigs. Nationwide delivery, 6-month warranty, free setup support.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://xennrex.github.io/xennrex/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="XENNREX | SA Mining Hardware">
+<meta name="twitter:description" content="ASIC miners delivered nationwide. 6-month warranty. WhatsApp 068 668 8888.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://xennrex.github.io/xennrex/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "XENNREX",
+  "description": "South African cryptocurrency mining hardware retailer",
+  "url": "https://xennrex.github.io/xennrex/",
+  "telephone": "+27-68-668-8888",
+  "email": "info@xennrex.org",
+  "areaServed": "ZA",
+  "priceRange": "R",
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+    "opens": "08:00",
+    "closes": "17:00"
+  }
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--primary:#050505;--secondary:#0a0a0a;--surface:#111111;--surface-elevated:#161616;--accent:#c8c8c8;--accent-bright:#e8e8e8;--accent-dim:#666666;--text:#f0f0f0;--text-secondary:#a0a0a0;--text-muted:#555555;--success:#00d084;--success-dim:rgba(0,208,132,0.1);--warning:#f0a000;--danger:#ff4444;--info:#4488ff;--border:rgba(200,200,200,0.08);--border-hover:rgba(200,200,200,0.2);--glow:rgba(200,200,200,0.15);--gradient-silver:linear-gradient(135deg,#e8e8e8 0%,#a0a0a0 50%,#e8e8e8 100%);--shadow-sm:0 2px 8px rgba(0,0,0,0.3);--shadow-md:0 8px 32px rgba(0,0,0,0.4);--shadow-lg:0 16px 64px rgba(0,0,0,0.5);--shadow-glow:0 0 40px rgba(200,200,200,0.1);--radius-sm:8px;--radius-md:12px;--radius-lg:20px;--radius-xl:28px;}
@@ -214,6 +243,42 @@ footer{padding:4rem 5% 2rem;border-top:1px solid var(--border);text-align:center
 .reveal-delay-1{transition-delay:0.1s}.reveal-delay-2{transition-delay:0.2s}.reveal-delay-3{transition-delay:0.3s}.reveal-delay-4{transition-delay:0.4s}
 @media(max-width:1024px){.features-grid{grid-template-columns:repeat(2,1fr)}.calc-grid{grid-template-columns:1fr}.stats-grid{grid-template-columns:repeat(2,1fr)}.stat-item:nth-child(2){border-right:none}.stat-item:nth-child(1),.stat-item:nth-child(2){border-bottom:1px solid var(--border)}.trust-grid{grid-template-columns:1fr}.contact-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:768px){.nav-links{display:none}.mobile-menu-btn{display:block}.hero h1{font-size:2.4rem}.catalog-grid{grid-template-columns:1fr}.features-grid{grid-template-columns:1fr}.stats-grid{grid-template-columns:1fr}.stat-item{border-right:none;border-bottom:1px solid var(--border)}.stat-item:last-child{border-bottom:none}.process-steps{flex-direction:column;gap:2rem}.process-steps::before{display:none}.contact-grid{grid-template-columns:1fr}.chatbot-window{width:calc(100vw - 2rem);height:500px}.calculator-container{padding:1.5rem}}
+
+.input-suffix{position:relative}
+.input-suffix::after{content:'R/kWh';position:absolute;right:1rem;top:50%;transform:translateY(-50%);font-size:0.75rem;color:var(--text-muted);pointer-events:none}
+.api-status{font-size:0.75rem;color:var(--text-muted);margin-top:0.5rem;min-height:1.2rem;transition:color 0.3s}
+.api-status.success{color:var(--success)}
+.api-status.error{color:var(--danger)}
+.live-fetch-btn{width:100%;padding:0.9rem 1rem;background:transparent;border:1.5px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:0.5rem}
+.live-fetch-btn:hover{border-color:var(--accent);background:rgba(200,200,200,0.05)}
+.live-fetch-btn:disabled{opacity:0.5;cursor:not-allowed}
+/* Mobile Menu */
+.mobile-menu{position:fixed;top:0;right:0;width:280px;height:100vh;background:var(--surface);border-left:1px solid var(--border);z-index:1001;transform:translateX(100%);transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);padding:5rem 2rem 2rem;display:flex;flex-direction:column;gap:1.5rem}
+.mobile-menu.active{transform:translateX(0)}
+.mobile-menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1000;opacity:0;pointer-events:none;transition:opacity 0.3s}
+.mobile-menu-overlay.active{opacity:1;pointer-events:all}
+.mobile-menu a{color:var(--text);text-decoration:none;font-size:1.1rem;font-weight:500;padding:0.8rem 0;border-bottom:1px solid var(--border);transition:color 0.3s}
+.mobile-menu a:hover{color:var(--accent)}
+.mobile-menu .nav-cta{text-align:center;margin-top:1rem}
+/* Back to Top */
+.back-to-top{position:fixed;bottom:2rem;left:2rem;width:48px;height:48px;border-radius:50%;background:var(--surface);border:1px solid var(--border);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(20px);transition:all 0.3s;z-index:999;pointer-events:none}
+.back-to-top.visible{opacity:1;transform:translateY(0);pointer-events:all}
+.back-to-top:hover{border-color:var(--accent);background:rgba(200,200,200,0.05)}
+/* Copy Button */
+.copy-btn{padding:0.5rem 1rem;background:transparent;border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text-secondary);font-size:0.75rem;cursor:pointer;transition:all 0.3s;margin-top:1rem}
+.copy-btn:hover{border-color:var(--accent);color:var(--accent)}
+.copy-btn.copied{border-color:var(--success);color:var(--success)}
+/* Toast */
+.toast-container{position:fixed;top:1.5rem;right:1.5rem;z-index:10000;display:flex;flex-direction:column;gap:0.5rem;pointer-events:none}
+.toast{padding:0.8rem 1.2rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);color:var(--text);font-size:0.85rem;box-shadow:var(--shadow-md);animation:toastIn 0.3s ease-out;pointer-events:all;max-width:300px}
+.toast.success{border-color:var(--success);color:var(--success)}
+.toast.error{border-color:var(--danger);color:var(--danger)}
+@keyframes toastIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+/* Keyboard hint */
+.chatbot-keyboard-hint{font-size:0.65rem;color:var(--text-muted);text-align:center;padding:0.3rem 0;border-top:1px solid var(--border);background:var(--surface)}
+/* Offline indicator */
+.offline-indicator{position:fixed;top:0;left:0;right:0;background:var(--danger);color:#fff;text-align:center;padding:0.4rem;font-size:0.75rem;z-index:10001;transform:translateY(-100%);transition:transform 0.3s}
+.offline-indicator.visible{transform:translateY(0)}
 </style>
 </head>
 <body>
@@ -224,6 +289,18 @@ footer{padding:4rem 5% 2rem;border-top:1px solid var(--border);text-align:center
 <div class="bg-orb bg-orb-2"></div>
 <div class="bg-orb bg-orb-3"></div>
 <div class="particles-container" id="particles"></div>
+<div class="mobile-menu-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+<div class="mobile-menu" id="mobileMenu">
+<a href="#catalog" onclick="closeMobileMenu()">Catalog</a>
+<a href="#calculator" onclick="closeMobileMenu()">Calculator</a>
+<a href="#features" onclick="closeMobileMenu()">Why Us</a>
+<a href="#faq" onclick="closeMobileMenu()">FAQ</a>
+<a href="#contact" onclick="closeMobileMenu()">Contact</a>
+<a href="https://wa.me/27686688888" target="_blank" class="nav-cta" onclick="closeMobileMenu()">Order Now</a>
+</div>
+<div class="toast-container" id="toastContainer"></div>
+<div class="offline-indicator" id="offlineIndicator">You are offline. Some features may not work.</div>
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <nav id="navbar">
 <div class="nav-logo">XENNREX</div>
@@ -258,19 +335,19 @@ footer{padding:4rem 5% 2rem;border-top:1px solid var(--border);text-align:center
 
 <div class="ticker-tape" id="ticker">
 <div class="ticker-content">
-<div class="ticker-item"><span class="ticker-label">BTC/USD</span><span class="ticker-value">$107,420</span><span class="ticker-change">+2.4%</span></div>
+<div class="ticker-item"><span class="ticker-label">BTC/USD</span><span class="ticker-value" id="tickerBtcUsd">$107,420</span><span class="ticker-change" id="tickerBtcChange">+2.4%</span></div>
 <div class="ticker-item"><span class="ticker-label">LTC/USD</span><span class="ticker-value">$128.50</span><span class="ticker-change">+1.2%</span></div>
 <div class="ticker-item"><span class="ticker-label">DOGE/USD</span><span class="ticker-value">$0.182</span><span class="ticker-change down">-0.8%</span></div>
-<div class="ticker-item"><span class="ticker-label">BTC Difficulty</span><span class="ticker-value">83.7 T</span><span class="ticker-change">+4.1%</span></div>
-<div class="ticker-item"><span class="ticker-label">Network Hashrate</span><span class="ticker-value">742 EH/s</span><span class="ticker-change">+1.8%</span></div>
-<div class="ticker-item"><span class="ticker-label">ZAR/USD</span><span class="ticker-value">R18.42</span><span class="ticker-change down">-0.3%</span></div>
+<div class="ticker-item"><span class="ticker-label">BTC Difficulty</span><span class="ticker-value" id="tickerDifficulty">83.7 T</span><span class="ticker-change" id="tickerDiffChange">+4.1%</span></div>
+<div class="ticker-item"><span class="ticker-label">Network Hashrate</span><span class="ticker-value" id="tickerHashrate">742 EH/s</span><span class="ticker-change" id="tickerHashChange">+1.8%</span></div>
+<div class="ticker-item"><span class="ticker-label">ZAR/USD</span><span class="ticker-value" id="tickerZarUsd">R18.42</span><span class="ticker-change down">-0.3%</span></div>
 <div class="ticker-item"><span class="ticker-label">Eskom Tariff</span><span class="ticker-value">R2.50/kWh</span><span class="ticker-change">+6.0%</span></div>
-<div class="ticker-item"><span class="ticker-label">BTC/USD</span><span class="ticker-value">$107,420</span><span class="ticker-change">+2.4%</span></div>
+<div class="ticker-item"><span class="ticker-label">BTC/USD</span><span class="ticker-value" id="tickerBtcUsd2">$107,420</span><span class="ticker-change" id="tickerBtcChange2">+2.4%</span></div>
 <div class="ticker-item"><span class="ticker-label">LTC/USD</span><span class="ticker-value">$128.50</span><span class="ticker-change">+1.2%</span></div>
 <div class="ticker-item"><span class="ticker-label">DOGE/USD</span><span class="ticker-value">$0.182</span><span class="ticker-change down">-0.8%</span></div>
-<div class="ticker-item"><span class="ticker-label">BTC Difficulty</span><span class="ticker-value">83.7 T</span><span class="ticker-change">+4.1%</span></div>
-<div class="ticker-item"><span class="ticker-label">Network Hashrate</span><span class="ticker-value">742 EH/s</span><span class="ticker-change">+1.8%</span></div>
-<div class="ticker-item"><span class="ticker-label">ZAR/USD</span><span class="ticker-value">R18.42</span><span class="ticker-change down">-0.3%</span></div>
+<div class="ticker-item"><span class="ticker-label">BTC Difficulty</span><span class="ticker-value" id="tickerDifficulty2">83.7 T</span><span class="ticker-change" id="tickerDiffChange2">+4.1%</span></div>
+<div class="ticker-item"><span class="ticker-label">Network Hashrate</span><span class="ticker-value" id="tickerHashrate2">742 EH/s</span><span class="ticker-change" id="tickerHashChange2">+1.8%</span></div>
+<div class="ticker-item"><span class="ticker-label">ZAR/USD</span><span class="ticker-value" id="tickerZarUsd2">R18.42</span><span class="ticker-change down">-0.3%</span></div>
 <div class="ticker-item"><span class="ticker-label">Eskom Tariff</span><span class="ticker-value">R2.50/kWh</span><span class="ticker-change">+6.0%</span></div>
 </div>
 </div>
@@ -541,7 +618,7 @@ footer{padding:4rem 5% 2rem;border-top:1px solid var(--border);text-align:center
 <option value="qaxe61" data-hash="6" data-power="100" data-price="6850" selected>NerdQaxe++ Rev 6.1 (6 TH/s)</option>
 <option value="hydro" data-hash="6" data-power="100" data-price="12400">NerdQaxe++ Hydro (6 TH/s)</option>
 <option value="octaxe" data-hash="12" data-power="200" data-price="16200">NerdOctaxe Rev 3.1 (12 TH/s)</option>
-<option value="l7" data-hash="8800" data-power="3425" data-price="31500">Antminer L7 (8800 Gh/s)</option>
+<option value="l7" data-hash="8800" data-unit="gh" data-power="3425" data-price="31500">Antminer L7 (8800 Gh/s)</option>
 </select>
 </div>
 <div class="calc-field">
@@ -556,6 +633,14 @@ footer{padding:4rem 5% 2rem;border-top:1px solid var(--border);text-align:center
 <label>Network Difficulty (T)</label>
 <input type="number" id="calcDifficulty" value="83.7" step="0.1" oninput="calculateProfit()">
 </div>
+<div class="calc-field">
+<label>Pool Fee (%)</label>
+<input type="number" id="calcPoolFee" value="2.0" step="0.1" min="0" max="100" oninput="calculateProfit()">
+</div>
+<div class="calc-field">
+<button class="live-fetch-btn" id="liveFetchBtn" onclick="fetchLiveData()">🔄 Refresh Live Data</button>
+<div class="api-status" id="apiStatus">Click refresh to load live BTC price &amp; difficulty</div>
+</div>
 </div>
 <div class="calc-results">
 <h3>Estimated Returns</h3>
@@ -564,7 +649,9 @@ footer{padding:4rem 5% 2rem;border-top:1px solid var(--border);text-align:center
 <div class="result-row"><span class="result-label">Monthly Power Cost</span><span class="result-value" id="resPower">R 150</span></div>
 <div class="result-row total"><span class="result-label">Monthly Net Profit</span><span class="result-value positive" id="resNet">+R 282</span></div>
 <div class="result-row"><span class="result-label">ROI (Months)</span><span class="result-value" id="resRoi">~24</span></div>
-<div class="calc-disclaimer">Estimates based on current network difficulty and BTC price. Actual results vary with market conditions, pool fees, and hardware variance. Home mining is hobbyist/educational — not a get-rich-quick scheme. Never invest more than you can afford to lose.</div>
+<div class="result-row"><span class="result-label">Break-even Date</span><span class="result-value" id="resBreakEven">—</span></div>
+<button class="copy-btn" id="copyResults" onclick="copyCalculatorResults()">Copy Results</button>
+<div class="calc-disclaimer">Estimates based on live (or default) network difficulty and BTC price. Pool fees deducted from gross earnings. Actual results vary with market conditions, pool luck, and hardware variance. The Antminer L7 mines Scrypt (LTC/DOGE) — SHA-256 estimates shown for comparison only. Home mining is hobbyist/educational — not a get-rich-quick scheme. Never invest more than you can afford to lose.</div>
 </div>
 </div>
 </div>
@@ -828,17 +915,18 @@ I am your virtual mining consultant. I can help you with:
 What can I help you with today?</div>
 </div>
 <div class="chatbot-suggestions" id="quickReplies">
-<button class="suggestion-chip" onclick="sendQuickReply('Which miner should I buy?')">Recommend a Miner</button>
-<button class="suggestion-chip" onclick="sendQuickReply('Show me all products')">View All Products</button>
-<button class="suggestion-chip" onclick="sendQuickReply('How much is shipping?')">Shipping Costs</button>
-<button class="suggestion-chip" onclick="sendQuickReply('Payment methods')">Payment Options</button>
+<button class="suggestion-chip" onclick="sendQuickReply('Recommend a miner')">Recommend a Miner</button>
+<button class="suggestion-chip" onclick="sendQuickReply('Current BTC price')">BTC Price</button>
+<button class="suggestion-chip" onclick="sendQuickReply('Calculate my profit')">Calculate Profit</button>
+<button class="suggestion-chip" onclick="sendQuickReply('Shipping costs')">Shipping</button>
+<button class="suggestion-chip" onclick="sendQuickReply('Payment methods')">Payment</button>
 <button class="suggestion-chip" onclick="sendQuickReply('Warranty info')">Warranty</button>
-<button class="suggestion-chip" onclick="sendQuickReply('How do I order?')">How to Order</button>
 </div>
 <div class="chatbot-input">
 <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
 <button onclick="sendMessage()">➤</button>
 </div>
+<div class="chatbot-keyboard-hint">Press Enter to send · Esc to close</div>
 </div>
 <button class="chatbot-toggle" id="chatbotToggle" onclick="toggleChatbot()">💬<span class="notification-badge">1</span></button>
 </div>
@@ -919,15 +1007,22 @@ function calculateProfit() {
     const miner = document.getElementById('calcMiner');
     const option = miner.options[miner.selectedIndex];
     const hashrate = parseFloat(option.dataset.hash);
+    const unit = option.dataset.unit || 'th';
     const power = parseFloat(option.dataset.power);
     const price = parseFloat(option.dataset.price);
     const rate = parseFloat(document.getElementById('calcRate').value) || 2.50;
     const btcPrice = parseFloat(document.getElementById('calcBtcPrice').value) || 1978000;
     const difficulty = parseFloat(document.getElementById('calcDifficulty').value) || 83.7;
+    const poolFee = parseFloat(document.getElementById('calcPoolFee').value) || 0;
+    const blockReward = 3.125; // Current post-halving block reward
 
-    // Simplified mining calculation
-    const btcPerDay = (hashrate * 1000000000000 * 86400 * 6.25) / (difficulty * Math.pow(2, 32));
-    const dailyEarnings = btcPerDay * btcPrice;
+    // Convert hashrate to hashes per second based on unit (th = TH/s, gh = Gh/s)
+    const hashrateHs = hashrate * (unit === 'gh' ? 1e9 : 1e12);
+    const difficultyActual = difficulty * 1e12;
+
+    // Correct Bitcoin mining formula
+    const btcPerDay = (hashrateHs * 86400 * blockReward) / (difficultyActual * Math.pow(2, 32));
+    const dailyEarnings = btcPerDay * btcPrice * (1 - poolFee / 100);
     const monthlyEarnings = dailyEarnings * 30;
     const monthlyPower = (power / 1000) * 24 * 30 * rate;
     const netProfit = monthlyEarnings - monthlyPower;
@@ -940,8 +1035,162 @@ function calculateProfit() {
     netEl.textContent = (netProfit >= 0 ? '+' : '') + 'R ' + netProfit.toFixed(0);
     netEl.className = 'result-value ' + (netProfit >= 0 ? 'positive' : 'negative');
     document.getElementById('resRoi').textContent = typeof roi === 'number' ? '~' + roi : roi;
+    // Break-even date
+    const breakEvenEl = document.getElementById('resBreakEven');
+    if (breakEvenEl) {
+        if (netProfit > 0 && typeof roi === 'number') {
+            const d = new Date();
+            d.setMonth(d.getMonth() + roi);
+            breakEvenEl.textContent = d.toLocaleDateString('en-ZA', {month:'short', year:'numeric'});
+        } else {
+            breakEvenEl.textContent = '—';
+        }
+    }
 }
 calculateProfit();
+
+// ===== LIVE DATA API =====
+let lastBtcPrice = 0;
+let lastDifficulty = 0;
+
+async function fetchLiveData() {
+    const btn = document.getElementById('liveFetchBtn');
+    const status = document.getElementById('apiStatus');
+    btn.disabled = true;
+    status.textContent = 'Fetching live data...';
+    status.className = 'api-status';
+
+    try {
+        // Fetch BTC price from CoinGecko (USD + ZAR)
+        const priceRes = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd,zar&include_24hr_change=true');
+        if (!priceRes.ok) throw new Error('CoinGecko price API failed');
+        const priceData = await priceRes.json();
+        const btcUsd = priceData.bitcoin.usd;
+        const btcZar = priceData.bitcoin.zar;
+        const btcChange = priceData.bitcoin.usd_24h_change || 0;
+        lastBtcPrice = btcUsd;
+
+        // Fetch network stats from blockchain.info
+        const statsRes = await fetch('https://api.blockchain.info/stats');
+        if (!statsRes.ok) throw new Error('Blockchain.info stats API failed');
+        const statsData = await statsRes.json();
+        const difficulty = statsData.difficulty;
+        const difficultyT = (difficulty / 1e12).toFixed(2);
+        const hashRateHs = statsData.hash_rate || 0;
+        const hashRateEH = (hashRateHs / 1e18).toFixed(1);
+        lastDifficulty = difficultyT;
+
+        // Calculate ZAR/USD rate from BTC prices
+        const zarUsd = btcZar / btcUsd;
+
+        // Update calculator inputs
+        document.getElementById('calcBtcPrice').value = Math.round(btcZar);
+        document.getElementById('calcDifficulty').value = difficultyT;
+
+        // Update ticker tape
+        updateTicker(btcUsd, btcChange, difficultyT, hashRateEH, zarUsd);
+
+        // Recalculate profit
+        calculateProfit();
+
+        status.textContent = 'Live data updated — ' + new Date().toLocaleTimeString('en-ZA', {hour:'2-digit',minute:'2-digit'});
+        status.className = 'api-status success';
+    } catch (err) {
+        console.error('Live data fetch failed:', err);
+        status.textContent = 'Live data unavailable. Using defaults. Click to retry.';
+        status.className = 'api-status error';
+    } finally {
+        btn.disabled = false;
+    }
+}
+
+function updateTicker(btcUsd, btcChange, difficultyT, hashRateEH, zarUsd) {
+    const btcUsdStr = '$' + btcUsd.toLocaleString('en-US', {maximumFractionDigits:0});
+    const btcChangeStr = (btcChange >= 0 ? '+' : '') + btcChange.toFixed(1) + '%';
+    const btcChangeClass = btcChange >= 0 ? 'ticker-change' : 'ticker-change down';
+    const diffStr = difficultyT + ' T';
+    const hashStr = hashRateEH + ' EH/s';
+
+    // Update first set
+    const el1 = document.getElementById('tickerBtcUsd');
+    if (el1) { el1.textContent = btcUsdStr; }
+    const ch1 = document.getElementById('tickerBtcChange');
+    if (ch1) { ch1.textContent = btcChangeStr; ch1.className = btcChangeClass; }
+    const el2 = document.getElementById('tickerDifficulty');
+    if (el2) { el2.textContent = diffStr; }
+    const el3 = document.getElementById('tickerHashrate');
+    if (el3) { el3.textContent = hashStr; }
+    const el4 = document.getElementById('tickerZarUsd');
+    if (el4) { el4.textContent = 'R' + zarUsd.toFixed(2); }
+
+    // Update second set (duplicated ticker for scroll effect)
+    const el1b = document.getElementById('tickerBtcUsd2');
+    if (el1b) { el1b.textContent = btcUsdStr; }
+    const ch1b = document.getElementById('tickerBtcChange2');
+    if (ch1b) { ch1b.textContent = btcChangeStr; ch1b.className = btcChangeClass; }
+    const el2b = document.getElementById('tickerDifficulty2');
+    if (el2b) { el2b.textContent = diffStr; }
+    const el3b = document.getElementById('tickerHashrate2');
+    if (el3b) { el3b.textContent = hashStr; }
+    const el4b = document.getElementById('tickerZarUsd2');
+    if (el4b) { el4b.textContent = 'R' + zarUsd.toFixed(2); }
+}
+
+// Auto-fetch on page load (with a small delay to not block rendering)
+setTimeout(fetchLiveData, 800);
+
+// ===== BACK TO TOP =====
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('visible', window.scrollY > 600);
+});
+
+// ===== OFFLINE / ONLINE =====
+const offlineIndicator = document.getElementById('offlineIndicator');
+window.addEventListener('offline', () => offlineIndicator.classList.add('visible'));
+window.addEventListener('online', () => offlineIndicator.classList.remove('visible'));
+if (!navigator.onLine) offlineIndicator.classList.add('visible');
+
+// ===== TOAST SYSTEM =====
+function showToast(message, type = 'success') {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    toast.className = 'toast ' + type;
+    toast.textContent = message;
+    container.appendChild(toast);
+    setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateX(20px)'; setTimeout(() => toast.remove(), 300); }, 3000);
+}
+
+// ===== COPY CALCULATOR RESULTS =====
+function copyCalculatorResults() {
+    const minerName = document.getElementById('calcMiner').options[document.getElementById('calcMiner').selectedIndex].text;
+    const daily = document.getElementById('resDaily').textContent;
+    const monthly = document.getElementById('resMonthly').textContent;
+    const power = document.getElementById('resPower').textContent;
+    const net = document.getElementById('resNet').textContent;
+    const roi = document.getElementById('resRoi').textContent;
+    const breakEven = document.getElementById('resBreakEven').textContent;
+    const text = `XENNREX Mining Profitability
+Miner: ${minerName}
+Daily: ${daily}
+Monthly: ${monthly}
+Power Cost: ${power}
+Net Profit: ${net}
+ROI: ${roi}
+Break-even: ${breakEven}`;
+    navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copyResults');
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        showToast('Results copied to clipboard');
+        setTimeout(() => { btn.textContent = 'Copy Results'; btn.classList.remove('copied'); }, 2000);
+    }).catch(() => showToast('Copy failed — please copy manually', 'error'));
+}
+
+// ===== KEYBOARD SHORTCUTS =====
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen) { toggleChatbot(); }
+});
 
 // ===== FAQ ACCORDION =====
 function toggleFaq(btn) {
@@ -1014,16 +1263,148 @@ function hideTyping() {
     if (t) t.remove();
 }
 
-function processBotResponse(userText) {
+let chatContext = { budget: null, electricityRate: null, lastTopic: null };
+
+async function processBotResponse(userText) {
     showTyping();
     const lower = userText.toLowerCase();
-    setTimeout(() => {
+    
+    // Update context
+    chatContext.lastTopic = userText;
+    
+    // Budget detection
+    const budgetMatch = userText.match(/R?\s*(\d[\d\s,]*)/);
+    if (budgetMatch) {
+        const budget = parseInt(budgetMatch[1].replace(/[\s,]/g, ''));
+        if (budget > 1000) chatContext.budget = budget;
+    }
+    
+    // Rate detection
+    const rateMatch = userText.match(/(\d+\.?\d*)\s*(?:r?\s*\/?\s*kwh|per\s*kwh|kwh)/i);
+    if (rateMatch) {
+        chatContext.electricityRate = parseFloat(rateMatch[1]);
+    }
+    
+    const delay = ms => new Promise(r => setTimeout(r, ms));
+    await delay(600 + Math.random() * 400);
+    
+    // Live BTC Price
+    if (lower.includes('btc price') || lower.includes('current price') || lower.includes('bitcoin price') || lower.includes('live price') || lower.includes('today') || lower.includes('how much is btc') || lower.includes('what is the price of bitcoin')) {
+        try {
+            const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=zar,usd&include_24hr_change=true');
+            const data = await res.json();
+            const btc = data.bitcoin;
+            const changeStr = (btc.usd_24h_change >= 0 ? '+' : '') + btc.usd_24h_change.toFixed(2) + '%';
+            hideTyping();
+            addMessage(`📊 LIVE BITCOIN PRICE:\n\n🇿🇦 ZAR: R${btc.zar.toLocaleString()}\n🇺🇸 USD: ${btc.usd.toLocaleString()}\n📈 24h Change: ${changeStr}\n\nLast updated: ${new Date().toLocaleTimeString('en-ZA')}`, 'bot');
+            return;
+        } catch (e) {
+            hideTyping();
+            addMessage('Sorry, live BTC price data is currently unavailable. Please check the calculator or try again later.', 'bot');
+            return;
+        }
+    }
+    
+    // Live Difficulty
+    if (lower.includes('difficulty') || lower.includes('network difficulty') || lower.includes('current difficulty')) {
+        try {
+            const res = await fetch('https://api.blockchain.info/stats');
+            const data = await res.json();
+            const diffT = (data.difficulty / 1e12).toFixed(2);
+            const hashEH = (data.hash_rate / 1e18).toFixed(1);
+            hideTyping();
+            addMessage(`📊 NETWORK DIFFICULTY:\n\n⛏️ Current Difficulty: ${diffT} T\n🌐 Network Hashrate: ${hashEH} EH/s\n📅 Updated: ${new Date().toLocaleTimeString('en-ZA')}`, 'bot');
+            return;
+        } catch (e) {
+            hideTyping();
+            addMessage('Sorry, live network difficulty data is currently unavailable.', 'bot');
+            return;
+        }
+    }
+    
+    // Live Stats
+    if (lower.includes('live stats') || lower.includes('current stats') || lower.includes('network stats') || lower.includes("today's stats")) {
+        try {
+            const [priceRes, statsRes] = await Promise.all([
+                fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=zar,usd&include_24hr_change=true'),
+                fetch('https://api.blockchain.info/stats')
+            ]);
+            const priceData = await priceRes.json();
+            const statsData = await statsRes.json();
+            const btc = priceData.bitcoin;
+            const changeStr = (btc.usd_24h_change >= 0 ? '+' : '') + btc.usd_24h_change.toFixed(2) + '%';
+            const diffT = (statsData.difficulty / 1e12).toFixed(2);
+            const hashEH = (statsData.hash_rate / 1e18).toFixed(1);
+            hideTyping();
+            addMessage(`📊 LIVE MINING STATS:\n\n💰 BTC Price (USD): ${btc.usd.toLocaleString()}\n💰 BTC Price (ZAR): R${btc.zar.toLocaleString()}\n📈 24h Change: ${changeStr}\n\n⛏️ Difficulty: ${diffT} T\n🌐 Network Hashrate: ${hashEH} EH/s\n\nUpdated: ${new Date().toLocaleTimeString('en-ZA')}`, 'bot');
+            return;
+        } catch (e) {
+            hideTyping();
+            addMessage('Sorry, live stats are currently unavailable. Please try again later.', 'bot');
+            return;
+        }
+    }
+    
+    // Inline calculator
+    if ((lower.includes('calculate') || lower.includes('profit')) && /\d/.test(userText)) {
+        let rate = chatContext.electricityRate || 2.50;
+        let price = 0;
+        let hash = 0;
+        let power = 0;
+        
+        const hashMatch = userText.match(/(\d+\.?\d*)\s*(th|gh|th\/s|gh\/s)/i);
+        if (hashMatch) {
+            hash = parseFloat(hashMatch[1]);
+            if (hashMatch[2].toLowerCase().includes('gh')) hash = hash / 1000;
+        }
+        
+        const powerMatch = userText.match(/(\d+)\s*w/i);
+        if (powerMatch) power = parseInt(powerMatch[1]);
+        
+        const priceMatch = userText.match(/R?\s*(\d[\d\s,]*)\s*(?:price|cost|buy)/i);
+        if (priceMatch) price = parseInt(priceMatch[1].replace(/[\s,]/g, ''));
+        
+        if (hash > 0 && power > 0) {
+            const btcPrice = parseFloat(document.getElementById('calcBtcPrice').value) || 1978000;
+            const difficulty = parseFloat(document.getElementById('calcDifficulty').value) || 83.7;
+            const poolFee = 2.0;
+            const blockReward = 3.125;
+            const hashrateHs = hash * 1e12;
+            const difficultyActual = difficulty * 1e12;
+            const btcPerDay = (hashrateHs * 86400 * blockReward) / (difficultyActual * Math.pow(2, 32));
+            const dailyEarnings = btcPerDay * btcPrice * (1 - poolFee / 100);
+            const monthlyEarnings = dailyEarnings * 30;
+            const monthlyPower = (power / 1000) * 24 * 30 * rate;
+            const netProfit = monthlyEarnings - monthlyPower;
+            const roi = netProfit > 0 ? Math.ceil(price / netProfit) : '∞';
+            hideTyping();
+            addMessage(`📊 QUICK CALCULATION:\n\nHashrate: ${hash} TH/s\nPower: ${power}W\nElectricity: R${rate}/kWh\n\n💰 Monthly Earnings: R${monthlyEarnings.toFixed(0)}\n⚡ Monthly Power: R${monthlyPower.toFixed(0)}\n📈 Net Profit: ${netProfit >= 0 ? '+' : ''}R${netProfit.toFixed(0)}/month\n⏱️ ROI: ${typeof roi === 'number' ? '~' + roi + ' months' : roi}\n\nUse the full calculator on this page for more detail!`, 'bot');
+            return;
+        }
+    }
+    
+    // Contextual recommendation
+    if ((lower.includes('what should i buy') || lower.includes('recommend') || lower.includes('which one') || lower.includes('recommend a miner')) && chatContext.budget) {
+        const budget = chatContext.budget;
         hideTyping();
-        let response = '';
+        let rec = '🎯 RECOMMENDATION BASED ON YOUR BUDGET:\n\n';
+        if (budget < 3000) rec += '→ LuckyMiner LV07 (R2,450) — Best for learning and lottery mining\n';
+        else if (budget < 5000) rec += '→ Bitaxe Gamma 601 (R3,650) — Great first miner, silent, easy setup\n';
+        else if (budget < 7000) rec += '→ NerdQaxe++ Rev 6.1 (R6,850) ⭐ — Best value, 24-month ROI, in stock\n';
+        else if (budget < 13000) rec += '→ NerdQaxe++ Hydro (R12,400) — Virtually silent, same hash as Rev 6.1\n';
+        else if (budget < 17000) rec += '→ NerdOctaxe Rev 3.1 (R16,200) — Maximum home power, +R564/month\n';
+        else rec += '→ NerdOctaxe Rev 3.1 (R16,200) or Antminer L7 (R31,500) for farms\n';
+        rec += '\nWant more details on any of these?';
+        addMessage(rec, 'bot');
+        return;
+    }
+    
+    hideTyping();
+    let response = '';
 
-        // ===== PRODUCT CATALOG =====
-        if (lower.includes('product') || lower.includes('catalog') || lower.includes('all products') || lower.includes('what do you sell') || lower.includes('stock') || lower.includes('what do you have')) {
-            response = `📦 OUR FULL CATALOG:
+    // ===== PRODUCT CATALOG =====
+    if (lower.includes('product') || lower.includes('catalog') || lower.includes('all products') || lower.includes('what do you sell') || lower.includes('stock') || lower.includes('what do you have')) {
+        response = `📦 OUR FULL CATALOG:
 
 🏠 HOME MINERS (Beginner to Mid-Range):
 • LuckyMiner LV07 — R2,450 (1 TH/s, 25W, Ultra-Quiet)
@@ -1042,10 +1423,10 @@ function processBotResponse(userText) {
 All units include PSU + free remote setup.
 
 Want details on any specific unit, or shall I recommend one based on your budget?`;
-        }
-        // ===== SPECIFIC PRODUCTS =====
-        else if (lower.includes('antminer') || lower.includes('l7')) {
-            response = `⛏️ BITMAIN ANTMINER L7 — R31,500
+    }
+    // ===== SPECIFIC PRODUCTS =====
+    else if (lower.includes('antminer') || lower.includes('l7')) {
+        response = `⛏️ BITMAIN ANTMINER L7 — R31,500
 
 📊 SPECS:
 • Hashrate: 8,800 Gh/s
@@ -1064,9 +1445,9 @@ At residential power rates (~R2.50/kWh), this unit typically shows a MONTHLY LOS
 If you are a home user, I strongly recommend the NerdQaxe++ Rev 6.1 or NerdOctaxe instead.
 
 Want to reserve an L7, or explore home-friendly alternatives?`;
-        }
-        else if (lower.includes('nerdoctaxe') || lower.includes('octaxe')) {
-            response = `🖥️ NERDOCTAXE REV 3.1 — R16,200
+    }
+    else if (lower.includes('nerdoctaxe') || lower.includes('octaxe')) {
+        response = `🖥️ NERDOCTAXE REV 3.1 — R16,200
 
 📊 SPECS:
 • Hashrate: 12 TH/s
@@ -1088,9 +1469,9 @@ Want to reserve an L7, or explore home-friendly alternatives?`;
 🏆 Best for: Serious home miners who want maximum hashing power without going industrial. This is the most powerful home-friendly unit we stock.
 
 Want to order or compare with other models?`;
-        }
-        else if (lower.includes('hydro') || lower.includes('liquid')) {
-            response = `💧 NERDQAXE++ HYDRO REV 6.1 — R12,400
+    }
+    else if (lower.includes('hydro') || lower.includes('liquid')) {
+        response = `💧 NERDQAXE++ HYDRO REV 6.1 — R12,400
 
 📊 SPECS:
 • Hashrate: 6 TH/s
@@ -1112,9 +1493,9 @@ Want to order or compare with other models?`;
 🏆 Best for: Enthusiasts who demand absolute silence. Same hash rate as the air-cooled Rev 6.1, but whisper-quiet thanks to liquid cooling. Premium price for premium experience.
 
 Perfect for offices, bedrooms, or shared living spaces.`;
-        }
-        else if (lower.includes('nerdqaxe++') || lower.includes('rev 6.1') || lower.includes('nerdqaxe plus')) {
-            response = `⚡ NERDQAXE++ REV 6.1 — R6,850 ⭐ MOST POPULAR
+    }
+    else if (lower.includes('nerdqaxe++') || lower.includes('rev 6.1') || lower.includes('nerdqaxe plus')) {
+        response = `⚡ NERDQAXE++ REV 6.1 — R6,850 ⭐ MOST POPULAR
 
 📊 SPECS:
 • Hashrate: 6 TH/s
@@ -1136,9 +1517,9 @@ Perfect for offices, bedrooms, or shared living spaces.`;
 🏆 Best performance-per-watt in its class. This is our #1 recommendation for serious home miners who want the best balance of price, power, and earnings.
 
 Currently IN STOCK. Want to reserve yours?`;
-        }
-        else if (lower.includes('nerdqaxe 5.1') || lower.includes('qaxe 5')) {
-            response = `🔧 NERDQAXE 5.1 — R6,150
+    }
+    else if (lower.includes('nerdqaxe 5.1') || lower.includes('qaxe 5')) {
+        response = `🔧 NERDQAXE 5.1 — R6,150
 
 📊 SPECS:
 • Hashrate: 4.9 TH/s
@@ -1160,9 +1541,9 @@ Currently IN STOCK. Want to reserve yours?`;
 🏆 Perfect balance of power and efficiency. Great step up from entry-level units without the premium price of the Rev 6.1.
 
 Currently IN STOCK.`;
-        }
-        else if (lower.includes('bitaxe oc') || lower.includes('copper')) {
-            response = `🥉 BITAXE GAMMA 601OC COPPER EDITION — R5,750
+    }
+    else if (lower.includes('bitaxe oc') || lower.includes('copper')) {
+        response = `🥉 BITAXE GAMMA 601OC COPPER EDITION — R5,750
 
 📊 SPECS:
 • Hashrate: 1.9 TH/s (overclocked)
@@ -1183,9 +1564,9 @@ Currently IN STOCK.`;
 🏆 Premium cooling for stable 24/7 operation. Great for enthusiasts who want maximum stability and slightly better performance than the standard 601.
 
 Available to order (7-12 day lead time).`;
-        }
-        else if (lower.includes('bitaxe') || lower.includes('gamma 601')) {
-            response = `🌱 BITAXE GAMMA 601 — R3,650
+    }
+    else if (lower.includes('bitaxe') || lower.includes('gamma 601')) {
+        response = `🌱 BITAXE GAMMA 601 — R3,650
 
 📊 SPECS:
 • Hashrate: 1.5 TH/s
@@ -1207,9 +1588,9 @@ Available to order (7-12 day lead time).`;
 🏆 Best beginner miner. Lowest power draw, easiest setup, perfect for learning Bitcoin mining at home or in an office. Plug-and-play friendly.
 
 Currently IN STOCK. Great first miner!`;
-        }
-        else if (lower.includes('luckyminer') || lower.includes('lv07')) {
-            response = `🎰 LUCKYMINER LV07 V7 — R2,450
+    }
+    else if (lower.includes('luckyminer') || lower.includes('lv07')) {
+        response = `🎰 LUCKYMINER LV07 V7 — R2,450
 
 📊 SPECS:
 • Hashrate: 1 TH/s
@@ -1229,10 +1610,10 @@ Currently IN STOCK. Great first miner!`;
 🏆 Most affordable entry point. Great for solo "lottery" mining or learning the basics. Compact, efficient, and ultra-quiet.
 
 Currently IN STOCK. Perfect if you want to try mining without a big investment.`;
-        }
-        // ===== RECOMMENDATIONS =====
-        else if (lower.includes('recommend') || lower.includes('which') || lower.includes('should i buy') || lower.includes('best') || lower.includes('suggest')) {
-            response = `🎯 HERE IS MY RECOMMENDATION BASED ON YOUR GOALS:
+    }
+    // ===== RECOMMENDATIONS =====
+    else if (lower.includes('recommend') || lower.includes('which') || lower.includes('should i buy') || lower.includes('best') || lower.includes('suggest')) {
+        response = `🎯 HERE IS MY RECOMMENDATION BASED ON YOUR GOALS:
 
 💰 Budget under R3,000?
 → LuckyMiner LV07 (R2,450)
@@ -1259,10 +1640,10 @@ Currently IN STOCK. Perfect if you want to try mining without a big investment.`
   Warning: Only viable with cheap electricity
 
 Tell me your budget, electricity rate (R/kWh), and goals (learning vs earning), and I will narrow it down perfectly!`;
-        }
-        // ===== SHIPPING =====
-        else if (lower.includes('shipping') || lower.includes('delivery') || lower.includes('cost') || lower.includes('nationwide') || lower.includes('how much is delivery') || lower.includes('how long')) {
-            response = `🚚 SHIPPING & DELIVERY:
+    }
+    // ===== SHIPPING =====
+    else if (lower.includes('shipping') || lower.includes('delivery') || lower.includes('cost') || lower.includes('nationwide') || lower.includes('how much is delivery') || lower.includes('how long')) {
+        response = `🚚 SHIPPING & DELIVERY:
 
 📦 COSTS BY SIZE:
 • Small units (Bitaxe, LuckyMiner): R150 - R250
@@ -1283,10 +1664,10 @@ Western Cape, Eastern Cape, Northern Cape, North West, Free State, Gauteng, KwaZ
 Tracking number sent via WhatsApp once dispatched. Signature required on delivery for high-value items.
 
 Reply with your suburb + province for an exact shipping quote!`;
-        }
-        // ===== PAYMENT =====
-        else if (lower.includes('payment') || lower.includes('pay') || lower.includes('eft') || lower.includes('crypto') || lower.includes('bitcoin') || lower.includes('how do i pay')) {
-            response = `💳 PAYMENT METHODS:
+    }
+    // ===== PAYMENT =====
+    else if (lower.includes('payment') || lower.includes('pay') || lower.includes('eft') || lower.includes('crypto') || lower.includes('bitcoin') || lower.includes('how do i pay')) {
+        response = `💳 PAYMENT METHODS:
 
 1️⃣ EFT / BANK TRANSFER (Preferred)
    • No additional fees
@@ -1314,10 +1695,10 @@ Reply with your suburb + province for an exact shipping quote!`;
 We NEVER send payment links. We NEVER ask for banking logins. We NEVER request payment to personal accounts. All payments go to XENNREX business accounts only.
 
 Questions about a specific payment method?`;
-        }
-        // ===== WARRANTY =====
-        else if (lower.includes('warranty') || lower.includes('return') || lower.includes('broken') || lower.includes('claim') || lower.includes('defect')) {
-            response = `🛡️ WARRANTY & RETURNS POLICY:
+    }
+    // ===== WARRANTY =====
+    else if (lower.includes('warranty') || lower.includes('return') || lower.includes('broken') || lower.includes('claim') || lower.includes('defect')) {
+        response = `🛡️ WARRANTY & RETURNS POLICY:
 
 ✅ 6-MONTH WARRANTY on all new units from delivery date
 
@@ -1347,10 +1728,10 @@ NOT COVERED:
 5. Repair: 7-14 business days | Replacement: shipped upon receipt
 
 All sales are final except for DOA or valid warranty claims.`;
-        }
-        // ===== HOW TO ORDER =====
-        else if (lower.includes('order') || lower.includes('how to buy') || lower.includes('purchase') || lower.includes('how do i order') || lower.includes('buy')) {
-            response = `📦 HOW TO PLACE AN ORDER:
+    }
+    // ===== HOW TO ORDER =====
+    else if (lower.includes('order') || lower.includes('how to buy') || lower.includes('purchase') || lower.includes('how do i order') || lower.includes('buy')) {
+        response = `📦 HOW TO PLACE AN ORDER:
 
 1️⃣ BROWSE
    Check our catalog and tell us which item(s) you want
@@ -1378,10 +1759,10 @@ Want to secure an item before it sells out?
 • Price is locked at time of reservation
 
 Ready to get a quote? Tell me what you want!`;
-        }
-        // ===== SELL TO US =====
-        else if (lower.includes('sell') || lower.includes('trade in') || lower.includes('used') || lower.includes('old hardware') || lower.includes('buy back')) {
-            response = `♻️ WE BUY USED MINING HARDWARE:
+    }
+    // ===== SELL TO US =====
+    else if (lower.includes('sell') || lower.includes('trade in') || lower.includes('used') || lower.includes('old hardware') || lower.includes('buy back')) {
+        response = `♻️ WE BUY USED MINING HARDWARE:
 
 WHAT WE BUY:
 • ASIC miners (all brands)
@@ -1405,10 +1786,10 @@ TO GET A QUOTE, SEND US:
 • Cloud mining contracts
 
 Fair market pricing. Smooth handover. Use the cash to upgrade to newer hardware!`;
-        }
-        // ===== PROFITABILITY =====
-        else if (lower.includes('profit') || lower.includes('roi') || lower.includes('earn') || lower.includes('money') || lower.includes('electricity') || lower.includes('calculator')) {
-            response = `📊 MINING PROFITABILITY GUIDE:
+    }
+    // ===== PROFITABILITY =====
+    else if (lower.includes('profit') || lower.includes('roi') || lower.includes('earn') || lower.includes('money') || lower.includes('electricity') || lower.includes('calculator')) {
+        response = `📊 MINING PROFITABILITY GUIDE:
 
 These are ESTIMATES at ~R2.50/kWh (Eskom residential). Your actual results will vary.
 
@@ -1438,10 +1819,10 @@ Home miners are hobbyist/educational tools. They help you:
 NEVER invest more than you can afford to lose.
 
 Want a personalized estimate? Use the calculator on this page or tell me your electricity rate (R/kWh) and budget!`;
-        }
-        // ===== SCAM / VERIFY =====
-        else if (lower.includes('scam') || lower.includes('verify') || lower.includes('real') || lower.includes('legit') || lower.includes('fake') || lower.includes('trust')) {
-            response = `🔒 VERIFY YOU ARE TALKING TO THE REAL XENNREX:
+    }
+    // ===== SCAM / VERIFY =====
+    else if (lower.includes('scam') || lower.includes('verify') || lower.includes('real') || lower.includes('legit') || lower.includes('fake') || lower.includes('trust')) {
+        response = `🔒 VERIFY YOU ARE TALKING TO THE REAL XENNREX:
 
 ✅ OFFICIAL CONTACTS ONLY:
 • WhatsApp: 068 668 8888 (THIS IS OUR ONLY NUMBER)
@@ -1466,10 +1847,10 @@ Want a personalized estimate? Use the calculator on this page or tell me your el
 ⚠️ If someone contacts you from a different number claiming to be XENNREX, it is a SCAM. Report it immediately via our official WhatsApp or email.
 
 Your security is our priority.`;
-        }
-        // ===== ZOOM / VIDEO =====
-        else if (lower.includes('zoom') || lower.includes('video') || lower.includes('call') || lower.includes('meeting') || lower.includes('consultation')) {
-            response = `📹 VIDEO CONSULTATIONS AVAILABLE:
+    }
+    // ===== ZOOM / VIDEO =====
+    else if (lower.includes('zoom') || lower.includes('video') || lower.includes('call') || lower.includes('meeting') || lower.includes('consultation')) {
+        response = `📹 VIDEO CONSULTATIONS AVAILABLE:
 
 Zoom Meeting ID: 290 007 8529
 
@@ -1490,10 +1871,10 @@ Monday – Friday: 08:00 – 17:00
 • First-time buyer consultations
 
 No appointment needed for urgent issues — message us on WhatsApp anytime!`;
-        }
-        // ===== SUPPORT / SETUP =====
-        else if (lower.includes('support') || lower.includes('setup') || lower.includes('help') || lower.includes('configure') || lower.includes('pool') || lower.includes('wifi') || lower.includes('troubleshoot')) {
-            response = `🔧 FREE TECHNICAL SUPPORT INCLUDED:
+    }
+    // ===== SUPPORT / SETUP =====
+    else if (lower.includes('support') || lower.includes('setup') || lower.includes('help') || lower.includes('configure') || lower.includes('pool') || lower.includes('wifi') || lower.includes('troubleshoot')) {
+        response = `🔧 FREE TECHNICAL SUPPORT INCLUDED:
 
 With EVERY hardware purchase, you get:
 • Initial setup and configuration
@@ -1517,10 +1898,10 @@ With EVERY hardware purchase, you get:
 • We cannot fix physical damage remotely
 
 Most customers are mining within 30 minutes of unboxing with our guidance!`;
-        }
-        // ===== BULK =====
-        else if (lower.includes('bulk') || lower.includes('wholesale') || lower.includes('multiple') || lower.includes('discount') || lower.includes('volume')) {
-            response = `📦 BULK ORDER DISCOUNTS:
+    }
+    // ===== BULK =====
+    else if (lower.includes('bulk') || lower.includes('wholesale') || lower.includes('multiple') || lower.includes('discount') || lower.includes('volume')) {
+        response = `📦 BULK ORDER DISCOUNTS:
 
 💰 DISCOUNT TIERS:
 • 3-5 units: 5% off total order
@@ -1539,10 +1920,10 @@ Most customers are mining within 30 minutes of unboxing with our guidance!`;
 Email info@xennrex.org with "BULK ORDER" in the subject line, or message us on WhatsApp.
 
 We supply mining farms, resellers, and corporate buyers across South Africa.`;
-        }
-        // ===== RESERVE / PRE-ORDER =====
-        else if (lower.includes('reserve') || lower.includes('pre-order') || lower.includes('deposit') || lower.includes('hold') || lower.includes('book')) {
-            response = `📌 RESERVE OR PRE-ORDER AN ITEM:
+    }
+    // ===== RESERVE / PRE-ORDER =====
+    else if (lower.includes('reserve') || lower.includes('pre-order') || lower.includes('deposit') || lower.includes('hold') || lower.includes('book')) {
+        response = `📌 RESERVE OR PRE-ORDER AN ITEM:
 
 HOW IT WORKS:
 1. Message us with the product name and quantity
@@ -1565,10 +1946,10 @@ HOW IT WORKS:
 • Reservations are valid for 14 days only
 
 Want to reserve something? Tell me which unit!`;
-        }
-        // ===== COMPARISON =====
-        else if (lower.includes('compare') || lower.includes('difference') || lower.includes('vs') || lower.includes('versus') || lower.includes('which is better')) {
-            response = `📊 QUICK PRODUCT COMPARISON:
+    }
+    // ===== COMPARISON =====
+    else if (lower.includes('compare') || lower.includes('difference') || lower.includes('vs') || lower.includes('versus') || lower.includes('which is better')) {
+        response = `📊 QUICK PRODUCT COMPARISON:
 
 SILENT HOME USE (Bedroom/Office):
 • LuckyMiner LV07 — R2,450 | 1 TH/s | 25W | Ultra-quiet
@@ -1588,10 +1969,10 @@ BUDGET ENTRY:
 • LuckyMiner LV07 — Most affordable way to start
 
 Tell me your budget and electricity rate, and I will recommend the perfect fit!`;
-        }
-        // ===== CRYPTO PAYMENT GUIDE =====
-        else if (lower.includes('crypto payment') || lower.includes('pay with bitcoin') || lower.includes('pay with crypto') || lower.includes('how to pay with') || lower.includes('wallet')) {
-            response = `₿ CRYPTOCURRENCY PAYMENT GUIDE:
+    }
+    // ===== CRYPTO PAYMENT GUIDE =====
+    else if (lower.includes('crypto payment') || lower.includes('pay with bitcoin') || lower.includes('pay with crypto') || lower.includes('how to pay with') || lower.includes('wallet')) {
+        response = `₿ CRYPTOCURRENCY PAYMENT GUIDE:
 
 WE ACCEPT:
 • Bitcoin (BTC)
@@ -1636,10 +2017,10 @@ WE ACCEPT:
 • Payment must complete within 24 hours of invoice
 
 NEVER send crypto to an address sent unexpectedly. Always verify through this official WhatsApp: 068 668 8888`;
-        }
-        // ===== GREETING =====
-        else if (lower.includes('hello') || lower.includes('hi') || lower.includes('hey') || lower.includes('morning') || lower.includes('afternoon') || lower.includes('evening')) {
-            response = `👋 Hello! Welcome to XENNREX!
+    }
+    // ===== GREETING =====
+    else if (lower.includes('hello') || lower.includes('hi') || lower.includes('hey') || lower.includes('morning') || lower.includes('afternoon') || lower.includes('evening')) {
+        response = `👋 Hello! Welcome to XENNREX!
 
 We are a registered South African company specialising in cryptocurrency mining hardware. We sell new equipment nationwide, and we also purchase quality used mining hardware.
 
@@ -1654,10 +2035,10 @@ Here is what I can help you with:
 • Get technical support
 
 What brings you here today?`;
-        }
-        // ===== THANKS =====
-        else if (lower.includes('thank') || lower.includes('thanks') || lower.includes('appreciate') || lower.includes('cheers')) {
-            response = `You are very welcome! 🙏
+    }
+    // ===== THANKS =====
+    else if (lower.includes('thank') || lower.includes('thanks') || lower.includes('appreciate') || lower.includes('cheers')) {
+        response = `You are very welcome! 🙏
 
 I am here anytime you need help with:
 • Product questions
@@ -1668,10 +2049,10 @@ I am here anytime you need help with:
 Feel free to message us on WhatsApp (068 668 8888) for faster responses during business hours.
 
 Happy mining! ⛏️`;
-        }
-        // ===== DEFAULT =====
-        else {
-            response = `I want to make sure I help you perfectly. Here is what I can assist with:
+    }
+    // ===== DEFAULT =====
+    else {
+        response = `I want to make sure I help you perfectly. Here is what I can assist with:
 
 🛒 PRODUCTS
 • Full catalog with specs and pricing
@@ -1700,10 +2081,10 @@ Happy mining! ⛏️`;
 • Profitability calculations
 
 What would you like to know? Or type "recommend" and I will find the perfect miner for you!`;
-        }
+    }
 
-        addMessage(response, 'bot');
-    }, 600 + Math.random() * 400);
+    addMessage(response, 'bot');
+
 }
 
 // ===== SMOOTH SCROLL =====
@@ -1716,8 +2097,20 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // ===== MOBILE MENU =====
 function toggleMobileMenu() {
-    alert('Mobile menu coming soon. Use the chatbot or WhatsApp for quick navigation!');
+    document.getElementById('mobileMenu').classList.toggle('active');
+    document.getElementById('mobileOverlay').classList.toggle('active');
+    document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('active') ? 'hidden' : '';
 }
+function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('active');
+    document.getElementById('mobileOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+}
+// Auto-refresh live data every 5 minutes
+setInterval(() => {
+    if (!document.hidden && navigator.onLine) fetchLiveData();
+}, 300000);
+
 </script>
 </body>
 </html>
