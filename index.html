@@ -392,7 +392,7 @@ html{scroll-padding-top:calc(var(--nav-height-mobile) + 10px)}
 
 <section class="hero">
 <div class="hero-content">
-<div class="hero-badge"><span class="pulse-dot"></span><span>Live Stock Updated: 13 June 2026</span></div>
+<div class="hero-badge"><span class="pulse-dot"></span><span id="liveDateBadge">Live Stock Updated: <span id="dynamicDate">Loading...</span></span></div>
 <h1>MINE THE<br>FUTURE</h1>
 <p class="hero-subtitle">South Africa's most trusted source for cryptocurrency mining hardware. From whisper-quiet home miners to industrial ASICs — delivered nationwide with free remote setup support.</p>
 <div class="hero-trust">
@@ -444,7 +444,7 @@ html{scroll-padding-top:calc(var(--nav-height-mobile) + 10px)}
 </div>
 <div class="stock-banner reveal">
 <div class="live-indicator"><span class="live-dot"></span>Live Stock</div>
-<span>8 units in stock | 5 available to order (7-12 day lead time) | Updated: 13 June 2026</span>
+<span>8 units in stock | 5 available to order (7-12 day lead time) | Updated: <span id="stockBannerDate">13 June 2026</span></span>
 </div>
 <div class="catalog-tabs reveal">
 <button class="catalog-tab active" onclick="filterCatalog('all',this)">All Products</button>
@@ -1020,6 +1020,20 @@ function createParticles() {
     }
 }
 createParticles();
+
+// ===== DYNAMIC DATE UPDATER =====
+function updateLiveDate() {
+    const now = new Date();
+    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+    const dateStr = now.toLocaleDateString('en-ZA', options);
+
+    const dateEl = document.getElementById('dynamicDate');
+    const stockDateEl = document.getElementById('stockBannerDate');
+
+    if (dateEl) dateEl.textContent = dateStr;
+    if (stockDateEl) stockDateEl.textContent = dateStr;
+}
+updateLiveDate();
 
 // ===== SCROLL PROGRESS =====
 window.addEventListener('scroll', () => {
