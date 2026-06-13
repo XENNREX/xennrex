@@ -50,9 +50,8 @@
             display: flex; flex-direction: column;
             align-items: center; justify-content: center;
             z-index: 9999;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
         }
-        .loading-overlay.hidden { opacity: 0; visibility: hidden; }
+        .loading-overlay.hidden { display: none !important; }
         .loader-ring {
             width: 60px; height: 60px;
             border: 3px solid var(--border);
@@ -1329,6 +1328,15 @@
         <div class="loader-ring"></div>
         <div class="loader-text">INITIALIZING XENNREX...</div>
     </div>
+    <script>
+        // Hide loader immediately - don't wait for anything
+        (function() {
+            var loader = document.getElementById('loader');
+            if (loader) {
+                loader.style.display = 'none';
+            }
+        })();
+    </script>
 
     <!-- Particles Canvas -->
     <canvas id="particlesCanvas"></canvas>
@@ -2839,35 +2847,25 @@ Could you tell me a bit more about what you're looking for? Or feel free to What
         window.addEventListener('scroll', handleScroll);
 
         window.addEventListener('load', () => {
-            // Always hide loader after max 2.5 seconds regardless of what happens
-            const hideLoader = () => {
-                document.getElementById('loader').classList.add('hidden');
-            };
+            // Loader already hidden by inline script above
 
-            // Initialize everything (non-blocking)
-            try { renderProducts(); } catch(e) { console.log(e); }
-            try { renderRigs(); } catch(e) { console.log(e); }
-            try { renderLocations(); } catch(e) { console.log(e); }
-            try { initParticles(); } catch(e) { console.log(e); }
-            try { handleScroll(); } catch(e) { console.log(e); }
-            try { animateStats(); } catch(e) { console.log(e); }
+            // Render static content (no network needed)
+            renderProducts();
+            renderRigs();
+            renderLocations();
+            initParticles();
+            handleScroll();
+            animateStats();
 
-            // These use fetch - run them but don't let them block
-            setTimeout(() => {
-                try { detectLocation(); } catch(e) { console.log(e); }
-                try { fetchWeather(); } catch(e) { console.log(e); }
-            }, 100);
-
-            // Hide loader after brief delay
-            setTimeout(hideLoader, 1200);
-        });
-    // Emergency: force hide loader if still stuck after 5 seconds
-        setTimeout(() => {
-            const loader = document.getElementById('loader');
-            if (loader && !loader.classList.contains('hidden')) {
-                loader.classList.add('hidden');
+            // Try network features in background
+            if (window.location.protocol !== 'file:') {
+                setTimeout(() => {
+                    detectLocation().catch(() => {});
+                    fetchWeather().catch(() => {});
+                }, 500);
             }
-        }, 5000);
+        });
+    
     </script>
 </body>
 </html>
