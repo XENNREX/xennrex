@@ -46,7 +46,7 @@
         .form-group input::placeholder { color: #606070; }
 
         .plan-selector {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 30px;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 30px;
         }
         .plan-option {
             background: rgba(255,255,255,0.03); border: 2px solid rgba(255,255,255,0.08);
@@ -62,6 +62,7 @@
         .plan-option .plan-price { font-size: 28px; font-weight: 700; color: #667eea; }
         .plan-option .plan-price span { font-size: 14px; font-weight: 400; color: #a0a0b0; }
         .plan-option .storage { font-size: 14px; color: #a0a0b0; margin-top: 8px; }
+        .plan-option .mega-ref { font-size: 11px; color: #606070; margin-top: 5px; }
 
         .recaptcha-container { margin: 30px 0; display: flex; justify-content: center; }
 
@@ -114,33 +115,43 @@
 
             <h3 style="margin-bottom: 20px; font-size: 20px;">1. Select Your Plan</h3>
             <div class="plan-selector">
-                <div class="plan-option" data-plan="starter" data-amount="99.00" data-storage="20GB" onclick="selectPlan(this)">
+                <div class="plan-option" data-plan="starter" data-amount="199.00" data-storage="400GB" onclick="selectPlan(this)">
                     <h4>Starter</h4>
-                    <div class="plan-price">R99<span>/mo</span></div>
-                    <div class="storage">20GB Storage</div>
-                </div>
-                <div class="plan-option selected" data-plan="pro" data-amount="199.00" data-storage="50GB" onclick="selectPlan(this)">
-                    <h4>Pro</h4>
                     <div class="plan-price">R199<span>/mo</span></div>
-                    <div class="storage">50GB Storage</div>
+                    <div class="storage">400GB Cloud Storage</div>
+                    <div class="mega-ref">Powered by MEGA</div>
                 </div>
-                <div class="plan-option" data-plan="business" data-amount="399.00" data-storage="100GB" onclick="selectPlan(this)">
+                <div class="plan-option selected" data-plan="pro" data-amount="349.00" data-storage="2TB" onclick="selectPlan(this)">
+                    <h4>Pro</h4>
+                    <div class="plan-price">R349<span>/mo</span></div>
+                    <div class="storage">2TB Cloud Storage</div>
+                    <div class="mega-ref">Powered by MEGA</div>
+                </div>
+                <div class="plan-option" data-plan="business" data-amount="699.00" data-storage="8TB" onclick="selectPlan(this)">
                     <h4>Business</h4>
-                    <div class="plan-price">R399<span>/mo</span></div>
-                    <div class="storage">100GB Storage</div>
+                    <div class="plan-price">R699<span>/mo</span></div>
+                    <div class="storage">8TB Cloud Storage</div>
+                    <div class="mega-ref">Powered by MEGA</div>
+                </div>
+                <div class="plan-option" data-plan="enterprise" data-amount="999.00" data-storage="16TB" onclick="selectPlan(this)">
+                    <h4>Enterprise</h4>
+                    <div class="plan-price">R999<span>/mo</span></div>
+                    <div class="storage">16TB Cloud Storage</div>
+                    <div class="mega-ref">Powered by MEGA</div>
                 </div>
             </div>
 
             <div class="plan-summary" id="planSummary">
                 <h3>Pro Plan</h3>
-                <div class="price">R199<span>/month</span></div>
+                <div class="price">R349<span>/month</span></div>
                 <ul>
-                    <li>50GB Secure Cloud Storage</li>
+                    <li>2TB Secure Cloud Storage (MEGA)</li>
                     <li>File Sync & Share</li>
                     <li>Video Conferencing</li>
                     <li>Calendar, Contacts & Notes</li>
                     <li>Priority Email Support</li>
                     <li>Daily Automated Backups</li>
+                    <li>30-Day File Versioning</li>
                 </ul>
             </div>
 
@@ -151,15 +162,15 @@
                 <input type="hidden" name="merchant_key" value="cy5krhuoxvofh">
                 <input type="hidden" name="return_url" value="https://xennrex.org/success.html">
                 <input type="hidden" name="cancel_url" value="https://xennrex.org/checkout.html">
-                <input type="hidden" name="notify_url" value="https://xennrex.org/notify.php">
+                <input type="hidden" name="notify_url" value="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec">
 
                 <!-- Transaction Details -->
                 <input type="hidden" name="m_payment_id" id="mPaymentId" value="">
-                <input type="hidden" name="amount" id="amount" value="199.00">
+                <input type="hidden" name="amount" id="amount" value="349.00">
                 <input type="hidden" name="item_name" id="itemName" value="Xennrex Cloud - Pro Plan">
-                <input type="hidden" name="item_description" id="itemDescription" value="50GB Secure Cloud Storage - Monthly Subscription">
+                <input type="hidden" name="item_description" id="itemDescription" value="2TB Secure Cloud Storage - Monthly Subscription">
                 <input type="hidden" name="custom_str1" id="customPlan" value="pro">
-                <input type="hidden" name="custom_str2" id="customStorage" value="50GB">
+                <input type="hidden" name="custom_str2" id="customStorage" value="2TB">
                 <input type="hidden" name="email_confirmation" value="1">
                 <input type="hidden" name="confirmation_address" value="info@xennrex.org">
                 <input type="hidden" name="subscription_type" value="1">
@@ -199,7 +210,7 @@
                 </div>
 
                 <button type="submit" class="btn-pay" id="payBtn" disabled>
-                    Pay R199.00 Securely with PayFast
+                    Pay R349.00 Securely with PayFast
                 </button>
 
                 <div class="secure-badge">
@@ -219,16 +230,16 @@
 
     <script>
         let selectedPlan = 'pro';
-        let planAmount = '199.00';
-        let planStorage = '50GB';
+        let planAmount = '349.00';
+        let planStorage = '2TB';
 
         const planDetails = {
             starter: {
                 name: 'Starter Plan',
-                amount: '99.00',
-                storage: '20GB',
+                amount: '199.00',
+                storage: '400GB',
                 features: [
-                    '20GB Secure Cloud Storage',
+                    '400GB Secure Cloud Storage (MEGA)',
                     'File Sync & Share',
                     'Calendar & Contacts',
                     'Notes & Tasks',
@@ -238,28 +249,42 @@
             },
             pro: {
                 name: 'Pro Plan',
-                amount: '199.00',
-                storage: '50GB',
+                amount: '349.00',
+                storage: '2TB',
                 features: [
-                    '50GB Secure Cloud Storage',
+                    '2TB Secure Cloud Storage (MEGA)',
                     'File Sync & Share',
                     'Video Conferencing',
                     'Calendar, Contacts & Notes',
                     'Priority Email Support',
-                    'Daily Automated Backups'
+                    'Daily Automated Backups',
+                    '30-Day File Versioning'
                 ]
             },
             business: {
                 name: 'Business Plan',
-                amount: '399.00',
-                storage: '100GB',
+                amount: '699.00',
+                storage: '8TB',
                 features: [
-                    '100GB Secure Cloud Storage',
+                    '8TB Secure Cloud Storage (MEGA)',
                     'Everything in Pro',
                     'Admin Dashboard',
                     'User Management',
                     'API Access',
                     '24/7 Phone Support'
+                ]
+            },
+            enterprise: {
+                name: 'Enterprise Plan',
+                amount: '999.00',
+                storage: '16TB',
+                features: [
+                    '16TB Secure Cloud Storage (MEGA)',
+                    'Everything in Business',
+                    'Dedicated Account Manager',
+                    'Custom Integrations',
+                    'SLA Guarantee',
+                    'Priority Phone Support'
                 ]
             }
         };
@@ -274,14 +299,12 @@
 
             const details = planDetails[selectedPlan];
 
-            // Update summary
             document.getElementById('planSummary').innerHTML = `
                 <h3>${details.name}</h3>
                 <div class="price">R${details.amount}<span>/month</span></div>
                 <ul>${details.features.map(f => `<li>${f}</li>`).join('')}</ul>
             `;
 
-            // Update form fields
             document.getElementById('amount').value = planAmount;
             document.getElementById('itemName').value = `Xennrex Cloud - ${details.name}`;
             document.getElementById('itemDescription').value = `${details.storage} Secure Cloud Storage - Monthly Subscription`;
@@ -289,7 +312,6 @@
             document.getElementById('customStorage').value = details.storage;
             document.getElementById('payBtn').textContent = `Pay R${planAmount} Securely with PayFast`;
 
-            // Generate unique payment ID
             document.getElementById('mPaymentId').value = 'XRX-' + Date.now() + '-' + Math.random().toString(36).substr(2, 6).toUpperCase();
         }
 
@@ -297,10 +319,8 @@
             document.getElementById('payBtn').disabled = false;
         }
 
-        // Generate initial payment ID
         document.getElementById('mPaymentId').value = 'XRX-' + Date.now() + '-' + Math.random().toString(36).substr(2, 6).toUpperCase();
 
-        // Form validation
         document.getElementById('payfastForm').addEventListener('submit', function(e) {
             const email = document.getElementById('email_address').value;
             const cell = document.getElementById('cell_number').value;
@@ -314,7 +334,6 @@
                 return false;
             }
 
-            // Basic validation
             if (!email.includes('@') || !email.includes('.')) {
                 errorMsg.textContent = 'Please enter a valid email address.';
                 errorMsg.style.display = 'block';
@@ -322,7 +341,6 @@
                 return false;
             }
 
-            // Cell number validation (SA format)
             const cellClean = cell.replace(/\s/g, '').replace(/^0/, '27');
             if (cellClean.length < 10) {
                 errorMsg.textContent = 'Please enter a valid South African cell number.';
