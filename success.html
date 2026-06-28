@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - Xennrex Cloud</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #e0e0e0; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; text-align: center; }
+        .success-icon { font-size: 80px; margin-bottom: 30px; }
+        h1 { font-size: 36px; font-weight: 700; color: #fff; margin-bottom: 20px; }
+        p { font-size: 18px; color: #a0a0b0; line-height: 1.6; margin-bottom: 20px; }
+        .card {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px; padding: 40px; margin: 30px 0;
+        }
+        .card h3 { font-size: 20px; font-weight: 600; margin-bottom: 15px; color: #fff; }
+        .card ul { list-style: none; text-align: left; }
+        .card ul li { padding: 12px 0; color: #c0c0d0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .card ul li:last-child { border-bottom: none; }
+        .card ul li::before { content: "✓"; color: #22c55e; margin-right: 12px; font-weight: 700; }
+        .btn {
+            display: inline-block; background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff; padding: 18px 50px; border-radius: 50px;
+            text-decoration: none; font-weight: 600; font-size: 18px;
+            margin-top: 20px; transition: all 0.3s;
+        }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4); }
+        .footer { margin-top: 50px; color: #606070; font-size: 14px; }
+        .footer a { color: #a0a0b0; text-decoration: none; margin: 0 15px; }
+        @media (max-width: 768px) { h1 { font-size: 28px; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-icon">🎉</div>
+        <h1>Payment Successful!</h1>
+        <p>Thank you for choosing Xennrex Cloud. Your subscription is now active.</p>
+
+        <div class="card">
+            <h3>What Happens Next?</h3>
+            <ul>
+                <li>You will receive a confirmation email within 5 minutes</li>
+                <li>Our team will provision your secure cloud instance</li>
+                <li>You will receive your login credentials within 1 hour</li>
+                <li>Your cloud URL will be ready at: <strong>https://yourcompany.xennrex.org</strong></li>
+                <li>Set up Two-Factor Authentication on first login</li>
+                <li>Start uploading and sharing your files securely</li>
+            </ul>
+        </div>
+
+        <p style="font-size: 16px;">Need help? Contact us at <a href="mailto:info@xennrex.org" style="color: #667eea;">info@xennrex.org</a> or call <strong>068 668 8888</strong></p>
+
+        <a href="index.html" class="btn">Back to Home</a>
+
+        <div class="footer">
+            <a href="index.html">Home</a>
+            <a href="terms-of-service.html">Terms of Service</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <p style="margin-top: 20px;">© 2026 Xennrex Cloud Solutions. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
