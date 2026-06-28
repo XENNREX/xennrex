@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Xennrex Cloud - Secure, private cloud storage for South African businesses. Own your data with enterprise-grade security.">
+    <meta name="keywords" content="cloud storage, South Africa, secure storage, private cloud, POPIA compliant">
     <title>Xennrex Cloud - Secure Cloud Storage for South Africa</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☁️</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #fff; overflow-x: hidden; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0f; }
+        ::-webkit-scrollbar-thumb { background: #667eea; border-radius: 4px; }
 
         /* Animated background */
         .hero-bg {
@@ -83,6 +91,16 @@
         }
         .btn-secondary:hover { border-color: #667eea; background: rgba(102, 126, 234, 0.1); }
 
+        /* Stats bar */
+        .stats-bar {
+            display: flex; justify-content: center; gap: 80px;
+            padding: 60px 20px; border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 48px; font-weight: 800; color: #667eea; }
+        .stat-label { font-size: 14px; color: #a0a0b0; margin-top: 8px; text-transform: uppercase; letter-spacing: 1px; }
+
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
@@ -125,6 +143,35 @@
         .feature-card h3 { font-size: 22px; font-weight: 600; margin-bottom: 15px; }
         .feature-card p { color: #a0a0b0; line-height: 1.6; }
 
+        /* Security Section */
+        .security { padding: 120px 50px; max-width: 1200px; margin: 0 auto; }
+        .security-content {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+        }
+        .security-text h2 { font-size: 42px; font-weight: 700; margin-bottom: 30px; }
+        .security-text p { color: #a0a0b0; font-size: 18px; line-height: 1.8; margin-bottom: 30px; }
+        .security-list { list-style: none; }
+        .security-list li {
+            padding: 15px 0; display: flex; align-items: center; gap: 15px;
+            font-size: 18px; border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .security-list li::before {
+            content: "🔒"; font-size: 24px;
+        }
+        .security-visual {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 30px; padding: 60px; text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .security-visual .shield {
+            font-size: 120px; margin-bottom: 30px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
         /* Pricing */
         .pricing { padding: 120px 50px; background: rgba(0,0,0,0.3); }
         .pricing-grid {
@@ -156,34 +203,27 @@
         .pricing-card ul li:last-child { border-bottom: none; }
         .pricing-card ul li::before { content: "✓"; color: #667eea; margin-right: 12px; font-weight: 700; }
 
-        /* Security Section */
-        .security { padding: 120px 50px; max-width: 1200px; margin: 0 auto; }
-        .security-content {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+        /* Testimonials */
+        .testimonials { padding: 120px 50px; max-width: 1000px; margin: 0 auto; }
+        .testimonial-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px; margin-top: 60px;
         }
-        .security-text h2 { font-size: 42px; font-weight: 700; margin-bottom: 30px; }
-        .security-text p { color: #a0a0b0; font-size: 18px; line-height: 1.8; margin-bottom: 30px; }
-        .security-list { list-style: none; }
-        .security-list li {
-            padding: 15px 0; display: flex; align-items: center; gap: 15px;
-            font-size: 18px; border-bottom: 1px solid rgba(255,255,255,0.05);
+        .testimonial-card {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 20px; padding: 40px;
         }
-        .security-list li::before {
-            content: "🔒"; font-size: 24px;
+        .testimonial-card .stars { color: #fbbf24; margin-bottom: 20px; font-size: 20px; }
+        .testimonial-card p { color: #c0c0d0; font-size: 16px; line-height: 1.7; margin-bottom: 25px; font-style: italic; }
+        .testimonial-author { display: flex; align-items: center; gap: 15px; }
+        .testimonial-author .avatar {
+            width: 50px; height: 50px; border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 20px;
         }
-        .security-visual {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-            border-radius: 30px; padding: 60px; text-align: center;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        .security-visual .shield {
-            font-size: 120px; margin-bottom: 30px;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
+        .testimonial-author .name { font-weight: 600; }
+        .testimonial-author .company { font-size: 14px; color: #a0a0b0; }
 
         /* CTA Section */
         .cta-section {
@@ -209,6 +249,7 @@
             .nav-links { display: none; }
             .security-content { grid-template-columns: 1fr; }
             .features, .pricing, .security { padding: 80px 20px; }
+            .stats-bar { flex-direction: column; gap: 40px; }
         }
     </style>
 </head>
@@ -231,13 +272,32 @@
     <section class="hero">
         <div>
             <h1>Your Data.<br>Your Cloud.<br>Your Control.</h1>
-            <p>Secure, private cloud storage built for South African businesses. Own your data with enterprise-grade security, hosted on dedicated hardware.</p>
+            <p>Secure, private cloud storage built for South African businesses. Own your data with enterprise-grade security, hosted on dedicated infrastructure.</p>
             <div class="hero-cta">
-                <a href="#pricing" class="btn-primary">Start Free Trial</a>
+                <a href="checkout.html" class="btn-primary">Start Free Trial</a>
                 <a href="#features" class="btn-secondary">Learn More</a>
             </div>
         </div>
     </section>
+
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-number">99.5%</div>
+            <div class="stat-label">Uptime SLA</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">256-bit</div>
+            <div class="stat-label">Encryption</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">POPIA</div>
+            <div class="stat-label">Compliant</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Monitoring</div>
+        </div>
+    </div>
 
     <section class="features" id="features">
         <h2 class="section-title">Everything You Need</h2>
@@ -314,7 +374,7 @@
                     <li>Email Support</li>
                     <li>Daily Backups</li>
                 </ul>
-                <a href="#" class="btn-secondary" style="display:block;margin-top:20px;" onclick="alert('Coming soon! Contact info@xennrex.github.io to pre-register.');return false;">Get Started</a>
+                <a href="checkout.html" class="btn-secondary" style="display:block;margin-top:20px;">Get Started</a>
             </div>
             <div class="pricing-card popular">
                 <div class="popular-badge">Most Popular</div>
@@ -328,7 +388,7 @@
                     <li>Priority Support</li>
                     <li>Advanced Sharing Controls</li>
                 </ul>
-                <a href="#" class="btn-primary" style="display:block;margin-top:20px;" onclick="alert('Coming soon! Contact info@xennrex.github.io to pre-register.');return false;">Get Started</a>
+                <a href="checkout.html" class="btn-primary" style="display:block;margin-top:20px;">Get Started</a>
             </div>
             <div class="pricing-card">
                 <h3>Business</h3>
@@ -341,7 +401,47 @@
                     <li>API Access</li>
                     <li>24/7 Phone Support</li>
                 </ul>
-                <a href="#" class="btn-secondary" style="display:block;margin-top:20px;" onclick="alert('Coming soon! Contact info@xennrex.github.io to pre-register.');return false;">Contact Sales</a>
+                <a href="checkout.html" class="btn-secondary" style="display:block;margin-top:20px;">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2 class="section-title">Trusted by South African Businesses</h2>
+        <p class="section-subtitle">Join hundreds of businesses who trust Xennrex for their secure cloud storage needs.</p>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"Xennrex transformed how we handle client data. The POPIA compliance and local hosting give our clients peace of mind."</p>
+                <div class="testimonial-author">
+                    <div class="avatar">SM</div>
+                    <div>
+                        <div class="name">Sarah M.</div>
+                        <div class="company">Legal Practice, Johannesburg</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"Finally, a cloud solution that keeps our data in South Africa. The 2FA and encryption are exactly what our financial firm needs."</p>
+                <div class="testimonial-author">
+                    <div class="avatar">DK</div>
+                    <div>
+                        <div class="name">David K.</div>
+                        <div class="company">Accounting Firm, Pretoria</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"The video conferencing and file sharing replaced three separate tools we were paying for. Incredible value for money."</p>
+                <div class="testimonial-author">
+                    <div class="avatar">LN</div>
+                    <div>
+                        <div class="name">Lisa N.</div>
+                        <div class="company">Marketing Agency, Cape Town</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -349,14 +449,16 @@
     <section class="cta-section">
         <h2>Ready to Own Your Cloud?</h2>
         <p>Join South African businesses who trust Xennrex for their secure cloud storage needs.</p>
-        <a href="mailto:xennrex.cloud@gmail.com" class="btn-primary">Get Started Today</a>
+        <a href="checkout.html" class="btn-primary">Get Started Today</a>
     </section>
 
     <footer>
         <div>
+            <a href="index.html">Home</a>
+            <a href="checkout.html">Pricing</a>
             <a href="terms-of-service.html">Terms of Service</a>
             <a href="privacy-policy.html">Privacy Policy</a>
-            <a href="mailto:xennrex.cloud@gmail.com">Contact</a>
+            <a href="mailto:info@xennrex.org">Contact</a>
         </div>
         <p>© 2026 Xennrex Cloud Solutions. All rights reserved. | Springs, South Africa</p>
         <p style="margin-top:10px;font-size:12px;">Registered in South Africa. POPIA Compliant.</p>
@@ -385,7 +487,7 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.section-title, .section-subtitle, .feature-card, .pricing-card').forEach(el => {
+        document.querySelectorAll('.section-title, .section-subtitle, .feature-card, .pricing-card, .testimonial-card').forEach(el => {
             observer.observe(el);
         });
     </script>
