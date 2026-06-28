@@ -3,354 +3,589 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - Xennrex Cloud</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <title>Checkout — Xennrex Cloud</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lc7LDotAAAAAOxJA9z-ArD9wlbJnkpQVE0dY9KZ"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #e0e0e0; min-height: 100vh; }
-        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
-        .header { text-align: center; margin-bottom: 50px; }
-        .logo { font-size: 28px; font-weight: 800; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; display: inline-block; }
-        .header h1 { font-size: 36px; font-weight: 700; color: #fff; margin-bottom: 10px; }
-        .header p { color: #a0a0b0; font-size: 16px; }
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --accent: #f59e0b;
+            --bg: #0f0f1a;
+            --bg-card: #1a1a2e;
+            --bg-card-hover: #22223e;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: rgba(255,255,255,0.08);
+            --success: #10b981;
+            --error: #ef4444;
+            --gradient-1: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+        }
 
-        .checkout-card {
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 24px; padding: 40px; margin-bottom: 30px;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .mesh-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(99,102,241,0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(217,70,239,0.08) 0%, transparent 50%);
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 48px;
+            background: rgba(15,15,26,0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--text);
+            text-decoration: none;
+        }
+        .logo-icon {
+            width: 40px; height: 40px;
+            background: var(--gradient-1);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: white;
+            box-shadow: 0 4px 20px rgba(99,102,241,0.4);
+        }
+        .nav-btn {
+            padding: 10px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            background: transparent;
+            transition: all 0.2s;
+        }
+        .nav-btn:hover { border-color: var(--primary); color: var(--text); }
+
+        /* Layout */
+        .checkout-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 40px;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+        }
+        .form-section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .form-section .subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.03);
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: inherit;
+            color: var(--text);
+            transition: border-color 0.2s;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .form-group input::placeholder { color: rgba(148,163,184,0.4); }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            margin: 32px 0 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .payment-method {
+            flex: 1;
+            padding: 16px;
+            background: rgba(255,255,255,0.03);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .payment-method:hover { border-color: var(--primary); }
+        .payment-method.selected {
+            border-color: var(--primary);
+            background: rgba(99,102,241,0.05);
+        }
+        .payment-method .icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        .payment-method .name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* Submit */
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 8px;
+            box-shadow: 0 4px 20px rgba(99,102,241,0.3);
+        }
+        .submit-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 28px rgba(99,102,241,0.4); }
+        .submit-btn:disabled {
+            background: #333;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* Summary Card */
+        .summary-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        .summary-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 24px;
         }
         .plan-summary {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
-            border-radius: 16px; padding: 30px; margin-bottom: 30px;
-            border: 1px solid rgba(102, 126, 234, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            margin-bottom: 20px;
         }
-        .plan-summary h3 { font-size: 20px; font-weight: 600; margin-bottom: 15px; color: #fff; }
-        .plan-summary .price { font-size: 42px; font-weight: 800; color: #667eea; }
-        .plan-summary .price span { font-size: 16px; font-weight: 400; color: #a0a0b0; }
-        .plan-summary ul { list-style: none; margin-top: 20px; }
-        .plan-summary ul li { padding: 8px 0; color: #c0c0d0; }
-        .plan-summary ul li::before { content: "✓"; color: #667eea; margin-right: 10px; font-weight: 700; }
+        .plan-summary .plan-name {
+            font-weight: 700;
+            font-size: 16px;
+        }
+        .plan-summary .plan-price {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--primary);
+        }
+        .plan-summary .plan-period {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
 
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; margin-bottom: 10px; font-weight: 500; color: #c0c0d0; }
-        .form-group input, .form-group select {
-            width: 100%; padding: 16px 20px; background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
-            color: #fff; font-size: 16px; font-family: 'Inter', sans-serif;
-            transition: all 0.3s;
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            font-size: 14px;
+            color: var(--text-muted);
         }
-        .form-group input:focus, .form-group select:focus {
-            outline: none; border-color: #667eea;
-            background: rgba(255,255,255,0.08);
+        .summary-row.total {
+            border-top: 2px solid var(--border);
+            margin-top: 12px;
+            padding-top: 16px;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text);
         }
-        .form-group input::placeholder { color: #606070; }
-
-        .plan-selector {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 30px;
-        }
-        .plan-option {
-            background: rgba(255,255,255,0.03); border: 2px solid rgba(255,255,255,0.08);
-            border-radius: 16px; padding: 25px 15px; text-align: center; cursor: pointer;
-            transition: all 0.3s;
-        }
-        .plan-option:hover { border-color: rgba(102, 126, 234, 0.4); }
-        .plan-option.selected {
-            border-color: #667eea;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-        }
-        .plan-option h4 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
-        .plan-option .plan-price { font-size: 28px; font-weight: 700; color: #667eea; }
-        .plan-option .plan-price span { font-size: 14px; font-weight: 400; color: #a0a0b0; }
-        .plan-option .storage { font-size: 14px; color: #a0a0b0; margin-top: 8px; }
-        .plan-option .mega-ref { font-size: 11px; color: #606070; margin-top: 5px; }
-
-        .recaptcha-container { margin: 30px 0; display: flex; justify-content: center; }
-
-        .btn-pay {
-            width: 100%; padding: 20px; background: linear-gradient(135deg, #667eea, #764ba2);
-            color: #fff; border: none; border-radius: 16px; font-size: 18px;
-            font-weight: 700; cursor: pointer; transition: all 0.3s;
-            font-family: 'Inter', sans-serif;
-        }
-        .btn-pay:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4); }
-        .btn-pay:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
         .secure-badge {
-            text-align: center; margin-top: 25px; color: #606070; font-size: 14px;
-            display: flex; align-items: center; justify-content: center; gap: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 24px;
+            padding: 12px;
+            background: rgba(16,185,129,0.1);
+            border: 1px solid rgba(16,185,129,0.2);
+            border-radius: 10px;
+            font-size: 13px;
+            color: var(--success);
         }
 
-        .terms-check { margin: 20px 0; display: flex; align-items: flex-start; gap: 12px; }
-        .terms-check input { margin-top: 4px; }
-        .terms-check label { font-size: 14px; color: #a0a0b0; line-height: 1.5; }
-        .terms-check label a { color: #667eea; }
+        .guarantee {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
 
-        .error-msg {
-            background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3);
-            color: #ef4444; padding: 15px 20px; border-radius: 12px; margin-bottom: 20px;
+        /* Alerts */
+        .alert {
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
             display: none;
         }
+        .alert-error {
+            background: rgba(239,68,68,0.1);
+            color: var(--error);
+            border: 1px solid rgba(239,68,68,0.2);
+        }
+        .alert-success {
+            background: rgba(16,185,129,0.1);
+            color: var(--success);
+            border: 1px solid rgba(16,185,129,0.2);
+        }
 
-        .footer { text-align: center; padding: 40px 20px; color: #606070; font-size: 14px; }
-        .footer a { color: #a0a0b0; text-decoration: none; margin: 0 15px; }
-        .footer a:hover { color: #fff; }
+        .recaptcha-terms {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 12px;
+            opacity: 0.6;
+        }
+        .recaptcha-terms a { color: var(--text-muted); }
 
-        @media (max-width: 768px) {
-            .plan-selector { grid-template-columns: 1fr; }
-            .header h1 { font-size: 28px; }
-            .checkout-card { padding: 25px; }
+        /* Responsive */
+        @media (max-width: 900px) {
+            .checkout-container { grid-template-columns: 1fr; }
+            .summary-card { position: static; }
+        }
+        @media (max-width: 640px) {
+            .navbar { padding: 16px 20px; }
+            .form-section { padding: 24px; }
+            .form-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">XENNREX</div>
-            <h1>Complete Your Order</h1>
-            <p>Secure checkout powered by PayFast</p>
-        </div>
+    <div class="mesh-bg"></div>
 
-        <div class="checkout-card">
-            <div class="error-msg" id="errorMsg"></div>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="logo">
+            <div class="logo-icon">X</div>
+            Xennrex
+        </a>
+        <a href="index.html" class="nav-btn">← Back to Pricing</a>
+    </nav>
 
-            <h3 style="margin-bottom: 20px; font-size: 20px;">1. Select Your Plan</h3>
-            <div class="plan-selector">
-                <div class="plan-option" data-plan="starter" data-amount="199.00" data-storage="400GB" onclick="selectPlan(this)">
-                    <h4>Starter</h4>
-                    <div class="plan-price">R199<span>/mo</span></div>
-                    <div class="storage">400GB Cloud Storage</div>
-                    <div class="mega-ref">Powered by MEGA</div>
+    <div class="checkout-container">
+        <!-- Form -->
+        <div class="form-section">
+            <h2>Complete your purchase</h2>
+            <p class="subtitle">Enter your details to activate your Xennrex Cloud plan.</p>
+
+            <div class="alert alert-error" id="errorAlert"></div>
+            <div class="alert alert-success" id="successAlert"></div>
+
+            <div class="section-title">Account Information</div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name *</label>
+                    <input type="text" id="firstName" placeholder="John" required>
                 </div>
-                <div class="plan-option selected" data-plan="pro" data-amount="349.00" data-storage="2TB" onclick="selectPlan(this)">
-                    <h4>Pro</h4>
-                    <div class="plan-price">R349<span>/mo</span></div>
-                    <div class="storage">2TB Cloud Storage</div>
-                    <div class="mega-ref">Powered by MEGA</div>
+                <div class="form-group">
+                    <label for="lastName">Last Name *</label>
+                    <input type="text" id="lastName" placeholder="Doe" required>
                 </div>
-                <div class="plan-option" data-plan="business" data-amount="699.00" data-storage="8TB" onclick="selectPlan(this)">
-                    <h4>Business</h4>
-                    <div class="plan-price">R699<span>/mo</span></div>
-                    <div class="storage">8TB Cloud Storage</div>
-                    <div class="mega-ref">Powered by MEGA</div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Create Password *</label>
+                <input type="password" id="password" placeholder="Min. 8 characters" minlength="8" required>
+            </div>
+
+            <div class="section-title">Billing Address</div>
+            <div class="form-group">
+                <label for="address">Street Address *</label>
+                <input type="text" id="address" placeholder="123 Main Street" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="city">City *</label>
+                    <input type="text" id="city" placeholder="Johannesburg" required>
                 </div>
-                <div class="plan-option" data-plan="enterprise" data-amount="999.00" data-storage="16TB" onclick="selectPlan(this)">
-                    <h4>Enterprise</h4>
-                    <div class="plan-price">R999<span>/mo</span></div>
-                    <div class="storage">16TB Cloud Storage</div>
-                    <div class="mega-ref">Powered by MEGA</div>
+                <div class="form-group">
+                    <label for="postal">Postal Code *</label>
+                    <input type="text" id="postal" placeholder="2000" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="country">Country *</label>
+                <select id="country" required>
+                    <option value="ZA">South Africa</option>
+                    <option value="US">United States</option>
+                    <option value="GB">United Kingdom</option>
+                    <option value="DE">Germany</option>
+                    <option value="AU">Australia</option>
+                    <option value="CA">Canada</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="section-title">Payment Method</div>
+            <div class="payment-methods">
+                <div class="payment-method selected" data-method="payfast">
+                    <div class="icon">🏦</div>
+                    <div class="name">PayFast</div>
+                </div>
+                <div class="payment-method" data-method="card">
+                    <div class="icon">💳</div>
+                    <div class="name">Credit Card</div>
+                </div>
+                <div class="payment-method" data-method="crypto">
+                    <div class="icon">₿</div>
+                    <div class="name">Crypto</div>
                 </div>
             </div>
 
-            <div class="plan-summary" id="planSummary">
-                <h3>Pro Plan</h3>
-                <div class="price">R349<span>/month</span></div>
-                <ul>
-                    <li>2TB Secure Cloud Storage (MEGA)</li>
-                    <li>File Sync & Share</li>
-                    <li>Video Conferencing</li>
-                    <li>Calendar, Contacts & Notes</li>
-                    <li>Priority Email Support</li>
-                    <li>Daily Automated Backups</li>
-                    <li>30-Day File Versioning</li>
-                </ul>
-            </div>
+            <button type="submit" class="submit-btn" id="payBtn">
+                Pay R<span id="btnAmount">205.85</span>
+            </button>
 
-            <h3 style="margin-bottom: 20px; font-size: 20px;">2. Your Details</h3>
-            <form id="payfastForm" action="https://www.payfast.co.za/eng/process" method="post">
-                <!-- PayFast Merchant Details -->
-                <input type="hidden" name="merchant_id" value="35854935">
-                <input type="hidden" name="merchant_key" value="cy5krhuoxvofh">
-                <input type="hidden" name="return_url" value="https://xennrex.org/success.html">
-                <input type="hidden" name="cancel_url" value="https://xennrex.org/checkout.html">
-                <input type="hidden" name="notify_url" value="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec">
+            <p class="recaptcha-terms">
+                Protected by reCAPTCHA and the Google 
+                <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a> and 
+                <a href="https://policies.google.com/terms" target="_blank">Terms of Service</a> apply.
+            </p>
 
-                <!-- Transaction Details -->
-                <input type="hidden" name="m_payment_id" id="mPaymentId" value="">
-                <input type="hidden" name="amount" id="amount" value="349.00">
-                <input type="hidden" name="item_name" id="itemName" value="Xennrex Cloud - Pro Plan">
-                <input type="hidden" name="item_description" id="itemDescription" value="2TB Secure Cloud Storage - Monthly Subscription">
-                <input type="hidden" name="custom_str1" id="customPlan" value="pro">
-                <input type="hidden" name="custom_str2" id="customStorage" value="2TB">
-                <input type="hidden" name="email_confirmation" value="1">
-                <input type="hidden" name="confirmation_address" value="info@xennrex.org">
-                <input type="hidden" name="subscription_type" value="1">
-
-                <div class="form-group">
-                    <label for="name_first">First Name *</label>
-                    <input type="text" name="name_first" id="name_first" required placeholder="John">
-                </div>
-
-                <div class="form-group">
-                    <label for="name_last">Last Name *</label>
-                    <input type="text" name="name_last" id="name_last" required placeholder="Doe">
-                </div>
-
-                <div class="form-group">
-                    <label for="email_address">Email Address *</label>
-                    <input type="email" name="email_address" id="email_address" required placeholder="john@company.com">
-                </div>
-
-                <div class="form-group">
-                    <label for="cell_number">Cell Number *</label>
-                    <input type="tel" name="cell_number" id="cell_number" required placeholder="082 345 6789">
-                </div>
-
-                <div class="form-group">
-                    <label for="company">Company Name (Optional)</label>
-                    <input type="text" name="custom_str3" id="company" placeholder="Acme Corp">
-                </div>
-
-                <div class="terms-check">
-                    <input type="checkbox" id="agreeTerms" required>
-                    <label for="agreeTerms">I agree to the <a href="terms-of-service.html" target="_blank">Terms of Service</a> and <a href="privacy-policy.html" target="_blank">Privacy Policy</a>. I understand this is a monthly subscription that will renew automatically.</label>
-                </div>
-
-                <div class="recaptcha-container">
-                    <div class="g-recaptcha" data-sitekey="6Lc7LDotAAAAAOxJA9z-ArD9wlbJnkpQVE0dY9KZ" data-callback="enablePay"></div>
-                </div>
-
-                <button type="submit" class="btn-pay" id="payBtn" disabled>
-                    Pay R349.00 Securely with PayFast
-                </button>
-
-                <div class="secure-badge">
-                    <span>🔒</span> Secured by PayFast | 256-bit SSL Encryption
-                </div>
-            </form>
+            <p class="guarantee">
+                🔒 Secured by SSL encryption. 30-day money-back guarantee.
+            </p>
         </div>
 
-        <div class="footer">
-            <a href="index.html">Home</a>
-            <a href="terms-of-service.html">Terms of Service</a>
-            <a href="privacy-policy.html">Privacy Policy</a>
-            <a href="mailto:info@xennrex.org">Contact</a>
-            <p style="margin-top: 20px;">© 2026 Xennrex Cloud Solutions. All rights reserved.</p>
+        <!-- Summary -->
+        <div class="summary-card">
+            <h3>Order Summary</h3>
+            <div class="plan-summary">
+                <div>
+                    <div class="plan-name" id="summaryPlan">Cloud Starter</div>
+                    <div class="plan-period" id="summaryPeriod">Monthly billing</div>
+                </div>
+                <div class="plan-price" id="summaryPrice">R179.00</div>
+            </div>
+
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="subtotal">R179.00</span>
+            </div>
+            <div class="summary-row">
+                <span>VAT (15%)</span>
+                <span id="vat">R26.85</span>
+            </div>
+            <div class="summary-row total">
+                <span>Total</span>
+                <span id="total">R205.85</span>
+            </div>
+
+            <div class="secure-badge">
+                <span>🔒</span>
+                <span>Your payment is encrypted. We never store card details.</span>
+            </div>
         </div>
     </div>
 
     <script>
-        let selectedPlan = 'pro';
-        let planAmount = '349.00';
-        let planStorage = '2TB';
-
-        const planDetails = {
-            starter: {
-                name: 'Starter Plan',
-                amount: '199.00',
-                storage: '400GB',
-                features: [
-                    '400GB Secure Cloud Storage (MEGA)',
-                    'File Sync & Share',
-                    'Calendar & Contacts',
-                    'Notes & Tasks',
-                    'Email Support',
-                    'Daily Automated Backups'
-                ]
-            },
-            pro: {
-                name: 'Pro Plan',
-                amount: '349.00',
-                storage: '2TB',
-                features: [
-                    '2TB Secure Cloud Storage (MEGA)',
-                    'File Sync & Share',
-                    'Video Conferencing',
-                    'Calendar, Contacts & Notes',
-                    'Priority Email Support',
-                    'Daily Automated Backups',
-                    '30-Day File Versioning'
-                ]
-            },
-            business: {
-                name: 'Business Plan',
-                amount: '699.00',
-                storage: '8TB',
-                features: [
-                    '8TB Secure Cloud Storage (MEGA)',
-                    'Everything in Pro',
-                    'Admin Dashboard',
-                    'User Management',
-                    'API Access',
-                    '24/7 Phone Support'
-                ]
-            },
-            enterprise: {
-                name: 'Enterprise Plan',
-                amount: '999.00',
-                storage: '16TB',
-                features: [
-                    '16TB Secure Cloud Storage (MEGA)',
-                    'Everything in Business',
-                    'Dedicated Account Manager',
-                    'Custom Integrations',
-                    'SLA Guarantee',
-                    'Priority Phone Support'
-                ]
-            }
+        // Plan data (NO free plan - all paid)
+        const plans = {
+            entry: { name: 'Cloud Entry', monthly: 49.00, yearly: 40.67, storage: '20 GB', transfer: '50 GB' },
+            starter: { name: 'Cloud Starter', monthly: 179.00, yearly: 148.57, storage: '750 GB', transfer: '1 TB' },
+            pro: { name: 'Cloud Pro', monthly: 349.00, yearly: 289.67, storage: '3 TB', transfer: '3 TB' },
+            business: { name: 'Cloud Business', monthly: 649.00, yearly: 538.67, storage: '10 TB', transfer: '10 TB' },
+            enterprise: { name: 'Cloud Enterprise', monthly: 949.00, yearly: 787.67, storage: '20 TB', transfer: '20 TB' }
         };
 
-        function selectPlan(element) {
-            document.querySelectorAll('.plan-option').forEach(el => el.classList.remove('selected'));
-            element.classList.add('selected');
+        // Get URL params
+        const params = new URLSearchParams(window.location.search);
+        const planKey = params.get('plan') || 'starter';
+        const billing = params.get('billing') || 'monthly';
+        const plan = plans[planKey] || plans.starter;
+        const price = billing === 'yearly' ? plan.yearly : plan.monthly;
+        const vat = price * 0.15;
+        const total = price + vat;
 
-            selectedPlan = element.dataset.plan;
-            planAmount = element.dataset.amount;
-            planStorage = element.dataset.storage;
+        // Update summary
+        document.getElementById('summaryPlan').textContent = plan.name;
+        document.getElementById('summaryPeriod').textContent = billing === 'yearly' ? 'Yearly billing (save 17%)' : 'Monthly billing';
+        document.getElementById('summaryPrice').textContent = 'R' + price.toFixed(2);
+        document.getElementById('subtotal').textContent = 'R' + price.toFixed(2);
+        document.getElementById('vat').textContent = 'R' + vat.toFixed(2);
+        document.getElementById('total').textContent = 'R' + total.toFixed(2);
+        document.getElementById('btnAmount').textContent = total.toFixed(2);
 
-            const details = planDetails[selectedPlan];
+        // Payment method toggle
+        let selectedMethod = 'payfast';
+        document.querySelectorAll('.payment-method').forEach(el => {
+            el.addEventListener('click', () => {
+                document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+                el.classList.add('selected');
+                selectedMethod = el.dataset.method;
+            });
+        });
 
-            document.getElementById('planSummary').innerHTML = `
-                <h3>${details.name}</h3>
-                <div class="price">R${details.amount}<span>/month</span></div>
-                <ul>${details.features.map(f => `<li>${f}</li>`).join('')}</ul>
-            `;
-
-            document.getElementById('amount').value = planAmount;
-            document.getElementById('itemName').value = `Xennrex Cloud - ${details.name}`;
-            document.getElementById('itemDescription').value = `${details.storage} Secure Cloud Storage - Monthly Subscription`;
-            document.getElementById('customPlan').value = selectedPlan;
-            document.getElementById('customStorage').value = details.storage;
-            document.getElementById('payBtn').textContent = `Pay R${planAmount} Securely with PayFast`;
-
-            document.getElementById('mPaymentId').value = 'XRX-' + Date.now() + '-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+        function showAlert(type, message) {
+            const el = document.getElementById(type + 'Alert');
+            el.textContent = message;
+            el.style.display = 'block';
+            setTimeout(() => { el.style.display = 'none'; }, 5000);
         }
 
-        function enablePay() {
-            document.getElementById('payBtn').disabled = false;
-        }
+        // Form submission with reCAPTCHA v3
+        document.getElementById('payBtn').addEventListener('click', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('payBtn');
 
-        document.getElementById('mPaymentId').value = 'XRX-' + Date.now() + '-' + Math.random().toString(36).substr(2, 6).toUpperCase();
-
-        document.getElementById('payfastForm').addEventListener('submit', function(e) {
-            const email = document.getElementById('email_address').value;
-            const cell = document.getElementById('cell_number').value;
-            const terms = document.getElementById('agreeTerms').checked;
-            const errorMsg = document.getElementById('errorMsg');
-
-            if (!terms) {
-                errorMsg.textContent = 'Please agree to the Terms of Service and Privacy Policy.';
-                errorMsg.style.display = 'block';
-                e.preventDefault();
-                return false;
+            const required = ['firstName', 'lastName', 'email', 'password', 'address', 'city', 'postal'];
+            for (const id of required) {
+                const el = document.getElementById(id);
+                if (!el.value.trim()) {
+                    showAlert('error', 'Please fill in all required fields.');
+                    el.focus();
+                    return;
+                }
             }
 
-            if (!email.includes('@') || !email.includes('.')) {
-                errorMsg.textContent = 'Please enter a valid email address.';
-                errorMsg.style.display = 'block';
-                e.preventDefault();
-                return false;
+            const email = document.getElementById('email').value;
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showAlert('error', 'Please enter a valid email address.');
+                document.getElementById('email').focus();
+                return;
             }
 
-            const cellClean = cell.replace(/\s/g, '').replace(/^0/, '27');
-            if (cellClean.length < 10) {
-                errorMsg.textContent = 'Please enter a valid South African cell number.';
-                errorMsg.style.display = 'block';
-                e.preventDefault();
-                return false;
+            const password = document.getElementById('password').value;
+            if (password.length < 8) {
+                showAlert('error', 'Password must be at least 8 characters.');
+                document.getElementById('password').focus();
+                return;
             }
 
-            errorMsg.style.display = 'none';
-            return true;
+            btn.disabled = true;
+            btn.textContent = 'Processing...';
+
+            try {
+                const token = await grecaptcha.execute('6Lc7LDotAAAAAOxJA9z-ArD9wlbJnkpQVE0dY9KZ', { action: 'checkout' });
+
+                const payfastData = {
+                    merchant_id: '35854935',
+                    merchant_key: 'cy5krhuoxvofh',
+                    return_url: 'https://xennrex.org/success.html',
+                    cancel_url: 'https://xennrex.org/checkout.html?plan=' + planKey + '&billing=' + billing,
+                    notify_url: 'https://xennrex.org/api/payfast/notify',
+                    name_first: document.getElementById('firstName').value,
+                    name_last: document.getElementById('lastName').value,
+                    email_address: email,
+                    m_payment_id: 'XNR-' + Date.now(),
+                    amount: total.toFixed(2),
+                    item_name: plan.name + ' (' + (billing === 'yearly' ? 'Yearly' : 'Monthly') + ')',
+                    item_description: plan.storage + ' storage, ' + plan.transfer + ' transfer',
+                    custom_str1: planKey,
+                    custom_str2: billing,
+                    custom_str3: token,
+                    email_confirmation: '1',
+                    confirmation_address: 'info@xennrex.org'
+                };
+
+                if (selectedMethod === 'payfast') {
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = 'https://www.payfast.co.za/eng/process';
+
+                    for (const [key, value] of Object.entries(payfastData)) {
+                        const input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = key;
+                        input.value = value;
+                        form.appendChild(input);
+                    }
+
+                    document.body.appendChild(form);
+                    form.submit();
+
+                } else {
+                    showAlert('error', 'This payment method is coming soon. Please use PayFast.');
+                    btn.disabled = false;
+                    btn.innerHTML = 'Pay R<span id="btnAmount">' + total.toFixed(2) + '</span>';
+                }
+
+            } catch (err) {
+                console.error('reCAPTCHA error:', err);
+                showAlert('error', 'Security verification failed. Please refresh and try again.');
+                btn.disabled = false;
+                btn.innerHTML = 'Pay R<span id="btnAmount">' + total.toFixed(2) + '</span>';
+            }
         });
     </script>
 </body>

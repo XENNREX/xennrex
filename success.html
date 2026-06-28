@@ -3,64 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Successful - Xennrex Cloud</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Payment Successful — Xennrex Cloud</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #6366f1;
+            --bg: #0f0f1a;
+            --bg-card: #1a1a2e;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: rgba(255,255,255,0.08);
+            --success: #10b981;
+            --gradient-1: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #e0e0e0; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-        .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; text-align: center; }
-        .success-icon { font-size: 80px; margin-bottom: 30px; }
-        h1 { font-size: 36px; font-weight: 700; color: #fff; margin-bottom: 20px; }
-        p { font-size: 18px; color: #a0a0b0; line-height: 1.6; margin-bottom: 20px; }
-        .card {
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 24px; padding: 40px; margin: 30px 0;
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
         }
-        .card h3 { font-size: 20px; font-weight: 600; margin-bottom: 15px; color: #fff; }
-        .card ul { list-style: none; text-align: left; }
-        .card ul li { padding: 12px 0; color: #c0c0d0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .card ul li:last-child { border-bottom: none; }
-        .card ul li::before { content: "✓"; color: #22c55e; margin-right: 12px; font-weight: 700; }
-        .btn {
-            display: inline-block; background: linear-gradient(135deg, #667eea, #764ba2);
-            color: #fff; padding: 18px 50px; border-radius: 50px;
-            text-decoration: none; font-weight: 600; font-size: 18px;
-            margin-top: 20px; transition: all 0.3s;
+        .mesh-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: -1;
+            background: radial-gradient(ellipse at 50% 50%, rgba(99,102,241,0.1) 0%, transparent 60%);
         }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4); }
-        .footer { margin-top: 50px; color: #606070; font-size: 14px; }
-        .footer a { color: #a0a0b0; text-decoration: none; margin: 0 15px; }
-        @media (max-width: 768px) { h1 { font-size: 28px; } }
+        .success-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 60px 48px;
+            max-width: 520px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .success-icon {
+            width: 80px; height: 80px;
+            background: rgba(16,185,129,0.15);
+            border: 2px solid rgba(16,185,129,0.3);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 28px;
+            font-size: 40px;
+        }
+        .success-card h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .success-card p {
+            font-size: 16px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+        .order-details {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 28px 0;
+            text-align: left;
+        }
+        .order-details .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        .order-details .row strong { color: var(--text); }
+        .order-details .row span { color: var(--text-muted); }
+        .next-steps {
+            text-align: left;
+            margin: 28px 0;
+        }
+        .next-steps h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .next-steps ol {
+            padding-left: 20px;
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 2;
+        }
+        .cta-btn {
+            display: inline-block;
+            padding: 14px 36px;
+            background: var(--gradient-1);
+            color: white;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.2s;
+            margin-top: 8px;
+            box-shadow: 0 4px 20px rgba(99,102,241,0.3);
+        }
+        .cta-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 28px rgba(99,102,241,0.4); }
+        .support {
+            margin-top: 24px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        .support a { color: var(--primary); text-decoration: none; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="success-icon">🎉</div>
+    <div class="mesh-bg"></div>
+    <div class="success-card">
+        <div class="success-icon">✅</div>
         <h1>Payment Successful!</h1>
         <p>Thank you for choosing Xennrex Cloud. Your subscription is now active.</p>
 
-        <div class="card">
-            <h3>What Happens Next?</h3>
-            <ul>
-                <li>You will receive a confirmation email within 5 minutes</li>
-                <li>Our team will provision your secure cloud instance</li>
-                <li>You will receive your login credentials within 1 hour</li>
-                <li>Your cloud URL will be ready at: <strong>https://yourcompany.xennrex.org</strong></li>
-                <li>Set up Two-Factor Authentication on first login</li>
-                <li>Start uploading and sharing your files securely</li>
-            </ul>
+        <div class="order-details" id="orderDetails">
+            <div class="row"><strong>Plan</strong><span id="detailPlan">Cloud Starter</span></div>
+            <div class="row"><strong>Billing</strong><span id="detailBilling">Monthly</span></div>
+            <div class="row"><strong>Amount Paid</strong><span id="detailAmount">R205.85</span></div>
+            <div class="row"><strong>Transaction ID</strong><span id="detailTx">—</span></div>
         </div>
 
-        <p style="font-size: 16px;">Need help? Contact us at <a href="mailto:info@xennrex.org" style="color: #667eea;">info@xennrex.org</a> or call <strong>068 668 8888</strong></p>
-
-        <a href="index.html" class="btn">Back to Home</a>
-
-        <div class="footer">
-            <a href="index.html">Home</a>
-            <a href="terms-of-service.html">Terms of Service</a>
-            <a href="privacy-policy.html">Privacy Policy</a>
-            <p style="margin-top: 20px;">© 2026 Xennrex Cloud Solutions. All rights reserved.</p>
+        <div class="next-steps">
+            <h3>What happens next?</h3>
+            <ol>
+                <li>Check your email for login credentials and setup instructions</li>
+                <li>Download the Xennrex Cloud desktop app or use the web interface</li>
+                <li>Start uploading your files securely</li>
+                <li>Your data is encrypted end-to-end — only you hold the keys</li>
+            </ol>
         </div>
+
+        <a href="https://pi-01.xennrex.org" class="cta-btn">Go to My Cloud</a>
+
+        <p class="support">
+            Need help? Contact us at <a href="mailto:info@xennrex.org">info@xennrex.org</a> or call 068 668 8888
+        </p>
     </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const planNames = {
+            entry: 'Cloud Entry',
+            starter: 'Cloud Starter',
+            pro: 'Cloud Pro',
+            business: 'Cloud Business',
+            enterprise: 'Cloud Enterprise'
+        };
+        const plan = params.get('custom_str1') || 'starter';
+        const billing = params.get('custom_str2') || 'monthly';
+        const amount = params.get('amount') || '205.85';
+        const txId = params.get('pf_payment_id') || params.get('m_payment_id') || '—';
+
+        document.getElementById('detailPlan').textContent = planNames[plan] || planNames.starter;
+        document.getElementById('detailBilling').textContent = billing === 'yearly' ? 'Yearly' : 'Monthly';
+        document.getElementById('detailAmount').textContent = 'R' + parseFloat(amount).toFixed(2);
+        document.getElementById('detailTx').textContent = txId;
+    </script>
 </body>
 </html>
