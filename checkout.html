@@ -289,7 +289,7 @@
       submitBtn.innerHTML = '<div class="loading-spinner"></div> Processing...';
 
       try {
-        const recaptchaToken = await grecaptcha.execute('6Lc7LDotAAAAAOxJA9z-ArD9wlbJnkpQVE0dY9KZ', { action: 'checkout' });
+        const recaptchaToken = await grecaptcha.execute('YOUR_RECAPTCHA_SITE_KEY', { action: 'checkout' });
         const formData = {
           firstName: document.getElementById('firstName').value,
           lastName: document.getElementById('lastName').value,
