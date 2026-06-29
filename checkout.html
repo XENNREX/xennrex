@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | Xennrex Cloud</title>
+  <meta name="description" content="Complete your Xennrex Cloud signup. Choose a plan, enter your details, and launch your private Nextcloud instance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY"></script>
+</head>
+<body>
+  <canvas id="particleCanvas" style="opacity: 0.3;"></canvas>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-cloud"></i>
+        </div>
+        <span class="logo-text">Xennrex Cloud</span>
+      </a>
+      <div class="nav-actions">
+        <a href="index.html" class="btn btn-outline btn-sm">
+          <i class="fas fa-arrow-left"></i> Back
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Checkout -->
+  <div class="checkout-layout">
+    <div class="checkout-main">
+      <!-- Plan Selection -->
+      <div class="checkout-section reveal">
+        <h2><i class="fas fa-server"></i> Select Your Plan</h2>
+        <div class="plan-options" id="planOptions">
+          <label class="plan-option" data-plan="entry" data-price="49">
+            <input type="radio" name="plan" value="entry" data-price="49">
+            <div class="plan-option-info">
+              <strong>Cloud Entry</strong>
+              <span>20 GB Storage &middot; 2 GB RAM &middot; 2 Cores</span>
+            </div>
+            <div class="plan-option-price">R49/mo</div>
+          </label>
+
+          <label class="plan-option" data-plan="starter" data-price="179">
+            <input type="radio" name="plan" value="starter" data-price="179">
+            <div class="plan-option-info">
+              <strong>Cloud Starter</strong>
+              <span>750 GB Storage &middot; 4 GB RAM &middot; 4 Cores</span>
+            </div>
+            <div class="plan-option-price">R179/mo</div>
+          </label>
+
+          <label class="plan-option" data-plan="pro" data-price="349">
+            <input type="radio" name="plan" value="pro" data-price="349">
+            <div class="plan-option-info">
+              <strong>Cloud Pro</strong>
+              <span>3 TB Storage &middot; 8 GB RAM &middot; 8 Cores</span>
+            </div>
+            <div class="plan-option-price">R349/mo</div>
+          </label>
+
+          <label class="plan-option" data-plan="business" data-price="649">
+            <input type="radio" name="plan" value="business" data-price="649">
+            <div class="plan-option-info">
+              <strong>Cloud Business</strong>
+              <span>10 TB Storage &middot; 16 GB RAM &middot; 8 Cores</span>
+            </div>
+            <div class="plan-option-price">R649/mo</div>
+          </label>
+
+          <label class="plan-option" data-plan="enterprise" data-price="949">
+            <input type="radio" name="plan" value="enterprise" data-price="949">
+            <div class="plan-option-info">
+              <strong>Cloud Enterprise</strong>
+              <span>20 TB Storage &middot; 32 GB RAM &middot; 16 Cores</span>
+            </div>
+            <div class="plan-option-price">R949/mo</div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Checkout Form -->
+      <div class="checkout-section reveal" id="checkoutFormSection">
+        <h2><i class="fas fa-user"></i> Your Details</h2>
+        <form id="checkoutForm">
+          <div class="form-group">
+            <label class="form-label" for="firstName">First Name *</label>
+            <input type="text" id="firstName" name="firstName" class="form-input" required placeholder="John">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="lastName">Last Name *</label>
+            <input type="text" id="lastName" name="lastName" class="form-input" required placeholder="Doe">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address *</label>
+            <input type="email" id="email" name="email" class="form-input" required placeholder="john@example.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="company">Company <span class="optional">(optional)</span></label>
+            <input type="text" id="company" name="company" class="form-input" placeholder="Your company">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" class="form-input" placeholder="+27 12 345 6789">
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg btn-full" id="submitBtn">
+            <i class="fas fa-lock"></i>
+            Proceed to PayFast Payment
+          </button>
+          <p class="text-center mt-2" style="font-size: 0.8125rem; color: var(--text-muted);">
+            <i class="fas fa-shield-alt"></i> Secured by PayFast & reCAPTCHA
+          </p>
+        </form>
+      </div>
+
+      <!-- Waitlist Section (hidden by default) -->
+      <div class="checkout-section waitlist-section hidden" id="waitlistSection">
+        <h3><i class="fas fa-clock"></i> Currently Out of Stock</h3>
+        <p>All our nodes are currently allocated. Join the waitlist and we'll notify you as soon as a slot becomes available.</p>
+        <form id="waitlistForm">
+          <div class="form-group">
+            <label class="form-label" for="waitlistName">Name *</label>
+            <input type="text" id="waitlistName" name="name" class="form-input" required placeholder="John Doe">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="waitlistEmail">Email *</label>
+            <input type="email" id="waitlistEmail" name="email" class="form-input" required placeholder="john@example.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="waitlistPlan">Preferred Plan</label>
+            <select id="waitlistPlan" name="plan" class="form-input">
+              <option value="entry">Cloud Entry - R49/mo</option>
+              <option value="starter">Cloud Starter - R179/mo</option>
+              <option value="pro">Cloud Pro - R349/mo</option>
+              <option value="business">Cloud Business - R649/mo</option>
+              <option value="enterprise">Cloud Enterprise - R949/mo</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-warning btn-lg btn-full" id="waitlistBtn">
+            <i class="fas fa-bell"></i>
+            Join Waitlist
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="order-summary reveal" id="orderSummary">
+      <h3>Order Summary</h3>
+      <div class="summary-row">
+        <span>Plan</span>
+        <span id="summaryPlan">-</span>
+      </div>
+      <div class="summary-row">
+        <span>Monthly Price</span>
+        <span id="summaryPrice">-</span>
+      </div>
+      <div class="summary-row">
+        <span>VAT (15%)</span>
+        <span id="summaryVat">-</span>
+      </div>
+      <div class="summary-row total">
+        <span>Total (first month)</span>
+        <span id="summaryTotal">-</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden PayFast form -->
+  <form id="payfastForm" method="POST" action="https://www.payfast.co.za/eng/process" style="display: none;">
+    <input type="hidden" name="merchant_id" id="payfastMerchantId" value="">
+    <input type="hidden" name="merchant_key" id="payfastMerchantKey" value="">
+    <input type="hidden" name="return_url" value="https://xennrex.org/success.html">
+    <input type="hidden" name="cancel_url" value="https://xennrex.org/checkout.html">
+    <input type="hidden" name="notify_url" value="https://api.xennrex.org/api/payfast/notify">
+    <input type="hidden" name="name_first" id="payfastFirstName" value="">
+    <input type="hidden" name="name_last" id="payfastLastName" value="">
+    <input type="hidden" name="email_address" id="payfastEmail" value="">
+    <input type="hidden" name="m_payment_id" id="payfastPaymentId" value="">
+    <input type="hidden" name="amount" id="payfastAmount" value="">
+    <input type="hidden" name="item_name" id="payfastItemName" value="">
+    <input type="hidden" name="custom_str1" id="payfastCustom" value="">
+    <input type="hidden" name="signature" id="payfastSignature" value="">
+  </form>
+
+  <script src="shared.js"></script>
+  <script>
+    // Plan data
+    const plans = {
+      entry: { name: 'Cloud Entry', price: 49, storage: '20GB', ram: '2GB', cores: 2 },
+      starter: { name: 'Cloud Starter', price: 179, storage: '750GB', ram: '4GB', cores: 4 },
+      pro: { name: 'Cloud Pro', price: 349, storage: '3TB', ram: '8GB', cores: 8 },
+      business: { name: 'Cloud Business', price: 649, storage: '10TB', ram: '16GB', cores: 8 },
+      enterprise: { name: 'Cloud Enterprise', price: 949, storage: '20TB', ram: '32GB', cores: 16 }
+    };
+
+    let selectedPlan = null;
+
+    // Parse URL for preselected plan
+    function getPreselectedPlan() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('plan');
+    }
+
+    // Plan selection
+    document.querySelectorAll('.plan-option').forEach(option => {
+      option.addEventListener('click', (e) => {
+        if (e.target.type === 'radio') {
+          selectPlan(option.dataset.plan);
+        }
+      });
+
+      option.querySelector('input').addEventListener('change', () => {
+        selectPlan(option.dataset.plan);
+      });
+    });
+
+    function selectPlan(planKey) {
+      selectedPlan = planKey;
+      document.querySelectorAll('.plan-option').forEach(opt => {
+        opt.classList.toggle('selected', opt.dataset.plan === planKey);
+      });
+      updateSummary();
+    }
+
+    function updateSummary() {
+      if (!selectedPlan || !plans[selectedPlan]) return;
+      const plan = plans[selectedPlan];
+      const vat = plan.price * 0.15;
+      const total = plan.price + vat;
+
+      document.getElementById('summaryPlan').textContent = plan.name;
+      document.getElementById('summaryPrice').textContent = `R${plan.price.toFixed(2)}`;
+      document.getElementById('summaryVat').textContent = `R${vat.toFixed(2)}`;
+      document.getElementById('summaryTotal').textContent = `R${total.toFixed(2)}`;
+    }
+
+    // Handle OUT_OF_STOCK from API
+    function showWaitlist(planKey) {
+      document.getElementById('checkoutFormSection').classList.add('hidden');
+      document.getElementById('waitlistSection').classList.remove('hidden');
+      document.getElementById('orderSummary').classList.add('hidden');
+      if (planKey) {
+        document.getElementById('waitlistPlan').value = planKey;
+      }
+    }
+
+    // Checkout form submission
+    document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!selectedPlan) {
+        showToast('Please select a plan', 'error');
+        return;
+      }
+
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<div class="loading-spinner"></div> Processing...';
+
+      try {
+        // Execute reCAPTCHA v3
+        const recaptchaToken = await grecaptcha.execute('YOUR_RECAPTCHA_SITE_KEY', {
+          action: 'checkout'
+        });
+
+        const formData = {
+          firstName: document.getElementById('firstName').value,
+          lastName: document.getElementById('lastName').value,
+          email: document.getElementById('email').value,
+          company: document.getElementById('company').value,
+          phone: document.getElementById('phone').value,
+          plan: selectedPlan,
+          recaptchaToken: recaptchaToken
+        };
+
+        const response = await fetch(`${API_BASE}/api/register-client`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+
+        const data = await response.json();
+
+        if (data.status === 'OUT_OF_STOCK') {
+          showWaitlist(selectedPlan);
+          showToast('Nodes are currently out of stock. Please join the waitlist.', 'warning');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="fas fa-lock"></i> Proceed to PayFast Payment';
+          return;
+        }
+
+        if (!response.ok || data.error) {
+          throw new Error(data.message || 'Registration failed');
+        }
+
+        // If PayFast data is returned, auto-submit the form
+        if (data.payfast) {
+          document.getElementById('payfastMerchantId').value = data.payfast.merchant_id || '';
+          document.getElementById('payfastMerchantKey').value = data.payfast.merchant_key || '';
+          document.getElementById('payfastFirstName').value = formData.firstName;
+          document.getElementById('payfastLastName').value = formData.lastName;
+          document.getElementById('payfastEmail').value = formData.email;
+          document.getElementById('payfastPaymentId').value = data.clientId || '';
+          document.getElementById('payfastAmount').value = (plans[selectedPlan].price * 1.15).toFixed(2);
+          document.getElementById('payfastItemName').value = `Xennrex Cloud - ${plans[selectedPlan].name}`;
+          document.getElementById('payfastCustom').value = data.clientId || '';
+          document.getElementById('payfastSignature').value = data.payfast.signature || '';
+          document.getElementById('payfastForm').submit();
+        } else {
+          // Success without PayFast redirect
+          showToast('Registration successful! Redirecting...', 'success');
+          setTimeout(() => {
+            window.location.href = `success.html?clientId=${data.clientId}`;
+          }, 1500);
+        }
+
+      } catch (error) {
+        console.error('Checkout error:', error);
+        showToast(error.message || 'Something went wrong. Please try again.', 'error');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-lock"></i> Proceed to PayFast Payment';
+      }
+    });
+
+    // Waitlist form submission
+    document.getElementById('waitlistForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const submitBtn = document.getElementById('waitlistBtn');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<div class="loading-spinner"></div> Joining...';
+
+      try {
+        const response = await fetch(`${API_BASE}/api/waitlist/join`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: document.getElementById('waitlistName').value,
+            email: document.getElementById('waitlistEmail').value,
+            plan: document.getElementById('waitlistPlan').value
+          })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || 'Failed to join waitlist');
+        }
+
+        showToast('You have been added to the waitlist! We\'ll notify you when a slot opens.', 'success');
+        document.getElementById('waitlistForm').reset();
+
+      } catch (error) {
+        showToast(error.message || 'Something went wrong. Please try again.', 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-bell"></i> Join Waitlist';
+      }
+    });
+
+    // Auto-select plan from URL
+    const preselectedPlan = getPreselectedPlan();
+    if (preselectedPlan && plans[preselectedPlan]) {
+      const radio = document.querySelector(`input[value="${preselectedPlan}"]`);
+      if (radio) {
+        radio.checked = true;
+        selectPlan(preselectedPlan);
+      }
+    }
+
+    // Light particle animation for checkout
+    (function() {
+      const canvas = document.getElementById('particleCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      for (let i = 0; i < 30; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 1.5 + 0.5,
+          speedX: (Math.random() - 0.5) * 0.2,
+          speedY: (Math.random() - 0.5) * 0.2,
+          opacity: Math.random() * 0.3 + 0.1
+        });
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+          p.x += p.speedX;
+          p.y += p.speedY;
+          if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+          if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(168, 85, 247, ${p.opacity})`;
+          ctx.fill();
+        });
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+  </script>
+</body>
+</html>

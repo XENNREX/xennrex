@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Successful | Xennrex Cloud</title>
+  <meta name="description" content="Your payment was successful. We're provisioning your Nextcloud instance now.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="particleCanvas" style="opacity: 0.3;"></canvas>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-cloud"></i>
+        </div>
+        <span class="logo-text">Xennrex Cloud</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Success Page -->
+  <div class="success-page">
+    <div class="success-card reveal" style="max-width: 700px;">
+      <div class="success-icon">
+        <i class="fas fa-check"></i>
+      </div>
+
+      <h1>Payment Successful!</h1>
+      <p>Thank you for choosing Xennrex Cloud. Your Nextcloud instance is being provisioned on a dedicated Raspberry Pi 4.</p>
+
+      <!-- Progress Tracker -->
+      <div class="progress-tracker" id="progressTracker">
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="progressBarFill" style="width: 0%"></div>
+        </div>
+        <div class="progress-steps">
+          <div class="progress-step active" data-step="1">
+            <div class="step-indicator"><i class="fas fa-check"></i></div>
+            <span>Payment<br>Confirmed</span>
+          </div>
+          <div class="progress-step" data-step="2">
+            <div class="step-indicator"><i class="fas fa-server"></i></div>
+            <span>Allocating<br>Node</span>
+          </div>
+          <div class="progress-step" data-step="3">
+            <div class="step-indicator"><i class="fas fa-cog"></i></div>
+            <span>Provisioning<br>Nextcloud</span>
+          </div>
+          <div class="progress-step" data-step="4">
+            <div class="step-indicator"><i class="fas fa-wrench"></i></div>
+            <span>Final<br>Config</span>
+          </div>
+          <div class="progress-step" data-step="5">
+            <div class="step-indicator"><i class="fas fa-cloud"></i></div>
+            <span>Ready!</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Status Message -->
+      <div id="statusMessage" style="color: var(--text-muted); font-size: 0.9375rem; margin: 1rem 0;">
+        <div class="loading-spinner" style="margin: 0 auto 0.75rem;"></div>
+        Waiting for provisioning to begin...
+      </div>
+
+      <!-- Access Button (hidden until ready) -->
+      <div id="accessSection" class="hidden" style="margin-top: 1.5rem;">
+        <a href="#" id="accessUrl" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+          <i class="fas fa-external-link-alt"></i>
+          Access Your Nextcloud
+        </a>
+        <p style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 1rem;">
+          Your login credentials have been sent to your email.
+        </p>
+      </div>
+
+      <!-- Client Info Panel -->
+      <div class="client-info" id="clientInfo">
+        <h3>Your Instance Details</h3>
+        <div class="info-row">
+          <span class="info-label">Client ID</span>
+          <span class="info-value" id="clientId">-</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Plan</span>
+          <span class="info-value" id="clientPlan">-</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Email</span>
+          <span class="info-value" id="clientEmail">-</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Nextcloud URL</span>
+          <span class="info-value"><a href="#" id="clientUrl" target="_blank" rel="noopener">-</a></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Assigned Node</span>
+          <span class="info-value" id="clientNode">-</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="shared.js"></script>
+  <script>
+    const steps = ['Payment Confirmed', 'Allocating Node', 'Provisioning Nextcloud', 'Final Config', 'Ready'];
+    let clientId = null;
+    let pollInterval = null;
+
+    // Get clientId from URL
+    function getClientId() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('clientId') || params.get('m_payment_id') || localStorage.getItem('xennrex_client_id');
+    }
+
+    // Update progress UI
+    function updateProgress(currentStep, data) {
+      // currentStep is 1-5
+      const percentage = ((currentStep - 1) / 4) * 100;
+      document.getElementById('progressBarFill').style.width = `${percentage}%`;
+
+      document.querySelectorAll('.progress-step').forEach((stepEl, index) => {
+        const stepNum = index + 1;
+        stepEl.classList.remove('active', 'complete');
+        if (stepNum < currentStep) {
+          stepEl.classList.add('complete');
+          stepEl.querySelector('.step-indicator').innerHTML = '<i class="fas fa-check"></i>';
+        } else if (stepNum === currentStep) {
+          stepEl.classList.add('active');
+        } else {
+          // Reset icon
+          const icons = ['fa-check', 'fa-server', 'fa-cog', 'fa-wrench', 'fa-cloud'];
+          stepEl.querySelector('.step-indicator').innerHTML = `<i class="fas ${icons[index]}"></i>`;
+        }
+      });
+
+      // Update status message
+      const statusMsg = document.getElementById('statusMessage');
+      if (currentStep < 5) {
+        statusMsg.innerHTML = `
+          <div class="loading-spinner" style="margin: 0 auto 0.75rem;"></div>
+          ${steps[currentStep - 1]}...
+        `;
+      } else {
+        statusMsg.innerHTML = '<span style="color: var(--success);"><i class="fas fa-check-circle"></i> Your Nextcloud is ready!</span>';
+      }
+
+      // Update client info
+      if (data) {
+        if (data.plan) document.getElementById('clientPlan').textContent = data.plan;
+        if (data.email) document.getElementById('clientEmail').textContent = data.email;
+        if (data.nextcloudUrl) {
+          document.getElementById('clientUrl').textContent = data.nextcloudUrl;
+          document.getElementById('clientUrl').href = data.nextcloudUrl;
+          document.getElementById('accessUrl').href = data.nextcloudUrl;
+        }
+        if (data.piId || data.nodeId) {
+          document.getElementById('clientNode').textContent = data.piId || data.nodeId;
+        }
+      }
+
+      // Show access button when ready
+      if (currentStep >= 5) {
+        document.getElementById('accessSection').classList.remove('hidden');
+        if (pollInterval) clearInterval(pollInterval);
+      }
+    }
+
+    // Poll provisioning status
+    async function pollStatus() {
+      if (!clientId) return;
+
+      try {
+        const response = await fetch(`${API_BASE}/api/provisioning-status/${clientId}`);
+        const data = await response.json();
+
+        // Determine step from status
+        let step = 1;
+        switch (data.status) {
+          case 'PAYMENT_CONFIRMED': step = 1; break;
+          case 'ALLOCATING': step = 2; break;
+          case 'PROVISIONING': step = 3; break;
+          case 'CONFIGURING': step = 4; break;
+          case 'READY':
+          case 'ACTIVE': step = 5; break;
+          default: step = data.step || data.progress || 1;
+        }
+
+        updateProgress(step, data);
+
+        if (step >= 5) {
+          showToast('Your Nextcloud is ready!', 'success');
+        }
+      } catch (error) {
+        console.error('Polling error:', error);
+      }
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      clientId = getClientId();
+
+      if (clientId) {
+        localStorage.setItem('xennrex_client_id', clientId);
+        document.getElementById('clientId').textContent = clientId;
+        updateProgress(1);
+        pollStatus();
+        pollInterval = setInterval(pollStatus, 5000);
+      } else {
+        document.getElementById('statusMessage').innerHTML =
+          '<span style="color: var(--warning);"><i class="fas fa-exclamation-triangle"></i> No client ID found. Please check your email for details.</span>';
+        document.getElementById('clientId').textContent = 'N/A';
+      }
+    });
+
+    // Light particles
+    (function() {
+      const canvas = document.getElementById('particleCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+      resize();
+      window.addEventListener('resize', resize);
+      for (let i = 0; i < 25; i++) {
+        particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, size: Math.random() * 1.5 + 0.5, speedX: (Math.random() - 0.5) * 0.2, speedY: (Math.random() - 0.5) * 0.2, opacity: Math.random() * 0.3 + 0.1 });
+      }
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.x += p.speedX; p.y += p.speedY; if (p.x < 0 || p.x > canvas.width) p.speedX *= -1; if (p.y < 0 || p.y > canvas.height) p.speedY *= -1; ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fillStyle = `rgba(168, 85, 247, ${p.opacity})`; ctx.fill(); });
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+  </script>
+</body>
+</html>

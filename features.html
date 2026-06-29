@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Features | Xennrex Cloud</title>
+  <meta name="description" content="Explore all features of Xennrex Cloud: file management, collaboration, communication, security, and more on your private Nextcloud instance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="particleCanvas" style="opacity: 0.3;"></canvas>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-cloud"></i>
+        </div>
+        <span class="logo-text">Xennrex Cloud</span>
+      </a>
+      <div class="nav-links" id="mobileMenu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="features.html" class="nav-link active">Features</a>
+        <a href="index.html#pricing" class="nav-link">Pricing</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <a href="checkout.html" class="btn btn-primary">Get Started</a>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="badge reveal">
+        <span class="badge-dot"></span>
+        <span>Feature-rich & privacy-first</span>
+      </div>
+      <h1 class="reveal">Everything You Need.<br><span class="gradient-text">Nothing You Don't.</span></h1>
+      <p class="reveal">Your private Nextcloud instance comes packed with enterprise-grade features — all running on your dedicated hardware in South Africa.</p>
+    </div>
+  </section>
+
+  <!-- Features Detail -->
+  <div class="content-page">
+    <div class="container">
+      <!-- File Management -->
+      <div class="feature-detail-grid">
+        <div class="feature-detail-card reveal">
+          <div class="feature-icon icon-shield">
+            <i class="fas fa-folder-open"></i>
+          </div>
+          <h3>File Management</h3>
+          <p>The core of your private cloud. Store, sync, and share files with complete control. Your data never leaves your dedicated hardware.</p>
+          <ul>
+            <li><i class="fas fa-check"></i> Automatic sync across all devices</li>
+            <li><i class="fas fa-check"></i> Share via public or password-protected links</li>
+            <li><i class="fas fa-check"></i> File versioning — recover older versions</li>
+            <li><i class="fas fa-check"></i> Trash bin with configurable retention</li>
+            <li><i class="fas fa-check"></i> WebDAV support for any client</li>
+            <li><i class="fas fa-check"></i> End-to-end encryption option</li>
+          </ul>
+        </div>
+
+        <div class="feature-detail-card reveal">
+          <div class="feature-icon icon-bolt">
+            <i class="fas fa-file-word"></i>
+          </div>
+          <h3>Collaboration</h3>
+          <p>Edit documents, spreadsheets, and presentations directly in your browser — no Microsoft Office license required.</p>
+          <ul>
+            <li><i class="fas fa-check"></i> Collabora Office (Word, Excel, PowerPoint)</li>
+            <li><i class="fas fa-check"></i> OnlyOffice integration</li>
+            <li><i class="fas fa-check"></i> Built-in PDF viewer</li>
+            <li><i class="fas fa-check"></i> Plain text & markdown editor</li>
+            <li><i class="fas fa-check"></i> Real-time collaborative editing</li>
+            <li><i class="fas fa-check"></i> Comments & annotations</li>
+          </ul>
+        </div>
+
+        <div class="feature-detail-card reveal">
+          <div class="feature-icon icon-heartbeat">
+            <i class="fas fa-video"></i>
+          </div>
+          <h3>Communication</h3>
+          <p>Nextcloud Talk gives you secure video conferencing, screen sharing, and messaging — all self-hosted on your Pi.</p>
+          <ul>
+            <li><i class="fas fa-check"></i> HD video & voice calls</li>
+            <li><i class="fas fa-check"></i> Screen sharing</li>
+            <li><i class="fas fa-check"></i> Group chats & channels</li>
+            <li><i class="fas fa-check"></i> Voice messages</li>
+            <li><i class="fas fa-check"></i> File sharing in conversations</li>
+            <li><i class="fas fa-check"></i> No call limits or data harvesting</li>
+          </ul>
+        </div>
+
+        <div class="feature-detail-card reveal">
+          <div class="feature-icon icon-lock">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <h3>Calendar & Contacts</h3>
+          <p>Full CalDAV and CardDAV support. Sync with your phone, Thunderbird, Apple Calendar, and any DAV client.</p>
+          <ul>
+            <li><i class="fas fa-check"></i> Multiple calendars with color coding</li>
+            <li><i class="fas fa-check"></i> Shared calendars for teams</li>
+            <li><i class="fas fa-check"></i> Meeting scheduling & invitations</li>
+            <li><i class="fas fa-check"></i> Contact management with groups</li>
+            <li><i class="fas fa-check"></i> Sync with iOS, Android, macOS</li>
+            <li><i class="fas fa-check"></i> Birthday calendar auto-generation</li>
+          </ul>
+        </div>
+
+        <div class="feature-detail-card reveal">
+          <div class="feature-icon icon-chart">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Security</h3>
+          <p>Enterprise-grade security hardened by default. Your Pi is locked down, hidden behind VPN, and monitored 24/7.</p>
+          <ul>
+            <li><i class="fas fa-check"></i> Two-factor authentication enforced</li>
+            <li><i class="fas fa-check"></i> Brute-force attack protection</li>
+            <li><i class="fas fa-check"></i> Geo-blocking by country</li>
+            <li><i class="fas fa-check"></i> Hidden server info & headers</li>
+            <li><i class="fas fa-check"></i> Tailscale VPN mesh network</li>
+            <li><i class="fas fa-check"></i> Automated security updates</li>
+          </ul>
+        </div>
+
+        <div class="feature-detail-card reveal">
+          <div class="feature-icon icon-headset">
+            <i class="fas fa-tasks"></i>
+          </div>
+          <h3>Project Management</h3>
+          <p>Organize work with tasks, Kanban boards, and notes. Keep projects moving without leaving your cloud.</p>
+          <ul>
+            <li><i class="fas fa-check"></i> Task lists with due dates & priorities</li>
+            <li><i class="fas fa-check"></i> Kanban boards (Deck app)</li>
+            <li><i class="fas fa-check"></i> Rich text notes</li>
+            <li><i class="fas fa-check"></i> Task assignment & sharing</li>
+            <li><i class="fas fa-check"></i> Integration with Calendar</li>
+            <li><i class="fas fa-check"></i> File attachments on tasks</li>
+          </ul>
+        </div>
+
+        <div class="feature-detail-card reveal" style="grid-column: 1 / -1;">
+          <div class="feature-icon icon-shield" style="display: inline-flex; margin-bottom: 1rem;">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3>Email</h3>
+          <p>Nextcloud Mail connects your existing email accounts — Gmail, Outlook, or any IMAP server — into a unified, ad-free interface.</p>
+          <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 0.25rem;">
+            <li><i class="fas fa-check"></i> Multi-account email client</li>
+            <li><i class="fas fa-check"></i> Unified inbox</li>
+            <li><i class="fas fa-check"></i> PGP encryption support</li>
+            <li><i class="fas fa-check"></i> Threaded conversations</li>
+            <li><i class="fas fa-check"></i> Smart folders & search</li>
+            <li><i class="fas fa-check"></i> No ads or data scanning</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="text-center" style="margin-top: 4rem;">
+        <a href="checkout.html" class="btn btn-primary btn-lg reveal">
+          <i class="fas fa-rocket"></i>
+          Get Started
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <i class="fas fa-cloud"></i>
+            <span>Xennrex Cloud</span>
+          </a>
+          <p class="footer-desc">South Africa's private Nextcloud hosting on Raspberry Pi 4. Your data, your hardware, your control.</p>
+        </div>
+        <div class="footer-links-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+            <li><a href="checkout.html">Get Started</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="mailto:info@xennrex.org">info@xennrex.org</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="cookies.html">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Xennrex Cloud. All rights reserved. Built in South Africa.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="shared.js"></script>
+  <script>
+    (function() {
+      const canvas = document.getElementById('particleCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+      resize();
+      window.addEventListener('resize', resize);
+      for (let i = 0; i < 30; i++) {
+        particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, size: Math.random() * 1.5 + 0.5, speedX: (Math.random() - 0.5) * 0.2, speedY: (Math.random() - 0.5) * 0.2, opacity: Math.random() * 0.3 + 0.1 });
+      }
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.x += p.speedX; p.y += p.speedY; if (p.x < 0 || p.x > canvas.width) p.speedX *= -1; if (p.y < 0 || p.y > canvas.height) p.speedY *= -1; ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fillStyle = `rgba(168, 85, 247, ${p.opacity})`; ctx.fill(); });
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+  </script>
+</body>
+</html>

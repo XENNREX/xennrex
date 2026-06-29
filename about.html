@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Xennrex Cloud</title>
+  <meta name="description" content="Learn about Xennrex Cloud — built in South Africa, for South Africa. Data sovereignty, local latency, ZAR billing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="particleCanvas" style="opacity: 0.3;"></canvas>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-cloud"></i>
+        </div>
+        <span class="logo-text">Xennrex Cloud</span>
+      </a>
+      <div class="nav-links" id="mobileMenu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="index.html#pricing" class="nav-link">Pricing</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <a href="checkout.html" class="btn btn-primary">Get Started</a>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="badge reveal">
+        <span class="badge-dot"></span>
+        <span>Proudly South African</span>
+      </div>
+      <h1 class="reveal">Built in South Africa.<br><span class="gradient-text">For South Africa.</span></h1>
+      <p class="reveal">Data sovereignty shouldn't be a luxury. We're making private cloud hosting accessible to every South African.</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <div class="content-page">
+    <div class="container">
+      <!-- Story Section -->
+      <div class="content-section reveal">
+        <h2><i class="fas fa-flag" style="color: var(--accent-purple);"></i> Our Story</h2>
+        <p style="margin-bottom: 1.5rem;">Xennrex Cloud was born from a simple observation: South African businesses and individuals deserve cloud services that respect their privacy, their currency, and their right to data sovereignty.</p>
+        <p style="margin-bottom: 1.5rem;">While global cloud providers offer powerful platforms, they come with significant trade-offs for South Africans: data stored overseas, latency issues, USD billing with fluctuating exchange rates, and most critically — your data subject to foreign jurisdictions and surveillance laws.</p>
+        <p>We built Xennrex to solve these problems. By deploying Raspberry Pi 4 hardware locally and running open-source Nextcloud software, we offer a truly private cloud experience where:</p>
+        <ul style="margin-top: 1rem; color: var(--text-muted); list-style: none;">
+          <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--success); margin-right: 0.5rem;"></i> Your data never leaves South African soil</li>
+          <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--success); margin-right: 0.5rem;"></i> Sub-50ms latency from anywhere in the country</li>
+          <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--success); margin-right: 0.5rem;"></i> Billing in ZAR — no currency surprises</li>
+          <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--success); margin-right: 0.5rem;"></i> Zero third-party access to your files</li>
+          <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--success); margin-right: 0.5rem;"></i> Open-source stack with no vendor lock-in</li>
+        </ul>
+      </div>
+
+      <!-- Mission -->
+      <div class="content-section reveal">
+        <h2><i class="fas fa-bullseye" style="color: var(--accent-purple);"></i> Our Mission</h2>
+        <p>To empower South Africans with private, sovereign cloud infrastructure that keeps data local, secure, and under the owner's complete control — while supporting the local economy through ZAR billing and South African jobs.</p>
+      </div>
+
+      <!-- Team Placeholder -->
+      <div class="content-section reveal">
+        <h2><i class="fas fa-users" style="color: var(--accent-purple);"></i> Team</h2>
+        <p style="margin-bottom: 2rem; color: var(--text-muted);">We're a small but dedicated team of South African engineers, designers, and support specialists passionate about digital privacy and open-source technology.</p>
+        <div class="tech-stack">
+          <div class="tech-item" style="flex-direction: column; text-align: center; padding: 1.5rem;">
+            <i class="fas fa-user-circle" style="font-size: 2.5rem; color: var(--text-muted);"></i>
+            <div style="margin-top: 0.5rem;">
+              <strong style="color: var(--text-primary); display: block;">Engineering</strong>
+              <span style="font-size: 0.8125rem; color: var(--text-muted);">Infrastructure & Development</span>
+            </div>
+          </div>
+          <div class="tech-item" style="flex-direction: column; text-align: center; padding: 1.5rem;">
+            <i class="fas fa-user-circle" style="font-size: 2.5rem; color: var(--text-muted);"></i>
+            <div style="margin-top: 0.5rem;">
+              <strong style="color: var(--text-primary); display: block;">Support</strong>
+              <span style="font-size: 0.8125rem; color: var(--text-muted);">Customer Success</span>
+            </div>
+          </div>
+          <div class="tech-item" style="flex-direction: column; text-align: center; padding: 1.5rem;">
+            <i class="fas fa-user-circle" style="font-size: 2.5rem; color: var(--text-muted);"></i>
+            <div style="margin-top: 0.5rem;">
+              <strong style="color: var(--text-primary); display: block;">Operations</strong>
+              <span style="font-size: 0.8125rem; color: var(--text-muted);">Fleet & Monitoring</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Technology Stack -->
+      <div class="content-section reveal">
+        <h2><i class="fas fa-microchip" style="color: var(--accent-purple);"></i> Technology Stack</h2>
+        <p style="margin-bottom: 1.5rem; color: var(--text-muted);">We believe in open-source, battle-tested technologies. Every component of our stack is transparent, auditable, and community-driven.</p>
+        <div class="tech-stack">
+          <div class="tech-item">
+            <i class="fab fa-raspberry-pi"></i>
+            <span>Raspberry Pi 4</span>
+          </div>
+          <div class="tech-item">
+            <i class="fab fa-docker"></i>
+            <span>Docker</span>
+          </div>
+          <div class="tech-item">
+            <i class="fas fa-cloud"></i>
+            <span>Nextcloud</span>
+          </div>
+          <div class="tech-item">
+            <i class="fas fa-network-wired"></i>
+            <span>Tailscale VPN</span>
+          </div>
+          <div class="tech-item">
+            <i class="fas fa-shield-alt"></i>
+            <span>Cloudflare</span>
+          </div>
+          <div class="tech-item">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <span>MEGA Backups</span>
+          </div>
+          <div class="tech-item">
+            <i class="fas fa-database"></i>
+            <span>Backblaze B2</span>
+          </div>
+          <div class="tech-item">
+            <i class="fab fa-linux"></i>
+            <span>Ubuntu Server</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-section" style="padding-top: 2rem;">
+        <div class="cta-card reveal">
+          <div class="cta-content">
+            <h2>Join Xennrex Cloud</h2>
+            <p>Be part of South Africa's private cloud revolution. Your data, your hardware, your control.</p>
+            <a href="checkout.html" class="btn btn-primary btn-lg">
+              <i class="fas fa-rocket"></i>
+              Launch Your Cloud
+            </a>
+          </div>
+          <div class="cta-decoration">
+            <i class="fas fa-cloud"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <i class="fas fa-cloud"></i>
+            <span>Xennrex Cloud</span>
+          </a>
+          <p class="footer-desc">South Africa's private Nextcloud hosting on Raspberry Pi 4. Your data, your hardware, your control.</p>
+        </div>
+        <div class="footer-links-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+            <li><a href="checkout.html">Get Started</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="mailto:info@xennrex.org">info@xennrex.org</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="cookies.html">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Xennrex Cloud. All rights reserved. Built in South Africa.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="shared.js"></script>
+  <script>
+    (function() {
+      const canvas = document.getElementById('particleCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+      resize();
+      window.addEventListener('resize', resize);
+      for (let i = 0; i < 30; i++) {
+        particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, size: Math.random() * 1.5 + 0.5, speedX: (Math.random() - 0.5) * 0.2, speedY: (Math.random() - 0.5) * 0.2, opacity: Math.random() * 0.3 + 0.1 });
+      }
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.x += p.speedX; p.y += p.speedY; if (p.x < 0 || p.x > canvas.width) p.speedX *= -1; if (p.y < 0 || p.y > canvas.height) p.speedY *= -1; ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fillStyle = `rgba(168, 85, 247, ${p.opacity})`; ctx.fill(); });
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+  </script>
+</body>
+</html>
