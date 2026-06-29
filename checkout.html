@@ -4,13 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkout | Xennrex Cloud</title>
-  <meta name="description" content="Complete your Xennrex Cloud signup. Choose a plan, enter your details, and launch your private Nextcloud instance.">
+  <meta name="description" content="Complete your Xennrex Cloud signup. Choose a plan, enter your details, and launch your private cloud instance on South African infrastructure.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
   <script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY"></script>
+  <style>
+    .consent-group { background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1.25rem; }
+    .consent-item { display: flex; align-items: flex-start; gap: 0.875rem; margin-bottom: 1rem; }
+    .consent-item:last-child { margin-bottom: 0; }
+    .consent-item input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--accent-purple); margin-top: 0.125rem; flex-shrink: 0; cursor: pointer; }
+    .consent-item label { font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; cursor: pointer; }
+    .consent-item label a { color: var(--accent-purple); text-decoration: underline; }
+    .consent-item label a:hover { color: var(--accent-indigo); }
+    .compliance-note { display: flex; align-items: flex-start; gap: 0.75rem; padding: 1rem 1.25rem; background: rgba(168,85,247,0.05); border: 1px solid var(--border-color); border-radius: var(--radius); margin-bottom: 1.5rem; font-size: 0.8125rem; color: var(--text-muted); }
+    .compliance-note i { color: var(--accent-purple); font-size: 1rem; margin-top: 0.125rem; flex-shrink: 0; }
+    .security-note { text-align: center; font-size: 0.8125rem; color: var(--text-dark); margin-top: 1rem; }
+    .security-note i { color: var(--success); }
+    .consent-error { border-color: var(--danger) !important; }
+    .error-msg { color: var(--danger); font-size: 0.75rem; margin-top: 0.25rem; display: none; }
+    .error-msg.show { display: block; }
+  </style>
 </head>
 <body>
   <canvas id="particleCanvas" style="opacity: 0.3;"></canvas>
@@ -19,15 +35,11 @@
   <nav class="navbar">
     <div class="container nav-container">
       <a href="index.html" class="logo">
-        <div class="logo-icon">
-          <i class="fas fa-cloud"></i>
-        </div>
+        <div class="logo-icon"><i class="fas fa-cloud"></i></div>
         <span class="logo-text">Xennrex Cloud</span>
       </a>
       <div class="nav-actions">
-        <a href="index.html" class="btn btn-outline btn-sm">
-          <i class="fas fa-arrow-left"></i> Back
-        </a>
+        <a href="index.html" class="btn btn-outline btn-sm"><i class="fas fa-arrow-left"></i> Back</a>
       </div>
     </div>
   </nav>
@@ -41,49 +53,36 @@
         <div class="plan-options" id="planOptions">
           <label class="plan-option" data-plan="entry" data-price="49">
             <input type="radio" name="plan" value="entry" data-price="49">
-            <div class="plan-option-info">
-              <strong>Cloud Entry</strong>
-              <span>20 GB Storage &middot; 2 GB RAM &middot; 2 Cores</span>
-            </div>
+            <div class="plan-option-info"><strong>Cloud Entry</strong><span>20 GB Storage &middot; 2 GB RAM &middot; 2 Cores</span></div>
             <div class="plan-option-price">R49/mo</div>
           </label>
-
           <label class="plan-option" data-plan="starter" data-price="179">
             <input type="radio" name="plan" value="starter" data-price="179">
-            <div class="plan-option-info">
-              <strong>Cloud Starter</strong>
-              <span>750 GB Storage &middot; 4 GB RAM &middot; 4 Cores</span>
-            </div>
+            <div class="plan-option-info"><strong>Cloud Starter</strong><span>750 GB Storage &middot; 4 GB RAM &middot; 4 Cores</span></div>
             <div class="plan-option-price">R179/mo</div>
           </label>
-
           <label class="plan-option" data-plan="pro" data-price="349">
             <input type="radio" name="plan" value="pro" data-price="349">
-            <div class="plan-option-info">
-              <strong>Cloud Pro</strong>
-              <span>3 TB Storage &middot; 8 GB RAM &middot; 8 Cores</span>
-            </div>
+            <div class="plan-option-info"><strong>Cloud Pro</strong><span>3 TB Storage &middot; 8 GB RAM &middot; 8 Cores</span></div>
             <div class="plan-option-price">R349/mo</div>
           </label>
-
           <label class="plan-option" data-plan="business" data-price="649">
             <input type="radio" name="plan" value="business" data-price="649">
-            <div class="plan-option-info">
-              <strong>Cloud Business</strong>
-              <span>10 TB Storage &middot; 16 GB RAM &middot; 8 Cores</span>
-            </div>
+            <div class="plan-option-info"><strong>Cloud Business</strong><span>10 TB Storage &middot; 16 GB RAM &middot; 8 Cores</span></div>
             <div class="plan-option-price">R649/mo</div>
           </label>
-
           <label class="plan-option" data-plan="enterprise" data-price="949">
             <input type="radio" name="plan" value="enterprise" data-price="949">
-            <div class="plan-option-info">
-              <strong>Cloud Enterprise</strong>
-              <span>20 TB Storage &middot; 32 GB RAM &middot; 16 Cores</span>
-            </div>
+            <div class="plan-option-info"><strong>Cloud Enterprise</strong><span>20 TB Storage &middot; 32 GB RAM &middot; 16 Cores</span></div>
             <div class="plan-option-price">R949/mo</div>
           </label>
         </div>
+      </div>
+
+      <!-- Compliance Note -->
+      <div class="compliance-note reveal">
+        <i class="fas fa-shield-alt"></i>
+        <span>Your data is stored exclusively within South African jurisdiction in compliance with the POPI Act.</span>
       </div>
 
       <!-- Checkout Form -->
@@ -110,12 +109,27 @@
             <label class="form-label" for="phone">Phone Number</label>
             <input type="tel" id="phone" name="phone" class="form-input" placeholder="+27 12 345 6789">
           </div>
+
+          <!-- Consent Checkboxes -->
+          <div class="consent-group" id="consentGroup">
+            <p style="font-size: 0.875rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;"><i class="fas fa-file-signature" style="color: var(--accent-purple); margin-right: 0.5rem;"></i>Required Agreements</p>
+            <div class="consent-item">
+              <input type="checkbox" id="tosConsent" name="tosConsent" required>
+              <label for="tosConsent">I agree to the <a href="https://nextcloud.com/terms/" target="_blank" rel="noopener noreferrer">Nextcloud Terms of Service <i class="fas fa-external-link-alt" style="font-size: 0.7rem;"></i></a> and accept that my data will be processed on Xennrex Cloud infrastructure.</label>
+            </div>
+            <p class="error-msg" id="tosError"><i class="fas fa-exclamation-circle"></i> You must agree to the Nextcloud Terms of Service to continue.</p>
+            <div class="consent-item">
+              <input type="checkbox" id="privacyConsent" name="privacyConsent" required>
+              <label for="privacyConsent">I have read and agree to the <a href="privacy.html">Privacy Policy</a> and understand how my data will be processed under the POPI Act.</label>
+            </div>
+            <p class="error-msg" id="privacyError"><i class="fas fa-exclamation-circle"></i> You must agree to the Privacy Policy to continue.</p>
+          </div>
+
           <button type="submit" class="btn btn-primary btn-lg btn-full" id="submitBtn">
-            <i class="fas fa-lock"></i>
-            Proceed to PayFast Payment
+            <i class="fas fa-lock"></i> Proceed to PayFast Payment
           </button>
-          <p class="text-center mt-2" style="font-size: 0.8125rem; color: var(--text-muted);">
-            <i class="fas fa-shield-alt"></i> Secured by PayFast & reCAPTCHA
+          <p class="security-note">
+            <i class="fas fa-shield-alt"></i> Payments securely processed by PayFast. We never store your card details.
           </p>
         </form>
       </div>
@@ -143,10 +157,7 @@
               <option value="enterprise">Cloud Enterprise - R949/mo</option>
             </select>
           </div>
-          <button type="submit" class="btn btn-warning btn-lg btn-full" id="waitlistBtn">
-            <i class="fas fa-bell"></i>
-            Join Waitlist
-          </button>
+          <button type="submit" class="btn btn-warning btn-lg btn-full" id="waitlistBtn"><i class="fas fa-bell"></i> Join Waitlist</button>
         </form>
       </div>
     </div>
@@ -154,21 +165,15 @@
     <!-- Order Summary -->
     <div class="order-summary reveal" id="orderSummary">
       <h3>Order Summary</h3>
-      <div class="summary-row">
-        <span>Plan</span>
-        <span id="summaryPlan">-</span>
-      </div>
-      <div class="summary-row">
-        <span>Monthly Price</span>
-        <span id="summaryPrice">-</span>
-      </div>
-      <div class="summary-row">
-        <span>VAT (15%)</span>
-        <span id="summaryVat">-</span>
-      </div>
-      <div class="summary-row total">
-        <span>Total (first month)</span>
-        <span id="summaryTotal">-</span>
+      <div class="summary-row"><span>Plan</span><span id="summaryPlan">-</span></div>
+      <div class="summary-row"><span>Monthly Price</span><span id="summaryPrice">-</span></div>
+      <div class="summary-row"><span>VAT (15%)</span><span id="summaryVat">-</span></div>
+      <div class="summary-row total"><span>Total (first month)</span><span id="summaryTotal">-</span></div>
+      <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
+        <p style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.6;">
+          <i class="fas fa-info-circle" style="color: var(--accent-purple);"></i> 
+          Your instance will be provisioned on South African infrastructure. Data is stored exclusively within SA jurisdiction.
+        </p>
       </div>
     </div>
   </div>
@@ -192,7 +197,6 @@
 
   <script src="shared.js"></script>
   <script>
-    // Plan data
     const plans = {
       entry: { name: 'Cloud Entry', price: 49, storage: '20GB', ram: '2GB', cores: 2 },
       starter: { name: 'Cloud Starter', price: 179, storage: '750GB', ram: '4GB', cores: 4 },
@@ -200,33 +204,18 @@
       business: { name: 'Cloud Business', price: 649, storage: '10TB', ram: '16GB', cores: 8 },
       enterprise: { name: 'Cloud Enterprise', price: 949, storage: '20TB', ram: '32GB', cores: 16 }
     };
-
     let selectedPlan = null;
 
-    // Parse URL for preselected plan
-    function getPreselectedPlan() {
-      const params = new URLSearchParams(window.location.search);
-      return params.get('plan');
-    }
+    function getPreselectedPlan() { const params = new URLSearchParams(window.location.search); return params.get('plan'); }
 
-    // Plan selection
     document.querySelectorAll('.plan-option').forEach(option => {
-      option.addEventListener('click', (e) => {
-        if (e.target.type === 'radio') {
-          selectPlan(option.dataset.plan);
-        }
-      });
-
-      option.querySelector('input').addEventListener('change', () => {
-        selectPlan(option.dataset.plan);
-      });
+      option.addEventListener('click', (e) => { if (e.target.type === 'radio') selectPlan(option.dataset.plan); });
+      option.querySelector('input').addEventListener('change', () => selectPlan(option.dataset.plan));
     });
 
     function selectPlan(planKey) {
       selectedPlan = planKey;
-      document.querySelectorAll('.plan-option').forEach(opt => {
-        opt.classList.toggle('selected', opt.dataset.plan === planKey);
-      });
+      document.querySelectorAll('.plan-option').forEach(opt => opt.classList.toggle('selected', opt.dataset.plan === planKey));
       updateSummary();
     }
 
@@ -235,42 +224,72 @@
       const plan = plans[selectedPlan];
       const vat = plan.price * 0.15;
       const total = plan.price + vat;
-
       document.getElementById('summaryPlan').textContent = plan.name;
       document.getElementById('summaryPrice').textContent = `R${plan.price.toFixed(2)}`;
       document.getElementById('summaryVat').textContent = `R${vat.toFixed(2)}`;
       document.getElementById('summaryTotal').textContent = `R${total.toFixed(2)}`;
     }
 
-    // Handle OUT_OF_STOCK from API
     function showWaitlist(planKey) {
       document.getElementById('checkoutFormSection').classList.add('hidden');
       document.getElementById('waitlistSection').classList.remove('hidden');
       document.getElementById('orderSummary').classList.add('hidden');
-      if (planKey) {
-        document.getElementById('waitlistPlan').value = planKey;
-      }
+      if (planKey) document.getElementById('waitlistPlan').value = planKey;
     }
 
-    // Checkout form submission
+    // Validate consent checkboxes
+    function validateConsent() {
+      let valid = true;
+      const tosChecked = document.getElementById('tosConsent').checked;
+      const privacyChecked = document.getElementById('privacyConsent').checked;
+      const consentGroup = document.getElementById('consentGroup');
+
+      if (!tosChecked) {
+        document.getElementById('tosError').classList.add('show');
+        consentGroup.classList.add('consent-error');
+        valid = false;
+      } else {
+        document.getElementById('tosError').classList.remove('show');
+      }
+      if (!privacyChecked) {
+        document.getElementById('privacyError').classList.add('show');
+        consentGroup.classList.add('consent-error');
+        valid = false;
+      } else {
+        document.getElementById('privacyError').classList.remove('show');
+      }
+      if (tosChecked && privacyChecked) {
+        consentGroup.classList.remove('consent-error');
+      }
+      return valid;
+    }
+
+    // Clear error styling when checkboxes are clicked
+    document.getElementById('tosConsent').addEventListener('change', function() {
+      if (this.checked) document.getElementById('tosError').classList.remove('show');
+      if (document.getElementById('privacyConsent').checked && this.checked) {
+        document.getElementById('consentGroup').classList.remove('consent-error');
+      }
+    });
+    document.getElementById('privacyConsent').addEventListener('change', function() {
+      if (this.checked) document.getElementById('privacyError').classList.remove('show');
+      if (document.getElementById('tosConsent').checked && this.checked) {
+        document.getElementById('consentGroup').classList.remove('consent-error');
+      }
+    });
+
     document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      if (!selectedPlan) {
-        showToast('Please select a plan', 'error');
-        return;
-      }
+      if (!selectedPlan) { showToast('Please select a plan', 'error'); return; }
+      if (!validateConsent()) { showToast('Please accept all required agreements', 'error'); return; }
 
       const submitBtn = document.getElementById('submitBtn');
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<div class="loading-spinner"></div> Processing...';
 
       try {
-        // Execute reCAPTCHA v3
-        const recaptchaToken = await grecaptcha.execute('YOUR_RECAPTCHA_SITE_KEY', {
-          action: 'checkout'
-        });
-
+        const recaptchaToken = await grecaptcha.execute('6Lc7LDotAAAAAOxJA9z-ArD9wlbJnkpQVE0dY9KZ', { action: 'checkout' });
         const formData = {
           firstName: document.getElementById('firstName').value,
           lastName: document.getElementById('lastName').value,
@@ -278,6 +297,8 @@
           company: document.getElementById('company').value,
           phone: document.getElementById('phone').value,
           plan: selectedPlan,
+          tosConsent: document.getElementById('tosConsent').checked,
+          privacyConsent: document.getElementById('privacyConsent').checked,
           recaptchaToken: recaptchaToken
         };
 
@@ -286,7 +307,6 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
         });
-
         const data = await response.json();
 
         if (data.status === 'OUT_OF_STOCK') {
@@ -296,12 +316,8 @@
           submitBtn.innerHTML = '<i class="fas fa-lock"></i> Proceed to PayFast Payment';
           return;
         }
+        if (!response.ok || data.error) { throw new Error(data.message || 'Registration failed'); }
 
-        if (!response.ok || data.error) {
-          throw new Error(data.message || 'Registration failed');
-        }
-
-        // If PayFast data is returned, auto-submit the form
         if (data.payfast) {
           document.getElementById('payfastMerchantId').value = data.payfast.merchant_id || '';
           document.getElementById('payfastMerchantKey').value = data.payfast.merchant_key || '';
@@ -315,13 +331,9 @@
           document.getElementById('payfastSignature').value = data.payfast.signature || '';
           document.getElementById('payfastForm').submit();
         } else {
-          // Success without PayFast redirect
           showToast('Registration successful! Redirecting...', 'success');
-          setTimeout(() => {
-            window.location.href = `success.html?clientId=${data.clientId}`;
-          }, 1500);
+          setTimeout(() => { window.location.href = `success.html?clientId=${data.clientId}`; }, 1500);
         }
-
       } catch (error) {
         console.error('Checkout error:', error);
         showToast(error.message || 'Something went wrong. Please try again.', 'error');
@@ -330,91 +342,41 @@
       }
     });
 
-    // Waitlist form submission
     document.getElementById('waitlistForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-
       const submitBtn = document.getElementById('waitlistBtn');
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<div class="loading-spinner"></div> Joining...';
-
       try {
         const response = await fetch(`${API_BASE}/api/waitlist/join`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: document.getElementById('waitlistName').value,
-            email: document.getElementById('waitlistEmail').value,
-            plan: document.getElementById('waitlistPlan').value
-          })
+          body: JSON.stringify({ name: document.getElementById('waitlistName').value, email: document.getElementById('waitlistEmail').value, plan: document.getElementById('waitlistPlan').value })
         });
-
         const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(data.message || 'Failed to join waitlist');
-        }
-
+        if (!response.ok) throw new Error(data.message || 'Failed to join waitlist');
         showToast('You have been added to the waitlist! We\'ll notify you when a slot opens.', 'success');
         document.getElementById('waitlistForm').reset();
-
-      } catch (error) {
-        showToast(error.message || 'Something went wrong. Please try again.', 'error');
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-bell"></i> Join Waitlist';
-      }
+      } catch (error) { showToast(error.message || 'Something went wrong. Please try again.', 'error'); }
+      finally { submitBtn.disabled = false; submitBtn.innerHTML = '<i class="fas fa-bell"></i> Join Waitlist'; }
     });
 
-    // Auto-select plan from URL
     const preselectedPlan = getPreselectedPlan();
     if (preselectedPlan && plans[preselectedPlan]) {
       const radio = document.querySelector(`input[value="${preselectedPlan}"]`);
-      if (radio) {
-        radio.checked = true;
-        selectPlan(preselectedPlan);
-      }
+      if (radio) { radio.checked = true; selectPlan(preselectedPlan); }
     }
 
-    // Light particle animation for checkout
+    // Light particle animation
     (function() {
       const canvas = document.getElementById('particleCanvas');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
       let particles = [];
-
-      function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-      resize();
-      window.addEventListener('resize', resize);
-
-      for (let i = 0; i < 30; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: Math.random() * 1.5 + 0.5,
-          speedX: (Math.random() - 0.5) * 0.2,
-          speedY: (Math.random() - 0.5) * 0.2,
-          opacity: Math.random() * 0.3 + 0.1
-        });
-      }
-
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => {
-          p.x += p.speedX;
-          p.y += p.speedY;
-          if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
-          if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(168, 85, 247, ${p.opacity})`;
-          ctx.fill();
-        });
-        requestAnimationFrame(animate);
-      }
+      function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+      resize(); window.addEventListener('resize', resize);
+      for (let i = 0; i < 30; i++) particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, size: Math.random() * 1.5 + 0.5, speedX: (Math.random() - 0.5) * 0.2, speedY: (Math.random() - 0.5) * 0.2, opacity: Math.random() * 0.3 + 0.1 });
+      function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.x += p.speedX; p.y += p.speedY; if (p.x < 0 || p.x > canvas.width) p.speedX *= -1; if (p.y < 0 || p.y > canvas.height) p.speedY *= -1; ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fillStyle = `rgba(168, 85, 247, ${p.opacity})`; ctx.fill(); }); requestAnimationFrame(animate); }
       animate();
     })();
   </script>

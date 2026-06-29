@@ -3,55 +3,1015 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Privacy Policy for Xennrex Cloud. Learn how we collect, use, and protect your personal information in compliance with the POPI Act 2013.">
   <title>Privacy Policy — Xennrex Cloud</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-    :root { --bg: #0f0f1a; --bg-card: #16162a; --text: #e8e8f0; --text-muted: #8a8aa8; --accent: #a855f7; --gradient-1: linear-gradient(135deg, #a855f7 0%, #6366f1 100%); --border: rgba(168,85,247,0.15); }
+    :root {
+      --bg-primary: #0f0f1a;
+      --bg-secondary: #16162a;
+      --bg-hover: #1e1e3a;
+      --accent-gradient: linear-gradient(135deg, #a855f7, #6366f1);
+      --accent-purple: #a855f7;
+      --accent-indigo: #6366f1;
+      --text-primary: #e8e8f0;
+      --text-muted: #8a8aa8;
+      --text-dark: #5a5a78;
+      --border-color: rgba(168, 85, 247, 0.15);
+      --border-glow: rgba(168, 85, 247, 0.3);
+      --radius: 12px;
+      --radius-lg: 16px;
+      --success: #22c55e;
+      --danger: #ef4444;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(15,15,26,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 0 2rem; }
-    .nav-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 70px; }
-    .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ===== Navbar ===== */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(15, 15, 26, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+    }
+
     .logo span { font-weight: 300; opacity: 0.7; }
-    .content { max-width: 800px; margin: 0 auto; padding: 120px 2rem 60px; }
-    .content h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 700; margin-bottom: 2rem; }
-    .content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 600; margin: 2rem 0 1rem; color: var(--accent); }
-    .content p { color: var(--text-muted); margin-bottom: 1rem; }
-    .content ul { color: var(--text-muted); margin-left: 1.5rem; margin-bottom: 1rem; }
-    .content li { margin-bottom: 0.5rem; }
-    .last-updated { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 2rem; padding: 1rem; background: var(--bg-card); border-radius: 8px; border: 1px solid var(--border); }
-    footer { background: rgba(15,15,26,0.95); border-top: 1px solid var(--border); padding: 40px 2rem; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-link {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
+      background: var(--bg-secondary);
+    }
+
+    /* ===== Content ===== */
+    .content-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 120px 2rem 80px;
+    }
+
+    .page-header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .page-header h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .last-updated {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      padding: 0.75rem 1rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+    }
+
+    .last-updated i { color: var(--accent-purple); font-size: 0.75rem; }
+
+    /* ===== Legal Section Styling ===== */
+    .legal-section {
+      margin-bottom: 2.5rem;
+      scroll-margin-top: 90px;
+    }
+
+    .legal-section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.375rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--accent-purple);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .legal-section h2 .section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: var(--accent-gradient);
+      color: white;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .legal-section h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 1.25rem 0 0.75rem;
+      color: var(--text-primary);
+    }
+
+    .legal-section p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .legal-section ul, .legal-section ol {
+      color: var(--text-muted);
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .legal-section li {
+      margin-bottom: 0.5rem;
+    }
+
+    .legal-section strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* ===== Info Boxes ===== */
+    .info-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin: 1rem 0;
+    }
+
+    .info-box.notice {
+      border-left: 3px solid var(--accent-purple);
+    }
+
+    .info-box.success {
+      border-left: 3px solid var(--success);
+    }
+
+    .info-box.warning {
+      border-left: 3px solid #f59e0b;
+    }
+
+    .info-box-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .info-box p:last-child { margin-bottom: 0; }
+
+    /* ===== Table of Contents ===== */
+    .toc {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .toc-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .toc-title i { color: var(--accent-purple); }
+
+    .toc ul {
+      list-style: none;
+      margin: 0;
+      column-count: 2;
+      column-gap: 2rem;
+    }
+
+    .toc li {
+      margin-bottom: 0.4rem;
+      break-inside: avoid;
+    }
+
+    .toc a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+
+    .toc a:hover { color: var(--accent-purple); }
+
+    /* ===== Data Collection Grid ===== */
+    .data-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .data-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      transition: all 0.3s ease;
+    }
+
+    .data-card:hover {
+      border-color: var(--border-glow);
+      transform: translateY(-2px);
+    }
+
+    .data-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .data-card-icon.purple { background: rgba(168, 85, 247, 0.1); color: var(--accent-purple); }
+    .data-card-icon.green { background: rgba(34, 197, 94, 0.1); color: var(--success); }
+    .data-card-icon.blue { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+    .data-card-icon.orange { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+
+    .data-card h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .data-card p {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* ===== Rights Grid ===== */
+    .rights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .rights-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .rights-card:hover {
+      border-color: var(--border-glow);
+    }
+
+    .rights-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin: 0 auto 0.75rem;
+      background: rgba(168, 85, 247, 0.1);
+      color: var(--accent-purple);
+    }
+
+    .rights-card h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .rights-card p {
+      color: var(--text-muted);
+      font-size: 0.8125rem;
+      margin: 0;
+    }
+
+    /* ===== Contact Block ===== */
+    .contact-block {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .contact-block-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--accent-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .contact-block h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-block p {
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-block a {
+      color: var(--accent-purple);
+      text-decoration: none;
+    }
+
+    .contact-block a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== Back to Top ===== */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 44px;
+      height: 44px;
+      background: var(--accent-gradient);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(168, 85, 247, 0.35);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(168, 85, 247, 0.5);
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      padding: 3rem 2rem 2rem;
+    }
+
+    .footer-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-decoration: none;
+      margin-bottom: 1rem;
+    }
+
+    .footer-desc {
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+
+    .footer-links-col h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links-col ul {
+      list-style: none;
+      margin: 0;
+    }
+
+    .footer-links-col li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links-col a {
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links-col a:hover { color: var(--accent-purple); }
+
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 0 auto;
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.5rem;
+      text-align: center;
+      color: var(--text-dark);
+      font-size: 0.875rem;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .toc ul { column-count: 1; }
+      .nav-links { display: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .data-grid { grid-template-columns: 1fr; }
+      .rights-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .content-wrapper { padding: 100px 1rem 60px; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
-  <nav><div class="nav-container"><a href="index.html" class="logo">Xennrex<span>Cloud</span></a></div></nav>
-  <div class="content">
-    <h1>Privacy Policy</h1>
-    <div class="last-updated">Last updated: June 28, 2026</div>
-    <h2>1. Introduction</h2>
-    <p>Xennrex Cloud ("we", "us", "our") respects your privacy and is committed to protecting your personal data. This privacy policy explains how we collect, use, and safeguard your information.</p>
-    <h2>2. Data We Collect</h2>
-    <ul>
-      <li><strong>Account Information:</strong> Name, email, company name, phone number, and delivery address.</li>
-      <li><strong>Payment Information:</strong> Processed securely by PayFast. We do not store card details.</li>
-      <li><strong>Technical Data:</strong> IP address, browser type, and device information for security purposes.</li>
-    </ul>
-    <h2>3. How We Use Your Data</h2>
-    <ul>
-      <li>To provide and manage your cloud services</li>
-      <li>To process payments and send invoices</li>
-      <li>To communicate about your service status</li>
-      <li>To improve our infrastructure and security</li>
-    </ul>
-    <h2>4. Data Sovereignty</h2>
-    <p>Your data is stored on your own Raspberry Pi 4 hardware, physically located at your premises. We do not have access to your files, documents, or personal data stored on your Nextcloud instance.</p>
-    <h2>5. Third-Party Services</h2>
-    <p>We use PayFast for payment processing, Tailscale for VPN connectivity, MEGA for encrypted backups, and Cloudflare for edge networking. Each provider has their own privacy policy.</p>
-    <h2>6. Your Rights</h2>
-    <p>Under POPIA, you have the right to access, correct, delete, and port your personal data. Contact us at <a href="mailto:privacy@xennrex.org" style="color:var(--accent);">privacy@xennrex.org</a>.</p>
-    <h2>7. Contact</h2>
-    <p>For privacy-related inquiries, contact our Information Officer at privacy@xennrex.org.</p>
+
+  <!-- ===== Navbar ===== -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Xennrex<span>Cloud</span></a>
+      <div class="nav-links">
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="https://portal.xennrex.org" class="nav-link">Portal</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== Main Content ===== -->
+  <div class="content-wrapper">
+
+    <div class="page-header">
+      <h1>Privacy Policy</h1>
+      <div class="last-updated">
+        <i class="fas fa-clock"></i>
+        Last Updated: 30 June 2026
+      </div>
+    </div>
+
+    <!-- Table of Contents -->
+    <nav class="toc" aria-label="Table of Contents">
+      <div class="toc-title"><i class="fas fa-list"></i> Contents</div>
+      <ul>
+        <li><a href="#sec-1">1. Introduction</a></li>
+        <li><a href="#sec-2">2. Information We Collect</a></li>
+        <li><a href="#sec-3">3. How We Use Your Information</a></li>
+        <li><a href="#sec-4">4. Legal Basis for Processing</a></li>
+        <li><a href="#sec-5">5. Data Sharing &amp; Third Parties</a></li>
+        <li><a href="#sec-6">6. Data Retention</a></li>
+        <li><a href="#sec-7">7. Data Security</a></li>
+        <li><a href="#sec-8">8. Data Location &amp; Cross-Border Transfers</a></li>
+        <li><a href="#sec-9">9. Your Rights Under POPI Act</a></li>
+        <li><a href="#sec-10">10. Cookies &amp; Similar Technologies</a></li>
+        <li><a href="#sec-11">11. Third-Party Services</a></li>
+        <li><a href="#sec-12">12. Children's Privacy</a></li>
+        <li><a href="#sec-13">13. Changes to This Policy</a></li>
+        <li><a href="#sec-14">14. Contact &amp; Information Officer</a></li>
+      </ul>
+    </nav>
+
+    <!-- Section 1: Introduction -->
+    <section class="legal-section" id="sec-1">
+      <h2><span class="section-num">1</span> Introduction</h2>
+      <p>At <strong>Xennrex Cloud (Pty) Ltd</strong> ("<strong>Xennrex Cloud</strong>", "<strong>we</strong>", "<strong>us</strong>", or "<strong>our</strong>"), we respect your privacy and are committed to protecting your Personal Information. This Privacy Policy explains how we collect, use, store, disclose, and safeguard your information when you visit our website at <a href="https://xennrex.org" style="color: var(--accent-purple);">xennrex.org</a> and use our private cloud storage and collaboration services (collectively, the "<strong>Service</strong>").</p>
+
+      <p>This Privacy Policy is drafted in compliance with the <strong>Protection of Personal Information Act 4 of 2013</strong> ("<strong>POPI Act</strong>" or "<strong>POPIA</strong>"), as well as the <strong>Consumer Protection Act 68 of 2008</strong> and the <strong>Electronic Communications and Transactions Act 25 of 2002</strong>.</p>
+
+      <div class="info-box success">
+        <div class="info-box-title"><i class="fas fa-shield-alt" style="color: var(--success);"></i> Our Commitment</div>
+        <p>We do not sell your Personal Information. We do not use your data for advertising. We do not scan your files for commercial purposes. Your data sovereignty is our highest priority.</p>
+      </div>
+
+      <p>By accessing or using our Service, you acknowledge that you have read and understood this Privacy Policy. If you do not agree with any aspect of this Privacy Policy, you must discontinue use of the Service immediately.</p>
+    </section>
+
+    <!-- Section 2: Information We Collect -->
+    <section class="legal-section" id="sec-2">
+      <h2><span class="section-num">2</span> Information We Collect</h2>
+      <p>We collect and process Personal Information that is necessary for the legitimate operation of our Service and to fulfil our contractual obligations to you. The types of information we collect are categorised as follows:</p>
+
+      <div class="data-grid">
+        <div class="data-card">
+          <div class="data-card-icon purple"><i class="fas fa-user"></i></div>
+          <h4>Account Information</h4>
+          <p>Your full name, email address, telephone number, company or organisation name, and physical address. This information is provided directly by you during Account registration and profile management.</p>
+        </div>
+        <div class="data-card">
+          <div class="data-card-icon green"><i class="fas fa-credit-card"></i></div>
+          <h4>Payment Information</h4>
+          <p>Payment processing is handled entirely by PayFast (Pty) Ltd. We do not store your credit card numbers, CVV codes, or banking details. We retain only transaction references and payment confirmation records for accounting purposes.</p>
+        </div>
+        <div class="data-card">
+          <div class="data-card-icon blue"><i class="fas fa-server"></i></div>
+          <h4>Usage Data</h4>
+          <p>Storage quota utilisation, login timestamps, session duration, and feature usage patterns. This data is collected solely for the purpose of Service operation, performance optimisation, and billing verification.</p>
+        </div>
+        <div class="data-card">
+          <div class="data-card-icon orange"><i class="fas fa-fingerprint"></i></div>
+          <h4>Technical Data</h4>
+          <p>Internet Protocol (IP) address, browser type and version, operating system, device type, and time zone setting. This data is used exclusively for security monitoring, fraud prevention, and troubleshooting.</p>
+        </div>
+      </div>
+
+      <h3>2.1 Information You Provide Directly</h3>
+      <p>When you register for an Account, subscribe to a plan, contact our support team, or interact with the Service in any way, you may provide us with:</p>
+      <ul>
+        <li><strong>Identity Information:</strong> Name, surname, company name, job title;</li>
+        <li><strong>Contact Information:</strong> Email address, telephone number, physical address;</li>
+        <li><strong>Account Credentials:</strong> Username and password (stored using bcrypt hashing);</li>
+        <li><strong>Communication Records:</strong> Any information you provide when contacting our support or sales teams;</li>
+        <li><strong>Preferences:</strong> Notification preferences, language settings, and display preferences.</li>
+      </ul>
+
+      <h3>2.2 Information Collected Automatically</h3>
+      <p>When you access or use the Service, certain information is collected automatically through cookies, server logs, and similar technologies:</p>
+      <ul>
+        <li><strong>Log Data:</strong> IP address, browser type, referring/exit pages, operating system, date/time stamps;</li>
+        <li><strong>Device Information:</strong> Hardware model, operating system version, unique device identifiers;</li>
+        <li><strong>Usage Patterns:</strong> Pages visited, features used, clicks, and navigation paths within the Service;</li>
+        <li><strong>Location Data:</strong> Approximate geographic location derived from your IP address for security and fraud prevention purposes only.</li>
+      </ul>
+
+      <h3>2.3 Client Data</h3>
+      <p>All files, documents, images, videos, and other content that you or your Authorised Users upload, store, or share through the Service ("<strong>Client Data</strong>") remains your exclusive property. We do not access, scan, analyse, or process Client Data for any purpose other than storing it and making it available to you through the Service, unless required by law or with your explicit consent.</p>
+    </section>
+
+    <!-- Section 3: How We Use Information -->
+    <section class="legal-section" id="sec-3">
+      <h2><span class="section-num">3</span> How We Use Your Information</h2>
+      <p>We use the information we collect for the following purposes:</p>
+
+      <h3>3.1 To Provide and Maintain the Service</h3>
+      <ul>
+        <li>Creating and managing your Account;</li>
+        <li>Providing access to the cloud storage and collaboration features;</li>
+        <li>Processing storage allocation, user management, and access controls;</li>
+        <li>Delivering customer and technical support;</li>
+        <li>Maintaining, improving, and optimising Service performance.</li>
+      </ul>
+
+      <h3>3.2 To Process Payments</h3>
+      <ul>
+        <li>Processing Subscription Fee payments through our payment gateway;</li>
+        <li>Maintaining records of transactions for accounting and tax purposes;</li>
+        <li>Detecting and preventing fraudulent transactions;</li>
+        <li>Managing subscription renewals, upgrades, and downgrades.</li>
+      </ul>
+
+      <h3>3.3 To Communicate With You</h3>
+      <ul>
+        <li>Sending service-related notifications (Account alerts, security warnings, maintenance schedules);</li>
+        <li>Responding to your enquiries and support requests;</li>
+        <li>Sending important administrative messages regarding your Account or Subscription;</li>
+        <li>With your explicit consent, sending product updates and promotional communications (you may opt out at any time).</li>
+      </ul>
+
+      <h3>3.4 For Security and Fraud Prevention</h3>
+      <ul>
+        <li>Monitoring for suspicious activity and unauthorised access attempts;</li>
+        <li>Detecting, preventing, and investigating fraud, abuse, and security incidents;</li>
+        <li>Enforcing our Terms of Service and Acceptable Use Policy;</li>
+        <li>Verifying your identity when you contact us.</li>
+      </ul>
+
+      <h3>3.5 For Legal Compliance</h3>
+      <ul>
+        <li>Complying with applicable laws, regulations, and legal processes;</li>
+        <li>Responding to lawful requests from public authorities, including law enforcement;</li>
+        <li>Protecting our rights, privacy, safety, or property, and those of our Clients;</li>
+        <li>Exercising or defending legal claims.</li>
+      </ul>
+
+      <h3>3.6 What We Do NOT Do</h3>
+      <p>We want to be explicit about our practices:</p>
+      <ul>
+        <li>We <strong>do not</strong> sell, rent, lease, or trade your Personal Information to any third party;</li>
+        <li>We <strong>do not</strong> use your Personal Information for targeted advertising;</li>
+        <li>We <strong>do not</strong> scan, analyse, or profile your Client Data for commercial purposes;</li>
+        <li>We <strong>do not</strong> share your information with data brokers or marketing companies;</li>
+        <li>We <strong>do not</strong> build user profiles for purposes unrelated to providing the Service.</li>
+      </ul>
+    </section>
+
+    <!-- Section 4: Legal Basis -->
+    <section class="legal-section" id="sec-4">
+      <h2><span class="section-num">4</span> Legal Basis for Processing</h2>
+      <p>Under Section 11 of the POPI Act, we process Personal Information only where a lawful ground for processing exists. Our legal bases for processing your Personal Information are:</p>
+
+      <h3>4.1 Consent (Section 11(1)(a))</h3>
+      <p>Where you have provided your explicit consent, we process your Personal Information for the purposes specified at the time consent was obtained. For example, consent to receive marketing communications. You have the right to withdraw consent at any time by contacting us at <a href="mailto:info@xennrex.org" style="color: var(--accent-purple);">info@xennrex.org</a>.</p>
+
+      <h3>4.2 Contractual Necessity (Section 11(1)(b))</h3>
+      <p>Processing is necessary for the performance of our contract with you — that is, to provide the Service you have subscribed to. Without this processing, we cannot create your Account, store your data, or provide the core functionality of the Service.</p>
+
+      <h3>4.3 Legal Obligation (Section 11(1)(c))</h3>
+      <p>Processing is necessary to comply with a legal obligation to which we are subject. This includes tax and accounting record-keeping obligations, responding to lawful court orders or subpoenas, and cooperating with law enforcement agencies.</p>
+
+      <h3>4.4 Legitimate Interest (Section 11(1)(f))</h3>
+      <p>Processing is necessary for the purposes of our legitimate interests or those of a third party, except where such interests are overridden by your interests, rights, and freedoms. Our legitimate interests include:</p>
+      <ul>
+        <li>Ensuring the security and integrity of our Service and infrastructure;</li>
+        <li>Preventing fraud and abuse;</li>
+        <li>Improving Service performance and user experience through anonymised analytics;</li>
+        <li>Exercising our legal rights and defending against legal claims.</li>
+      </ul>
+    </section>
+
+    <!-- Section 5: Data Sharing -->
+    <section class="legal-section" id="sec-5">
+      <h2><span class="section-num">5</span> Data Sharing &amp; Third Parties</h2>
+      <p><strong>5.1</strong> We do NOT sell your Personal Information. We do NOT share your Personal Information with advertisers or data brokers. We share Personal Information only in the limited circumstances described below:</p>
+
+      <h3>5.2 Service Providers</h3>
+      <p>We engage carefully selected third-party service providers to perform functions and provide services on our behalf. These providers have access to Personal Information only to the extent necessary to perform their functions and are contractually obligated to:</p>
+      <ul>
+        <li>Process Personal Information only in accordance with our instructions;</li>
+        <li>Maintain strict confidentiality and security measures;</li>
+        <li>Comply with the POPI Act and this Privacy Policy;</li>
+        <li>Not use Personal Information for any purpose other than providing the contracted services.</li>
+      </ul>
+
+      <p>Our current service providers include:</p>
+      <ul>
+        <li><strong>PayFast (Pty) Ltd:</strong> Payment processing. PayFast processes your payment details in accordance with PCI-DSS standards. PayFast's privacy policy is available at <a href="https://www.payfast.co.za/privacy-policy/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-purple);">payfast.co.za/privacy-policy</a>.</li>
+        <li><strong>Hosting Infrastructure Providers:</strong> Our enterprise cloud infrastructure and redundant backup systems are provided by trusted infrastructure partners located within South Africa. All providers are bound by strict confidentiality agreements and process data solely for the purpose of hosting the Service.</li>
+      </ul>
+
+      <h3>5.3 Legal Requirements</h3>
+      <p>We may disclose your Personal Information where required to do so by law, court order, subpoena, or other valid legal process, or where we have a good faith belief that such disclosure is necessary to:</p>
+      <ul>
+        <li>Comply with legal obligations;</li>
+        <li>Protect and defend our rights or property;</li>
+        <li>Prevent or investigate possible wrongdoing in connection with the Service;</li>
+        <li>Protect the personal safety of users of the Service or the public;</li>
+        <li>Protect against legal liability.</li>
+      </ul>
+
+      <h3>5.4 Business Transfers</h3>
+      <p>If Xennrex Cloud is involved in a merger, acquisition, asset sale, or other business reorganisation, your Personal Information may be transferred as part of that transaction. We will ensure that the receiving entity agrees to protect your Personal Information in a manner consistent with this Privacy Policy, and we will notify you of any such transfer.</p>
+    </section>
+
+    <!-- Section 6: Data Retention -->
+    <section class="legal-section" id="sec-6">
+      <h2><span class="section-num">6</span> Data Retention</h2>
+      <p><strong>6.1</strong> We retain your Personal Information only for as long as is necessary to fulfil the purposes for which it was collected, including for the purposes of satisfying any legal, accounting, or reporting requirements.</p>
+
+      <h3>6.2 Active Account Retention</h3>
+      <p>While your Account is active, we retain all Personal Information necessary to provide the Service and maintain your Account.</p>
+
+      <h3>6.3 Post-Closure Retention</h3>
+      <p>Following closure of your Account:</p>
+      <ul>
+        <li><strong>Client Data:</strong> Permanently deleted within 30 (thirty) days of Account closure, unless you request earlier deletion or we are legally required to retain it for a longer period;</li>
+        <li><strong>Account Information:</strong> Retained for 30 (thirty) days after Account closure, after which it is permanently deleted;</li>
+        <li><strong>Transaction Records:</strong> Retained for 5 (five) years from the date of transaction in compliance with tax legislation;</li>
+        <li><strong>Server Logs:</strong> Anonymised and/or deleted within 90 (ninety) days;</li>
+        <li><strong>Backup Copies:</strong> Automatically purged from our redundant backup systems within 90 (ninety) days of Account deletion.</li>
+      </ul>
+
+      <h3>6.4 Legal Retention</h3>
+      <p>In certain circumstances, we may retain your Personal Information for a longer period where we have a legal obligation to do so (for example, tax records) or where retention is necessary for the establishment, exercise, or defence of legal claims. When we no longer have a legitimate basis for retaining your Personal Information, it will be securely deleted or anonymised.</p>
+    </section>
+
+    <!-- Section 7: Data Security -->
+    <section class="legal-section" id="sec-7">
+      <h2><span class="section-num">7</span> Data Security</h2>
+      <p><strong>7.1</strong> We take the security of your Personal Information seriously and implement appropriate technical and organisational measures to protect it against unauthorised or unlawful processing, accidental loss, destruction, damage, alteration, or disclosure. These measures include:</p>
+
+      <ul>
+        <li><strong>AES-256 Encryption:</strong> All data is encrypted at rest using the Advanced Encryption Standard (AES) with a 256-bit key;</li>
+        <li><strong>TLS 1.3:</strong> All data transmitted between your devices and our servers is protected using Transport Layer Security;</li>
+        <li><strong>Encrypted Backups:</strong> All backup copies of your data are encrypted using the same AES-256 standard;</li>
+        <li><strong>Access Controls:</strong> Strict role-based access controls limit access to Personal Information to authorised personnel only on a need-to-know basis;</li>
+        <li><strong>Two-Factor Authentication (2FA):</strong> Available for all Accounts to provide an additional layer of access protection;</li>
+        <li><strong>Regular Security Audits:</strong> We conduct periodic vulnerability assessments, penetration testing, and security reviews of our systems;</li>
+        <li><strong>Secure Infrastructure:</strong> Our enterprise cloud infrastructure is hosted in physically secure facilities with controlled access, redundant power, and environmental controls;</li>
+        <li><strong>Staff Training:</strong> All employees with access to Personal Information undergo regular data protection training.</li>
+      </ul>
+
+      <p><strong>7.2</strong> In the event of a Personal Information breach, we have in place procedures to respond promptly. We will notify affected individuals and the Information Regulator in accordance with our obligations under Section 22 of the POPI Act.</p>
+
+      <p><strong>7.3</strong> Despite our security measures, no system is completely impenetrable. We cannot guarantee the absolute security of your data transmitted over the internet, and any transmission is at your own risk.</p>
+    </section>
+
+    <!-- Section 8: Data Location -->
+    <section class="legal-section" id="sec-8">
+      <h2><span class="section-num">8</span> Data Location &amp; Cross-Border Transfers</h2>
+
+      <div class="info-box success">
+        <div class="info-box-title"><i class="fas fa-flag" style="color: var(--success);"></i> Data Sovereignty Guarantee</div>
+        <p>All Client Data and Personal Information is stored <strong>exclusively within the Republic of South Africa</strong>. Our primary infrastructure and all redundant backup systems are located within South African jurisdiction. No cross-border transfer of your Personal Information occurs unless expressly authorised by you in writing or as required by law.</p>
+      </div>
+
+      <p><strong>8.1</strong> Xennrex Cloud's secure distributed cloud infrastructure with redundant backup systems is located entirely within South Africa. Your data never leaves South African jurisdiction unless you explicitly choose to access it from outside the country.</p>
+
+      <p><strong>8.2</strong> We do not transfer your Personal Information to any country outside of South Africa. In the unlikely event that a cross-border transfer becomes necessary (for example, to comply with a lawful international legal request), we will ensure that:</p>
+      <ul>
+        <li>The recipient country has adequate data protection laws substantially similar to the POPI Act; or</li>
+        <li>Appropriate safeguards are in place, such as binding corporate rules or standard contractual clauses approved by the Information Regulator; or</li>
+        <li>Your explicit consent has been obtained prior to the transfer.</li>
+      </ul>
+
+      <p><strong>8.3</strong> Where you access the Service from outside South Africa, your Personal Information will be transferred to and processed in South Africa. By using the Service, you consent to this transfer and processing in South Africa.</p>
+    </section>
+
+    <!-- Section 9: Your Rights (POPI Act) -->
+    <section class="legal-section" id="sec-9">
+      <h2><span class="section-num">9</span> Your Rights Under the POPI Act</h2>
+      <p>The POPI Act grants you the following rights in relation to your Personal Information. You may exercise any of these rights by contacting our Information Officer at <a href="mailto:info@xennrex.org" style="color: var(--accent-purple);">info@xennrex.org</a>.</p>
+
+      <div class="rights-grid">
+        <div class="rights-card">
+          <div class="rights-card-icon"><i class="fas fa-eye"></i></div>
+          <h4>Right of Access</h4>
+          <p>You have the right to request access to the Personal Information we hold about you and to receive a copy of that information.</p>
+        </div>
+        <div class="rights-card">
+          <div class="rights-card-icon"><i class="fas fa-edit"></i></div>
+          <h4>Right to Correction</h4>
+          <p>You have the right to request that we correct any inaccurate, misleading, or outdated Personal Information.</p>
+        </div>
+        <div class="rights-card">
+          <div class="rights-card-icon"><i class="fas fa-trash-alt"></i></div>
+          <h4>Right to Deletion</h4>
+          <p>You have the right to request the deletion of your Personal Information where we no longer have a lawful basis to retain it.</p>
+        </div>
+        <div class="rights-card">
+          <div class="rights-card-icon"><i class="fas fa-ban"></i></div>
+          <h4>Right to Object</h4>
+          <p>You have the right to object to the processing of your Personal Information on reasonable grounds.</p>
+        </div>
+        <div class="rights-card">
+          <div class="rights-card-icon"><i class="fas fa-gavel"></i></div>
+          <h4>Right to Complain</h4>
+          <p>You have the right to lodge a complaint with the Information Regulator if you believe we have violated the POPI Act.</p>
+        </div>
+        <div class="rights-card">
+          <div class="rights-card-icon"><i class="fas fa-user-shield"></i></div>
+          <h4>Right to Withdraw Consent</h4>
+          <p>Where processing is based on consent, you have the right to withdraw that consent at any time.</p>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 1.5rem;">9.1 How to Exercise Your Rights</h3>
+      <p>To exercise any of your rights, please send a written request to our Information Officer at <a href="mailto:info@xennrex.org" style="color: var(--accent-purple);">info@xennrex.org</a> with the subject line "POPI Act Data Subject Request". Your request must:</p>
+      <ul>
+        <li>Be made in writing (email is acceptable);</li>
+        <li>Provide sufficient information to verify your identity (we may request a copy of your identification document);</li>
+        <li>Describe the right you wish to exercise with sufficient detail;</li>
+        <li>Specify the Personal Information to which the request relates.</li>
+      </ul>
+      <p>We will respond to your request within a reasonable time and in any event within the timeframes prescribed by the POPI Act. We may charge a reasonable fee for manifestly unfounded or excessive requests.</p>
+
+      <h3>9.2 Lodging a Complaint with the Information Regulator</h3>
+      <p>If you are not satisfied with our response, or if you believe we have processed your Personal Information in violation of the POPI Act, you have the right to lodge a complaint with the Information Regulator:</p>
+      <div class="info-box notice">
+        <div class="info-box-title"><i class="fas fa-building-columns"></i> Information Regulator of South Africa</div>
+        <p><strong>Website:</strong> <a href="https://justice.gov.za/inforeg/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-purple);">justice.gov.za/inforeg/</a><br>
+        <strong>Address:</strong> JD House, 27 Stiemens Street, Braamfontein, Johannesburg, 2001<br>
+        <strong>Email:</strong> inforeg@justice.gov.za</p>
+      </div>
+    </section>
+
+    <!-- Section 10: Cookies -->
+    <section class="legal-section" id="sec-10">
+      <h2><span class="section-num">10</span> Cookies &amp; Similar Technologies</h2>
+      <p><strong>10.1</strong> We use cookies and similar tracking technologies to enhance your experience with the Service, improve security, and collect analytical data. Cookies are small text files placed on your device that store certain information about your visit.</p>
+
+      <h3>10.2 Types of Cookies We Use</h3>
+      <ul>
+        <li><strong>Essential Cookies:</strong> These cookies are strictly necessary for the operation of the Service. They enable core functionality such as session management, security authentication, and CSRF protection. You cannot opt out of essential cookies.</li>
+        <li><strong>Preference Cookies:</strong> These cookies remember your settings and preferences (such as language and display theme) to provide a more personalised experience.</li>
+        <li><strong>Analytics Cookies:</strong> These cookies collect anonymous, aggregated information about how visitors use our website and Service. We use this data to improve Service performance and user experience. Analytics cookies are only placed with your explicit consent.</li>
+        <li><strong>Security Cookies:</strong> We use Google reCAPTCHA cookies to protect our forms from spam and abuse. These cookies are necessary for fraud prevention.</li>
+      </ul>
+
+      <p><strong>10.3</strong> For detailed information about the cookies we use, including names, purposes, and durations, please see our <a href="cookie-policy.html" style="color: var(--accent-purple);">Cookie Policy</a>.</p>
+
+      <p><strong>10.4</strong> You can manage your cookie preferences through the cookie consent banner displayed when you first visit our website, or by adjusting your browser settings. Please note that disabling essential cookies will prevent you from using the Service.</p>
+    </section>
+
+    <!-- Section 11: Third-Party Services -->
+    <section class="legal-section" id="sec-11">
+      <h2><span class="section-num">11</span> Third-Party Services</h2>
+      <p><strong>11.1</strong> Our Service incorporates or links to third-party services. This Privacy Policy applies only to information collected by Xennrex Cloud. When you interact with third-party services, their own privacy policies govern the collection and use of your information.</p>
+
+      <h3>11.2 Nextcloud Software</h3>
+      <p>The Service is built on Nextcloud open-source software. Nextcloud GmbH develops the underlying software platform, but does not have access to your Client Data or Personal Information stored on our infrastructure. All data processing is performed on our self-hosted South African infrastructure.</p>
+
+      <h3>11.3 Payment Processing</h3>
+      <p>All payment processing is handled by <strong>PayFast (Pty) Ltd</strong>, a licensed payment service provider in South Africa. When you make a payment, you are directed to PayFast's secure payment page. PayFast processes your payment card information in accordance with PCI-DSS standards and their own privacy policy. We do not have access to your full payment card details.</p>
+
+      <h3>11.4 Links to Other Websites</h3>
+      <p>Our website may contain links to third-party websites. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party websites. We encourage you to review the privacy policy of every website you visit.</p>
+    </section>
+
+    <!-- Section 12: Children's Privacy -->
+    <section class="legal-section" id="sec-12">
+      <h2><span class="section-num">12</span> Children's Privacy</h2>
+      <p><strong>12.1</strong> The Service is not intended for use by children under the age of 18 (eighteen) years, and we do not knowingly collect Personal Information from children under 18.</p>
+      <p><strong>12.2</strong> If you are a parent or guardian and believe that your child has provided us with Personal Information without your consent, please contact us immediately at <a href="mailto:info@xennrex.org" style="color: var(--accent-purple);">info@xennrex.org</a>. If we become aware that we have collected Personal Information from a child under 18 without verification of parental consent, we will take steps to delete that information promptly.</p>
+      <p><strong>12.3</strong> Schools, educational institutions, or other organisations that use the Service with users under the age of 18 are responsible for obtaining all necessary parental consents and ensuring compliance with applicable child protection and data protection laws.</p>
+    </section>
+
+    <!-- Section 13: Changes -->
+    <section class="legal-section" id="sec-13">
+      <h2><span class="section-num">13</span> Changes to This Privacy Policy</h2>
+      <p><strong>13.1</strong> We may update this Privacy Policy from time to time to reflect changes in our practices, legal requirements, or the Service. Material changes will be communicated to you at least 30 (thirty) days before they take effect, via:</p>
+      <ul>
+        <li>Email to the address associated with your Account; or</li>
+        <li>A prominent notice on our website and/or within the Service.</li>
+      </ul>
+      <p><strong>13.2</strong> Non-material changes (such as typographical corrections, clarifications, or updates to contact information) may take effect immediately without prior notice.</p>
+      <p><strong>13.3</strong> Your continued use of the Service after the effective date of any changes constitutes your acceptance of the updated Privacy Policy. If you do not agree with the updated Privacy Policy, you must stop using the Service and close your Account.</p>
+      <p><strong>13.4</strong> We encourage you to review this Privacy Policy periodically for any changes. The "Last Updated" date at the top of this page indicates when the Privacy Policy was last revised.</p>
+    </section>
+
+    <!-- Section 14: Contact -->
+    <section class="legal-section" id="sec-14">
+      <h2><span class="section-num">14</span> Contact &amp; Information Officer</h2>
+      <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our data protection practices, please contact us using the details below:</p>
+
+      <div class="contact-block">
+        <div class="contact-block-icon"><i class="fas fa-shield-alt"></i></div>
+        <h3>Information Officer — Xennrex Cloud (Pty) Ltd</h3>
+        <p><strong>Email:</strong> <a href="mailto:info@xennrex.org">info@xennrex.org</a></p>
+        <p><strong>Website:</strong> <a href="https://xennrex.org">xennrex.org</a></p>
+        <p style="margin-top: 1rem; font-size: 0.9375rem;">We will respond to all privacy-related enquiries within 2 (two) business days.</p>
+      </div>
+
+      <div class="info-box notice" style="margin-top: 1.5rem;">
+        <div class="info-box-title"><i class="fas fa-balance-scale"></i> Information Regulator</div>
+        <p>If you are unsatisfied with our response or believe we have violated the POPI Act, you may lodge a complaint with the Information Regulator of South Africa:</p>
+        <p style="margin-top: 0.5rem;"><strong>Website:</strong> <a href="https://justice.gov.za/inforeg/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-purple);">justice.gov.za/inforeg/</a><br>
+        <strong>Address:</strong> JD House, 27 Stiemens Street, Braamfontein, Johannesburg, 2001</p>
+      </div>
+
+      <p style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color); color: var(--text-dark); font-size: 0.875rem;">
+        <i class="fas fa-lock" style="margin-right: 0.5rem;"></i>
+        Your privacy. Your data. Your rights. Protected under South African law.
+      </p>
+    </section>
+
   </div>
-  <footer>© 2026 Xennrex Cloud. All rights reserved.</footer>
+
+  <!-- ===== Back to Top ===== -->
+  <button class="back-to-top" id="backToTop" title="Back to top" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="footer-logo"><i class="fas fa-cloud"></i> Xennrex Cloud</a>
+        <p class="footer-desc">South African private cloud hosting. Your data, your rules. Enterprise-grade infrastructure with local data sovereignty.</p>
+      </div>
+      <div class="footer-links-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="https://portal.xennrex.org">Portal Login</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="status.html">System Status</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="cookie-policy.html">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Xennrex Cloud (Pty) Ltd. All rights reserved. Registered in South Africa.</p>
+    </div>
+  </footer>
+
+  <!-- ===== Scripts ===== -->
+  <script>
+    // Back to Top button
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTopBtn.classList.toggle('visible', window.scrollY > 600);
+    });
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
 </body>
 </html>

@@ -3,28 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Xennrex Cloud | South Africa's Private Nextcloud Hosting</title>
-  <meta name="description" content="South Africa's private Raspberry Pi 4 Nextcloud hosting. Your data, your hardware, your control. ZAR billing, local latency.">
+  <title>Xennrex Cloud | South Africa's Private Cloud</title>
+  <meta name="description" content="South Africa's only fully POPI-compliant private cloud. Data sovereignty, local infrastructure, ZAR billing. Your data. Your control. Fully compliant.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Index page enhancements */
+    .why-xennrex-section { position: relative; z-index: 1; padding: 6rem 0; background: linear-gradient(to bottom, transparent, rgba(168,85,247,0.02), transparent); }
+    .why-xennrex-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    .why-xennrex-content h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-primary); }
+    .why-xennrex-list { list-style: none; }
+    .why-xennrex-list li { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border-color); }
+    .why-xennrex-list li:last-child { border-bottom: none; }
+    .why-xennrex-list i { color: var(--success); font-size: 1.25rem; margin-top: 0.125rem; flex-shrink: 0; }
+    .why-xennrex-list strong { display: block; color: var(--text-primary); font-size: 1rem; margin-bottom: 0.25rem; }
+    .why-xennrex-list span { color: var(--text-muted); font-size: 0.875rem; }
+    .trust-section { position: relative; z-index: 1; padding: 4rem 0; }
+    .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+    .trust-card { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; text-align: center; transition: var(--transition); }
+    .trust-card:hover { border-color: var(--border-glow); box-shadow: var(--shadow-glow); transform: translateY(-4px); }
+    .trust-icon { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1rem; }
+    .trust-card h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .trust-card p { color: var(--text-muted); font-size: 0.8125rem; line-height: 1.5; }
+    .faq-section { position: relative; z-index: 1; padding: 6rem 0; }
+    .faq-list { max-width: 800px; margin: 0 auto; }
+    .faq-item { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius); margin-bottom: 1rem; overflow: hidden; transition: var(--transition); }
+    .faq-item:hover { border-color: var(--border-glow); }
+    .faq-question { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; cursor: pointer; font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; color: var(--text-primary); background: none; border: none; width: 100%; text-align: left; }
+    .faq-question i { color: var(--accent-purple); font-size: 0.875rem; transition: transform 0.3s ease; }
+    .faq-item.open .faq-question i { transform: rotate(180deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; padding: 0 1.5rem; color: var(--text-muted); font-size: 0.9375rem; line-height: 1.7; }
+    .faq-item.open .faq-answer { max-height: 300px; padding: 0 1.5rem 1.25rem; }
+    .comparison-check { color: var(--success); }
+    .comparison-cross { color: var(--danger); opacity: 0.5; }
+    @media (max-width: 768px) {
+      .why-xennrex-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-  <!-- Particle Canvas Background -->
   <canvas id="particleCanvas"></canvas>
 
   <!-- Navbar -->
   <nav class="navbar">
     <div class="container nav-container">
       <a href="index.html" class="logo">
-        <div class="logo-icon">
-          <i class="fas fa-cloud"></i>
-        </div>
+        <div class="logo-icon"><i class="fas fa-cloud"></i></div>
         <span class="logo-text">Xennrex Cloud</span>
       </a>
-
       <div class="nav-links" id="mobileMenu">
         <a href="index.html" class="nav-link active">Home</a>
         <a href="features.html" class="nav-link">Features</a>
@@ -32,12 +61,9 @@
         <a href="about.html" class="nav-link">About</a>
         <a href="contact.html" class="nav-link">Contact</a>
       </div>
-
       <div class="nav-actions">
         <a href="checkout.html" class="btn btn-primary">Get Started</a>
-        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
-          <i class="fas fa-bars"></i>
-        </button>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
       </div>
     </div>
   </nav>
@@ -47,30 +73,24 @@
     <div class="hero-content">
       <div class="badge reveal">
         <span class="badge-dot"></span>
-        <span>Now provisioning in South Africa</span>
+        <span>South Africa's Only Fully POPI-Compliant Private Cloud</span>
       </div>
 
       <h1 class="hero-title reveal">
         Your Data.<br>
-        <span class="gradient-text">Your Hardware.</span><br>
-        Your Control.
+        <span class="gradient-text">Your Control.</span><br>
+        Fully Compliant.
       </h1>
 
       <p class="hero-subtitle reveal">
-        South Africa's first private Nextcloud hosting platform on Raspberry Pi 4.
-        Keep your data on your own hardware with zero third-party access. Local latency, ZAR billing,
-        and complete digital sovereignty.
+        The only private cloud built exclusively for South Africa. Keep your data on local
+        enterprise infrastructure with zero third-party access. POPI Act compliant,
+        ZAR billing, and sub-10ms latency from anywhere in the country.
       </p>
 
       <div class="hero-actions reveal">
-        <a href="checkout.html" class="btn btn-primary btn-lg">
-          <i class="fas fa-rocket"></i>
-          Launch Your Cloud
-        </a>
-        <a href="features.html" class="btn btn-outline btn-lg">
-          <i class="fas fa-compass"></i>
-          Explore Features
-        </a>
+        <a href="checkout.html" class="btn btn-primary btn-lg"><i class="fas fa-rocket"></i> Get Started</a>
+        <a href="features.html" class="btn btn-outline btn-lg"><i class="fas fa-compass"></i> Explore Features</a>
       </div>
 
       <!-- Fleet Status -->
@@ -84,12 +104,12 @@
       <!-- Stats bar -->
       <div class="hero-stats reveal">
         <div class="stat-item">
-          <span class="stat-value">99.9%</span>
+          <span class="stat-value">99%+</span>
           <span class="stat-label">Uptime SLA</span>
         </div>
         <div class="stat-divider"></div>
         <div class="stat-item">
-          <span class="stat-value">&lt;50ms</span>
+          <span class="stat-value">&lt;10ms</span>
           <span class="stat-label">Local Latency</span>
         </div>
         <div class="stat-divider"></div>
@@ -99,8 +119,8 @@
         </div>
         <div class="stat-divider"></div>
         <div class="stat-item">
-          <span class="stat-value">24/7</span>
-          <span class="stat-label">Local Support</span>
+          <span class="stat-value">POPI</span>
+          <span class="stat-label">Act Compliant</span>
         </div>
       </div>
     </div>
@@ -111,56 +131,157 @@
     <div class="container">
       <div class="section-header reveal">
         <h2 class="section-title">Built for <span class="gradient-text">Privacy</span></h2>
-        <p class="section-subtitle">Every feature designed to keep your data under your control — no compromises.</p>
+        <p class="section-subtitle">Every feature designed to keep your data under your control — no compromises, no data mining, no third-party access.</p>
       </div>
 
       <div class="features-grid">
         <div class="feature-card reveal">
-          <div class="feature-icon icon-shield">
-            <i class="fas fa-shield-alt"></i>
-          </div>
+          <div class="feature-icon icon-shield"><i class="fas fa-user-shield"></i></div>
           <h3>Zero Third-Party Access</h3>
-          <p>Your data lives exclusively on your dedicated Raspberry Pi 4. No cloud provider, no data mining, no surveillance. Absolute privacy guaranteed.</p>
+          <p>Your data never leaves our controlled infrastructure. No third-party analytics, no data mining, no ads. Your information stays exclusively yours.</p>
         </div>
 
         <div class="feature-card reveal">
-          <div class="feature-icon icon-bolt">
-            <i class="fas fa-bolt"></i>
-          </div>
+          <div class="feature-icon icon-bolt"><i class="fas fa-bolt"></i></div>
           <h3>Local Edge Performance</h3>
-          <p>Sub-50ms latency from anywhere in South Africa. Your files, collaboration tools, and communication — all blazing fast on local infrastructure.</p>
+          <p>Sub-10ms latency from anywhere in South Africa. No international routing delays. Your files, collaboration tools, and communication — all blazing fast on local infrastructure.</p>
         </div>
 
         <div class="feature-card reveal">
-          <div class="feature-icon icon-chart">
-            <i class="fas fa-chart-line"></i>
-          </div>
+          <div class="feature-icon icon-chart"><i class="fas fa-chart-line"></i></div>
           <h3>Pay-As-You-Grow</h3>
-          <p>Start small and scale effortlessly. Upgrade your plan anytime as your storage and performance needs grow — billed in ZAR, no surprises.</p>
+          <p>Start small and scale as your business grows. Upgrade or downgrade anytime. Billed in ZAR with no hidden fees or currency surprises.</p>
         </div>
 
         <div class="feature-card reveal">
-          <div class="feature-icon icon-lock">
-            <i class="fas fa-lock"></i>
-          </div>
+          <div class="feature-icon icon-lock"><i class="fas fa-lock"></i></div>
           <h3>Enterprise Security</h3>
-          <p>Brute-force protection, 2FA enforcement, geo-blocking, Tailscale VPN mesh, encrypted backups, and hidden server headers. Security hardened by default.</p>
+          <p>AES-256 encryption, mandatory 2FA, geo-blocking, brute-force protection, and hidden server signatures. Security hardened by default.</p>
         </div>
 
         <div class="feature-card reveal">
-          <div class="feature-icon icon-heartbeat">
-            <i class="fas fa-heartbeat"></i>
-          </div>
-          <h3>Auto-Healing Fleet</h3>
-          <p>Our monitoring fleet continuously checks node health. Failed services auto-restart, backups run automatically, and issues are detected before they affect you.</p>
+          <div class="feature-icon icon-heartbeat"><i class="fas fa-balance-scale"></i></div>
+          <h3>POPI Act Compliant</h3>
+          <p>Full compliance with South Africa's Protection of Personal Information Act. Data stays in SA. We act as your responsible party under the law.</p>
         </div>
 
         <div class="feature-card reveal">
-          <div class="feature-icon icon-headset">
-            <i class="fas fa-headset"></i>
-          </div>
-          <h3>Local Support</h3>
-          <p>South African support team that understands your needs. Email, knowledge base, and direct assistance when you need it most.</p>
+          <div class="feature-icon icon-headset"><i class="fas fa-server"></i></div>
+          <h3>99%+ Uptime</h3>
+          <p>Enterprise-grade redundant infrastructure with automated failover and 24/7 monitoring. Your cloud is always available when you need it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Xennrex Section -->
+  <section class="why-xennrex-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Why <span class="gradient-text">Xennrex</span>?</h2>
+        <p class="section-subtitle">International cloud providers weren't built for South African businesses. We were.</p>
+      </div>
+      <div class="why-xennrex-grid reveal">
+        <div class="why-xennrex-content">
+          <h3>International Cloud vs Xennrex</h3>
+          <ul class="why-xennrex-list">
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <div><strong>Data Sovereignty</strong><span>Your data never leaves South Africa. Not subject to the US CLOUD Act, EU GDPR extraterritoriality, or Chinese cyber laws.</span></div>
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <div><strong>POPI Act Compliance</strong><span>Full compliance with South Africa's Protection of Personal Information Act. We are your local responsible party.</span></div>
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <div><strong>Local Support, Local Context</strong><span>South African support team that understands your business environment, compliance needs, and urgency.</span></div>
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <div><strong>ZAR Pricing, No Surprises</strong><span>Billed in South African Rand. No exchange rate fluctuations, no international transaction fees, no hidden costs.</span></div>
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <div><strong>No Data Mining, Ever</strong><span>We don't scan your files, we don't sell your data, we don't show you ads. Your data is yours alone.</span></div>
+            </li>
+          </ul>
+        </div>
+        <div class="feature-card" style="padding: 2.5rem;">
+          <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; margin-bottom: 1.5rem; text-align: center;">Quick Comparison</h3>
+          <table style="width: 100%; font-size: 0.875rem; border-collapse: collapse;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--border-color);">
+                <th style="text-align: left; padding: 0.75rem; color: var(--text-muted); font-weight: 600;">Feature</th>
+                <th style="text-align: center; padding: 0.75rem; color: var(--accent-purple); font-weight: 600;">Xennrex</th>
+                <th style="text-align: center; padding: 0.75rem; color: var(--text-muted); font-weight: 600;">Others</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--border-color);">
+                <td style="padding: 0.75rem; color: var(--text-primary);">Data stays in SA</td>
+                <td style="text-align: center;"><i class="fas fa-check comparison-check"></i></td>
+                <td style="text-align: center;"><i class="fas fa-times comparison-cross"></i></td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border-color);">
+                <td style="padding: 0.75rem; color: var(--text-primary);">POPI Compliant</td>
+                <td style="text-align: center;"><i class="fas fa-check comparison-check"></i></td>
+                <td style="text-align: center;"><i class="fas fa-times comparison-cross"></i></td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border-color);">
+                <td style="padding: 0.75rem; color: var(--text-primary);">ZAR Billing</td>
+                <td style="text-align: center;"><i class="fas fa-check comparison-check"></i></td>
+                <td style="text-align: center;"><i class="fas fa-times comparison-cross"></i></td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border-color);">
+                <td style="padding: 0.75rem; color: var(--text-primary);">No Data Mining</td>
+                <td style="text-align: center;"><i class="fas fa-check comparison-check"></i></td>
+                <td style="text-align: center;"><i class="fas fa-times comparison-cross"></i></td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border-color);">
+                <td style="padding: 0.75rem; color: var(--text-primary);">Local Support</td>
+                <td style="text-align: center;"><i class="fas fa-check comparison-check"></i></td>
+                <td style="text-align: center;"><i class="fas fa-minus" style="color: var(--text-muted); opacity: 0.5;"></i></td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; color: var(--text-primary);">&lt;10ms Latency</td>
+                <td style="text-align: center;"><i class="fas fa-check comparison-check"></i></td>
+                <td style="text-align: center;"><i class="fas fa-times comparison-cross"></i></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust / Compliance Badges Section -->
+  <section class="trust-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Trust &amp; <span class="gradient-text">Compliance</span></h2>
+        <p class="section-subtitle">Your data is protected by South African law and enterprise-grade security standards.</p>
+      </div>
+      <div class="trust-grid reveal">
+        <div class="trust-card">
+          <div class="trust-icon" style="background: rgba(168,85,247,0.1); color: var(--accent-purple);"><i class="fas fa-balance-scale"></i></div>
+          <h4>POPI Act Compliant</h4>
+          <p>Full compliance with South Africa's Protection of Personal Information Act. Your data is processed lawfully and remains under SA jurisdiction.</p>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon" style="background: rgba(34,197,94,0.1); color: var(--success);"><i class="fas fa-lock"></i></div>
+          <h4>SSL Secure</h4>
+          <p>All data transmitted with TLS 1.3 encryption. AES-256 at rest. Your files are encrypted from end to end, always.</p>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon" style="background: rgba(245,158,11,0.1); color: var(--warning);"><i class="fas fa-flag"></i></div>
+          <h4>South African Owned</h4>
+          <p>Founded, operated, and staffed in South Africa. Supporting the local economy with ZAR billing and local employment.</p>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon" style="background: rgba(239,68,68,0.1); color: var(--danger);"><i class="fas fa-user-shield"></i></div>
+          <h4>Zero Data Mining</h4>
+          <p>We never scan, analyse, or monetise your data. No ads, no profiling, no third-party analytics. Privacy by design.</p>
         </div>
       </div>
     </div>
@@ -179,11 +300,7 @@
         <div class="pricing-card reveal">
           <div class="pricing-header">
             <h3>Cloud Entry</h3>
-            <div class="pricing-price">
-              <span class="currency">R</span>
-              <span class="amount">49</span>
-              <span class="period">/mo</span>
-            </div>
+            <div class="pricing-price"><span class="currency">R</span><span class="amount">49</span><span class="period">/mo</span></div>
             <p class="pricing-desc">Perfect for personal file storage</p>
           </div>
           <div class="pricing-specs">
@@ -192,11 +309,11 @@
             <div class="spec"><i class="fas fa-microchip"></i> 2 CPU Cores</div>
           </div>
           <ul class="pricing-features-list">
-            <li><i class="fas fa-check"></i> Nextcloud Files & Sync</li>
+            <li><i class="fas fa-check"></i> Nextcloud Files &amp; Sync</li>
             <li><i class="fas fa-check"></i> Nextcloud Talk</li>
             <li><i class="fas fa-check"></i> Collabora Office</li>
             <li><i class="fas fa-check"></i> Daily Backups</li>
-            <li><i class="fas fa-check"></i> Tailscale VPN</li>
+            <li><i class="fas fa-check"></i> VPN Access</li>
           </ul>
           <a href="checkout.html?plan=entry" class="btn btn-outline btn-full">Choose Plan</a>
         </div>
@@ -206,12 +323,8 @@
           <div class="popular-badge">Most Popular</div>
           <div class="pricing-header">
             <h3>Cloud Starter</h3>
-            <div class="pricing-price">
-              <span class="currency">R</span>
-              <span class="amount">179</span>
-              <span class="period">/mo</span>
-            </div>
-            <p class="pricing-desc">Great for professionals & small teams</p>
+            <div class="pricing-price"><span class="currency">R</span><span class="amount">179</span><span class="period">/mo</span></div>
+            <p class="pricing-desc">Great for professionals &amp; small teams</p>
           </div>
           <div class="pricing-specs">
             <div class="spec"><i class="fas fa-hdd"></i> 750 GB SSD Storage</div>
@@ -219,11 +332,11 @@
             <div class="spec"><i class="fas fa-microchip"></i> 4 CPU Cores</div>
           </div>
           <ul class="pricing-features-list">
-            <li><i class="fas fa-check"></i> Nextcloud Files & Sync</li>
+            <li><i class="fas fa-check"></i> Nextcloud Files &amp; Sync</li>
             <li><i class="fas fa-check"></i> Nextcloud Talk</li>
             <li><i class="fas fa-check"></i> Collabora Office</li>
             <li><i class="fas fa-check"></i> Daily Backups</li>
-            <li><i class="fas fa-check"></i> Tailscale VPN</li>
+            <li><i class="fas fa-check"></i> VPN Access</li>
           </ul>
           <a href="checkout.html?plan=starter" class="btn btn-primary btn-full">Choose Plan</a>
         </div>
@@ -232,12 +345,8 @@
         <div class="pricing-card reveal">
           <div class="pricing-header">
             <h3>Cloud Pro</h3>
-            <div class="pricing-price">
-              <span class="currency">R</span>
-              <span class="amount">349</span>
-              <span class="period">/mo</span>
-            </div>
-            <p class="pricing-desc">For power users & growing teams</p>
+            <div class="pricing-price"><span class="currency">R</span><span class="amount">349</span><span class="period">/mo</span></div>
+            <p class="pricing-desc">For power users &amp; growing teams</p>
           </div>
           <div class="pricing-specs">
             <div class="spec"><i class="fas fa-hdd"></i> 3 TB SSD Storage</div>
@@ -245,11 +354,11 @@
             <div class="spec"><i class="fas fa-microchip"></i> 8 CPU Cores</div>
           </div>
           <ul class="pricing-features-list">
-            <li><i class="fas fa-check"></i> Nextcloud Files & Sync</li>
+            <li><i class="fas fa-check"></i> Nextcloud Files &amp; Sync</li>
             <li><i class="fas fa-check"></i> Nextcloud Talk</li>
             <li><i class="fas fa-check"></i> Collabora Office</li>
             <li><i class="fas fa-check"></i> Daily Backups</li>
-            <li><i class="fas fa-check"></i> Tailscale VPN</li>
+            <li><i class="fas fa-check"></i> VPN Access</li>
           </ul>
           <a href="checkout.html?plan=pro" class="btn btn-outline btn-full">Choose Plan</a>
         </div>
@@ -258,11 +367,7 @@
         <div class="pricing-card reveal">
           <div class="pricing-header">
             <h3>Cloud Business</h3>
-            <div class="pricing-price">
-              <span class="currency">R</span>
-              <span class="amount">649</span>
-              <span class="period">/mo</span>
-            </div>
+            <div class="pricing-price"><span class="currency">R</span><span class="amount">649</span><span class="period">/mo</span></div>
             <p class="pricing-desc">Business-grade performance</p>
           </div>
           <div class="pricing-specs">
@@ -271,11 +376,11 @@
             <div class="spec"><i class="fas fa-microchip"></i> 8 CPU Cores</div>
           </div>
           <ul class="pricing-features-list">
-            <li><i class="fas fa-check"></i> Nextcloud Files & Sync</li>
+            <li><i class="fas fa-check"></i> Nextcloud Files &amp; Sync</li>
             <li><i class="fas fa-check"></i> Nextcloud Talk</li>
             <li><i class="fas fa-check"></i> Collabora Office</li>
             <li><i class="fas fa-check"></i> Daily Backups</li>
-            <li><i class="fas fa-check"></i> Tailscale VPN</li>
+            <li><i class="fas fa-check"></i> VPN Access</li>
           </ul>
           <a href="checkout.html?plan=business" class="btn btn-outline btn-full">Choose Plan</a>
         </div>
@@ -284,12 +389,8 @@
         <div class="pricing-card reveal">
           <div class="pricing-header">
             <h3>Cloud Enterprise</h3>
-            <div class="pricing-price">
-              <span class="currency">R</span>
-              <span class="amount">949</span>
-              <span class="period">/mo</span>
-            </div>
-            <p class="pricing-desc">Maximum performance & storage</p>
+            <div class="pricing-price"><span class="currency">R</span><span class="amount">949</span><span class="period">/mo</span></div>
+            <p class="pricing-desc">Maximum performance &amp; storage</p>
           </div>
           <div class="pricing-specs">
             <div class="spec"><i class="fas fa-hdd"></i> 20 TB SSD Storage</div>
@@ -297,11 +398,11 @@
             <div class="spec"><i class="fas fa-microchip"></i> 16 CPU Cores</div>
           </div>
           <ul class="pricing-features-list">
-            <li><i class="fas fa-check"></i> Nextcloud Files & Sync</li>
+            <li><i class="fas fa-check"></i> Nextcloud Files &amp; Sync</li>
             <li><i class="fas fa-check"></i> Nextcloud Talk</li>
             <li><i class="fas fa-check"></i> Collabora Office</li>
             <li><i class="fas fa-check"></i> Daily Backups</li>
-            <li><i class="fas fa-check"></i> Tailscale VPN</li>
+            <li><i class="fas fa-check"></i> VPN Access</li>
           </ul>
           <a href="checkout.html?plan=enterprise" class="btn btn-outline btn-full">Choose Plan</a>
         </div>
@@ -314,9 +415,8 @@
     <div class="container">
       <div class="section-header reveal">
         <h2 class="section-title">How It <span class="gradient-text">Works</span></h2>
-        <p class="section-subtitle">From signup to a fully functional Nextcloud instance in minutes.</p>
+        <p class="section-subtitle">From signup to a fully functional cloud instance in minutes.</p>
       </div>
-
       <div class="steps">
         <div class="step reveal">
           <div class="step-number">1</div>
@@ -324,23 +424,55 @@
           <h3>Choose Your Plan</h3>
           <p>Select the plan that fits your needs. All plans include Nextcloud, Talk, Collabora, and VPN.</p>
         </div>
-
         <div class="step-connector"></div>
-
         <div class="step reveal">
           <div class="step-number">2</div>
           <div class="step-icon"><i class="fas fa-credit-card"></i></div>
           <h3>Complete Payment</h3>
           <p>Secure checkout via PayFast with your South African bank card or instant EFT.</p>
         </div>
-
         <div class="step-connector"></div>
-
         <div class="step reveal">
           <div class="step-number">3</div>
           <div class="step-icon"><i class="fas fa-cloud-upload-alt"></i></div>
           <h3>Your Cloud is Ready</h3>
-          <p>We provision your dedicated Pi4, configure Nextcloud, and send you login credentials. Start using in minutes.</p>
+          <p>We provision your instance on local infrastructure and send you login credentials. Start using in minutes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Frequently Asked <span class="gradient-text">Questions</span></h2>
+        <p class="section-subtitle">Everything you need to know about Xennrex Cloud.</p>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item open">
+          <button class="faq-question" aria-expanded="true">How does Xennrex Cloud work? <i class="fas fa-chevron-down"></i></button>
+          <div class="faq-answer">Xennrex Cloud provides you with your own private Nextcloud instance hosted on enterprise-grade infrastructure located exclusively within South Africa. Once you sign up and complete payment, we provision your instance and send you login credentials. You can immediately start uploading files, collaborating on documents, hosting video calls, and more — all with the assurance that your data never leaves South African soil.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Is my data really secure? <i class="fas fa-chevron-down"></i></button>
+          <div class="faq-answer">Absolutely. We implement AES-256 encryption for data at rest and TLS 1.3 for data in transit. Mandatory two-factor authentication, geo-blocking, brute-force protection, and hidden server signatures are standard on all accounts. Our infrastructure is monitored 24/7 and we perform daily encrypted backups with point-in-time recovery.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Where exactly is my data stored? <i class="fas fa-chevron-down"></i></button>
+          <div class="faq-answer">Your data is stored exclusively on enterprise-grade servers physically located within South Africa. We use redundant distributed storage with automatic replication across multiple South African data centre locations. Your data never leaves the country's jurisdiction and is fully protected under South African law, including the POPI Act.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Can I cancel my subscription anytime? <i class="fas fa-chevron-down"></i></button>
+          <div class="faq-answer">Yes. You can cancel your subscription at any time with no cancellation fees. Upon cancellation, you have 30 days to export your data before your instance is permanently deleted. We provide full data portability — export your files, contacts, and calendars in standard formats at any time.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Do you offer technical support? <i class="fas fa-chevron-down"></i></button>
+          <div class="faq-answer">Yes. All plans include email support with same-business-day response times. Our support team is based in South Africa and understands the local business context. We also provide a comprehensive knowledge base with setup guides, troubleshooting articles, and video tutorials.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">What is POPI compliance and why does it matter? <i class="fas fa-chevron-down"></i></button>
+          <div class="faq-answer">The Protection of Personal Information Act (POPI Act) is South Africa's data protection law. It regulates how personal information must be processed, stored, and protected. Using a POPI-compliant cloud provider like Xennrex ensures your business meets its legal obligations, avoids penalties of up to R10 million, and demonstrates to your customers that you take their data privacy seriously.</div>
         </div>
       </div>
     </div>
@@ -352,15 +484,10 @@
       <div class="cta-card reveal">
         <div class="cta-content">
           <h2>Ready to Own Your Data?</h2>
-          <p>Join South Africa's private cloud revolution. Your data stays on your hardware, under your control.</p>
-          <a href="checkout.html" class="btn btn-primary btn-lg">
-            <i class="fas fa-rocket"></i>
-            Launch Your Cloud Now
-          </a>
+          <p>Join South Africa's private cloud revolution. Your data stays local, secure, and under your control — fully POPI Act compliant.</p>
+          <a href="checkout.html" class="btn btn-primary btn-lg"><i class="fas fa-rocket"></i> Get Started Now</a>
         </div>
-        <div class="cta-decoration">
-          <i class="fas fa-cloud"></i>
-        </div>
+        <div class="cta-decoration"><i class="fas fa-cloud"></i></div>
       </div>
     </div>
   </section>
@@ -370,49 +497,18 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html" class="footer-logo">
-            <i class="fas fa-cloud"></i>
-            <span>Xennrex Cloud</span>
-          </a>
-          <p class="footer-desc">South Africa's private Nextcloud hosting on Raspberry Pi 4. Your data, your hardware, your control.</p>
+          <a href="index.html" class="footer-logo"><i class="fas fa-cloud"></i><span>Xennrex Cloud</span></a>
+          <p class="footer-desc">South Africa's private cloud. Enterprise-grade infrastructure with data sovereignty, POPI compliance, and local support.</p>
           <div class="footer-social">
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
             <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
           </div>
         </div>
-
-        <div class="footer-links-col">
-          <h4>Product</h4>
-          <ul>
-            <li><a href="features.html">Features</a></li>
-            <li><a href="index.html#pricing">Pricing</a></li>
-            <li><a href="checkout.html">Get Started</a></li>
-            <li><a href="admin-dashboard.html">Admin</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-links-col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="mailto:info@xennrex.org">info@xennrex.org</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-links-col">
-          <h4>Legal</h4>
-          <ul>
-            <li><a href="terms.html">Terms of Service</a></li>
-            <li><a href="privacy.html">Privacy Policy</a></li>
-            <li><a href="cookies.html">Cookie Policy</a></li>
-          </ul>
-        </div>
+        <div class="footer-links-col"><h4>Product</h4><ul><li><a href="features.html">Features</a></li><li><a href="index.html#pricing">Pricing</a></li><li><a href="checkout.html">Get Started</a></li></ul></div>
+        <div class="footer-links-col"><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="mailto:info@xennrex.org">info@xennrex.org</a></li></ul></div>
+        <div class="footer-links-col"><h4>Legal</h4><ul><li><a href="terms.html">Terms of Service</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="cookie-policy.html">Cookie Policy</a></li></ul></div>
       </div>
-
       <div class="footer-bottom">
-        <p>&copy; 2026 Xennrex Cloud. All rights reserved. Built in South Africa.</p>
+        <p>&copy; 2026 Xennrex Cloud (Pty) Ltd. All rights reserved. Built in South Africa.</p>
       </div>
     </div>
   </footer>
@@ -423,99 +519,35 @@
     (function() {
       const canvas = document.getElementById('particleCanvas');
       if (!canvas) return;
-
       const ctx = canvas.getContext('2d');
       let particles = [];
       let animationId;
-
-      function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-
+      function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
       class Particle {
-        constructor() {
-          this.reset();
-        }
-
-        reset() {
-          this.x = Math.random() * canvas.width;
-          this.y = Math.random() * canvas.height;
-          this.size = Math.random() * 2 + 0.5;
-          this.speedX = (Math.random() - 0.5) * 0.3;
-          this.speedY = (Math.random() - 0.5) * 0.3;
-          this.opacity = Math.random() * 0.5 + 0.1;
-        }
-
-        update() {
-          this.x += this.speedX;
-          this.y += this.speedY;
-
-          if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-          if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-        }
-
-        draw() {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(168, 85, 247, ${this.opacity})`;
-          ctx.fill();
-        }
+        constructor() { this.reset(); }
+        reset() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.size = Math.random() * 2 + 0.5; this.speedX = (Math.random() - 0.5) * 0.3; this.speedY = (Math.random() - 0.5) * 0.3; this.opacity = Math.random() * 0.5 + 0.1; }
+        update() { this.x += this.speedX; this.y += this.speedY; if (this.x < 0 || this.x > canvas.width) this.speedX *= -1; if (this.y < 0 || this.y > canvas.height) this.speedY *= -1; }
+        draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fillStyle = `rgba(168, 85, 247, ${this.opacity})`; ctx.fill(); }
       }
-
-      function init() {
-        particles = [];
-        const particleCount = Math.min(Math.floor(window.innerWidth * window.innerHeight / 15000), 100);
-        for (let i = 0; i < particleCount; i++) {
-          particles.push(new Particle());
-        }
-      }
-
-      function drawConnections() {
-        for (let i = 0; i < particles.length; i++) {
-          for (let j = i + 1; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x;
-            const dy = particles[i].y - particles[j].y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-
-            if (dist < 120) {
-              ctx.beginPath();
-              ctx.moveTo(particles[i].x, particles[i].y);
-              ctx.lineTo(particles[j].x, particles[j].y);
-              ctx.strokeStyle = `rgba(168, 85, 247, ${0.1 * (1 - dist / 120)})`;
-              ctx.lineWidth = 0.5;
-              ctx.stroke();
-            }
-          }
-        }
-      }
-
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        particles.forEach(p => {
-          p.update();
-          p.draw();
-        });
-
-        drawConnections();
-        animationId = requestAnimationFrame(animate);
-      }
-
-      resize();
-      init();
-      animate();
-
-      window.addEventListener('resize', () => {
-        resize();
-        init();
-      });
+      function init() { particles = []; const particleCount = Math.min(Math.floor(window.innerWidth * window.innerHeight / 15000), 100); for (let i = 0; i < particleCount; i++) particles.push(new Particle()); }
+      function drawConnections() { for (let i = 0; i < particles.length; i++) { for (let j = i + 1; j < particles.length; j++) { const dx = particles[i].x - particles[j].x; const dy = particles[i].y - particles[j].y; const dist = Math.sqrt(dx * dx + dy * dy); if (dist < 120) { ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.strokeStyle = `rgba(168, 85, 247, ${0.1 * (1 - dist / 120)})`; ctx.lineWidth = 0.5; ctx.stroke(); } } } }
+      function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); drawConnections(); animationId = requestAnimationFrame(animate); }
+      resize(); init(); animate();
+      window.addEventListener('resize', () => { resize(); init(); });
     })();
 
-    // Load fleet status on page load
-    document.addEventListener('DOMContentLoaded', () => {
-      checkFleetStatus('fleetStatus');
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-question').setAttribute('aria-expanded', 'false'); });
+        if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
+      });
     });
+
+    // Load fleet status on page load
+    document.addEventListener('DOMContentLoaded', () => { if (typeof checkFleetStatus === 'function') checkFleetStatus('fleetStatus'); });
   </script>
 </body>
 </html>

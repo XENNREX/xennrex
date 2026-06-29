@@ -4,12 +4,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About | Xennrex Cloud</title>
-  <meta name="description" content="Learn about Xennrex Cloud — built in South Africa, for South Africa. Data sovereignty, local latency, ZAR billing.">
+  <meta name="description" content="Learn about Xennrex Cloud — South Africa's private cloud. Data sovereignty, POPI compliance, local infrastructure, founded by Lorraine Liebenberg and Johan Ardendorff.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* About page specific styles */
+    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 2rem; }
+    .story-visual { display: flex; align-items: center; justify-content: center; }
+    .story-visual-inner { width: 280px; height: 280px; background: var(--accent-gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 6rem; color: white; opacity: 0.9; box-shadow: 0 0 60px rgba(168,85,247,0.3); }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
+    .team-card { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2.5rem; text-align: center; transition: var(--transition); }
+    .team-card:hover { border-color: var(--border-glow); box-shadow: var(--shadow-glow); transform: translateY(-4px); }
+    .team-avatar { width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 1.25rem; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: white; background: var(--accent-gradient); box-shadow: 0 4px 20px rgba(168,85,247,0.3); }
+    .team-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .team-role { display: inline-block; background: rgba(168,85,247,0.1); color: var(--accent-purple); font-size: 0.8125rem; font-weight: 600; padding: 0.3rem 0.875rem; border-radius: 100px; margin-bottom: 1rem; }
+    .team-bio { color: var(--text-muted); font-size: 0.9375rem; line-height: 1.7; margin-bottom: 1.25rem; }
+    .team-linkedin { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-muted); font-size: 0.875rem; font-weight: 500; transition: var(--transition); }
+    .team-linkedin:hover { color: var(--accent-purple); }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .why-card { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; text-align: center; transition: var(--transition); }
+    .why-card:hover { border-color: var(--border-glow); box-shadow: var(--shadow-glow); transform: translateY(-4px); }
+    .why-icon { width: 56px; height: 56px; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1rem; }
+    .why-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; }
+    .why-card p { color: var(--text-muted); font-size: 0.875rem; line-height: 1.6; }
+    .infra-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .infra-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1.25rem; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius); }
+    .infra-item i { color: var(--accent-purple); font-size: 1.25rem; margin-top: 0.125rem; flex-shrink: 0; }
+    .infra-item strong { display: block; color: var(--text-primary); font-size: 0.9375rem; margin-bottom: 0.25rem; }
+    .infra-item span { color: var(--text-muted); font-size: 0.8125rem; }
+    @media (max-width: 768px) {
+      .story-grid { grid-template-columns: 1fr; }
+      .story-visual-inner { width: 200px; height: 200px; font-size: 4rem; }
+    }
+  </style>
 </head>
 <body>
   <canvas id="particleCanvas" style="opacity: 0.3;"></canvas>
@@ -18,9 +48,7 @@
   <nav class="navbar">
     <div class="container nav-container">
       <a href="index.html" class="logo">
-        <div class="logo-icon">
-          <i class="fas fa-cloud"></i>
-        </div>
+        <div class="logo-icon"><i class="fas fa-cloud"></i></div>
         <span class="logo-text">Xennrex Cloud</span>
       </a>
       <div class="nav-links" id="mobileMenu">
@@ -32,116 +60,137 @@
       </div>
       <div class="nav-actions">
         <a href="checkout.html" class="btn btn-primary">Get Started</a>
-        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
-          <i class="fas fa-bars"></i>
-        </button>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
       </div>
     </div>
   </nav>
 
-  <!-- Page Hero -->
+  <!-- Hero -->
   <section class="page-hero">
     <div class="container">
-      <div class="badge reveal">
-        <span class="badge-dot"></span>
-        <span>Proudly South African</span>
-      </div>
+      <div class="badge reveal"><span class="badge-dot"></span><span>Proudly South African</span></div>
       <h1 class="reveal">Built in South Africa.<br><span class="gradient-text">For South Africa.</span></h1>
-      <p class="reveal">Data sovereignty shouldn't be a luxury. We're making private cloud hosting accessible to every South African.</p>
+      <p class="reveal">Data sovereignty shouldn't be a luxury. We're making enterprise-grade private cloud hosting accessible to every South African business.</p>
     </div>
   </section>
 
-  <!-- Content -->
   <div class="content-page">
     <div class="container">
-      <!-- Story Section -->
+
+      <!-- Our Story -->
       <div class="content-section reveal">
-        <h2><i class="fas fa-flag" style="color: var(--accent-purple);"></i> Our Story</h2>
-        <p style="margin-bottom: 1.5rem;">Xennrex Cloud was born from a simple observation: South African businesses and individuals deserve cloud services that respect their privacy, their currency, and their right to data sovereignty.</p>
-        <p style="margin-bottom: 1.5rem;">While global cloud providers offer powerful platforms, they come with significant trade-offs for South Africans: data stored overseas, latency issues, USD billing with fluctuating exchange rates, and most critically — your data subject to foreign jurisdictions and surveillance laws.</p>
-        <p>We built Xennrex to solve these problems. By deploying Raspberry Pi 4 hardware locally and running open-source Nextcloud software, we offer a truly private cloud experience where:</p>
-        <ul style="margin-top: 1rem; color: var(--text-muted); list-style: none;">
-          <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--success); margin-right: 0.5rem;"></i> Your data never leaves South African soil</li>
-          <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--success); margin-right: 0.5rem;"></i> Sub-50ms latency from anywhere in the country</li>
-          <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--success); margin-right: 0.5rem;"></i> Billing in ZAR — no currency surprises</li>
-          <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--success); margin-right: 0.5rem;"></i> Zero third-party access to your files</li>
-          <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--success); margin-right: 0.5rem;"></i> Open-source stack with no vendor lock-in</li>
-        </ul>
+        <h2><i class="fas fa-book-open" style="color: var(--accent-purple);"></i> Our Story</h2>
+        <div class="story-grid">
+          <div>
+            <p style="margin-bottom: 1.5rem; color: var(--text-primary); font-size: 1.05rem; font-weight: 500;">Why Xennrex was created</p>
+            <p style="margin-bottom: 1.5rem;">Xennrex Cloud was born from a simple observation: South African businesses and individuals deserve cloud services that respect their privacy, their currency, and their right to data sovereignty.</p>
+            <p style="margin-bottom: 1.5rem;">While international cloud providers offer powerful platforms, they come with significant trade-offs for South Africans: data stored overseas subject to foreign surveillance laws, latency issues from international routing, USD billing with fluctuating exchange rates, and most critically — your data subject to jurisdictions beyond South African legal protection.</p>
+            <p>We built Xennrex to solve these problems. By deploying on enterprise cloud infrastructure within South Africa's borders, we offer a truly private cloud experience where your data never leaves the country.</p>
+          </div>
+          <div class="story-visual">
+            <div class="story-visual-inner"><i class="fas fa-cloud-upload-alt"></i></div>
+          </div>
+        </div>
+        <div style="background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 1.5rem; margin-top: 1rem;">
+          <p style="color: var(--text-primary); font-weight: 600; margin-bottom: 1rem;"><i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i> The Xennrex Difference</p>
+          <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.75rem; list-style: none; color: var(--text-muted); font-size: 0.9375rem;">
+            <li><i class="fas fa-check" style="color: var(--success); margin-right: 0.5rem;"></i> Data never leaves South African soil</li>
+            <li><i class="fas fa-check" style="color: var(--success); margin-right: 0.5rem;"></i> Sub-10ms latency from anywhere in SA</li>
+            <li><i class="fas fa-check" style="color: var(--success); margin-right: 0.5rem;"></i> Billing in ZAR — no currency surprises</li>
+            <li><i class="fas fa-check" style="color: var(--success); margin-right: 0.5rem;"></i> Full POPI Act compliance</li>
+            <li><i class="fas fa-check" style="color: var(--success); margin-right: 0.5rem;"></i> Zero third-party data access</li>
+            <li><i class="fas fa-check" style="color: var(--success); margin-right: 0.5rem;"></i> South African support team</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Meet the Team -->
+      <div class="content-section reveal">
+        <h2><i class="fas fa-users" style="color: var(--accent-purple);"></i> Meet the Team</h2>
+        <p style="margin-bottom: 1rem; color: var(--text-muted);">We're a dedicated team of South African professionals passionate about digital privacy, data sovereignty, and empowering local businesses.</p>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-avatar">LL</div>
+            <h3>Lorraine Liebenberg</h3>
+            <span class="team-role">Co-Founder &amp; Operations Director</span>
+            <p class="team-bio">Lorraine brings over 15 years of operations management and customer service excellence to Xennrex. Her vision for accessible, compliant cloud solutions drives our commitment to South African businesses.</p>
+            <a href="#" class="team-linkedin" aria-label="Lorraine Liebenberg LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn Profile</a>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar" style="background: linear-gradient(135deg, #6366f1, #a855f7);">JA</div>
+            <h3>Johan Ardendorff</h3>
+            <span class="team-role">Co-Founder &amp; Technical Director</span>
+            <p class="team-bio">Johan is a seasoned systems architect with deep expertise in secure cloud infrastructure and data protection. He leads our technical operations ensuring enterprise-grade reliability and security.</p>
+            <a href="#" class="team-linkedin" aria-label="Johan Ardendorff LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn Profile</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why Choose Xennrex -->
+      <div class="content-section reveal">
+        <h2><i class="fas fa-award" style="color: var(--accent-purple);"></i> Why Choose Xennrex</h2>
+        <div class="why-grid">
+          <div class="why-card">
+            <div class="why-icon" style="background: rgba(168,85,247,0.1); color: var(--accent-purple);"><i class="fas fa-flag"></i></div>
+            <h3>Data Sovereignty</h3>
+            <p>Your data stays exclusively within South Africa. Never subject to foreign surveillance laws like the CLOUD Act or GDPR extraterritorial reach.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-icon" style="background: rgba(34,197,94,0.1); color: var(--success);"><i class="fas fa-shield-alt"></i></div>
+            <h3>POPI Compliance</h3>
+            <p>Full compliance with South Africa's Protection of Personal Information Act. We act as your responsible party for data processing.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-icon" style="background: rgba(59,130,246,0.1); color: var(--info);"><i class="fas fa-headset"></i></div>
+            <h3>Local Support</h3>
+            <p>South African support team that understands your business context. Available via email with same-business-day response times.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-icon" style="background: rgba(239,68,68,0.1); color: var(--danger);"><i class="fas fa-lock"></i></div>
+            <h3>Enterprise Security</h3>
+            <p>AES-256 encryption, mandatory 2FA, geo-blocking, brute-force protection, and hidden server signatures. Security hardened by default.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Our Infrastructure -->
+      <div class="content-section reveal">
+        <h2><i class="fas fa-server" style="color: var(--accent-purple);"></i> Our Infrastructure</h2>
+        <p style="margin-bottom: 1.5rem;">We operate on enterprise-grade cloud infrastructure hosted exclusively within South Africa. Our architecture is designed for reliability, security, and compliance from the ground up.</p>
+        <div class="infra-grid">
+          <div class="infra-item">
+            <i class="fas fa-server"></i>
+            <div><strong>Enterprise Servers</strong><span>High-performance computing nodes with redundant power and networking</span></div>
+          </div>
+          <div class="infra-item">
+            <i class="fas fa-database"></i>
+            <div><strong>Redundant Storage</strong><span>Distributed storage systems with automatic replication across multiple locations</span></div>
+          </div>
+          <div class="infra-item">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <div><strong>Automatic Backups</strong><span>Daily encrypted backups with point-in-time recovery capabilities</span></div>
+          </div>
+          <div class="infra-item">
+            <i class="fas fa-chart-line"></i>
+            <div><strong>99%+ Uptime</strong><span>Enterprise SLA with automated failover and 24/7 infrastructure monitoring</span></div>
+          </div>
+          <div class="infra-item">
+            <i class="fas fa-network-wired"></i>
+            <div><strong>Secure Networking</strong><span>Isolated private networks with VPN access and DDoS protection</span></div>
+          </div>
+          <div class="infra-item">
+            <i class="fas fa-sync-alt"></i>
+            <div><strong>Auto-Healing Systems</strong><span>Continuous health monitoring with automatic service recovery</span></div>
+          </div>
+        </div>
+        <p style="margin-top: 1.5rem; font-size: 0.875rem; color: var(--text-muted);"><i class="fas fa-info-circle" style="color: var(--accent-purple); margin-right: 0.5rem;"></i> All infrastructure is located within South African borders, ensuring your data remains subject to South African law and the POPI Act.</p>
       </div>
 
       <!-- Mission -->
       <div class="content-section reveal">
         <h2><i class="fas fa-bullseye" style="color: var(--accent-purple);"></i> Our Mission</h2>
-        <p>To empower South Africans with private, sovereign cloud infrastructure that keeps data local, secure, and under the owner's complete control — while supporting the local economy through ZAR billing and South African jobs.</p>
-      </div>
-
-      <!-- Team Placeholder -->
-      <div class="content-section reveal">
-        <h2><i class="fas fa-users" style="color: var(--accent-purple);"></i> Team</h2>
-        <p style="margin-bottom: 2rem; color: var(--text-muted);">We're a small but dedicated team of South African engineers, designers, and support specialists passionate about digital privacy and open-source technology.</p>
-        <div class="tech-stack">
-          <div class="tech-item" style="flex-direction: column; text-align: center; padding: 1.5rem;">
-            <i class="fas fa-user-circle" style="font-size: 2.5rem; color: var(--text-muted);"></i>
-            <div style="margin-top: 0.5rem;">
-              <strong style="color: var(--text-primary); display: block;">Engineering</strong>
-              <span style="font-size: 0.8125rem; color: var(--text-muted);">Infrastructure & Development</span>
-            </div>
-          </div>
-          <div class="tech-item" style="flex-direction: column; text-align: center; padding: 1.5rem;">
-            <i class="fas fa-user-circle" style="font-size: 2.5rem; color: var(--text-muted);"></i>
-            <div style="margin-top: 0.5rem;">
-              <strong style="color: var(--text-primary); display: block;">Support</strong>
-              <span style="font-size: 0.8125rem; color: var(--text-muted);">Customer Success</span>
-            </div>
-          </div>
-          <div class="tech-item" style="flex-direction: column; text-align: center; padding: 1.5rem;">
-            <i class="fas fa-user-circle" style="font-size: 2.5rem; color: var(--text-muted);"></i>
-            <div style="margin-top: 0.5rem;">
-              <strong style="color: var(--text-primary); display: block;">Operations</strong>
-              <span style="font-size: 0.8125rem; color: var(--text-muted);">Fleet & Monitoring</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Technology Stack -->
-      <div class="content-section reveal">
-        <h2><i class="fas fa-microchip" style="color: var(--accent-purple);"></i> Technology Stack</h2>
-        <p style="margin-bottom: 1.5rem; color: var(--text-muted);">We believe in open-source, battle-tested technologies. Every component of our stack is transparent, auditable, and community-driven.</p>
-        <div class="tech-stack">
-          <div class="tech-item">
-            <i class="fab fa-raspberry-pi"></i>
-            <span>Raspberry Pi 4</span>
-          </div>
-          <div class="tech-item">
-            <i class="fab fa-docker"></i>
-            <span>Docker</span>
-          </div>
-          <div class="tech-item">
-            <i class="fas fa-cloud"></i>
-            <span>Nextcloud</span>
-          </div>
-          <div class="tech-item">
-            <i class="fas fa-network-wired"></i>
-            <span>Tailscale VPN</span>
-          </div>
-          <div class="tech-item">
-            <i class="fas fa-shield-alt"></i>
-            <span>Cloudflare</span>
-          </div>
-          <div class="tech-item">
-            <i class="fas fa-cloud-upload-alt"></i>
-            <span>MEGA Backups</span>
-          </div>
-          <div class="tech-item">
-            <i class="fas fa-database"></i>
-            <span>Backblaze B2</span>
-          </div>
-          <div class="tech-item">
-            <i class="fab fa-linux"></i>
-            <span>Ubuntu Server</span>
-          </div>
-        </div>
+        <p style="font-size: 1.05rem; color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">To empower South Africans with private, sovereign cloud infrastructure that keeps data local, secure, and under the owner's complete control.</p>
+        <p>We believe that data sovereignty is a fundamental right. Every South African business, regardless of size, deserves access to cloud services that respect their privacy, comply with local regulations, and contribute to the local economy through ZAR billing and South African jobs.</p>
       </div>
 
       <!-- CTA -->
@@ -149,15 +198,10 @@
         <div class="cta-card reveal">
           <div class="cta-content">
             <h2>Join Xennrex Cloud</h2>
-            <p>Be part of South Africa's private cloud revolution. Your data, your hardware, your control.</p>
-            <a href="checkout.html" class="btn btn-primary btn-lg">
-              <i class="fas fa-rocket"></i>
-              Launch Your Cloud
-            </a>
+            <p>Be part of South Africa's private cloud revolution. Your data, your control, your compliance.</p>
+            <a href="checkout.html" class="btn btn-primary btn-lg"><i class="fas fa-rocket"></i> Get Started</a>
           </div>
-          <div class="cta-decoration">
-            <i class="fas fa-cloud"></i>
-          </div>
+          <div class="cta-decoration"><i class="fas fa-cloud"></i></div>
         </div>
       </div>
     </div>
@@ -168,39 +212,18 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html" class="footer-logo">
-            <i class="fas fa-cloud"></i>
-            <span>Xennrex Cloud</span>
-          </a>
-          <p class="footer-desc">South Africa's private Nextcloud hosting on Raspberry Pi 4. Your data, your hardware, your control.</p>
+          <a href="index.html" class="footer-logo"><i class="fas fa-cloud"></i><span>Xennrex Cloud</span></a>
+          <p class="footer-desc">South Africa's private cloud. Enterprise-grade infrastructure with data sovereignty, POPI compliance, and local support.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          </div>
         </div>
-        <div class="footer-links-col">
-          <h4>Product</h4>
-          <ul>
-            <li><a href="features.html">Features</a></li>
-            <li><a href="index.html#pricing">Pricing</a></li>
-            <li><a href="checkout.html">Get Started</a></li>
-          </ul>
-        </div>
-        <div class="footer-links-col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="mailto:info@xennrex.org">info@xennrex.org</a></li>
-          </ul>
-        </div>
-        <div class="footer-links-col">
-          <h4>Legal</h4>
-          <ul>
-            <li><a href="terms.html">Terms of Service</a></li>
-            <li><a href="privacy.html">Privacy Policy</a></li>
-            <li><a href="cookies.html">Cookie Policy</a></li>
-          </ul>
-        </div>
+        <div class="footer-links-col"><h4>Product</h4><ul><li><a href="features.html">Features</a></li><li><a href="index.html#pricing">Pricing</a></li><li><a href="checkout.html">Get Started</a></li></ul></div>
+        <div class="footer-links-col"><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="mailto:info@xennrex.org">info@xennrex.org</a></li></ul></div>
+        <div class="footer-links-col"><h4>Legal</h4><ul><li><a href="terms.html">Terms of Service</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="cookie-policy.html">Cookie Policy</a></li></ul></div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 Xennrex Cloud. All rights reserved. Built in South Africa.</p>
+        <p>&copy; 2026 Xennrex Cloud (Pty) Ltd. All rights reserved. Built in South Africa.</p>
       </div>
     </div>
   </footer>

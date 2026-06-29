@@ -3,44 +3,1194 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cookie Policy for Xennrex Cloud. Learn about the cookies we use, how we use them, and how to manage your cookie preferences.">
   <title>Cookie Policy — Xennrex Cloud</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-    :root { --bg: #0f0f1a; --bg-card: #16162a; --text: #e8e8f0; --text-muted: #8a8aa8; --accent: #a855f7; --gradient-1: linear-gradient(135deg, #a855f7 0%, #6366f1 100%); --border: rgba(168,85,247,0.15); }
+    :root {
+      --bg-primary: #0f0f1a;
+      --bg-secondary: #16162a;
+      --bg-hover: #1e1e3a;
+      --accent-gradient: linear-gradient(135deg, #a855f7, #6366f1);
+      --accent-purple: #a855f7;
+      --accent-indigo: #6366f1;
+      --text-primary: #e8e8f0;
+      --text-muted: #8a8aa8;
+      --text-dark: #5a5a78;
+      --border-color: rgba(168, 85, 247, 0.15);
+      --border-glow: rgba(168, 85, 247, 0.3);
+      --radius: 12px;
+      --radius-lg: 16px;
+      --success: #22c55e;
+      --danger: #ef4444;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(15,15,26,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 0 2rem; }
-    .nav-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 70px; }
-    .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ===== Navbar ===== */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(15, 15, 26, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+    }
+
     .logo span { font-weight: 300; opacity: 0.7; }
-    .content { max-width: 800px; margin: 0 auto; padding: 120px 2rem 60px; }
-    .content h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 700; margin-bottom: 2rem; }
-    .content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 600; margin: 2rem 0 1rem; color: var(--accent); }
-    .content p { color: var(--text-muted); margin-bottom: 1rem; }
-    .content table { width: 100%; border-collapse: collapse; margin: 1rem 0; color: var(--text-muted); font-size: 0.9rem; }
-    .content th, .content td { padding: 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
-    .content th { color: var(--text); font-weight: 600; }
-    footer { background: rgba(15,15,26,0.95); border-top: 1px solid var(--border); padding: 40px 2rem; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-link {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
+      background: var(--bg-secondary);
+    }
+
+    /* ===== Content ===== */
+    .content-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 120px 2rem 80px;
+    }
+
+    .page-header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .page-header h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .last-updated {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      padding: 0.75rem 1rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+    }
+
+    .last-updated i { color: var(--accent-purple); font-size: 0.75rem; }
+
+    /* ===== Legal Section Styling ===== */
+    .legal-section {
+      margin-bottom: 2.5rem;
+      scroll-margin-top: 90px;
+    }
+
+    .legal-section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.375rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--accent-purple);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .legal-section h2 .section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: var(--accent-gradient);
+      color: white;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .legal-section h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 1.25rem 0 0.75rem;
+      color: var(--text-primary);
+    }
+
+    .legal-section p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .legal-section ul, .legal-section ol {
+      color: var(--text-muted);
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .legal-section li {
+      margin-bottom: 0.5rem;
+    }
+
+    .legal-section strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* ===== Cookie Type Cards ===== */
+    .cookie-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .cookie-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      transition: all 0.3s ease;
+    }
+
+    .cookie-card:hover {
+      border-color: var(--border-glow);
+      transform: translateY(-2px);
+    }
+
+    .cookie-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .cookie-card-icon.required { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
+    .cookie-card-icon.preference { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+    .cookie-card-icon.analytics { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+    .cookie-card-icon.security { background: rgba(168, 85, 247, 0.1); color: var(--accent-purple); }
+
+    .cookie-card h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .cookie-card p {
+      color: var(--text-muted);
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .cookie-card .tag {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+
+    .tag.required { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+    .tag.optional { background: rgba(34, 197, 94, 0.1); color: var(--success); }
+
+    /* ===== Cookie Table ===== */
+    .cookie-table-wrapper {
+      overflow-x: auto;
+      margin: 1rem 0;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+    }
+
+    .cookie-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    .cookie-table thead {
+      background: var(--bg-hover);
+    }
+
+    .cookie-table th {
+      padding: 0.875rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .cookie-table td {
+      padding: 0.875rem 1rem;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .cookie-table tbody tr {
+      transition: background 0.2s;
+    }
+
+    .cookie-table tbody tr:hover {
+      background: rgba(168, 85, 247, 0.03);
+    }
+
+    .cookie-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .cookie-name {
+      font-family: 'Space Grotesk', monospace;
+      font-weight: 500;
+      color: var(--text-primary);
+      font-size: 0.8125rem;
+    }
+
+    .category-badge {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.6875rem;
+      font-weight: 600;
+    }
+
+    .badge-essential { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+    .badge-preference { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+    .badge-analytics { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+    .badge-security { background: rgba(168, 85, 247, 0.1); color: var(--accent-purple); }
+
+    /* ===== Info Boxes ===== */
+    .info-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin: 1rem 0;
+    }
+
+    .info-box.notice {
+      border-left: 3px solid var(--accent-purple);
+    }
+
+    .info-box.success {
+      border-left: 3px solid var(--success);
+    }
+
+    .info-box-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .info-box p:last-child { margin-bottom: 0; }
+
+    /* ===== Table of Contents ===== */
+    .toc {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .toc-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .toc-title i { color: var(--accent-purple); }
+
+    .toc ul {
+      list-style: none;
+      margin: 0;
+      column-count: 2;
+      column-gap: 2rem;
+    }
+
+    .toc li {
+      margin-bottom: 0.4rem;
+      break-inside: avoid;
+    }
+
+    .toc a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+
+    .toc a:hover { color: var(--accent-purple); }
+
+    /* ===== Contact Block ===== */
+    .contact-block {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .contact-block-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--accent-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .contact-block h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-block p {
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-block a {
+      color: var(--accent-purple);
+      text-decoration: none;
+    }
+
+    .contact-block a:hover { text-decoration: underline; }
+
+    /* ===== Cookie Consent Banner ===== */
+    .cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.4);
+      padding: 1.5rem 2rem;
+      z-index: 10000;
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .cookie-banner.visible {
+      transform: translateY(0);
+    }
+
+    .cookie-banner-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .cookie-banner-text {
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .cookie-banner-text h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      color: var(--text-primary);
+    }
+
+    .cookie-banner-text p {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin: 0;
+    }
+
+    .cookie-banner-text a {
+      color: var(--accent-purple);
+      text-decoration: none;
+    }
+
+    .cookie-banner-text a:hover { text-decoration: underline; }
+
+    .cookie-banner-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .cookie-banner-toggle {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-shrink: 0;
+    }
+
+    .toggle-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.8125rem;
+      cursor: pointer;
+    }
+
+    .toggle-label input[type="checkbox"] {
+      appearance: none;
+      width: 36px;
+      height: 20px;
+      background: var(--bg-hover);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s;
+      flex-shrink: 0;
+    }
+
+    .toggle-label input[type="checkbox"]:checked {
+      background: var(--accent-purple);
+      border-color: var(--accent-purple);
+    }
+
+    .toggle-label input[type="checkbox"]::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 14px;
+      height: 14px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+
+    .toggle-label input[type="checkbox"]:checked::after {
+      transform: translateX(16px);
+    }
+
+    .toggle-label input[type="checkbox"]:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.625rem 1.25rem;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+      outline: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--accent-gradient);
+      color: white;
+      box-shadow: 0 4px 14px rgba(168, 85, 247, 0.35);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 6px 20px rgba(168, 85, 247, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1.5px solid var(--border-color);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent-purple);
+      background: rgba(168, 85, 247, 0.08);
+    }
+
+    .btn-sm {
+      padding: 0.4rem 0.875rem;
+      font-size: 0.8125rem;
+    }
+
+    /* ===== Back to Top ===== */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 44px;
+      height: 44px;
+      background: var(--accent-gradient);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(168, 85, 247, 0.35);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(168, 85, 247, 0.5);
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      padding: 3rem 2rem 2rem;
+    }
+
+    .footer-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-decoration: none;
+      margin-bottom: 1rem;
+    }
+
+    .footer-desc {
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+
+    .footer-links-col h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links-col ul {
+      list-style: none;
+      margin: 0;
+    }
+
+    .footer-links-col li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links-col a {
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links-col a:hover { color: var(--accent-purple); }
+
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 0 auto;
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.5rem;
+      text-align: center;
+      color: var(--text-dark);
+      font-size: 0.875rem;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .toc ul { column-count: 1; }
+      .nav-links { display: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .cookie-grid { grid-template-columns: 1fr; }
+      .cookie-banner-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .cookie-banner-actions {
+        justify-content: center;
+      }
+      .cookie-table-wrapper { font-size: 0.8125rem; }
+      .cookie-table th, .cookie-table td { padding: 0.625rem 0.75rem; }
+    }
+
+    @media (max-width: 480px) {
+      .content-wrapper { padding: 100px 1rem 60px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .cookie-banner { padding: 1rem; }
+      .cookie-banner-actions { flex-wrap: wrap; }
+    }
   </style>
 </head>
 <body>
-  <nav><div class="nav-container"><a href="index.html" class="logo">Xennrex<span>Cloud</span></a></div></nav>
-  <div class="content">
-    <h1>Cookie Policy</h1>
-    <h2>What Are Cookies</h2>
-    <p>Cookies are small text files stored on your device when you visit websites. We use minimal cookies to ensure our site functions properly.</p>
-    <h2>Cookies We Use</h2>
-    <table>
-      <tr><th>Cookie</th><th>Purpose</th><th>Duration</th></tr>
-      <tr><td>session_id</td><td>Maintains your session state</td><td>Session</td></tr>
-      <tr><td>cookie_consent</td><td>Stores your cookie preferences</td><td>1 year</td></tr>
-      <tr><td>_recaptcha</td><td>Google reCAPTCHA v3 (fraud prevention)</td><td>6 months</td></tr>
-    </table>
-    <h2>Third-Party Cookies</h2>
-    <p>Google reCAPTCHA may set cookies for security verification. PayFast may set cookies during payment processing. These are essential for service functionality.</p>
-    <h2>Managing Cookies</h2>
-    <p>You can disable cookies in your browser settings, but this may prevent checkout and other essential features from working.</p>
+
+  <!-- ===== Navbar ===== -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Xennrex<span>Cloud</span></a>
+      <div class="nav-links">
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="https://portal.xennrex.org" class="nav-link">Portal</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== Main Content ===== -->
+  <div class="content-wrapper">
+
+    <div class="page-header">
+      <h1>Cookie Policy</h1>
+      <div class="last-updated">
+        <i class="fas fa-clock"></i>
+        Last Updated: 30 June 2026
+      </div>
+    </div>
+
+    <!-- Table of Contents -->
+    <nav class="toc" aria-label="Table of Contents">
+      <div class="toc-title"><i class="fas fa-list"></i> Contents</div>
+      <ul>
+        <li><a href="#sec-1">1. What Are Cookies</a></li>
+        <li><a href="#sec-2">2. Types of Cookies We Use</a></li>
+        <li><a href="#sec-3">3. Cookie Table</a></li>
+        <li><a href="#sec-4">4. Third-Party Cookies</a></li>
+        <li><a href="#sec-5">5. How to Manage Cookies</a></li>
+        <li><a href="#sec-6">6. Consent</a></li>
+        <li><a href="#sec-7">7. Changes to This Policy</a></li>
+        <li><a href="#sec-8">8. Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Section 1: What Are Cookies -->
+    <section class="legal-section" id="sec-1">
+      <h2><span class="section-num">1</span> What Are Cookies</h2>
+      <p>Cookies are small text files that are placed on your computer, smartphone, tablet, or other device when you visit a website. They are widely used to make websites work more efficiently and to provide information to the website owners.</p>
+      <p>Cookies serve many purposes. They can help a website remember your preferences, keep you logged in, improve security, understand how you interact with the site, and generally enhance your browsing experience. Some cookies are essential for a website to function properly, while others are optional and used for analytics, preferences, or security enhancements.</p>
+      <p>In addition to cookies, we may use other similar technologies such as local storage, session storage, and web beacons (also known as pixel tags or clear GIFs) to collect and store information about your use of the Service.</p>
+    </section>
+
+    <!-- Section 2: Types of Cookies We Use -->
+    <section class="legal-section" id="sec-2">
+      <h2><span class="section-num">2</span> Types of Cookies We Use</h2>
+      <p>We use different categories of cookies on our website and Service. Each category serves a specific purpose. Below is an overview of the types of cookies we use:</p>
+
+      <div class="cookie-grid">
+        <div class="cookie-card">
+          <div class="cookie-card-icon required"><i class="fas fa-lock"></i></div>
+          <h4>Essential Cookies</h4>
+          <p>These cookies are strictly necessary for the Service to function. They enable core features such as session management, CSRF protection, and security authentication. Without these cookies, the Service cannot operate.</p>
+          <span class="tag required">CANNOT BE DISABLED</span>
+        </div>
+        <div class="cookie-card">
+          <div class="cookie-card-icon preference"><i class="fas fa-cog"></i></div>
+          <h4>Preference Cookies</h4>
+          <p>These cookies remember your settings and preferences — such as language selection, theme settings, and display preferences — so you don't have to reconfigure them on every visit.</p>
+          <span class="tag optional">OPTIONAL</span>
+        </div>
+        <div class="cookie-card">
+          <div class="cookie-card-icon analytics"><i class="fas fa-chart-bar"></i></div>
+          <h4>Analytics Cookies</h4>
+          <p>These cookies collect anonymous, aggregated information about how visitors use our website. They help us understand which pages are most popular, identify technical issues, and improve the overall user experience.</p>
+          <span class="tag optional">OPTIONAL</span>
+        </div>
+        <div class="cookie-card">
+          <div class="cookie-card-icon security"><i class="fas fa-shield-alt"></i></div>
+          <h4>Security Cookies</h4>
+          <p>These cookies are used by security services — specifically Google reCAPTCHA — to protect our forms from spam, abuse, and automated attacks. They help distinguish between humans and bots.</p>
+          <span class="tag required">REQUIRED FOR FORMS</span>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 1.5rem;">2.1 Essential Cookies</h3>
+      <p>Essential cookies are fundamental to the operation of the Service. They enable:</p>
+      <ul>
+        <li>User authentication and secure session management;</li>
+        <li>CSRF (Cross-Site Request Forgery) protection for form submissions;</li>
+        <li>Maintenance of your login state across page navigations;</li>
+        <li>Security measures to detect and prevent unauthorised access;</li>
+        <li>Basic Service functionality that enables cloud storage and file management.</li>
+      </ul>
+      <p>These cookies are first-party cookies set by Xennrex Cloud and do not track you across the internet. Because they are essential for the Service to function, they cannot be disabled through our cookie preferences. You may configure your browser to block these cookies, but doing so will prevent you from accessing and using the Service.</p>
+
+      <h3>2.2 Preference Cookies</h3>
+      <p>Preference cookies enable the Service to remember choices you make — such as your preferred language, display theme (light/dark), and other customisable settings — to provide enhanced, personalised features. These cookies are optional and can be disabled, though doing so will mean your preferences are not remembered between visits.</p>
+
+      <h3>2.3 Analytics Cookies</h3>
+      <p>Analytics cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. These cookies:</p>
+      <ul>
+        <li>Track which pages are visited most frequently;</li>
+        <li>Identify technical errors or broken functionality;</li>
+        <li>Measure page load times and performance metrics;</li>
+        <li>Analyse traffic sources and user flow through the site.</li>
+      </ul>
+      <p>These cookies collect information in an aggregated, anonymised form. They do not identify you personally. Analytics cookies are placed only with your explicit consent, which you can provide or withdraw at any time through the cookie consent banner.</p>
+
+      <h3>2.4 Security Cookies</h3>
+      <p>We use Google reCAPTCHA on certain forms (such as our registration and contact forms) to protect against spam, automated abuse, and fraudulent submissions. reCAPTCHA sets cookies to determine whether the user is a human or an automated system. These cookies are necessary for the security of our Service and the protection of all users.</p>
+    </section>
+
+    <!-- Section 3: Cookie Table -->
+    <section class="legal-section" id="sec-3">
+      <h2><span class="section-num">3</span> Cookie Table</h2>
+      <p>The table below provides a detailed list of the cookies we use, their purpose, category, and duration:</p>
+
+      <div class="cookie-table-wrapper">
+        <table class="cookie-table">
+          <thead>
+            <tr>
+              <th>Cookie Name</th>
+              <th>Category</th>
+              <th>Purpose</th>
+              <th>Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Essential -->
+            <tr>
+              <td><span class="cookie-name">xennrex_session</span></td>
+              <td><span class="category-badge badge-essential">Essential</span></td>
+              <td>Maintains your login session and authentication state across page requests. Required for Service access.</td>
+              <td>Session</td>
+            </tr>
+            <tr>
+              <td><span class="cookie-name">xennrex_csrf_token</span></td>
+              <td><span class="category-badge badge-essential">Essential</span></td>
+              <td>Protects against Cross-Site Request Forgery (CSRF) attacks on form submissions.</td>
+              <td>Session</td>
+            </tr>
+            <tr>
+              <td><span class="cookie-name">xennrex_auth</span></td>
+              <td><span class="category-badge badge-essential">Essential</span></td>
+              <td>Secure authentication token verifying your identity after login. Encrypted and HTTP-only.</td>
+              <td>Session / 24 hours</td>
+            </tr>
+            <tr>
+              <td><span class="cookie-name">xennrex_consent</span></td>
+              <td><span class="category-badge badge-essential">Essential</span></td>
+              <td>Stores your cookie consent preferences and choices so we respect your settings.</td>
+              <td>1 year</td>
+            </tr>
+            <!-- Preference -->
+            <tr>
+              <td><span class="cookie-name">xennrex_theme</span></td>
+              <td><span class="category-badge badge-preference">Preference</span></td>
+              <td>Remembers your selected display theme (light or dark) for consistent appearance across visits.</td>
+              <td>1 year</td>
+            </tr>
+            <tr>
+              <td><span class="cookie-name">xennrex_locale</span></td>
+              <td><span class="category-badge badge-preference">Preference</span></td>
+              <td>Remembers your preferred language setting for the Service interface.</td>
+              <td>1 year</td>
+            </tr>
+            <!-- Analytics -->
+            <tr>
+              <td><span class="cookie-name">_ga</span></td>
+              <td><span class="category-badge badge-analytics">Analytics</span></td>
+              <td>Google Analytics cookie used to distinguish unique users for anonymous usage statistics.</td>
+              <td>1 year</td>
+            </tr>
+            <tr>
+              <td><span class="cookie-name">_gid</span></td>
+              <td><span class="category-badge badge-analytics">Analytics</span></td>
+              <td>Google Analytics cookie used to distinguish users within a 24-hour period.</td>
+              <td>24 hours</td>
+            </tr>
+            <tr>
+              <td><span class="cookie-name">_gat</span></td>
+              <td><span class="category-badge badge-analytics">Analytics</span></td>
+              <td>Google Analytics cookie used to throttle request rate to prevent server overload.</td>
+              <td>1 minute</td>
+            </tr>
+            <!-- Security -->
+            <tr>
+              <td><span class="cookie-name">_GRECAPTCHA</span></td>
+              <td><span class="category-badge badge-security">Security</span></td>
+              <td>Google reCAPTCHA cookie used to distinguish between humans and automated systems for fraud prevention.</td>
+              <td>6 months</td>
+            </tr>
+            <tr>
+              <td><span class="cookie-name">rc::a</span></td>
+              <td><span class="category-badge badge-security">Security</span></td>
+              <td>Google reCAPTCHA cookie used to read and filter requests from bots. Set via local storage.</td>
+              <td>Persistent</td>
+            </tr>
+            <tr>
+              <td><span class="cookie-name">rc::b</span></td>
+              <td><span class="category-badge badge-security">Security</span></td>
+              <td>Google reCAPTCHA session cookie used to distinguish between humans and bots during form submission.</td>
+              <td>Session</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 4: Third-Party Cookies -->
+    <section class="legal-section" id="sec-4">
+      <h2><span class="section-num">4</span> Third-Party Cookies</h2>
+      <p>In addition to our own first-party cookies, we use services from the following third parties that may set cookies on your device:</p>
+
+      <h3>4.1 Google reCAPTCHA</h3>
+      <p>We use Google reCAPTCHA v3 on our registration, login, and contact forms to protect against automated spam and abuse. reCAPTCHA sets security cookies (listed in the table above) to analyse traffic patterns and determine whether the user is a human or a bot.</p>
+      <p>reCAPTCHA collects the following information:</p>
+      <ul>
+        <li>Hardware and software information about your device;</li>
+        <li>Information about your browser and the reCAPTCHA widgets installed on pages you visit;</li>
+        <li>Information about your interaction with the reCAPTCHA challenge (where applicable).</li>
+      </ul>
+      <p>Google uses this information solely to provide the reCAPTCHA service and for general security purposes. For more information about Google's data practices, please see the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style="color: var(--accent-purple);">Google Privacy Policy</a> and the <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" style="color: var(--accent-purple);">Google Terms of Service</a>.</p>
+
+      <h3>4.2 Google Analytics</h3>
+      <p>With your consent, we use Google Analytics to collect anonymous statistical data about how visitors use our website. Google Analytics sets cookies (listed in the table above) to track user interactions. The data collected is aggregated and does not personally identify you. We use Google Analytics with IP anonymisation enabled.</p>
+
+      <div class="info-box notice">
+        <div class="info-box-title"><i class="fas fa-info-circle"></i> Important Note</div>
+        <p>We do not use any third-party advertising cookies. We do not share cookie data with advertisers, data brokers, or marketing networks. We do not use cookies to build profiles for advertising purposes.</p>
+      </div>
+    </section>
+
+    <!-- Section 5: How to Manage Cookies -->
+    <section class="legal-section" id="sec-5">
+      <h2><span class="section-num">5</span> How to Manage Cookies</h2>
+      <p>You have the right to decide whether to accept or reject cookies. You can exercise your cookie preferences in the following ways:</p>
+
+      <h3>5.1 Cookie Consent Banner</h3>
+      <p>When you first visit our website, you will see a cookie consent banner that allows you to:</p>
+      <ul>
+        <li><strong>Accept All Cookies:</strong> Consent to the use of all cookie categories;</li>
+        <li><strong>Customise Preferences:</strong> Choose which optional cookie categories you wish to enable or disable;</li>
+        <li><strong>Accept Essential Only:</strong> Use only the essential cookies required for the Service to function.</li>
+      </ul>
+
+      <h3>5.2 Browser Settings</h3>
+      <p>Most web browsers allow you to control cookies through their settings. You can typically:</p>
+      <ul>
+        <li>Delete all cookies stored on your device;</li>
+        <li>Block all cookies from being set;</li>
+        <li>Block third-party cookies while allowing first-party cookies;</li>
+        <li>Receive a notification before a cookie is set.</li>
+      </ul>
+      <p>Please refer to your browser's help documentation for specific instructions:</p>
+      <ul>
+        <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer" style="color: var(--accent-purple);">Google Chrome</a></li>
+        <li><a href="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop" target="_blank" rel="noopener noreferrer" style="color: var(--accent-purple);">Mozilla Firefox</a></li>
+        <li><a href="https://support.apple.com/en-za/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer" style="color: var(--accent-purple);">Apple Safari</a></li>
+        <li><a href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener noreferrer" style="color: var(--accent-purple);">Microsoft Edge</a></li>
+      </ul>
+
+      <h3>5.3 Important Limitations</h3>
+      <div class="info-box warning">
+        <div class="info-box-title"><i class="fas fa-exclamation-triangle" style="color: #f59e0b;"></i> Essential Cookies Required</div>
+        <p>Please note that if you disable essential cookies through your browser settings, you will be unable to access or use the Xennrex Cloud Service. Essential cookies are strictly necessary for authentication, session management, and security. Disabling these cookies will prevent you from logging in, accessing your files, or using any Service features.</p>
+      </div>
+    </section>
+
+    <!-- Section 6: Consent -->
+    <section class="legal-section" id="sec-6">
+      <h2><span class="section-num">6</span> Consent</h2>
+      <p><strong>6.1</strong> By using our Service, you consent to the placement of <strong>essential cookies</strong> on your device. Essential cookies are necessary for the Service to function and cannot be disabled.</p>
+
+      <p><strong>6.2</strong> <strong>Analytics cookies</strong> are placed on your device only with your <strong>explicit opt-in consent</strong>. The first time you visit our website, you will be presented with a cookie consent banner that allows you to choose whether to enable or disable analytics cookies. You may change your preference at any time by clicking the "Cookie Settings" button below.</p>
+
+      <p><strong>6.3</strong> Your consent preferences are stored in the <code>xennrex_consent</code> cookie and are valid for 1 (one) year, after which you will be prompted to renew your preferences. You may withdraw or modify your consent at any time.</p>
+
+      <p><strong>6.4</strong> If you do not provide consent for optional cookies, your experience of the Service will not be negatively affected. The core functionality of the Service remains fully available regardless of your analytics cookie preference.</p>
+
+      <!-- Cookie Settings Control -->
+      <div class="info-box success" style="margin-top: 1.5rem;">
+        <div class="info-box-title"><i class="fas fa-sliders-h" style="color: var(--success);"></i> Manage Your Cookie Preferences</div>
+        <p>You can update your cookie preferences at any time. Use the cookie consent banner that appears at the bottom of the page, or click the button below to reopen your preferences.</p>
+        <button class="btn btn-primary btn-sm" onclick="resetCookieConsent()" style="margin-top: 0.75rem;">
+          <i class="fas fa-cookie-bite"></i> Reopen Cookie Preferences
+        </button>
+      </div>
+    </section>
+
+    <!-- Section 7: Changes -->
+    <section class="legal-section" id="sec-7">
+      <h2><span class="section-num">7</span> Changes to This Policy</h2>
+      <p><strong>7.1</strong> We may update this Cookie Policy from time to time to reflect changes in the cookies we use, changes in technology, or for other operational, legal, or regulatory reasons.</p>
+      <p><strong>7.2</strong> Material changes to this Cookie Policy will be communicated to you at least 30 (thirty) days before they take effect, via email or a prominent notice on our website.</p>
+      <p><strong>7.3</strong> We encourage you to review this Cookie Policy periodically to stay informed about our use of cookies. The "Last Updated" date at the top of this page indicates when this policy was last revised.</p>
+      <p><strong>7.4</strong> Your continued use of the Service after the effective date of any changes constitutes your acceptance of the updated Cookie Policy.</p>
+    </section>
+
+    <!-- Section 8: Contact -->
+    <section class="legal-section" id="sec-8">
+      <h2><span class="section-num">8</span> Contact</h2>
+      <p>If you have any questions, concerns, or comments about this Cookie Policy, or if you would like more information about the cookies we use, please contact us:</p>
+
+      <div class="contact-block">
+        <div class="contact-block-icon"><i class="fas fa-cookie-bite"></i></div>
+        <h3>Xennrex Cloud (Pty) Ltd</h3>
+        <p><strong>Email:</strong> <a href="mailto:info@xennrex.org">info@xennrex.org</a></p>
+        <p><strong>Website:</strong> <a href="https://xennrex.org">xennrex.org</a></p>
+        <p style="margin-top: 1rem; font-size: 0.9375rem;">We will respond to all cookie-related enquiries within 2 (two) business days.</p>
+      </div>
+
+      <p style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color); color: var(--text-dark); font-size: 0.875rem;">
+        <i class="fas fa-hand-holding-heart" style="margin-right: 0.5rem;"></i>
+        Thank you for trusting Xennrex Cloud with your data and your privacy.
+      </p>
+    </section>
+
   </div>
-  <footer>© 2026 Xennrex Cloud. All rights reserved.</footer>
+
+  <!-- ===== Cookie Consent Banner ===== -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-banner-inner">
+      <div class="cookie-banner-text">
+        <h4><i class="fas fa-cookie-bite" style="color: var(--accent-purple); margin-right: 0.5rem;"></i> We Value Your Privacy</h4>
+        <p>We use cookies to ensure the Service functions properly and to collect anonymous usage statistics. Essential cookies are always active. Analytics cookies help us improve — you choose. <a href="cookie-policy.html">Learn more</a></p>
+      </div>
+      <div class="cookie-banner-toggle">
+        <label class="toggle-label">
+          <input type="checkbox" id="analyticsToggle" checked>
+          Analytics
+        </label>
+      </div>
+      <div class="cookie-banner-actions">
+        <button class="btn btn-outline btn-sm" onclick="acceptEssentialOnly()">Essential Only</button>
+        <button class="btn btn-primary btn-sm" onclick="acceptAllCookies()">Accept All</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Back to Top ===== -->
+  <button class="back-to-top" id="backToTop" title="Back to top" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="footer-logo"><i class="fas fa-cloud"></i> Xennrex Cloud</a>
+        <p class="footer-desc">South African private cloud hosting. Your data, your rules. Enterprise-grade infrastructure with local data sovereignty.</p>
+      </div>
+      <div class="footer-links-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="https://portal.xennrex.org">Portal Login</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="status.html">System Status</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="cookie-policy.html">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Xennrex Cloud (Pty) Ltd. All rights reserved. Registered in South Africa.</p>
+    </div>
+  </footer>
+
+  <!-- ===== Scripts ===== -->
+  <script>
+    // ===== Cookie Consent Logic =====
+    const COOKIE_CONSENT_KEY = 'xennrex_cookie_consent';
+    const COOKIE_CONSENT_DATE_KEY = 'xennrex_consent_date';
+    const banner = document.getElementById('cookieBanner');
+
+    function hasConsent() {
+      try {
+        return localStorage.getItem(COOKIE_CONSENT_KEY) !== null;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function getConsent() {
+      try {
+        const val = localStorage.getItem(COOKIE_CONSENT_KEY);
+        return val ? JSON.parse(val) : null;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function saveConsent(essential, analytics) {
+      try {
+        localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify({
+          essential: essential,
+          analytics: analytics
+        }));
+        localStorage.setItem(COOKIE_CONSENT_DATE_KEY, new Date().toISOString());
+      } catch (e) {
+        // localStorage not available
+      }
+      banner.classList.remove('visible');
+    }
+
+    function acceptAllCookies() {
+      saveConsent(true, true);
+      loadAnalytics();
+    }
+
+    function acceptEssentialOnly() {
+      saveConsent(true, false);
+    }
+
+    function resetCookieConsent() {
+      try {
+        localStorage.removeItem(COOKIE_CONSENT_KEY);
+        localStorage.removeItem(COOKIE_CONSENT_DATE_KEY);
+      } catch (e) {}
+      showBanner();
+    }
+
+    function showBanner() {
+      // Small delay for visual effect
+      setTimeout(() => {
+        banner.classList.add('visible');
+      }, 1000);
+    }
+
+    function loadAnalytics() {
+      // Analytics scripts would be loaded here when consent is given
+      console.log('[Xennrex Cloud] Analytics cookies enabled');
+    }
+
+    // ===== Initialise =====
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!hasConsent()) {
+        showBanner();
+      } else {
+        const consent = getConsent();
+        if (consent && consent.analytics) {
+          loadAnalytics();
+        }
+        // If on cookie-policy page and user clicks reopen, banner will be shown via resetCookieConsent()
+      }
+    });
+
+    // ===== Back to Top =====
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTopBtn.classList.toggle('visible', window.scrollY > 600);
+    });
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
 </body>
 </html>
