@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <style>
+      .xennrex-logo { fill: #D4A843; }
+    </style>
+  </defs>
+  <!-- Top-left trapezoid -->
+  <polygon class="xennrex-logo" points="4,8 20,8 32,24 16,24" />
+  <!-- Top-right trapezoid -->
+  <polygon class="xennrex-logo" points="44,8 60,8 48,24 32,24" />
+  <!-- Bottom-left trapezoid -->
+  <polygon class="xennrex-logo" points="16,40 32,40 20,56 4,56" />
+  <!-- Bottom-right trapezoid -->
+  <polygon class="xennrex-logo" points="32,40 48,40 60,56 44,56" />
+  <!-- Center intersection diamond -->
+  <polygon class="xennrex-logo" points="24,28 40,28 32,36" opacity="0.85" />
+  <polygon class="xennrex-logo" points="24,36 40,36 32,28" opacity="0.85" />
+</svg>
