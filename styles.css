@@ -112,18 +112,6 @@ img {
   color: var(--text-primary);
 }
 
-.logo-icon {
-  width: 40px;
-  height: 40px;
-  background: var(--accent-gradient);
-  border-radius: var(--radius);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 1.1rem;
-}
-
 .nav-links {
   display: flex;
   align-items: center;
@@ -734,10 +722,6 @@ img {
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 1rem;
-}
-
-.footer-logo i {
-  color: var(--accent-purple);
 }
 
 .footer-desc {

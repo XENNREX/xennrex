@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout | Xennrex Cloud</title>
-  <meta name="description" content="Complete your Xennrex Cloud signup. Choose a plan, enter your details, and launch your private cloud instance on South African infrastructure.">
+  <title>Checkout | Xennrex</title>
+  <meta name="description" content="Complete your Xennrex signup. Choose a plan, enter your details, and launch your private cloud instance on South African infrastructure.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -35,8 +35,7 @@
   <nav class="navbar">
     <div class="container nav-container">
       <a href="index.html" class="logo">
-        <div class="logo-icon"><i class="fas fa-cloud"></i></div>
-        <span class="logo-text">Xennrex Cloud</span>
+        <span class="logo-text">Xennrex</span>
       </a>
       <div class="nav-actions">
         <a href="index.html" class="btn btn-outline btn-sm"><i class="fas fa-arrow-left"></i> Back</a>
@@ -115,7 +114,7 @@
             <p style="font-size: 0.875rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;"><i class="fas fa-file-signature" style="color: var(--accent-purple); margin-right: 0.5rem;"></i>Required Agreements</p>
             <div class="consent-item">
               <input type="checkbox" id="tosConsent" name="tosConsent" required>
-              <label for="tosConsent">I agree to the <a href="https://nextcloud.com/terms/" target="_blank" rel="noopener noreferrer">Nextcloud Terms of Service <i class="fas fa-external-link-alt" style="font-size: 0.7rem;"></i></a> and accept that my data will be processed on Xennrex Cloud infrastructure.</label>
+              <label for="tosConsent">I agree to the <a href="https://nextcloud.com/terms/" target="_blank" rel="noopener noreferrer">Nextcloud Terms of Service <i class="fas fa-external-link-alt" style="font-size: 0.7rem;"></i></a> and accept that my data will be processed on Xennrex infrastructure.</label>
             </div>
             <p class="error-msg" id="tosError"><i class="fas fa-exclamation-circle"></i> You must agree to the Nextcloud Terms of Service to continue.</p>
             <div class="consent-item">
@@ -326,7 +325,7 @@
           document.getElementById('payfastEmail').value = formData.email;
           document.getElementById('payfastPaymentId').value = data.clientId || '';
           document.getElementById('payfastAmount').value = (plans[selectedPlan].price * 1.15).toFixed(2);
-          document.getElementById('payfastItemName').value = `Xennrex Cloud - ${plans[selectedPlan].name}`;
+          document.getElementById('payfastItemName').value = `Xennrex - ${plans[selectedPlan].name}`;
           document.getElementById('payfastCustom').value = data.clientId || '';
           document.getElementById('payfastSignature').value = data.payfast.signature || '';
           document.getElementById('payfastForm').submit();
